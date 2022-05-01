@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="administrator.view.administratorView.AdministratorView"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="administrator.view.administratorView.AdministratorViewController">
+   <children>
+      <SplitPane layoutX="-2.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="597.0">
+               <children>
+                  <FlowPane layoutY="-1.0" prefHeight="400.0" prefWidth="611.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" prefHeight="169.0" prefWidth="271.0">
+                           <children>
+                              <Label fx:id="idLabelAdministrator" alignment="CENTER" contentDisplay="CENTER" text="id" textAlignment="CENTER">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets bottom="11.0" top="6.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="typeLabelAdministrator" text="type">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="colorLabelAdministrator" text="color">
+                                 <VBox.margin>
+                                    <Insets top="18.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="sizeLabelAdministrator" text="size">
+                                 <VBox.margin>
+                                    <Insets top="17.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets right="20.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="166.0" prefWidth="325.0">
+                           <children>
+                              <TextField fx:id="idTextFieldAdministrator">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <ChoiceBox fx:id="typeChoiceBoxAdministrator" prefWidth="150.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </ChoiceBox>
+                              <ChoiceBox fx:id="colorChoiceBoxAdministrator" prefWidth="150.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </ChoiceBox>
+                              <TextField fx:id="sizeTextFieldAdministrator">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
+                           <children>
+                              <Button fx:id="addButtonAdministrator" mnemonicParsing="false" text="Add">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="removeButtonAdministrator" mnemonicParsing="false" text="Remove">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="editButtonAdministrator" mnemonicParsing="false" text="Edit" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <ListView fx:id="listViewAdministrator" prefHeight="194.0" prefWidth="602.0" />
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
