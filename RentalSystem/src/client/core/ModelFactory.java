@@ -1,4 +1,4 @@
-package administrator.core;
+package client.core;
 
 public class ModelFactory {
 }

@@ -1,10 +1,11 @@
-package administrator.view.administratorView;
+package client.view.administratorView;
 
-import administrator.model.ManageProducts;
+import client.model.ManageProducts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shared.objects.Product;
 
 public class AdministratorViewModel {
 
@@ -18,7 +19,13 @@ public class AdministratorViewModel {
 		this.model = model;
 	}
 
-	public void addProduct()
+	public void addProduct(Product product) {
+		model.add(product);
+	}
+
+	public void removeProduct(int id) {
+		model.remove(id);
+	}
 
 	public StringProperty getIdTextFieldAdministrator() {
 		return idTextFieldAdministrator;

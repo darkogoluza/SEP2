@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="administrator.view.administratorView.AdministratorViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
    <children>
       <SplitPane layoutX="-2.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>

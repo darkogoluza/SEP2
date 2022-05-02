@@ -1,4 +1,4 @@
-package administrator.model;
+package client.model;
 
 import shared.objects.Product;
 

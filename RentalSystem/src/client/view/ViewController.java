@@ -1,4 +1,4 @@
-package administrator.view;
+package client.view;
 
 public interface ViewController {
 }
