@@ -18,6 +18,8 @@ public class AdministratorViewModel {
 		this.model = model;
 	}
 
+	public void addProduct()
+
 	public StringProperty getIdTextFieldAdministrator() {
 		return idTextFieldAdministrator;
 	}

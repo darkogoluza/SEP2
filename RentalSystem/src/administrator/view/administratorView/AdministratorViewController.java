@@ -9,8 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.util.List;
-
 
 public class AdministratorViewController {
 
