@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import shared.objects.Product;
+import shared.objects.*;
 
 
 public class AdministratorViewController {
@@ -29,6 +29,8 @@ public class AdministratorViewController {
     private Button editButtonAdministrator;
     @FXML
     private ListView listViewAdministrator;
+    @FXML
+    private TextField priceTextField;
 
     private ViewHandler viewHandler;
     private AdministratorViewModel administratorViewModel;
@@ -42,9 +44,9 @@ public class AdministratorViewController {
 
     public void addButtonAdministrator(ActionEvent event)
     {
-		int id =
-		Product product = new Product()
-		administratorViewModel.addProduct();
+		int id = 0;
+		Product product = new Product(id, Double.parseDouble(priceTextField.getText()), Color.valueOf(colorChoiceBoxAdministrator.getValue().toString()), EquipmentType.valueOf(typeChoiceBoxAdministrator.getValue().toString()), new LabelFormat(sizeTextFieldAdministrator.getText()));
+		administratorViewModel.addProduct(product);
     }
 
     public void removeButtonAdministrator(ActionEvent event)
