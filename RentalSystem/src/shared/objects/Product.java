@@ -88,7 +88,7 @@ public class Product {
      * @return Returns Product as string format is "Id: (id)\nPrice: (price)€\nColor: (color)\nType: (type)\nSize: (size)".
      */
     public String toString() {
-        return String.format("Id: %d\nPrice: %s€\nColor: %s\nType: %s\nSize: %s", id, price, color, type, size);
+        return String.format("Id: %03d  %s  %s  %s  %.02f€", id, color, size, type, price);
     }
 
     /**

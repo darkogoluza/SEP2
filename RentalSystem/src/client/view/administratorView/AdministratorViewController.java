@@ -2,6 +2,8 @@ package client.view.administratorView;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,8 +12,23 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import shared.objects.*;
 
-
 public class AdministratorViewController {
+    ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(
+            EquipmentType.helmet.toString(),
+            EquipmentType.ski.toString(),
+            EquipmentType.skiPoles.toString(),
+            EquipmentType.snowboard.toString(),
+            EquipmentType.snowboardShoes.toString()
+    );
+
+    ObservableList<String> colorTypeList = FXCollections.observableArrayList(
+            Color.red.toString(),
+            Color.black.toString(),
+            Color.blue.toString(),
+            Color.pink.toString(),
+            Color.green.toString(),
+            Color.white.toString()
+    );
 
     @FXML
     private TextField idTextFieldAdministrator;
@@ -40,12 +57,25 @@ public class AdministratorViewController {
         this.viewHandler = viewHandler;
 		administratorViewModel = vmf.getAdministratorViewModel();
 
+		typeChoiceBoxAdministrator.setValue(EquipmentType.helmet.toString());
+		typeChoiceBoxAdministrator.setItems(equipmentTypeList);
+
+		colorChoiceBoxAdministrator.setValue(Color.red.toString());
+		colorChoiceBoxAdministrator.setItems(colorTypeList);
+
+		listViewAdministrator.itemsProperty().bind(administratorViewModel.getListViewAdministrator());
     }
 
     public void addButtonAdministrator(ActionEvent event)
     {
-		int id = 0;
-		Product product = new Product(id, Double.parseDouble(priceTextField.getText()), Color.valueOf(colorChoiceBoxAdministrator.getValue().toString()), EquipmentType.valueOf(typeChoiceBoxAdministrator.getValue().toString()), new LabelFormat(sizeTextFieldAdministrator.getText()));
+		Product product = new Product(Integer.parseInt(
+		        idTextFieldAdministrator.getText()),
+                Double.parseDouble(priceTextField.getText()),
+                Color.valueOf(colorChoiceBoxAdministrator.getValue().toString()),
+                EquipmentType.valueOf(typeChoiceBoxAdministrator.getValue().toString()),
+                new LabelFormat(sizeTextFieldAdministrator.getText())
+        );
+
 		administratorViewModel.addProduct(product);
     }
 
@@ -58,7 +88,5 @@ public class AdministratorViewController {
     {
 
     }
-
-
 
 }

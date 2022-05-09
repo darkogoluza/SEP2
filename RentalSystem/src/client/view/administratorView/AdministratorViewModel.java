@@ -1,22 +1,29 @@
 package client.view.administratorView;
 
 import client.model.ManageProducts;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import shared.objects.Product;
+
+import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
+
 
 public class AdministratorViewModel {
 
-    private ObservableList<String> listViewAdministrator;
-    private StringProperty idTextFieldAdministrator;
+    private ListProperty<String> listViewAdministrator;
 	private ManageProducts model;
 
 	public AdministratorViewModel(ManageProducts model) {
-		idTextFieldAdministrator = new SimpleStringProperty();
-		listViewAdministrator = FXCollections.observableArrayList();
+		listViewAdministrator = new SimpleListProperty<>();
 		this.model = model;
+
+		model.addPropertyChangeListener("productAdded", this::productAdded);
+	}
+
+	private void productAdded(PropertyChangeEvent event) {
+		listViewAdministrator.set(FXCollections.observableArrayList((ArrayList<String>) event.getNewValue()));
 	}
 
 	public void addProduct(Product product) {
@@ -27,12 +34,7 @@ public class AdministratorViewModel {
 		model.remove(id);
 	}
 
-	public StringProperty getIdTextFieldAdministrator() {
-		return idTextFieldAdministrator;
-	}
-
-	public ObservableList getListViewAdministrator () {
+	public ListProperty<String> getListViewAdministrator () {
 		return listViewAdministrator;
 	}
-
 }

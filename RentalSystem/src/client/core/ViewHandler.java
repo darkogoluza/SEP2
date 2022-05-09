@@ -1,7 +1,6 @@
 package client.core;
 
 import client.view.administratorView.AdministratorViewController;
-import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,10 +13,9 @@ public class ViewHandler
     private Stage stage;
     private ViewModelFactory vmf;
     private Scene administratorScene;
-    private Scene customerAllEquipmentScene;
 
 
-    public ViewHandler(ViewModelFactory vmf, Stage stage){
+    public ViewHandler( ViewModelFactory vmf, Stage stage){
         this.vmf = vmf;
         this.stage = stage;
     }
@@ -44,7 +42,7 @@ public class ViewHandler
     public void openAdministratorView(){
         FXMLLoader loader = new FXMLLoader();
         if(administratorScene == null){
-            Parent root = getRootByPath("../client/view/administratorView/AdministratorView.fxml", loader);
+            Parent root = getRootByPath("/client/view/administratorView/AdministratorView.fxml", loader);
             AdministratorViewController controller = loader.getController();
             controller.init(this,vmf);
             administratorScene = new Scene(root);
