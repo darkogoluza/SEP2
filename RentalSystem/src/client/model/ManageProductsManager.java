@@ -1,44 +1,30 @@
 package client.model;
 
 import shared.objects.Product;
+import shared.objects.ProductArrayList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class ManageProductsManager implements ManageProducts {
-	private ArrayList<Product> list;
+	private ProductArrayList list;
 	private PropertyChangeSupport changeSupport;
 
 	public ManageProductsManager() {
-		list = new ArrayList<>();
+		list = new ProductArrayList();
 		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	@Override
 	public void add(Product product) {
 		list.add(product);
-		changeSupport.firePropertyChange("productAdded", null, getAllProducts());
+		changeSupport.firePropertyChange("productAdded", null, list.convertToStringArrayList());
 	}
 
 	@Override
 	public void remove(int id) {
-		for (Product product :
-				list) {
-			// TODO: 02/05/2022 product id is String or int?
-			if (product.getId() == id) {
-				list.remove(product);
-			}
-		}
-	}
-
-	private ArrayList<String> getAllProducts() {
-		ArrayList<String> temp = new ArrayList<>();
-		for (Product product : list) {
-			temp.add(product.toString());
-		}
-
-		return temp;
+		list.remove(id);
 	}
 
 	@Override
