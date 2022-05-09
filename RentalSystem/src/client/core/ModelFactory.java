@@ -18,4 +18,11 @@ public class ModelFactory {
 
         return manageProducts;
     }
+    public ManageProducts getCustomerModel(){
+        if(manageProducts == null){
+            manageProducts = new ManageProductsManager();
+        }
+
+        return manageProducts;
+    }
 }

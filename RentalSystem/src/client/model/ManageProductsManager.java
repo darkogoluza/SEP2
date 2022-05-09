@@ -26,6 +26,12 @@ public class ManageProductsManager implements ManageProducts {
 				list.remove(product);
 			}
 		}
+	}
 
+	@Override
+	public void showAllProducts() {
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i);
+		}
 	}
 }

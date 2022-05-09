@@ -1,6 +1,7 @@
 package client.core;
 
 import client.view.administratorView.AdministratorViewController;
+import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,15 +14,17 @@ public class ViewHandler
     private Stage stage;
     private ViewModelFactory vmf;
     private Scene administratorScene;
+    private Scene customerAllEquipmentScene;
 
 
-    public ViewHandler( ViewModelFactory vmf, Stage stage){
+    public ViewHandler(ViewModelFactory vmf, Stage stage){
         this.vmf = vmf;
         this.stage = stage;
     }
 
     public void start(){
-        openAdministratorView();
+        //openAdministratorView();
+        openCustomerAllEquipmentView();
         stage.show();
     }
 
@@ -41,7 +44,7 @@ public class ViewHandler
     public void openAdministratorView(){
         FXMLLoader loader = new FXMLLoader();
         if(administratorScene == null){
-            Parent root = getRootByPath("/client/view/administratorView/AdministratorView.fxml", loader);
+            Parent root = getRootByPath("../client/view/administratorView/AdministratorView.fxml", loader);
             AdministratorViewController controller = loader.getController();
             controller.init(this,vmf);
             administratorScene = new Scene(root);
@@ -51,6 +54,17 @@ public class ViewHandler
         stage.setScene(administratorScene);
     }
 
+    public void openCustomerAllEquipmentView(){
+        FXMLLoader loader = new FXMLLoader();
+        if(customerAllEquipmentScene == null){
+            Parent root = getRootByPath("/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
+            CustomerAllEquipmentViewController controller = loader.getController();
+            controller.init(this,vmf);
+            customerAllEquipmentScene = new Scene(root);
+        }
 
+        stage.setTitle("All equipment");
+        stage.setScene(customerAllEquipmentScene);
+    }
 
 }
