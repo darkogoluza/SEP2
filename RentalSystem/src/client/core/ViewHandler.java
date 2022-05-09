@@ -1,6 +1,7 @@
 package client.core;
 
 import client.view.administratorView.AdministratorViewController;
+import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ public class ViewHandler
     private Stage stage;
     private ViewModelFactory vmf;
     private Scene administratorScene;
+    private Scene customerAllEquipmentScene;
 
 
     public ViewHandler( ViewModelFactory vmf, Stage stage){
@@ -21,8 +23,8 @@ public class ViewHandler
     }
 
     public void start(){
-        //openAdministratorView();
-        openCustomerAllEquipmentView();
+        openAdministratorView();
+        //openCustomerAllEquipmentView();
         stage.show();
     }
 

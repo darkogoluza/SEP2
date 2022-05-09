@@ -1,7 +1,6 @@
 package client.model;
 
-import shared.objects.Product;
-import shared.objects.ProductArrayList;
+import shared.objects.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,14 +16,20 @@ public class ManageProductsManager implements ManageProducts {
 	}
 
 	@Override
-	public void add(Product product) {
-		list.add(product);
-		changeSupport.firePropertyChange("productAdded", null, list.convertToStringArrayList());
+	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+		list.add(price, color, equipmentType, size);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	@Override
-	public void remove(int id) {
-		list.remove(id);
+	public void remove(int index) {
+		list.removeByIndex(index);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+	}
+
+	@Override
+	public void showAllProducts() {
+
 	}
 
 	@Override

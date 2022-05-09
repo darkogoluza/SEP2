@@ -13,6 +13,11 @@ public class ProductArrayList {
         list.add(element);
     }
 
+    public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+        Product product = new Product(getUniqueId(), price, color, equipmentType, size);
+        list.add(product);
+    }
+
     public Product get(int id) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).getId() == id)
@@ -41,6 +46,17 @@ public class ProductArrayList {
 
     public int size() {
         return list.size();
+    }
+
+    public int getUniqueId() {
+        int maxId = -1;
+        for (Product product : list) {
+            if(product.getId() > maxId) {
+                maxId = product.getId();
+            }
+        }
+
+        return ++maxId;
     }
 
     public boolean equals(Object obj) {
