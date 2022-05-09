@@ -18,6 +18,13 @@ public class ProductArrayList {
         list.add(product);
     }
 
+    public void change(int index, double price, Color color, Size size) {
+        Product product = list.get(index);
+        product.setPrice(price);
+        product.setColor(color);
+        product.setSize(size);
+    }
+
     public Product get(int id) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).getId() == id)

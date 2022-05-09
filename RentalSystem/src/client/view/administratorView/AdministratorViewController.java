@@ -50,6 +50,8 @@ public class AdministratorViewController {
     private ViewHandler viewHandler;
     private AdministratorViewModel viewModel;
 
+    private int currentEditingProductIndex = 0;
+
     public void init(ViewHandler viewHandler, ViewModelFactory vmf)
     {
         this.viewHandler = viewHandler;
@@ -58,8 +60,9 @@ public class AdministratorViewController {
 		sizeTextField.textProperty().bindBidirectional(viewModel.getSizeStringProperty());
 		priceTextField.textProperty().bindBidirectional(viewModel.getPriceStringProperty());
 
-		typeChoiceBox.setValue(EquipmentType.helmet.toString());
 		typeChoiceBox.setItems(equipmentTypeList);
+        typeChoiceBox.valueProperty().bindBidirectional(viewModel.getType());
+        typeChoiceBox.setValue(EquipmentType.helmet.toString());
         sizeLabel.setText("Label Values S to XXL");
 
         typeChoiceBox.valueProperty().addListener((obs, old, niu)->{
@@ -78,8 +81,9 @@ public class AdministratorViewController {
             }
     });
 
-		colorChoiceBox.setValue(Color.red.toString());
 		colorChoiceBox.setItems(colorTypeList);
+		colorChoiceBox.valueProperty().bindBidirectional(viewModel.getColor());
+        colorChoiceBox.setValue(Color.red.toString());
 
 		listView.itemsProperty().bind(viewModel.getListViewAdministrator());
 
@@ -101,6 +105,22 @@ public class AdministratorViewController {
         viewModel.clearFields();
     }
 
+    public void changeProduct() {
+        if(!isInputOkay()){
+            showWrongInputDialog();
+            return;
+        }
+
+        typeChoiceBox.setDisable(false);
+        isEdit(false);
+        viewModel.changeProduct(currentEditingProductIndex,
+                Double.parseDouble(priceTextField.getText()),
+                Color.valueOf(colorChoiceBox.getValue().toString()),
+                getSize()
+        );
+        viewModel.clearFields();
+    }
+
     public void removeButton(ActionEvent event)
     {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
@@ -114,15 +134,16 @@ public class AdministratorViewController {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
             return;
 
+        currentEditingProductIndex = listView.getSelectionModel().getSelectedIndex();
         isEdit(true);
-        viewModel.setFieldsTo();
+        viewModel.setFieldsTo(currentEditingProductIndex);
+        typeChoiceBox.setDisable(true);
+
     }
 
     public void candleEdit() {
-        isEdit(false);
-    }
-
-    public void changeProduct() {
+        typeChoiceBox.setDisable(false);
+        viewModel.clearFields();
         isEdit(false);
     }
 

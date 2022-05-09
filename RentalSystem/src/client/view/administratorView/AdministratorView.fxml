@@ -45,8 +45,11 @@
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets right="10.0" top="20.0" />
                </padding>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
             </VBox>
             <VBox prefHeight="133.0" prefWidth="327.0" spacing="10.0">
                <children>

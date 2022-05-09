@@ -1,10 +1,8 @@
 package client.model;
 
 import shared.objects.*;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 
 public class ManageProductsManager implements ManageProducts {
 	private ProductArrayList list;
@@ -24,6 +22,17 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void remove(int index) {
 		list.removeByIndex(index);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+	}
+
+	@Override
+	public Product getProduct(int index) {
+		return list.getByIndex(index);
+	}
+
+	@Override
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+		list.change(index, newPrice, newColor, newSize);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 

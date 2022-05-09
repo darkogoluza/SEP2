@@ -84,6 +84,14 @@ public class Product {
     }
 
     /**
+     * Setter for the size of equipment.
+     * @param size New value for Size.
+     */
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    /**
      * Converts Product to string.
      * @return Returns Product as string format is "Id: (id)\nPrice: (price)€\nColor: (color)\nType: (type)\nSize: (size)".
      */
