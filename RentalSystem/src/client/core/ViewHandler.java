@@ -50,7 +50,4 @@ public class ViewHandler
         stage.setTitle("Login");
         stage.setScene(administratorScene);
     }
-
-
-
 }
