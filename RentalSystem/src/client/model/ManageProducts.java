@@ -6,4 +6,5 @@ import shared.util.PropertyChangeSubject;
 public interface ManageProducts extends PropertyChangeSubject {
 	void add(Product product);
 	void remove(int id);
+	void showAllProducts();
 }

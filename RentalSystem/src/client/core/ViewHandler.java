@@ -21,7 +21,8 @@ public class ViewHandler
     }
 
     public void start(){
-        openAdministratorView();
+        //openAdministratorView();
+        openCustomerAllEquipmentView();
         stage.show();
     }
 
@@ -50,4 +51,18 @@ public class ViewHandler
         stage.setTitle("Login");
         stage.setScene(administratorScene);
     }
+
+    public void openCustomerAllEquipmentView(){
+        FXMLLoader loader = new FXMLLoader();
+        if(customerAllEquipmentScene == null){
+            Parent root = getRootByPath("/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
+            CustomerAllEquipmentViewController controller = loader.getController();
+            controller.init(this,vmf);
+            customerAllEquipmentScene = new Scene(root);
+        }
+
+        stage.setTitle("All equipment");
+        stage.setScene(customerAllEquipmentScene);
+    }
+
 }

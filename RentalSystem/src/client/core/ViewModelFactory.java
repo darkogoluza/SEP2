@@ -2,10 +2,13 @@ package client.core;
 
 import client.model.ManageProducts;
 import client.view.administratorView.AdministratorViewModel;
+import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
 	private ManageProducts manageProducts;
+
+	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
 
 
 	public ViewModelFactory(ManageProducts manageProducts)
@@ -19,5 +22,13 @@ public class ViewModelFactory {
 		}
 
 		return administratorViewModel;
+	}
+
+	public CustomerAllEquipmentViewModel getCustomerAllEquipmentView() {
+		if (customerAllEquipmentViewModel == null) {
+			customerAllEquipmentViewModel = new CustomerAllEquipmentViewModel(manageProducts);
+		}
+
+		return customerAllEquipmentViewModel;
 	}
 }
