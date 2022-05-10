@@ -39,7 +39,6 @@ public class ManageProductDatabase implements ManageProductsPersistence
                 } else {
                     size = new LabelFormat(sizeString);
                 }
-
                 Color color = Color.valueOf(resultSet.getString("color"));
                 double price = resultSet.getDouble("price");
 

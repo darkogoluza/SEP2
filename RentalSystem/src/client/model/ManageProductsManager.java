@@ -18,10 +18,15 @@ public class ManageProductsManager implements ManageProducts {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			list = manageProductDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Add product to list @todo change this for database when implemented
+	 * Add product to list
 	 * @param price
 	 * @param color
 	 * @param equipmentType
@@ -40,7 +45,7 @@ public class ManageProductsManager implements ManageProducts {
 	}
 
 	/**
-	 * Remove selected item with index from list @todo change this for database when implemented
+	 * Remove selected item with index from list
 	 * @param index of product
 	 */
 	@Override
@@ -67,13 +72,7 @@ public class ManageProductsManager implements ManageProducts {
 
 	@Override
 	public ProductArrayList getAllProducts() {
-		try {
-			return manageProductDatabase.load();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return new ProductArrayList();
+		return list;
 	}
 
 	/**
