@@ -9,8 +9,8 @@ import java.sql.SQLException;
 
 public class ManageProductDatabase implements ManageProductsPersistence
 {
-    public ManageProductDatabase()
-    {
+    public ManageProductDatabase() throws ClassNotFoundException, SQLException {
+        DriverManager.registerDriver(new org.postgresql.Driver());
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
         String pw = "";
