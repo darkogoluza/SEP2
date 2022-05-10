@@ -6,8 +6,6 @@ import java.sql.*;
 
 public class ManageProductDatabase implements ManageProductsPersistence
 {
-
-
     public ManageProductDatabase() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
@@ -99,6 +97,12 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
+    public void change(Product product) throws SQLException {
+        // TODO this tomorrow
+        // add also saving products when they are edited.
+    }
+
+    @Override
     public void remove(Product product) throws SQLException {
         Connection connection = getConnection();
         try
@@ -115,7 +119,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
 
     @Override
     public void clear() {
-
+        //TODO: make this
     }
 
 

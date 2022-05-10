@@ -50,7 +50,6 @@ public class ProductArrayList {
     }
 
     public Product removeByIndex(int index) {
-        System.out.println(list);
         return list.remove(index);
     }
 
