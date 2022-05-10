@@ -65,6 +65,17 @@ public class ManageProductsManager implements ManageProducts {
 		return list.getByIndex(index);
 	}
 
+	@Override
+	public ProductArrayList getAllProducts() {
+		try {
+			return manageProductDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return new ProductArrayList();
+	}
+
 	/**
 	 * Update price, color and size of selected product using index of product
 	 * @param index
