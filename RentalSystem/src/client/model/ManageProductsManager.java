@@ -3,18 +3,30 @@ package client.model;
 import shared.objects.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
 
 public class ManageProductsManager implements ManageProducts {
 	private ProductArrayList list;
 	private PropertyChangeSupport changeSupport;
+	private ManageProductDatabase manageProductDatabase;
 
 	public ManageProductsManager() {
 		list = new ProductArrayList();
 		changeSupport = new PropertyChangeSupport(this);
+		try {
+			manageProductDatabase = new ManageProductDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			list = manageProductDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Add product to list @todo change this for database when implemented
+	 * Add product to list
 	 * @param price
 	 * @param color
 	 * @param equipmentType
@@ -22,18 +34,30 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		list.add(price, color, equipmentType, size);
+		Product product = list.add(price, color, equipmentType, size);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		try {
+			manageProductDatabase.save(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
-	 * Remove selected item with index from list @todo change this for database when implemented
+	 * Remove selected item with index from list
 	 * @param index of product
 	 */
 	@Override
 	public void remove(int index) {
-		list.removeByIndex(index);
+		Product product = list.removeByIndex(index);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		try {
+			manageProductDatabase.remove(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -44,6 +68,11 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public Product getProduct(int index) {
 		return list.getByIndex(index);
+	}
+
+	@Override
+	public ProductArrayList getAllProducts() {
+		return list;
 	}
 
 	/**

@@ -14,6 +14,5 @@ public class App extends Application {
         ViewModelFactory vmf = new ViewModelFactory(modelFactory.getCustomerModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
         vh.start();
-        ManageProductDatabase manageProductDatabase = new ManageProductDatabase();
     }
 }

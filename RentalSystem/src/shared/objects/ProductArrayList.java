@@ -9,13 +9,15 @@ public class ProductArrayList {
         list = new ArrayList<>();
     }
 
-    public void add(Product element) {
+    public Product add(Product element) {
         list.add(element);
+        return element;
     }
 
-    public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+    public Product add(double price, Color color, EquipmentType equipmentType, Size size) {
         Product product = new Product(getUniqueId(), price, color, equipmentType, size);
         list.add(product);
+        return product;
     }
 
     public void change(int index, double price, Color color, Size size) {

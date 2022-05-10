@@ -88,6 +88,8 @@ public class AdministratorViewController {
 		listView.itemsProperty().bind(viewModel.getListViewAdministrator());
 
 		isEdit(false);
+
+		viewModel.loadData();
     }
 
     public void addButton(ActionEvent event)
