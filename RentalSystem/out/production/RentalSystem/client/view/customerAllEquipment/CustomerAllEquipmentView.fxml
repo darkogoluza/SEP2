@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.customerAllEquipment.CustomerAllEquipmentViewController">
+   <children>
+      <VBox layoutY="-5.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="49.0" prefWidth="600.0">
+               <children>
+                  <Label fx:id="userNameLabel" alignment="CENTER" contentDisplay="CENTER" text="Username:" textAlignment="RIGHT">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="editableLabelUserName" text="Darko">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" style="-fx-background-color: red;" text="Log off" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets left="380.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" style="-fx-background-color: #98FB98;" text="Add to basket" />
+                  <Button fx:id="gotToBasketButton" mnemonicParsing="false" onAction="#onGoToBasketButton" text="Go to basket" />
+               </children>
+            </HBox>
+            <ListView fx:id="listOfProducts" prefHeight="305.0" prefWidth="600.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
