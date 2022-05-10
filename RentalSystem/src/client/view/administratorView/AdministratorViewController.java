@@ -77,7 +77,7 @@ public class AdministratorViewController {
             }else if (EquipmentType.skiShoes.equals(EquipmentType.valueOf((String) niu))) {
                 sizeLabel.setText("Label Values 35 to 45");
             }else if (EquipmentType.snowboardShoes.equals(EquipmentType.valueOf((String) niu))) {
-                sizeLabel.setText("Label Values 35 to 35");
+                sizeLabel.setText("Label Values 35 to 45");
             }
     });
 
@@ -166,7 +166,7 @@ public class AdministratorViewController {
     private boolean isInputOkay() {
         try{
             Double.parseDouble(priceTextField.getText());
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             return false;
         }
 
