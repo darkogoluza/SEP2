@@ -11,6 +11,10 @@ public class ModelFactory {
 
     }
 
+	/**
+	 * Lazy initiation of administratorModel
+	 * @return ManageProducts object
+	 */
     public ManageProducts getAdministratorModel(){
         if(manageProducts == null){
             manageProducts = new ManageProductsManager();
@@ -18,6 +22,10 @@ public class ModelFactory {
 
         return manageProducts;
     }
+	/**
+	 * Lazy initiation of customerModel
+	 * @return ManageProducts object
+	 */
     public ManageProducts getCustomerModel(){
         if(manageProducts == null){
             manageProducts = new ManageProductsManager();

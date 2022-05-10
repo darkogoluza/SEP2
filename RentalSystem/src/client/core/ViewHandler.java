@@ -22,12 +22,22 @@ public class ViewHandler
         this.stage = stage;
     }
 
+	/**
+	 * Open selected view
+	 * This is what is opened when we launch an application
+	 */
     public void start(){
         openAdministratorView();
         //openCustomerAllEquipmentView();
         stage.show();
     }
 
+	/**
+	 * Get root with provided path
+	 * @param path
+	 * @param loader
+	 * @return Parent root
+	 */
     private Parent getRootByPath(String path, FXMLLoader loader){
         loader.setLocation(getClass().getResource(path));
         Parent root = null;
@@ -41,6 +51,9 @@ public class ViewHandler
         return root;
     }
 
+	/**
+	 * Open administrator window
+	 */
     public void openAdministratorView(){
         FXMLLoader loader = new FXMLLoader();
         if(administratorScene == null){
@@ -54,6 +67,9 @@ public class ViewHandler
         stage.setScene(administratorScene);
     }
 
+	/**
+	 * Open window with all equipment
+	 */
     public void openCustomerAllEquipmentView(){
         FXMLLoader loader = new FXMLLoader();
         if(customerAllEquipmentScene == null){

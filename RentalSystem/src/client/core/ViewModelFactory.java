@@ -16,6 +16,10 @@ public class ViewModelFactory {
 		this.manageProducts = manageProducts;
 	}
 
+	/**
+	 * Lazy initiation of view model for administrator
+	 * @return AdministratorViewModel object
+	 */
 	public AdministratorViewModel getAdministratorViewModel() {
 		if (administratorViewModel == null) {
 			administratorViewModel = new AdministratorViewModel(manageProducts);
@@ -24,6 +28,10 @@ public class ViewModelFactory {
 		return administratorViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for all equipment
+	 * @return CustomerAllEquipmentViewModel object
+	 */
 	public CustomerAllEquipmentViewModel getCustomerAllEquipmentView() {
 		if (customerAllEquipmentViewModel == null) {
 			customerAllEquipmentViewModel = new CustomerAllEquipmentViewModel(manageProducts);
