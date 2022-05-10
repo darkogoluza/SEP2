@@ -36,6 +36,10 @@ public class AdministratorViewModel {
 		listViewAdministrator.set(FXCollections.observableArrayList((ArrayList<String>) event.getNewValue()));
 	}
 
+	public void loadData() {
+		listViewAdministrator.set(FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
+	}
+
 	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size) {
 
 		model.add(price, color, equipmentType, size);

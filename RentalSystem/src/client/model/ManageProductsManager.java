@@ -11,10 +11,15 @@ public class ManageProductsManager implements ManageProducts {
 	private ManageProductDatabase manageProductDatabase;
 
 	public ManageProductsManager() {
-		list = new ProductArrayList();
 		changeSupport = new PropertyChangeSupport(this);
 		try {
 			manageProductDatabase = new ManageProductDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			list = manageProductDatabase.load();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -30,13 +35,13 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
 		Product product = list.add(price, color, equipmentType, size);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		productModified();
+
 		try {
 			manageProductDatabase.save(product);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -46,7 +51,7 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void remove(int index) {
 		list.removeByIndex(index);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		productModified();
 	}
 
 	/**
@@ -59,6 +64,17 @@ public class ManageProductsManager implements ManageProducts {
 		return list.getByIndex(index);
 	}
 
+	@Override
+	public ProductArrayList getAllProducts() {
+		try {
+			return manageProductDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return new ProductArrayList();
+	}
+
 	/**
 	 * Update price, color and size of selected product using index of product
 	 * @param index
@@ -69,7 +85,6 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
 		list.change(index, newPrice, newColor, newSize);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	@Override
@@ -95,5 +110,9 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(name, listener);
+	}
+
+	private void productModified() {
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 }

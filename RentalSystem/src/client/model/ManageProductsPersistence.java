@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface ManageProductsPersistence
 {
-    ProductArrayList load();
+    ProductArrayList load() throws SQLException;
     void save(ProductArrayList productArrayList);
     void save(Product product) throws SQLException;
     void remove(Product product);

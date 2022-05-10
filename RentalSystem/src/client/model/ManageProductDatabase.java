@@ -1,12 +1,8 @@
 package client.model;
 
-import shared.objects.Product;
-import shared.objects.ProductArrayList;
+import shared.objects.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ManageProductDatabase implements ManageProductsPersistence
 {
@@ -26,8 +22,34 @@ public class ManageProductDatabase implements ManageProductsPersistence
 }
 
     @Override
-    public ProductArrayList load() {
-        return null;
+    public ProductArrayList load() throws SQLException {
+        ProductArrayList list = new ProductArrayList();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+              int id = resultSet.getInt("id");
+                EquipmentType type = EquipmentType.valueOf(resultSet.getString("name"));
+                String sizeString = resultSet.getString("size");
+                Size size = null;
+                if(sizeString.contains("cm")){
+                    sizeString = sizeString.substring(0, sizeString.length() - 2);
+                    size = new MetricFormat(Double.parseDouble(sizeString));
+                } else {
+                    size = new LabelFormat(sizeString);
+                }
+
+                Color color = Color.valueOf(resultSet.getString("color"));
+                double price = resultSet.getDouble("price");
+
+                Product product = new Product(id, price, color, type, size);
+                list.add(product);
+            }
+        } finally {
+            connection.close();
+        }
+        return list;
     }
 
     @Override
