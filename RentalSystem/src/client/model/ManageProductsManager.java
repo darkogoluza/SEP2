@@ -45,8 +45,14 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void remove(int index) {
-		list.removeByIndex(index);
+		Product product = list.removeByIndex(index);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		try {
+			manageProductDatabase.remove(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

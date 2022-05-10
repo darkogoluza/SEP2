@@ -11,6 +11,6 @@ public interface ManageProductsPersistence
     ProductArrayList load();
     void save(ProductArrayList productArrayList);
     void save(Product product) throws SQLException;
-    void remove(Product product);
-    public void clear();
+    void remove(Product product) throws SQLException;
+    void clear();
 }
