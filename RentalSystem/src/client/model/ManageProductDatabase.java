@@ -53,7 +53,28 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void save(ProductArrayList productArrayList) {
+    public void save(ProductArrayList productArrayList) throws SQLException {
+        clear();
+        Connection connection = getConnection();
+        for (int i=0;i<productArrayList.size();i++)
+        {
+            Product product=productArrayList.get(i);
+            try
+            {
+                PreparedStatement statement =
+                    connection.prepareStatement("INSERT INTO Product(id, name, size, color, price) VALUES(?, ?, ?, ?, ?);");
+                statement.setInt(1, product.getId());
+                statement.setString(2, product.getType().toString());
+                statement.setString(3, product.getSize().toString());
+                statement.setString(4, product.getColor().toString());
+                statement.setDouble(5, product.getPrice());
+
+                statement.executeUpdate();
+            }
+            finally {
+                connection.close();
+            }
+        }
 
     }
 
