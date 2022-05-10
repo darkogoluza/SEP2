@@ -10,12 +10,7 @@ class MetricFormatTest {
 
     @BeforeEach
     void setUp() {
-        metricFormat = new MetricFormat(120, 25);
-    }
-
-    @Test
-    void getWidth() {
-        assertEquals(120, metricFormat.getWidth());
+        metricFormat = new MetricFormat( 25);
     }
 
     @Test
@@ -25,7 +20,7 @@ class MetricFormatTest {
 
     @Test
     void testToString() {
-        String expectedValue = String.format("%fcm x %fcm", 120.0, 25.0);
+        String expectedValue = String.format("%fcm", 25.0);
         assertEquals(expectedValue, metricFormat.toString());
     }
 
@@ -37,7 +32,7 @@ class MetricFormatTest {
 
     @Test
     void testEqualsFalse() {
-        MetricFormat metricFormat1 = new MetricFormat(100, 25);
+        MetricFormat metricFormat1 = new MetricFormat( 26);
         assertNotEquals(metricFormat1, metricFormat);
     }
 
@@ -49,7 +44,7 @@ class MetricFormatTest {
 
     @Test
     void getSize() {
-        String expectedValue = String.format("%fcm x %fcm", 120.0, 25.0);
+        String expectedValue = String.format("%fcm", 25.0);
         assertEquals(expectedValue, metricFormat.getSize());
     }
 }

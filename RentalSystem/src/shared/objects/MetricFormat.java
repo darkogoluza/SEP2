@@ -4,25 +4,14 @@ package shared.objects;
  * MetricFormat defines size by width and height.
  */
 public class MetricFormat implements Size {
-    private double width;
     private double height;
 
     /**
      * Constructor
-     * @param width Defines width of the item.
      * @param height Defines height of the item.
      */
-    public MetricFormat(double width, double height) {
-        this.width = width;
+    public MetricFormat(double height) {
         this.height = height;
-    }
-
-    /**
-     * Getter for width
-     * @return Returns width.
-     */
-    public double getWidth() {
-        return width;
     }
 
     /**
@@ -50,7 +39,7 @@ public class MetricFormat implements Size {
         if(!(obj instanceof MetricFormat metricFormat))
             return false;
 
-        return metricFormat.width == width && metricFormat.height == height;
+        return metricFormat.height == height;
     }
 
     /**
@@ -58,7 +47,7 @@ public class MetricFormat implements Size {
      * @return Returns exact copy of MetricFormat.
      */
     public MetricFormat copy() {
-        return new MetricFormat(width, height);
+        return new MetricFormat(height);
     }
 
     /**
@@ -67,6 +56,6 @@ public class MetricFormat implements Size {
      */
     @Override
     public String getSize() {
-        return String.format("%fcm x %fcm", width, height);
+        return String.format("%.02fcm", height);
     }
 }

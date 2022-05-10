@@ -11,7 +11,7 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new MetricFormat(50, 10));
+        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10));
     }
 
     @Test
@@ -48,7 +48,7 @@ class ProductTest {
 
     @Test
     void getSizeMetricFormat() {
-        assertEquals(new MetricFormat(50, 10), product.getSize());
+        assertEquals(new MetricFormat( 10), product.getSize());
     }
 
     @Test
@@ -59,7 +59,7 @@ class ProductTest {
 
     @Test
     void testToString() {
-        String expectedValue = String.format("Id: %d\nPrice: %s€\nColor: %s\nType: %s\nSize: %s", 0, 14.99, Color.red, EquipmentType.ski, new MetricFormat(50, 10));
+        String expectedValue = String.format("Id: %03d  %s  %s  %s  %.02f€", 0, Color.red, new MetricFormat(10), EquipmentType.ski, 14.99);
         assertEquals(expectedValue, product.toString());
     }
 
@@ -71,7 +71,7 @@ class ProductTest {
 
     @Test
     void testEqualsFalse() {
-        Product product1 = new Product(1, 14.99, Color.red, EquipmentType.ski, new MetricFormat(50, 10));
+        Product product1 = new Product(1, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10));
         assertNotEquals(product, product1);
     }
 

@@ -1,6 +1,7 @@
 package client.core;
 
 import client.view.administratorView.AdministratorViewController;
+import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ public class ViewHandler
     private Stage stage;
     private ViewModelFactory vmf;
     private Scene administratorScene;
+    private Scene customerAllEquipmentScene;
 
 
     public ViewHandler( ViewModelFactory vmf, Stage stage){
@@ -20,12 +22,22 @@ public class ViewHandler
         this.stage = stage;
     }
 
+	/**
+	 * Open selected view
+	 * This is what is opened when we launch an application
+	 */
     public void start(){
-        //openAdministratorView();
-        openCustomerAllEquipmentView();
+        openAdministratorView();
+        //openCustomerAllEquipmentView();
         stage.show();
     }
 
+	/**
+	 * Get root with provided path
+	 * @param path
+	 * @param loader
+	 * @return Parent root
+	 */
     private Parent getRootByPath(String path, FXMLLoader loader){
         loader.setLocation(getClass().getResource(path));
         Parent root = null;
@@ -39,6 +51,9 @@ public class ViewHandler
         return root;
     }
 
+	/**
+	 * Open administrator window
+	 */
     public void openAdministratorView(){
         FXMLLoader loader = new FXMLLoader();
         if(administratorScene == null){
@@ -52,6 +67,9 @@ public class ViewHandler
         stage.setScene(administratorScene);
     }
 
+	/**
+	 * Open window with all equipment
+	 */
     public void openCustomerAllEquipmentView(){
         FXMLLoader loader = new FXMLLoader();
         if(customerAllEquipmentScene == null){

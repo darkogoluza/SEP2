@@ -21,7 +21,8 @@ public class CustomerAllEquipmentViewModel
     }
     public void addProductToBasket(Product product)
     {
-        model.add(product);
+        //TODO there will be another model to handle this.
+        //model.add(product);
     }
 
     public void updateUserName(String userName)

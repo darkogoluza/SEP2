@@ -1,43 +1,67 @@
 package client.model;
 
-import shared.objects.Product;
-
-import java.util.ArrayList;
+import shared.objects.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class ManageProductsManager implements ManageProducts {
-
-	private ArrayList<Product> list;
+	private ProductArrayList list;
 	private PropertyChangeSupport changeSupport;
 
 	public ManageProductsManager() {
-		list = new ArrayList<>();
+		list = new ProductArrayList();
 		changeSupport = new PropertyChangeSupport(this);
 	}
 
+	/**
+	 * Add product to list @todo change this for database when implemented
+	 * @param price
+	 * @param color
+	 * @param equipmentType
+	 * @param size
+	 */
 	@Override
-	public void add(Product product) {
-		list.add(product);
-		changeSupport.firePropertyChange("productAdded", null, getAllProducts());
+	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+		list.add(price, color, equipmentType, size);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+	}
+
+	/**
+	 * Remove selected item with index from list @todo change this for database when implemented
+	 * @param index of product
+	 */
+	@Override
+	public void remove(int index) {
+		list.removeByIndex(index);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+	}
+
+	/**
+	 * Get product from list @todo change this for database when implemented
+	 * @param index of product
+	 * @return Product
+	 */
+	@Override
+	public Product getProduct(int index) {
+		return list.getByIndex(index);
+	}
+
+	/**
+	 * Update price, color and size of selected product using index of product
+	 * @param index
+	 * @param newPrice
+	 * @param newColor
+	 * @param newSize
+	 */
+	@Override
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+		list.change(index, newPrice, newColor, newSize);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	@Override
-	public void remove(int id) {
-		for (Product product :
-				list) {
-			// TODO: 02/05/2022 product id is String or int?
-			if (product.getId() == id) {
-				list.remove(product);
-			}
-		}
-	}
+	public void showAllProducts() {
 
-	private ArrayList<String> getAllProducts() {
-		ArrayList<String> temp = new ArrayList<>();
-		for (Product product : list) {
-			temp.add(product.toString());
-		}
-
-		return temp;
 	}
 
 	@Override
@@ -58,10 +82,5 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(name, listener);
-	@Override
-	public void showAllProducts() {
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i);
-		}
 	}
 }

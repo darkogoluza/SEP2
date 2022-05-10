@@ -5,118 +5,123 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
+<AnchorPane prefHeight="513.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
    <children>
-      <SplitPane layoutX="-2.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="597.0">
+      <FlowPane prefHeight="400.0" prefWidth="611.0">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="135.0" prefWidth="271.0" spacing="18.0">
                <children>
-                  <FlowPane layoutY="-1.0" prefHeight="400.0" prefWidth="611.0">
-                     <children>
-                        <VBox alignment="TOP_RIGHT" prefHeight="169.0" prefWidth="271.0">
-                           <children>
-                              <Label fx:id="idLabelAdministrator" alignment="CENTER" contentDisplay="CENTER" text="id" textAlignment="CENTER">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets bottom="11.0" top="6.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="typeLabelAdministrator" text="type">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="colorLabelAdministrator" text="color">
-                                 <VBox.margin>
-                                    <Insets top="18.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="sizeLabelAdministrator" text="size">
-                                 <VBox.margin>
-                                    <Insets top="17.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" text="price" textAlignment="CENTER">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets top="17.0" />
-                                 </VBox.margin>
-                              </Label>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets right="20.0" top="30.0" />
-                           </padding>
-                        </VBox>
-                        <VBox prefHeight="166.0" prefWidth="325.0">
-                           <children>
-                              <TextField fx:id="idTextFieldAdministrator">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <ChoiceBox fx:id="typeChoiceBoxAdministrator" prefWidth="150.0">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </ChoiceBox>
-                              <ChoiceBox fx:id="colorChoiceBoxAdministrator" prefWidth="150.0">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                              </ChoiceBox>
-                              <TextField fx:id="sizeTextFieldAdministrator">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField fx:id="priceTextField">
-                                 <VBox.margin>
-                                    <Insets top="7.0" />
-                                 </VBox.margin>
-                              </TextField>
-                           </children>
-                           <padding>
-                              <Insets top="30.0" />
-                           </padding>
-                        </VBox>
-                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
-                           <children>
-                              <Button fx:id="addButtonAdministrator" mnemonicParsing="false" onAction="#addButtonAdministrator" text="Add">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="removeButtonAdministrator" mnemonicParsing="false" onAction="#removeButtonAdministrator" text="Remove">
-                                 <HBox.margin>
-                                    <Insets right="20.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="editButtonAdministrator" mnemonicParsing="false" onAction="#editButtonAdministrator" text="Edit" />
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </HBox>
-                        <ListView fx:id="listViewAdministrator" prefHeight="194.0" prefWidth="602.0" />
-                     </children>
-                  </FlowPane>
+                  <Label fx:id="typeLabelAdministrator" text="type">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="colorLabelAdministrator" text="color">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="sizeLabelAdministrator" text="size">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" text="price" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
                </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="10.0" top="20.0" />
+               </padding>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </VBox>
+            <VBox prefHeight="133.0" prefWidth="327.0" spacing="10.0">
+               <children>
+                  <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="colorChoiceBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="sizeTextField" prefHeight="25.0" prefWidth="150.0" />
+                        <Label fx:id="sizeLabel">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="priceTextField" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+            <HBox fx:id="normalButtons" alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#addButton" text="Add">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#removeButton" text="Remove">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#editButton" text="Edit" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="editButtons" alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#changeProduct" text="Change">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#candleEdit" text="Cancle">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <ListView fx:id="listView" prefHeight="247.0" prefWidth="611.0" />
+         </children>
+      </FlowPane>
    </children>
 </AnchorPane>
