@@ -79,8 +79,18 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void remove(Product product) {
-
+    public void remove(Product product) throws SQLException {
+        Connection connection = getConnection();
+        try
+        {
+            PreparedStatement statement =
+                    connection.prepareStatement("DELETE FROM Product WHERE id = ?");
+            statement.setInt(1, product.getId());
+            statement.executeUpdate();
+        }
+        finally {
+            connection.close();
+        }
     }
 
     @Override
