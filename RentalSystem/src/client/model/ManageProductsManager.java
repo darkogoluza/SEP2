@@ -3,14 +3,21 @@ package client.model;
 import shared.objects.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
 
 public class ManageProductsManager implements ManageProducts {
 	private ProductArrayList list;
 	private PropertyChangeSupport changeSupport;
+	private ManageProductDatabase manageProductDatabase;
 
 	public ManageProductsManager() {
 		list = new ProductArrayList();
 		changeSupport = new PropertyChangeSupport(this);
+		try {
+			manageProductDatabase = new ManageProductDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -22,8 +29,14 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		list.add(price, color, equipmentType, size);
+		Product product = list.add(price, color, equipmentType, size);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		try {
+			manageProductDatabase.save(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
