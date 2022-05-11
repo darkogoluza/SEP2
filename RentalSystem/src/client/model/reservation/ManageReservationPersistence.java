@@ -1,7 +1,5 @@
 package client.model.reservation;
 
-import shared.objects.Product;
-import shared.objects.ProductArrayList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 
@@ -15,7 +13,4 @@ public interface ManageReservationPersistence
     void change(Reservation reservation) throws SQLException;
     void remove(Reservation reservation) throws SQLException;
     void clear();
-
-
-
 }
