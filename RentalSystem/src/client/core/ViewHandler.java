@@ -27,11 +27,8 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-<<<<<<< HEAD
-//        openAdministratorView();
-=======
         //openAdministratorView();
->>>>>>> d0ef1e42fa9b7b70f7835467871ae2673027853b
+
         openCustomerAllEquipmentView();
         stage.show();
     }
@@ -77,11 +74,8 @@ public class ViewHandler
     public void openCustomerAllEquipmentView(){
         FXMLLoader loader = new FXMLLoader();
         if(customerAllEquipmentScene == null){
-<<<<<<< HEAD
-            Parent root = getRootByPath("client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
-=======
+
             Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
->>>>>>> d0ef1e42fa9b7b70f7835467871ae2673027853b
             CustomerAllEquipmentViewController controller = loader.getController();
             controller.init(this,vmf);
             customerAllEquipmentScene = new Scene(root);
