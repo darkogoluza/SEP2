@@ -1,6 +1,7 @@
 package client.model.reservation;
 
-import shared.objects.*;
+
+import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 
@@ -43,8 +44,8 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             return list;
         }
 
-    public ProductArrayList getProductFromReservation() throws SQLException {
-        ProductArrayList list = new ProductArrayList();
+    public ProductList getProductFromReservation() throws SQLException {
+        ProductList list = new ProductList();
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product WHERE id IN (SELECT reservationId FROM Contain");
