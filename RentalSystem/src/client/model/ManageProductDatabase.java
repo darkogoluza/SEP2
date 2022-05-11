@@ -60,13 +60,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
             {
                 PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Product(id, name, size, color, price) VALUES(?, ?, ?, ?, ?);");
-                statement.setInt(1, product.getId());
-                statement.setString(2, product.getType().toString());
-                statement.setString(3, product.getSize().toString());
-                statement.setString(4, product.getColor().toString());
-                statement.setDouble(5, product.getPrice());
-
-                statement.executeUpdate();
+                executeStatement(statement, product);
             }
             finally {
                 connection.close();
@@ -82,11 +76,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
         {
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Product(id, name, size, color, price) VALUES(?, ?, ?, ?, ?);");
-            statement.setInt(1, product.getId());
-            statement.setString(2, product.getType().toString());
-            statement.setString(3, product.getSize().toString());
-            statement.setString(4, product.getColor().toString());
-            statement.setDouble(5, product.getPrice());
+            executeStatement(statement, product);
 
             statement.executeUpdate();
         }
@@ -98,9 +88,22 @@ public class ManageProductDatabase implements ManageProductsPersistence
 
     @Override
     public void change(Product product) throws SQLException {
+		Connection connection = getConnection();
+
+		try
+		{
+			PreparedStatement statement =
+					connection.prepareStatement("UPDATE Product SET id = ?, name = ?, size = ?, color = ?, price = ?");
+			//@TODO maybe method for this
+			executeStatement(statement, product);
+		}
+		finally {
+			connection.close();
+		}
         // TODO this tomorrow
         // add also saving products when they are edited.
     }
+
 
     @Override
     public void remove(Product product) throws SQLException {
@@ -122,5 +125,14 @@ public class ManageProductDatabase implements ManageProductsPersistence
         //TODO: make this
     }
 
+	private void executeStatement(PreparedStatement statement, Product product) throws SQLException {
+		statement.setInt(1, product.getId());
+		statement.setString(2, product.getType().toString());
+		statement.setString(3, product.getSize().toString());
+		statement.setString(4, product.getColor().toString());
+		statement.setDouble(5, product.getPrice());
+
+		statement.executeUpdate();
+	}
 
 }
