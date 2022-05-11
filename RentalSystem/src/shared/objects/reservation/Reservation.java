@@ -1,7 +1,6 @@
 package shared.objects.reservation;
 
-import shared.objects.Product;
-import shared.objects.ProductArrayList;
+import shared.objects.product.ProductList;
 
 import java.util.Date;
 
@@ -9,10 +8,10 @@ public class Reservation {
     private int id;
     private String userName;
     private Date createdAt;
-    private ProductArrayList productList;
+    private ProductList productList;
     private ReservationStatus status;
 
-    public Reservation(int id, String userName, ProductArrayList products) {
+    public Reservation(int id, String userName, ProductList products) {
         this.id = id;
         this.userName = userName;
         productList = products;
@@ -20,7 +19,7 @@ public class Reservation {
         createdAt = new Date(System.currentTimeMillis());
     }
 
-    private Reservation(int id, String userName, ProductArrayList products, ReservationStatus status, Date createdAt) {
+    private Reservation(int id, String userName, ProductList products, ReservationStatus status, Date createdAt) {
         this.id = id;
         this.userName = new String(userName);
         this.productList = products.copy();
@@ -44,7 +43,7 @@ public class Reservation {
         return status;
     }
 
-    public ProductArrayList getProducts() {
+    public ProductList getProducts() {
         return productList;
     }
 
