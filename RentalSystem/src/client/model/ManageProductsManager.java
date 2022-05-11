@@ -84,7 +84,16 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
-		list.change(index, newPrice, newColor, newSize);
+		Product product = list.get(index);
+		product.setPrice(newPrice);
+		product.setColor(newColor);
+		product.setSize(newSize);
+		try {
+			manageProductDatabase.change(product);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+//		list.change(index, newPrice, newColor, newSize);
 		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
