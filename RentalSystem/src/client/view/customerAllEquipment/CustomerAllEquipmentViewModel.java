@@ -1,6 +1,6 @@
 package client.view.customerAllEquipment;
 
-import client.model.ManageProducts;
+import client.model.product.ManageProducts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;

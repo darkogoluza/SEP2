@@ -1,5 +1,7 @@
-package client.model;
+package client.model.product;
 
+import client.model.product.ManageProductDatabase;
+import client.model.product.ManageProducts;
 import shared.objects.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

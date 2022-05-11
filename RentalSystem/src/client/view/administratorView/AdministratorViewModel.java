@@ -1,6 +1,6 @@
 package client.view.administratorView;
 
-import client.model.ManageProducts;
+import client.model.product.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import shared.objects.Color;

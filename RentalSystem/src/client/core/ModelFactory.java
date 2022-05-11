@@ -1,8 +1,7 @@
 package client.core;
 
-import client.model.ManageProducts;
-import client.model.ManageProductsManager;
-import client.view.administratorView.AdministratorViewModel;
+import client.model.product.ManageProducts;
+import client.model.product.ManageProductsManager;
 
 public class ModelFactory {
     private ManageProducts manageProducts;
