@@ -1,4 +1,4 @@
-package shared.objects;
+package shared.objects.product;
 
 /**
  * LabelFormat defines size by labels, example: XL, L, M, S

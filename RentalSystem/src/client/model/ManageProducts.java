@@ -1,13 +1,13 @@
 package client.model;
 
-import shared.objects.*;
+import shared.objects.product.*;
 import shared.util.PropertyChangeSubject;
 
 public interface ManageProducts extends PropertyChangeSubject {
 	void add(double price, Color color, EquipmentType equipmentType, Size size);
 	void remove(int index);
 	Product getProduct(int index);
-	ProductArrayList getAllProducts();
+	ProductList getAllProducts();
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize);
 	void showAllProducts();
 }

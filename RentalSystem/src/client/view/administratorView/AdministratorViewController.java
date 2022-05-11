@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import shared.objects.*;
+import shared.objects.product.*;
 
 public class AdministratorViewController {
     ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(

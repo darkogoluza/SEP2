@@ -3,10 +3,10 @@ package client.view.administratorView;
 import client.model.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import shared.objects.Color;
-import shared.objects.EquipmentType;
-import shared.objects.Product;
-import shared.objects.Size;
+import shared.objects.product.Color;
+import shared.objects.product.EquipmentType;
+import shared.objects.product.Product;
+import shared.objects.product.Size;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;

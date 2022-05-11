@@ -1,11 +1,11 @@
-package shared.objects;
+package shared.objects.product;
 
 import java.util.ArrayList;
 
-public class ProductArrayList {
+public class ProductList {
     private ArrayList<Product> list;
 
-    public ProductArrayList() {
+    public ProductList() {
         list = new ArrayList<>();
     }
 
@@ -30,7 +30,7 @@ public class ProductArrayList {
     public Product get(int id) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).getId() == id)
-                return list.get(id);
+                return list.get(i);
         }
 
         return null;
@@ -43,7 +43,7 @@ public class ProductArrayList {
     public Product remove(int id) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).getId() == id)
-                return list.remove(id);
+                return list.remove(i);
         }
 
         return null;
@@ -69,14 +69,14 @@ public class ProductArrayList {
     }
 
     public boolean equals(Object obj) {
-        if(!(obj instanceof ProductArrayList productArrayList))
+        if(!(obj instanceof ProductList productArrayList))
             return false;
 
         return productArrayList.list.equals(list);
     }
 
-    public ProductArrayList copy() {
-        ProductArrayList temp = new ProductArrayList();
+    public ProductList copy() {
+        ProductList temp = new ProductList();
 
         for (Product product : list) {
             temp.add(product);

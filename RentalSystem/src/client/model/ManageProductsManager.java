@@ -1,17 +1,18 @@
 package client.model;
 
-import shared.objects.*;
+import shared.objects.product.*;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
 public class ManageProductsManager implements ManageProducts {
-	private ProductArrayList list;
+	private ProductList list;
 	private PropertyChangeSupport changeSupport;
 	private ManageProductDatabase manageProductDatabase;
 
 	public ManageProductsManager() {
-		list = new ProductArrayList();
+		list = new ProductList();
 		changeSupport = new PropertyChangeSupport(this);
 		try {
 			manageProductDatabase = new ManageProductDatabase();
@@ -71,7 +72,7 @@ public class ManageProductsManager implements ManageProducts {
 	}
 
 	@Override
-	public ProductArrayList getAllProducts() {
+	public ProductList getAllProducts() {
 		return list;
 	}
 
