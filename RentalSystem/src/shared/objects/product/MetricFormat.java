@@ -1,4 +1,4 @@
-package shared.objects;
+package shared.objects.product;
 
 /**
  * MetricFormat defines size by width and height.

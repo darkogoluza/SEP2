@@ -1,7 +1,8 @@
-package shared.objects;
+package shared.objects.product;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import shared.objects.product.LabelFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 

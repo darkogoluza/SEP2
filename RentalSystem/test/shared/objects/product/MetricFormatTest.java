@@ -1,7 +1,8 @@
-package shared.objects;
+package shared.objects.product;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import shared.objects.product.MetricFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ class MetricFormatTest {
 
     @Test
     void testToString() {
-        String expectedValue = String.format("%fcm", 25.0);
+        String expectedValue = String.format("%.02fcm", 25.0);
         assertEquals(expectedValue, metricFormat.toString());
     }
 
@@ -44,7 +45,7 @@ class MetricFormatTest {
 
     @Test
     void getSize() {
-        String expectedValue = String.format("%fcm", 25.0);
+        String expectedValue = String.format("%.02fcm", 25.0);
         assertEquals(expectedValue, metricFormat.getSize());
     }
 }

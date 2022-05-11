@@ -1,6 +1,6 @@
 package client.model.product;
 
-import shared.objects.*;
+import shared.objects.product.*;
 
 import java.sql.*;
 
@@ -20,8 +20,8 @@ public class ManageProductDatabase implements ManageProductsPersistence
 }
 
     @Override
-    public ProductArrayList load() throws SQLException {
-        ProductArrayList list = new ProductArrayList();
+    public ProductList load() throws SQLException {
+        ProductList list = new ProductList();
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product");
@@ -50,7 +50,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void save(ProductArrayList productArrayList) throws SQLException {
+    public void save(ProductList productArrayList) throws SQLException {
         clear();
         Connection connection = getConnection();
         for (int i=0;i<productArrayList.size();i++)

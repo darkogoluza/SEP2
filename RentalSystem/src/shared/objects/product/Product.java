@@ -1,4 +1,4 @@
-package shared.objects;
+package shared.objects.product;
 
 
 /**
