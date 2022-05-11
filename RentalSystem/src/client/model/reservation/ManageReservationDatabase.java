@@ -1,5 +1,6 @@
 package client.model.reservation;
 
+
 import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;

@@ -1,5 +1,8 @@
 package client.model.reservation;
 
+import client.model.product.ManageProductDatabase;
+import shared.objects.product.Product;
+import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
