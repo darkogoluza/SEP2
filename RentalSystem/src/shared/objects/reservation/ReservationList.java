@@ -34,7 +34,7 @@ public class ReservationList {
 
 	/**
 	 * Change status of reservation
-	 * @param index of reservation we want to update
+	 * @param index of reservation, we want to update
 	 * @param status we want to set for reservation
 	 */
 	public void change(int index, ReservationStatus status) {
