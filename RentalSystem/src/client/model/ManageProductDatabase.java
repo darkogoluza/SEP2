@@ -72,9 +72,31 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void clear() {
+    public void clear () {
+
+        try{
+            Connection connection = getConnection();
+            try{
+                PreparedStatement statement = connection.prepareStatement("DELETE FROM user");
+                String query = "DELETE FROM user";
+                int deletedRows=statement.executeUpdate(query);
+                if(deletedRows>0){
+                    System.out.println("Deleted All Rows In The Table Successfully...");
+                }else{
+                    System.out.println("Table already empty.");
+                }
+
+            } catch(SQLException s){
+                System.out.println("Deleted All Rows In  Table Error. ");
+                s.printStackTrace();
+            }
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     }
 
 
-}
