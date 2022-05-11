@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import shared.objects.Product;
 
-
+import java.util.List;
 
 public class CustomerAllEquipmentViewController
 {
