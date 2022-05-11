@@ -1,4 +1,4 @@
-package client.model;
+package client.model.product;
 
 import shared.objects.product.*;
 import shared.util.PropertyChangeSubject;
