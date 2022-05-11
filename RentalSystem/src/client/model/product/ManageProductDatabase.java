@@ -94,14 +94,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
 		{
 			PreparedStatement statement =
 					connection.prepareStatement("UPDATE Product SET id = ?, name = ?, size = ?, color = ?, price = ?");
-			//@TODO maybe method for this
 			executeStatement(statement, product);
 		}
 		finally {
 			connection.close();
 		}
-        // TODO this tomorrow
-        // add also saving products when they are edited.
     }
 
 
