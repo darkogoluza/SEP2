@@ -1,7 +1,7 @@
 package shared.objects.reservation;
 
-import shared.objects.Product;
-import shared.objects.ProductArrayList;
+import shared.objects.product.Product;
+import shared.objects.product.ProductList;
 
 import java.util.ArrayList;
 
@@ -28,13 +28,13 @@ public class ReservationList {
 	 * @param username of customer who created reservation
 	 * @param products all products of reservation
 	 */
-	public void add(String username, ProductArrayList products) {
+	public void add(String username, ProductList products) {
 		reservations.add(new Reservation(getUniqueId(), username, products));
 	}
 
 	/**
 	 * Change status of reservation
-	 * @param index of reservation we want to update
+	 * @param index of reservation, we want to update
 	 * @param status we want to set for reservation
 	 */
 	public void change(int index, ReservationStatus status) {

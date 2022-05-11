@@ -1,5 +1,6 @@
 package client.view.administratorView;
 
+import client.model.ModelProxy;
 import client.model.product.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -21,13 +22,13 @@ public class AdministratorViewModel {
 	private StringProperty type;
 	private ManageProducts model;
 
-	public AdministratorViewModel(ManageProducts model) {
+	public AdministratorViewModel(ModelProxy modelProxy) {
 		listViewAdministrator = new SimpleListProperty<>();
 		size = new SimpleStringProperty();
 		price = new SimpleStringProperty();
 		type = new SimpleStringProperty();
 		color = new SimpleStringProperty();
-		this.model = model;
+		this.model = modelProxy.getManageProducts();
 
 		model.addPropertyChangeListener("productModified", this::productModified);
 	}
