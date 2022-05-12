@@ -1,14 +1,16 @@
 package client.core;
 
 import client.model.ModelProxy;
+import client.view.CustomerBasketView.CustomerBasketViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
-	private ModelProxy modelProxy;
-
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
+	private CustomerBasketViewModel customerBasketViewModel;
+
+	private ModelProxy modelProxy;
 
 
 	public ViewModelFactory(ModelProxy modelProxy)
@@ -38,5 +40,17 @@ public class ViewModelFactory {
 		}
 
 		return customerAllEquipmentViewModel;
+	}
+
+	/**
+	 * Lazy initiation of view model for basket view
+	 * @return CustomerBasketViewModel object
+	 */
+	public CustomerBasketViewModel getCustomerBasketViewModel() {
+		if(customerBasketViewModel == null) {
+			customerBasketViewModel = new CustomerBasketViewModel(modelProxy);
+		}
+
+		return customerBasketViewModel;
 	}
 }

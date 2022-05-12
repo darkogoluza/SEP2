@@ -1,5 +1,6 @@
 package client.core;
 
+import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ public class ViewHandler
     private ViewModelFactory vmf;
     private Scene administratorScene;
     private Scene customerAllEquipmentScene;
+    private Scene customerBasket;
 
 
     public ViewHandler( ViewModelFactory vmf, Stage stage){
@@ -27,9 +29,9 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-//        openAdministratorView();
-
+        //openAdministratorView();
         openCustomerAllEquipmentView();
+        //openCustomerBasket();
         stage.show();
     }
 
@@ -83,6 +85,20 @@ public class ViewHandler
 
         stage.setTitle("All equipment");
         stage.setScene(customerAllEquipmentScene);
+    }
+
+    public void openCustomerBasket(){
+        FXMLLoader loader = new FXMLLoader();
+        if(customerBasket == null){
+
+            Parent root = getRootByPath("/client/view/CustomerBasketView/Basketview.fxml", loader);
+            CustomerBasketViewController controller = loader.getController();
+            controller.init(this,vmf);
+            customerBasket = new Scene(root);
+        }
+
+        stage.setTitle("Customer Basket");
+        stage.setScene(customerBasket);
     }
 
 }
