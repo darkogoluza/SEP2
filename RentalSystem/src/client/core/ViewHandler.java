@@ -87,15 +87,16 @@ public class ViewHandler
 
 	public void openEmployeeView(){
 		FXMLLoader loader = new FXMLLoader();
-		if(employeeAllOrdersScene == null){
 
+		if (employeeAllOrdersScene == null) {
 			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
+
 			EmployeeAllOrdersController controller = loader.getController();
 			controller.init(this, vmf);
 			employeeAllOrdersScene = new Scene(root);
 		}
 
-		stage.setTitle("All orders");
+		stage.setTitle("All reservations");
 		stage.setScene(employeeAllOrdersScene);
 	}
 

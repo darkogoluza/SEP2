@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="407.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.employeeAllOrders.EmployeeAllOrdersController">
    <children>
       <VBox minWidth="-Infinity" prefHeight="415.0" prefWidth="661.0">
@@ -54,8 +53,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" text="Open" />
-                  <Button fx:id="gotToBasketButton" mnemonicParsing="false" onAction="#onGoToBasketButton" text="Go to basket" />
+                  <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" text="Open" />
                </children>
             </HBox>
             <ListView fx:id="reservationsList" prefHeight="332.0" prefWidth="661.0" />
