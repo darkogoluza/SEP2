@@ -1,7 +1,5 @@
 package client.model.product;
 
-import client.model.product.ManageProductDatabase;
-import client.model.product.ManageProducts;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;
@@ -39,9 +37,9 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		Product product = list.add(price, color, equipmentType, size);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 		try {
+			Product product = list.add(price, color, equipmentType, size);
+			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 			manageProductDatabase.save(product);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,9 +53,9 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void remove(int index) {
-		Product product = list.removeByIndex(index);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 		try {
+			Product product = list.removeByIndex(index);
+			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 			manageProductDatabase.remove(product);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,17 +87,17 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
-		Product product = list.get(index);
-		product.setPrice(newPrice);
-		product.setColor(newColor);
-		product.setSize(newSize);
 		try {
+			Product product = list.getByIndex(index);
+			product.setPrice(newPrice);
+			product.setColor(newColor);
+			product.setSize(newSize);
 			manageProductDatabase.change(product);
+			list.change(index, newPrice, newColor, newSize);
+			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		list.change(index, newPrice, newColor, newSize);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	@Override

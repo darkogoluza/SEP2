@@ -1,7 +1,6 @@
 package client.core;
 
 import client.model.ModelProxy;
-import client.model.product.ManageProducts;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 

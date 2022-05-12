@@ -69,10 +69,10 @@ public class ProductList {
     }
 
     public boolean equals(Object obj) {
-        if(!(obj instanceof ProductList productArrayList))
+        if(!(obj instanceof ProductList productList))
             return false;
 
-        return productArrayList.list.equals(list);
+        return productList.list.equals(list);
     }
 
     public ProductList copy() {

@@ -34,6 +34,7 @@ public class AdministratorViewModel {
 	}
 
 	private void productModified(PropertyChangeEvent event) {
+		System.out.println();
 		listViewAdministrator.set(FXCollections.observableArrayList((ArrayList<String>) event.getNewValue()));
 	}
 

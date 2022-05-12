@@ -50,12 +50,12 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void save(ProductList productArrayList) throws SQLException {
+    public void save(ProductList productList) throws SQLException {
         clear();
         Connection connection = getConnection();
-        for (int i=0;i<productArrayList.size();i++)
+        for (int i = 0; i< productList.size(); i++)
         {
-            Product product=productArrayList.get(i);
+            Product product= productList.get(i);
             try
             {
                 PreparedStatement statement =
@@ -77,8 +77,6 @@ public class ManageProductDatabase implements ManageProductsPersistence
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Product(id, name, size, color, price) VALUES(?, ?, ?, ?, ?);");
             executeStatement(statement, product);
-
-            statement.executeUpdate();
         }
         finally {
             connection.close();
@@ -89,12 +87,17 @@ public class ManageProductDatabase implements ManageProductsPersistence
     @Override
     public void change(Product product) throws SQLException {
 		Connection connection = getConnection();
-
 		try
 		{
 			PreparedStatement statement =
-					connection.prepareStatement("UPDATE Product SET id = ?, name = ?, size = ?, color = ?, price = ?");
-			executeStatement(statement, product);
+					connection.prepareStatement("UPDATE Product SET name = ?, size = ?, color = ?, price = ? WHERE id = ?");
+            statement.setString(1, product.getType().toString());
+            statement.setString(2, product.getSize().toString());
+            statement.setString(3, product.getColor().toString());
+            statement.setDouble(4, product.getPrice());
+            statement.setInt(5, product.getId());
+
+            statement.executeUpdate();
 		}
 		finally {
 			connection.close();
