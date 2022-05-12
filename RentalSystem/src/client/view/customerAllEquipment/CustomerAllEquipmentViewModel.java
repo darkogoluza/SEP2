@@ -22,8 +22,10 @@ public class CustomerAllEquipmentViewModel
         this.modelProxy = modelProxy;
     }
 
-    public void addProductToBasket(Product product)
+    public void addProductToBasket(int index)
     {
+		System.out.println(listOfProducts.get(index));
+//		modelProxy.getManageReservations().
         //TODO there will be another model to handle this.
         //model.add(product);
     }

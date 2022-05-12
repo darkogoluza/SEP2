@@ -1,6 +1,7 @@
 package client.core;
 
 import client.model.ModelProxy;
+import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 
@@ -9,7 +10,7 @@ public class ViewModelFactory {
 	private ModelProxy modelProxy;
 
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
-
+	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
 
 	public ViewModelFactory(ModelProxy modelProxy)
 	{
@@ -38,5 +39,13 @@ public class ViewModelFactory {
 		}
 
 		return customerAllEquipmentViewModel;
+	}
+
+	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
+		if (employeeAllOrdersViewModel == null) {
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
+		}
+
+		return employeeAllOrdersViewModel;
 	}
 }

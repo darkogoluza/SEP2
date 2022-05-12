@@ -2,6 +2,7 @@ package client.core;
 
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
+import client.view.employeeAllOrders.EmployeeAllOrdersController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ public class ViewHandler
     private ViewModelFactory vmf;
     private Scene administratorScene;
     private Scene customerAllEquipmentScene;
+    private Scene employeeAllOrdersScene;
 
 
     public ViewHandler( ViewModelFactory vmf, Stage stage){
@@ -27,9 +29,7 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-//        openAdministratorView();
-
-        openCustomerAllEquipmentView();
+		openEmployeeView();
         stage.show();
     }
 
@@ -84,5 +84,20 @@ public class ViewHandler
         stage.setTitle("All equipment");
         stage.setScene(customerAllEquipmentScene);
     }
+
+	public void openEmployeeView(){
+		FXMLLoader loader = new FXMLLoader();
+		if(employeeAllOrdersScene == null){
+
+			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
+			EmployeeAllOrdersController controller = loader.getController();
+			controller.init(this, vmf);
+			employeeAllOrdersScene = new Scene(root);
+		}
+
+		stage.setTitle("All orders");
+		stage.setScene(employeeAllOrdersScene);
+	}
+
 
 }
