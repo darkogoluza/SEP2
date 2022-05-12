@@ -1,5 +1,6 @@
 package client.model.reservation;
 
+import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
@@ -53,6 +54,11 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public Reservation getReservation(int index) {
         return list.getByIndex(index);
+    }
+
+    @Override public ReservationList getAllReservations()
+    {
+        return list;
     }
 
     @Override

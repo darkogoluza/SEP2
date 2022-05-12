@@ -27,7 +27,7 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-        //openAdministratorView();
+//        openAdministratorView();
 
         openCustomerAllEquipmentView();
         stage.show();
