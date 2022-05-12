@@ -34,7 +34,13 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onSearchButton(ActionEvent event) {
-		System.out.println(searchInput.getText());
+		if (Integer.parseInt(searchInput.getText()) > 0)
+			viewModel.openReservation(Integer.parseInt(searchInput.getText()));
+		else {
+			//error
+
+		}
+
 	}
 
 	public void onLogOff() {
@@ -42,6 +48,9 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onOpenReservation() {
+		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
+			return;
 
+		viewModel.openReservation(reservationsList.getSelectionModel().getSelectedIndex());
 	}
 }

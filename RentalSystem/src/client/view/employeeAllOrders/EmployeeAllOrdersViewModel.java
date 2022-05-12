@@ -6,6 +6,7 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import shared.objects.reservation.Reservation;
 
 public class EmployeeAllOrdersViewModel
 {
@@ -33,5 +34,10 @@ public class EmployeeAllOrdersViewModel
 
 	public Property<String> getSearchProperty() {
 	  return searchInput;
+	}
+
+	public void openReservation(int index) {
+	  Reservation r = modelProxy.getManageReservations().getReservation(index);
+	  System.out.println(r);
 	}
 }
