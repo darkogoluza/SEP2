@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * ViewHandler
+ */
 public class ViewHandler
 {
     private Stage stage;
@@ -19,7 +22,12 @@ public class ViewHandler
     private Scene customerBasket;
 
 
-    public ViewHandler( ViewModelFactory vmf, Stage stage){
+    /**
+     * Constructor assigning ViewModelFactory and Stage
+     * @param vmf ViewModelFactory
+     * @param stage Stage
+     */
+    public ViewHandler(ViewModelFactory vmf, Stage stage){
         this.vmf = vmf;
         this.stage = stage;
     }
@@ -87,6 +95,9 @@ public class ViewHandler
         stage.setScene(customerAllEquipmentScene);
     }
 
+    /**
+     * Open window with customer basket
+     */
     public void openCustomerBasket(){
         FXMLLoader loader = new FXMLLoader();
         if(customerBasket == null){
