@@ -1,10 +1,11 @@
-package client.view.CustomerCartView;
+package client.view.CustomerBasketView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 
-public class CustomerCartViewController {
+public class CustomerBasketViewController
+{
 
   @FXML
   private TableColumn<?, ?> name;

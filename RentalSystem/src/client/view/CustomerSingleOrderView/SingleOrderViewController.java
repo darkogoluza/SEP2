@@ -4,6 +4,7 @@ package client.view.CustomerSingleOrderView;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.scene.control.Button;
+    import javafx.scene.control.Label;
     import javafx.scene.control.TableColumn;
     import javafx.scene.control.TextField;
 
@@ -16,13 +17,13 @@ ViewHandler viewHandler;
   private TableColumn<?, ?> name;
 
   @FXML
-  private TextField orderID;
+  private Label orderID;
 
   @FXML
-  private TextField orderdate;
+  private Label orderdate;
 
   @FXML
-  private TextField ordertime;
+  private Label ordertime;
 
   @FXML
   private TableColumn<?, ?> priceperunit;
@@ -37,7 +38,7 @@ ViewHandler viewHandler;
   private TableColumn<?, ?> totalprice;
 
   @FXML
-  private TextField username;
+  private Label username;
 
   @FXML
   void ShowOrderID(ActionEvent event) {
