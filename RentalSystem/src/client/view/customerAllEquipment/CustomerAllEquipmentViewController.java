@@ -8,10 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import shared.objects.Product;
-
-import java.awt.*;
-import java.util.List;
+import shared.objects.product.Product;
 
 public class CustomerAllEquipmentViewController
 {
@@ -36,12 +33,12 @@ public class CustomerAllEquipmentViewController
         editableLabelUserName.textProperty().bind(customerAllEquipmentViewModel.getEditableLabelUserNameProperty());
     }
 
-    public void onLogOff(ActiveEvent event)
+    public void onLogOff(ActionEvent event)
     {
         viewHandler.openAdministratorView();
     }
 
-    public void onAddToBasket(ActiveEvent event)
+    public void onAddToBasket(ActionEvent event)
     {
         listOfProducts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         customerAllEquipmentViewModel.addProductToBasket((Product) listOfProducts.getSelectionModel().getSelectedItem());

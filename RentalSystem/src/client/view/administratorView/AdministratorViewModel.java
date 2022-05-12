@@ -1,12 +1,12 @@
 package client.view.administratorView;
 
-import client.model.ManageProducts;
+import client.model.product.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import shared.objects.Color;
-import shared.objects.EquipmentType;
-import shared.objects.Product;
-import shared.objects.Size;
+import shared.objects.product.Color;
+import shared.objects.product.EquipmentType;
+import shared.objects.product.Product;
+import shared.objects.product.Size;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -34,6 +34,10 @@ public class AdministratorViewModel {
 
 	private void productModified(PropertyChangeEvent event) {
 		listViewAdministrator.set(FXCollections.observableArrayList((ArrayList<String>) event.getNewValue()));
+	}
+
+	public void loadData() {
+		listViewAdministrator.set(FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
 	}
 
 	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size) {

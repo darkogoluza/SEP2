@@ -1,11 +1,11 @@
 package client.view.customerAllEquipment;
 
-import client.model.ManageProducts;
+import client.model.product.ManageProducts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import shared.objects.Product;
+import shared.objects.product.Product;
 
 public class CustomerAllEquipmentViewModel
 {
