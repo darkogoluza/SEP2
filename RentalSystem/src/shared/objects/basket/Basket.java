@@ -5,6 +5,7 @@ import shared.objects.product.ProductList;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Contains all product's customer username and all the product's customer wants to order.
@@ -40,15 +41,11 @@ public class Basket {
      * Returns Dictionary with each Product in basket containing quantity.
      * @return Dictionary with Product as key and Integer a value.
      */
-    public Dictionary<Product, Integer> getAllProductsByQuantity() {
-        Dictionary<Product, Integer> map = new Hashtable<>();
+    public Map<Product, Integer> getAllProductsByQuantity() {
+        Map<Product, Integer> map = new Hashtable<>();
         for (int i = 0; i < products.size(); i++) {
             Product product = products.getByIndex(i);
-            if(map.get(product) == null) {
-                map.put(product, 1);
-            } else {
-                map.put(product, map.get(product) + 1);
-            }
+            map.merge(product, 1, Integer::sum);
         }
 
         return map;
