@@ -1,10 +1,10 @@
 package client.model.reservation;
 
-import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
@@ -17,6 +17,7 @@ public class ManageReservationManager implements ManageReservations
     public ManageReservationManager()
     {	list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
+
         try {
             manageReservationDatabase = new ManageReservationDatabase();
         } catch (SQLException e) {
@@ -78,5 +79,25 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void showAllReservations() {
 
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(name, listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(name, listener);
     }
 }
