@@ -10,7 +10,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         ModelFactory modelFactory = new ModelFactory();
-        ViewModelFactory vmf = new ViewModelFactory(modelFactory.getCustomerModel());
+        ViewModelFactory vmf = new ViewModelFactory(modelFactory.getModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
         vh.start();
     }

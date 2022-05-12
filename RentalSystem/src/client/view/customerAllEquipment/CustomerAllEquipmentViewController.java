@@ -24,13 +24,16 @@ public class CustomerAllEquipmentViewController
     private ListView listOfProducts;
 
     private ViewHandler viewHandler;
-    private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
+    private CustomerAllEquipmentViewModel viewModel;
 
     public void init(ViewHandler viewHandler, ViewModelFactory vmf)
     {
         this.viewHandler = viewHandler;
-        customerAllEquipmentViewModel = vmf.getCustomerAllEquipmentView();
-        editableLabelUserName.textProperty().bind(customerAllEquipmentViewModel.getEditableLabelUserNameProperty());
+        viewModel = vmf.getCustomerAllEquipmentView();
+        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
+
+        listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
+        viewModel.loadAllProducts();
     }
 
     public void onLogOff(ActionEvent event)
@@ -41,7 +44,7 @@ public class CustomerAllEquipmentViewController
     public void onAddToBasket(ActionEvent event)
     {
         listOfProducts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        customerAllEquipmentViewModel.addProductToBasket((Product) listOfProducts.getSelectionModel().getSelectedItem());
+        viewModel.addProductToBasket((Product) listOfProducts.getSelectionModel().getSelectedItem());
     }
 
     public void onGoToBasketButton(ActionEvent event)
@@ -51,7 +54,7 @@ public class CustomerAllEquipmentViewController
 
     public void updateUserName(ActionEvent event, String userName)
     {
-        customerAllEquipmentViewModel.updateUserName(userName);
+        viewModel.updateUserName(userName);
     }
 }
 

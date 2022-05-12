@@ -1,28 +1,35 @@
 package client.view.customerAllEquipment;
 
+import client.model.ModelProxy;
 import client.model.product.ManageProducts;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import shared.objects.product.Product;
 
 public class CustomerAllEquipmentViewModel
 {
-    private ObservableList<String> observableListOfProducts;
+    private ListProperty<String> listOfProducts;
     private StringProperty editableLabelUserNameProperty;
-    private ManageProducts model;
+    private ModelProxy modelProxy;
 
-    public CustomerAllEquipmentViewModel(ManageProducts model)
+    public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
     {
         editableLabelUserNameProperty = new SimpleStringProperty();
-        observableListOfProducts = FXCollections.observableArrayList();
-        this.model = model;
+        listOfProducts = new SimpleListProperty<>();
+        this.modelProxy = modelProxy;
     }
+
     public void addProductToBasket(Product product)
     {
         //TODO there will be another model to handle this.
         //model.add(product);
+    }
+
+    public void loadAllProducts() {
+        listOfProducts.set(FXCollections.observableArrayList(modelProxy.getManageProducts().getAllProducts().convertToStringArrayList()));
     }
 
     public void updateUserName(String userName)
@@ -33,5 +40,8 @@ public class CustomerAllEquipmentViewModel
     public StringProperty getEditableLabelUserNameProperty()
     {
         return editableLabelUserNameProperty;
+    }
+    public ListProperty<String> getListOfProductsProperty() {
+        return listOfProducts;
     }
 }

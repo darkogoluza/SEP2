@@ -1,19 +1,19 @@
 package client.core;
 
-import client.model.product.ManageProducts;
+import client.model.ModelProxy;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
-	private ManageProducts manageProducts;
+	private ModelProxy modelProxy;
 
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
 
 
-	public ViewModelFactory(ManageProducts manageProducts)
+	public ViewModelFactory(ModelProxy modelProxy)
 	{
-		this.manageProducts = manageProducts;
+		this.modelProxy = modelProxy;
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class ViewModelFactory {
 	 */
 	public AdministratorViewModel getAdministratorViewModel() {
 		if (administratorViewModel == null) {
-			administratorViewModel = new AdministratorViewModel(manageProducts);
+			administratorViewModel = new AdministratorViewModel(modelProxy);
 		}
 
 		return administratorViewModel;
@@ -34,7 +34,7 @@ public class ViewModelFactory {
 	 */
 	public CustomerAllEquipmentViewModel getCustomerAllEquipmentView() {
 		if (customerAllEquipmentViewModel == null) {
-			customerAllEquipmentViewModel = new CustomerAllEquipmentViewModel(manageProducts);
+			customerAllEquipmentViewModel = new CustomerAllEquipmentViewModel(modelProxy);
 		}
 
 		return customerAllEquipmentViewModel;

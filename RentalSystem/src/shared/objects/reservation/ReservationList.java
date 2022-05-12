@@ -1,6 +1,5 @@
 package shared.objects.reservation;
 
-import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class ReservationList {
 
 	/**
 	 * Change status of reservation
-	 * @param index of reservation we want to update
+	 * @param index of reservation, we want to update
 	 * @param status we want to set for reservation
 	 */
 	public void change(int index, ReservationStatus status) {
