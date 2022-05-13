@@ -4,6 +4,7 @@ import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
@@ -16,6 +17,7 @@ public class ManageReservationManager implements ManageReservations
     public ManageReservationManager()
     {	list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
+
         try {
             manageReservationDatabase = new ManageReservationDatabase();
         } catch (SQLException e) {
@@ -55,6 +57,11 @@ public class ManageReservationManager implements ManageReservations
         return list.getByIndex(index);
     }
 
+    @Override public ReservationList getAllReservations()
+    {
+        return list;
+    }
+
     @Override
     public void changeReservation(int index, ReservationStatus newStatus) {
         Reservation reservation = list.get(index);
@@ -72,5 +79,25 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void showAllReservations() {
 
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(name, listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(name, listener);
     }
 }

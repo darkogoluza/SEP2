@@ -1,18 +1,14 @@
 package client.view.CustomerBasketView;
 
+import client.core.ViewHandler;
+import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 
 public class CustomerBasketViewController
 {
-
-
-  @FXML
-  private Label username;
-
+  //TODO if this approach doesn't work there is another solution.
   @FXML
   private TableColumn<?, ?> name;
 
@@ -28,28 +24,19 @@ public class CustomerBasketViewController
   @FXML
   private TableColumn<?, ?> totalprice;
 
+  private ViewHandler viewHandler;
+  private CustomerBasketViewModel viewModel;
+
+  public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
+    this.viewHandler = viewHandler;
+    viewModel = vmf.getCustomerBasketViewModel();
+
+  }
+
   public void BackButton(ActionEvent event)
   {
     //open new view
   }
-
-  @FXML
-  private Button cancel;
-
-  @FXML
-  private Button clear;
-
-  @FXML
-  private Button order;
-
-  @FXML
-  private Label finaltotalprice;
-
-  public void cancel(ActionEvent event)
-  {
-    //open new view
-  }
-
 
 
 
