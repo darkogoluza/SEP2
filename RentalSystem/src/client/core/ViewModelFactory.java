@@ -1,9 +1,9 @@
 package client.core;
 
 import client.model.ModelProxy;
-import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
+import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
