@@ -23,6 +23,7 @@ public class EmployeeAllOrdersViewModel
 		loadAllProducts();
 	}
 
+	//
 	public void loadAllProducts() {
 		listOfOrders.set(
 				FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
