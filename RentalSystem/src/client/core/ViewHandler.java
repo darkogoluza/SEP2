@@ -38,7 +38,7 @@ public class ViewHandler
 	 */
     public void start(){
         //openAdministratorView();
-        //openBasketView();
+        //openCustomerBasket();
         openCustomerAllEquipmentView();
         stage.show();
     }
@@ -100,13 +100,13 @@ public class ViewHandler
      */
     public void openCustomerBasket(){
         FXMLLoader loader = new FXMLLoader();
-        if(customerBasket == null){
+       // if(customerBasket == null){
 
             Parent root = getRootByPath("/client/view/CustomerBasketView/Basketview.fxml", loader);
             CustomerBasketViewController controller = loader.getController();
             controller.init(this,vmf);
             customerBasket = new Scene(root);
-        }
+       // }
 
         stage.setTitle("Customer Basket");
         stage.setScene(customerBasket);

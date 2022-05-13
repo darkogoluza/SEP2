@@ -32,12 +32,14 @@ public class CustomerAllEquipmentViewModel
 
         totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
 
-        modelBasket.addPropertyChangeListener("addedProduct", this::addedProductCallBack);
+        modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
     }
 
-    private void addedProductCallBack(PropertyChangeEvent event) {
+    private void modifiedBasket(PropertyChangeEvent event) {
         totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
+
     }
+
 
     public void addProductToBasket(int index)
     {
@@ -64,4 +66,5 @@ public class CustomerAllEquipmentViewModel
     public ListProperty<String> getListOfProductsProperty() {
         return listOfProducts;
     }
+
 }
