@@ -1,6 +1,7 @@
 package client.core;
 
 import client.model.ModelProxy;
+import client.view.CustomerBasketView.CustomerBasketViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 
@@ -9,6 +10,7 @@ public class ViewModelFactory {
 	private ModelProxy modelProxy;
 
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
+	private CustomerBasketViewModel customerBasketViewModel;
 
 
 	public ViewModelFactory(ModelProxy modelProxy)
@@ -38,5 +40,13 @@ public class ViewModelFactory {
 		}
 
 		return customerAllEquipmentViewModel;
+	}
+
+	public CustomerBasketViewModel getCustomerBasketView() {
+		if (customerBasketViewModel == null) {
+			customerBasketViewModel = new CustomerBasketViewModel(modelProxy);
+		}
+
+		return customerBasketViewModel;
 	}
 }

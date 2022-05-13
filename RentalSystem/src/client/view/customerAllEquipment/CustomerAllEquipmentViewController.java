@@ -49,7 +49,7 @@ public class CustomerAllEquipmentViewController
 
     public void onGoToBasketButton(ActionEvent event)
     {
-        //open new view
+        viewHandler.openBasketView();
     }
 
     public void updateUserName(ActionEvent event, String userName)
