@@ -10,11 +10,25 @@ package client.view.CustomerSingleOrderView;
 
 public class SingleOrderViewController {
 ViewHandler viewHandler;
-  @FXML
-  private Button back;
 
   @FXML
   private TableColumn<?, ?> name;
+
+  @FXML
+  private TableColumn<?, ?> size;
+
+  @FXML
+  private TableColumn<?, ?> priceperunit;
+
+  @FXML
+  private TableColumn<?, ?> quantity;
+
+
+  @FXML
+  private TableColumn<?, ?> totalprice;
+
+  @FXML
+  private Label username;
 
   @FXML
   private Label orderID;
@@ -25,30 +39,9 @@ ViewHandler viewHandler;
   @FXML
   private Label ordertime;
 
-  @FXML
-  private TableColumn<?, ?> priceperunit;
 
   @FXML
-  private TableColumn<?, ?> quantity;
-
-  @FXML
-  private TableColumn<?, ?> size;
-
-  @FXML
-  private TableColumn<?, ?> totalprice;
-
-  @FXML
-  private Label username;
-
-  @FXML
-  void ShowOrderID(ActionEvent event) {
-
-  }
-
-  @FXML
-  void ShowUsername(ActionEvent event) {
-
-  }
+  private Button back;
 
   public void BackButton(ActionEvent event)
   {
