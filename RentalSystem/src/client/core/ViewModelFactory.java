@@ -4,13 +4,15 @@ import client.model.ModelProxy;
 import client.view.CustomerBasketView.CustomerBasketViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
+import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
-	private ModelProxy modelProxy;
-
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
 	private CustomerBasketViewModel customerBasketViewModel;
+
+	private ModelProxy modelProxy;
+	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
 
 
 	public ViewModelFactory(ModelProxy modelProxy)
@@ -52,5 +54,13 @@ public class ViewModelFactory {
 		}
 
 		return customerBasketViewModel;
+	}
+
+	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
+		if (employeeAllOrdersViewModel == null) {
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
+		}
+
+		return employeeAllOrdersViewModel;
 	}
 }
