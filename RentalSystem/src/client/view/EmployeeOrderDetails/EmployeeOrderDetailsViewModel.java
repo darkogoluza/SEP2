@@ -2,59 +2,66 @@ package client.view.EmployeeOrderDetails;
 
 import client.model.ModelProxy;
 import client.model.reservation.ManageReservations;
-import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import shared.objects.product.Color;
-import shared.objects.product.Size;
-
-import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
+import shared.objects.product.ProductList;
+import shared.objects.reservation.Reservation;
+import shared.objects.reservation.ReservationStatus;
 
 public class EmployeeOrderDetailsViewModel
 {
-  private StringProperty idProperty;
+
+  private StringProperty nameOfOrderProperty;
   private StringProperty priceProperty;
-  private StringProperty userNameProperty;
-  private StringProperty uniqueCodeProperty;
+  private SimpleStringProperty userNameProperty;
+  private SimpleStringProperty orderIdProperty;
   private StringProperty phoneNumberProperty;
-  private StringProperty statusProperty;
+  private SimpleStringProperty statusProperty;
   private ManageReservations modelReservations;
+
+  private Reservation reservation;
+  private ProductList products;
 
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy)
   {
+	  this.modelReservations = modelProxy.getManageReservations();
+//	reservation = modelReservations.getReservation(0);
+//	products = reservation.getProducts();
 
-    idProperty = new SimpleStringProperty();
-    priceProperty = new SimpleStringProperty();
-    userNameProperty = new SimpleStringProperty();
-    uniqueCodeProperty = new SimpleStringProperty();
-    phoneNumberProperty = new SimpleStringProperty();
-    statusProperty = new SimpleStringProperty();
-    this.modelReservations = modelProxy.getManageReservations();
+
+	  statusProperty = new SimpleStringProperty();
+	  statusProperty.setValue(ReservationStatus.rented.toString());
+	  orderIdProperty = new SimpleStringProperty();
+	  orderIdProperty.setValue("1");
+
+
+//
+//
+//    nameOfOrderProperty = new SimpleStringProperty();
+//    priceProperty = new SimpleStringProperty();
+//    userNameProperty = new SimpleStringProperty();
+//	userNameProperty.setValue(reservation.getUserName());
+//
+//	orderIdProperty.setValue(String.valueOf(reservation.getId()));
+//    phoneNumberProperty = new SimpleStringProperty();
+////	phoneNumberProperty.setValue(reservation);
+//	statusProperty.setValue(reservation.getStatus().toString());
+////    nameOfOrderProperty.set(modelReservations.getReservation(0).getUserName());
+
   }
 
-  public void showId(){
-    idProperty.set(""+modelReservations.getReservation(0).getId());
+	public Property<String> getOrderIdProperty() {
+		return orderIdProperty;
+	}
+
+	public Property<String> getStatusProperty() {
+		return statusProperty;
+	}
+
+	public void changeStatus(int id, ReservationStatus status) {
+	  System.out.println(status);
   }
-
-  public void showUserName(){
-    userNameProperty.set(modelReservations.getReservation(0).getUserName());
-  }
-
-  public void showCreatedAt(){
-    userNameProperty.set(""+modelReservations.getReservation(0).getCreatedAt());
-  }
-
-  public void showStatus(){
-    userNameProperty.set(""+modelReservations.getReservation(0).getStatus());
-  }
-
-  public void editId(int index, double price, Color color, Size size) {
-    model.changeProduct(index, price, color, size);
-  }
-
-
 
 }
 

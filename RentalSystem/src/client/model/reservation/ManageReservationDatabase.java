@@ -48,7 +48,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         ProductList list = new ProductList();
         Connection connection = getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product WHERE id IN (SELECT reservationId FROM Contain");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product WHERE id IN (SELECT reservationId FROM Reservation_Product");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");

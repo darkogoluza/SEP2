@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
-
 public class EmployeeAllOrdersController {
 	@FXML
 	private Button searchButton;
