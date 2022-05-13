@@ -41,8 +41,8 @@ public class ViewHandler
     public void start(){
         //openAdministratorView();
 //        openCustomerAllEquipmentView();
-		openEmployeeView();
-        //openCustomerBasket();
+		//openEmployeeView();
+        openCustomerBasket();
         stage.show();
     }
 
