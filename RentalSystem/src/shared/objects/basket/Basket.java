@@ -2,8 +2,6 @@ package shared.objects.basket;
 
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
-
-import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
 
