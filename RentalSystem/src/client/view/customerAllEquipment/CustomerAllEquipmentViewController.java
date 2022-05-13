@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import shared.objects.product.Product;
 
 public class CustomerAllEquipmentViewController
 {
@@ -22,8 +21,8 @@ public class CustomerAllEquipmentViewController
     private Button gotToBasketButton;
     @FXML
     private ListView listOfProducts;
-    @FXML
-    private Label totalItemsInBasket;
+
+	private int selectedIndex;
 
     private ViewHandler viewHandler;
     private CustomerAllEquipmentViewModel viewModel;
@@ -32,11 +31,9 @@ public class CustomerAllEquipmentViewController
     {
         this.viewHandler = viewHandler;
         viewModel = vmf.getCustomerAllEquipmentView();
-
         editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
-        totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
-        listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
 
+        listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
         viewModel.loadAllProducts();
     }
 
@@ -47,15 +44,18 @@ public class CustomerAllEquipmentViewController
 
     public void onAddToBasket(ActionEvent event)
     {
-        if(listOfProducts.getSelectionModel().getSelectedIndex() < 0)
-            return;
+//        listOfProducts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+//		String strProduct = (String) listOfProducts.getSelectionModel().getSelectedItem();
+
+		if(listOfProducts.getSelectionModel().getSelectedIndex() < 0)
+			return;
 
         viewModel.addProductToBasket(listOfProducts.getSelectionModel().getSelectedIndex());
     }
 
     public void onGoToBasketButton(ActionEvent event)
     {
-        viewHandler.openCustomerBasket();
+        //open new view
     }
 
     public void updateUserName(ActionEvent event, String userName)
