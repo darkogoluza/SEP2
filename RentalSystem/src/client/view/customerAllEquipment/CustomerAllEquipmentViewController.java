@@ -22,6 +22,8 @@ public class CustomerAllEquipmentViewController
     private Button gotToBasketButton;
     @FXML
     private ListView listOfProducts;
+    @FXML
+    private Label totalItemsInBasket;
 
     private ViewHandler viewHandler;
     private CustomerAllEquipmentViewModel viewModel;
@@ -31,7 +33,7 @@ public class CustomerAllEquipmentViewController
         this.viewHandler = viewHandler;
         viewModel = vmf.getCustomerAllEquipmentView();
         editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
-
+        totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
         listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
         viewModel.loadAllProducts();
     }
@@ -43,13 +45,15 @@ public class CustomerAllEquipmentViewController
 
     public void onAddToBasket(ActionEvent event)
     {
-        listOfProducts.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        viewModel.addProductToBasket((Product) listOfProducts.getSelectionModel().getSelectedItem());
+        if(listOfProducts.getSelectionModel().getSelectedIndex() < 0)
+            return;
+
+        viewModel.addProductToBasket(listOfProducts.getSelectionModel().getSelectedIndex());
     }
 
     public void onGoToBasketButton(ActionEvent event)
     {
-        viewHandler.openBasketView();
+        viewHandler.openCustomerBasket();
     }
 
     public void updateUserName(ActionEvent event, String userName)

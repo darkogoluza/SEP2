@@ -42,8 +42,12 @@ public class ViewModelFactory {
 		return customerAllEquipmentViewModel;
 	}
 
-	public CustomerBasketViewModel getCustomerBasketView() {
-		if (customerBasketViewModel == null) {
+	/**
+	 * Lazy initiation of view model for basket view
+	 * @return CustomerBasketViewModel object
+	 */
+	public CustomerBasketViewModel getCustomerBasketViewModel() {
+		if(customerBasketViewModel == null) {
 			customerBasketViewModel = new CustomerBasketViewModel(modelProxy);
 		}
 

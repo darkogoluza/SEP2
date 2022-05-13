@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * ViewHandler
+ */
 public class ViewHandler
 {
     private Stage stage;
@@ -19,7 +22,12 @@ public class ViewHandler
     private Scene basketScene;
 
 
-    public ViewHandler( ViewModelFactory vmf, Stage stage){
+    /**
+     * Constructor assigning ViewModelFactory and Stage
+     * @param vmf ViewModelFactory
+     * @param stage Stage
+     */
+    public ViewHandler(ViewModelFactory vmf, Stage stage){
         this.vmf = vmf;
         this.stage = stage;
     }
@@ -59,9 +67,9 @@ public class ViewHandler
 	 */
     public void openAdministratorView(){
         FXMLLoader loader = new FXMLLoader();
-        if(basketScene == null){
+        if(administratorScene == null){
             Parent root = getRootByPath("/client/view/administratorView/AdministratorView.fxml", loader);
-            CustomerBasketViewController controller = loader.getController();
+            AdministratorViewController controller = loader.getController();
             controller.init(this,vmf);
             administratorScene = new Scene(root);
         }
@@ -88,19 +96,20 @@ public class ViewHandler
     }
 
     /**
-     * Open window with all products in basket for customer
+     * Open window with customer basket
      */
-    public void openBasketView(){
+    public void openCustomerBasket(){
         FXMLLoader loader = new FXMLLoader();
-        if(basketScene == null){
+        if(customerBasket == null){
+
             Parent root = getRootByPath("/client/view/CustomerBasketView/Basketview.fxml", loader);
             CustomerBasketViewController controller = loader.getController();
             controller.init(this,vmf);
-            basketScene = new Scene(root);
+            customerBasket = new Scene(root);
         }
 
-        stage.setTitle("Basket");
-        stage.setScene(basketScene);
+        stage.setTitle("Customer Basket");
+        stage.setScene(customerBasket);
     }
 
 }
