@@ -19,7 +19,7 @@ public class ViewHandler
     private ViewModelFactory vmf;
     private Scene administratorScene;
     private Scene customerAllEquipmentScene;
-    private Scene basketScene;
+    private Scene customerBasket;
 
 
     /**

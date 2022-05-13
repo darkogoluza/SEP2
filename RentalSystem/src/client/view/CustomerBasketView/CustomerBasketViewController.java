@@ -42,7 +42,7 @@ public class CustomerBasketViewController
   {
 
     this.viewHandler = viewHandler;
-    viewModel = vmf.getCustomerBasketView();
+    viewModel = vmf.getCustomerBasketViewModel();
 
     name.setCellValueFactory(new PropertyValueFactory<>("name"));
     priceperunit.setCellValueFactory(new PropertyValueFactory<>("price per unit"));
