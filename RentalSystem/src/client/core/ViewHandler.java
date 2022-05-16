@@ -39,7 +39,7 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-        //openAdministratorView();
+//        openAdministratorView();
 //        openCustomerAllEquipmentView();
 		openEmployeeView();
         //openCustomerBasket();
@@ -135,4 +135,6 @@ public class ViewHandler
 		stage.setScene(employeeAllOrdersScene);
 	}
 
+	public void openSingleOrderView() {
+	}
 }

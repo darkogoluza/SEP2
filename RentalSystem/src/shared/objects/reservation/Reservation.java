@@ -69,9 +69,14 @@ public class Reservation {
     public String toString() {
         StringBuilder value = new StringBuilder();
 
-        for (int i = 0; i < productList.size(); i++) {
-            value.append(String.format("id: %d\nusername: %s\ncreated at: %s\nstatus: %s\n%s", id, userName, createdAt, status, productList.toString()));
-        }
+		// with username
+//		value.append(String.format("id: %03d username: %s  created at: %s  status: %s", id, userName, createdAt, status));
+
+		//without username
+		value.append(String.format("id: %03d   status: %s   created at: %s ", id, status, createdAt));
+
+//        for (int i = 0; i < productList.size(); i++) {
+//        }
 
         return value.toString();
 

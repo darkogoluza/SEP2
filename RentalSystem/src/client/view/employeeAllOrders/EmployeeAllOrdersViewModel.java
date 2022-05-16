@@ -25,8 +25,7 @@ public class EmployeeAllOrdersViewModel
 
 	//
 	public void loadAllProducts() {
-		listOfOrders.set(
-				FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
+		listOfOrders.set(FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
 	}
 
 	public ListProperty<String> getListOfReservationsProperty() {
@@ -37,8 +36,17 @@ public class EmployeeAllOrdersViewModel
 		return searchInput;
 	}
 
-	public void openReservation(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservation(index);
-		System.out.println(r);
+	public void openReservationByIndex(int index) {
+		Reservation r = modelProxy.getManageReservations().getReservationByIndex(index);
+		System.out.println(r.getId());
+	}
+
+	public void openReservationById(int id) {
+		Reservation r = modelProxy.getManageReservations().getReservationById(id);
+		System.out.println(r.getId());
+	}
+
+	public int reservationsCount() {
+		return modelProxy.getManageReservations().getAllReservations().size();
 	}
 }
