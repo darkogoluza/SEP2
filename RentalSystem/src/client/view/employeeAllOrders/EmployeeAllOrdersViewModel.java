@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import shared.objects.reservation.Reservation;
 
+import java.beans.PropertyChangeEvent;
+
 public class EmployeeAllOrdersViewModel
 {
 	private ListProperty<String> listOfOrders;
@@ -19,7 +21,12 @@ public class EmployeeAllOrdersViewModel
 		searchInput = new SimpleStringProperty();
 		listOfOrders = new SimpleListProperty<>();
 		this.modelProxy = modelProxy;
+		modelProxy.getManageReservations().addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
+		loadAllProducts();
+	}
+
+	private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
 		loadAllProducts();
 	}
 
