@@ -39,11 +39,13 @@ public class EmployeeOrderDetailsViewModel
 
 
   private Reservation reservation;
+  private int id;
   private ProductList products;
   private ObservableList<ProductsInBasket> productsInList;
 
-  public EmployeeOrderDetailsViewModel(ModelProxy modelProxy)
+  public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
   {
+	  this.id = 0;
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
     this.modelProducts = modelProxy.getManageProducts();
@@ -62,7 +64,7 @@ public class EmployeeOrderDetailsViewModel
     totalOverallPriceProperty=new SimpleIntegerProperty();
     statusProperty = new SimpleStringProperty();
     statusProperty.setValue(ReservationStatus.rented.toString());;
-    orderIdProperty.setValue("1");
+    orderIdProperty.setValue(String.valueOf(id));
     updateViewModelReservationInfo();
 
 //    modelReservations.addPropertyChangeListener("statusChanged", this:: changeStatus);
@@ -80,7 +82,7 @@ public class EmployeeOrderDetailsViewModel
   public void showAllProducts()
   {
     productsInList.clear();
-    Map<Product, Integer> map = modelReservations.getReservationByIndex(0).getProducts().getAllProductsByQuantity();
+    Map<Product, Integer> map = modelReservations.getReservationById(id).getProducts().getAllProductsByQuantity();
     for(Map.Entry<Product, Integer> entry : map.entrySet())
     {
       productsInList.add(new ProductsInBasket(entry.getKey(), entry.getValue()));
@@ -95,23 +97,16 @@ public class EmployeeOrderDetailsViewModel
     //  ///////
   }
 
-  public void changeStatus(int id, ReservationStatus status) {
-//    modelReservations.getReservation(id).setStatus(status);
-    //    OR ??
-//    statusProperty.set(String.valueOf(status));
+  public void changeStatus(ReservationStatus status) {
+
     modelReservations.changeReservation(id,status);
   }
 
 
-//public void updateViewModelProductInfo(){
-//  statusProperty.set(""+modelReservations.getReservation(index).getStatus());
-//  nameOfProductProperty.set(""+modelProducts.getProduct(index).getType());
-//  sizeProperty.set(""+modelProducts.getProduct(index).getSize());
-//  priceProperty.set(""+modelProducts.getProduct(index).getSize());
-//}
+
 
 public void updateViewModelReservationInfo(){
-  Reservation reservation=modelReservations.getAllReservations().getByIndex(0);
+  Reservation reservation=modelReservations.getReservationById(id);
 
   userNameProperty.set(reservation.getUserName());
   orderIdProperty.set(""+reservation.getId());
@@ -119,13 +114,8 @@ public void updateViewModelReservationInfo(){
   createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
   statusProperty.set(""+reservation.getStatus());
   returnedAtDateProperty.set(""+reservation.getReturnedAt());
-  //returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getReturnedAt()));
   //TODO dont forget the returnDateTime
 
-  //  quantityProperty.set(""+modelReservations.getReservation(index).getQuantity());
-//    totalPriceProperty.set(""+modelReservations.getReservation(index).getQuantity()*
-//      modelReservations.getReservation(index).getPrice());
-//  totalOverallPriceProperty.set(""+totalPriceProperty*getReservationsNum());
 
 }
 
@@ -137,10 +127,6 @@ public void updateViewModelReservationInfo(){
   public Property<String> getStatusProperty() {
     return statusProperty;
   }
-
-//  public IntegerProperty getPriceProperty() {
-//    return priceProperty;
-//  }
 
   public Property<String> getUserNameProperty() {
     return userNameProperty;
@@ -155,7 +141,7 @@ public void updateViewModelReservationInfo(){
   public Property<String> getReturnedAtTimeProperty() {return returnedAtTimeProperty;}
 
 
-  //  public IntegerProperty getQuantityProperty() {return quantityProperty;}
+
 
   public IntegerProperty gettotalOverallPriceProperty() {
     return totalOverallPriceProperty;

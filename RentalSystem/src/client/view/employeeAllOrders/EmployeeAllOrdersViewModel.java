@@ -36,8 +36,19 @@ public class EmployeeAllOrdersViewModel
 		return searchInput;
 	}
 
-	public void openReservation(int index) {
-		//Reservation r = modelProxy.getManageReservations().getReservation(index);
-		//System.out.println(r);
+	public int openReservationByIndex(int index) {
+		Reservation r = modelProxy.getManageReservations().getReservationByIndex(index);
+
+		return r.getId();
+	}
+
+	public int reservationsCount() {
+		return modelProxy.getManageReservations().getAllReservations().size();
+	}
+
+	public int openReservationById(int id) {
+		Reservation r = modelProxy.getManageReservations().getReservationById(id);
+
+		return r.getId();
 	}
 }
