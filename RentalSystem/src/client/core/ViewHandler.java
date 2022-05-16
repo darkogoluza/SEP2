@@ -4,7 +4,6 @@ import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
-import client.view.employeeAllOrders.EmployeeAllOrdersController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -129,7 +128,7 @@ public class ViewHandler
 		if (employeeAllOrdersScene == null) {
 			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
 
-			EmployeeAllOrdersController controller = loader.getController();
+			client.view.EmployeeAllOrders.EmployeeAllOrdersController controller = loader.getController();
 			controller.init(this, vmf);
 			employeeAllOrdersScene = new Scene(root);
 		}

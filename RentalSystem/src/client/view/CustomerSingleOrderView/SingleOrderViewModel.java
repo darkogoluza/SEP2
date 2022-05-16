@@ -51,7 +51,7 @@ public class SingleOrderViewModel
 
     for(int i=1;i<reservationlist.size();i++ )
     {
-      Reservation reservation = modelProxy.getManageReservations().getReservation(1);
+      Reservation reservation = modelProxy.getManageReservations().getAllReservations().getByIndex(1);
       reservation.getId();
       reservation.getUserName();
     }
