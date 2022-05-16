@@ -18,7 +18,7 @@ public class ProductsInBasket
     }
 
     public String getPricePerUnit() {
-        return product.getPrice() + "";
+        return String.format("%.02f€", product.getPrice());
     }
 
     public String getQuantity() {
@@ -30,7 +30,7 @@ public class ProductsInBasket
     }
 
     public String getTotalPrice() {
-        return (product.getPrice() * quantity) + "";
+        return String.format("%.02f€", product.getPrice() * quantity);
     }
 
     public Product getProduct() {

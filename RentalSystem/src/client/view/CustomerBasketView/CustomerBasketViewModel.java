@@ -5,10 +5,7 @@ import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
 import client.model.product.ManageProductsManager;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.objects.product.Product;
@@ -20,21 +17,30 @@ import java.util.Map;
 public class CustomerBasketViewModel
 {
     private ObservableList<ProductsInBasket> productsInBaskets;
+    private StringProperty finalTotalPriceProperty;
+    private StringProperty userNameProperty;
+
     private ManageProducts modelProduct;
     private ManageBasket modelBasket;
 
     public CustomerBasketViewModel(ModelProxy modelProxy)
     {
         productsInBaskets = FXCollections.observableArrayList();
+        finalTotalPriceProperty = new SimpleStringProperty();
+        userNameProperty = new SimpleStringProperty();
+
         modelProduct = modelProxy.getManageProducts();
         modelBasket = modelProxy.getManageBasket();
 
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
+        finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
 
+        modelBasket.addPropertyChangeListener("finalPriceEvent", this::modifiedBasket);
     }
 
-    private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
+    private void modifiedBasket(PropertyChangeEvent event) {
         showAllProductsInBasket();
+        finalTotalPriceProperty.set("" + event.getNewValue());
     }
 
 
@@ -63,5 +69,13 @@ public class CustomerBasketViewModel
     public void order()
     {
         modelBasket.order();
+    }
+
+    public StringProperty getFinalTotalPriceProperty(){
+        return finalTotalPriceProperty;
+    }
+    public StringProperty getUserNameProperty()
+    {
+        return userNameProperty;
     }
 }

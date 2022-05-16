@@ -29,12 +29,14 @@ public class ManageBasketManager implements ManageBasket {
     public void add(Product product) {
         basket.getProducts().add(product);
         changeSupport.firePropertyChange("modifiedBasket", null, size());
+        changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
     @Override
     public Product remove(Product product) {
         Product product1 = basket.getProducts().remove(product.getId());
         changeSupport.firePropertyChange("modifiedBasket", null, size());
+        changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
         return product1;
     }
 
@@ -42,11 +44,12 @@ public class ManageBasketManager implements ManageBasket {
     public void clear() {
         basket.clear();
         changeSupport.firePropertyChange("modifiedBasket", null, size());
+        changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
     @Override
-    public double getTotalPrice() {
-        return basket.getTotalPrice();
+    public String getTotalPrice() {
+        return String.format("%.02f€", basket.getTotalPrice());
     }
 
     @Override

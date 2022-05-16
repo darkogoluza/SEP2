@@ -1,4 +1,4 @@
-package client.view.employeeAllOrders;
+package client.view.EmployeeAllOrders;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
@@ -18,9 +18,8 @@ public class EmployeeAllOrdersController {
 	@FXML
 	private ListView reservationsList;
 
-
 	private ViewHandler viewHandler;
-	private EmployeeAllOrdersViewModel viewModel;
+	private client.view.employeeAllOrders.EmployeeAllOrdersViewModel viewModel;
 
 	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
 		this.viewHandler = viewHandler;
@@ -28,7 +27,6 @@ public class EmployeeAllOrdersController {
 
 		reservationsList.itemsProperty().bindBidirectional(viewModel.getListOfReservationsProperty());
 		searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
-
 	}
 
 	public void onSearchButton(ActionEvent event) {
