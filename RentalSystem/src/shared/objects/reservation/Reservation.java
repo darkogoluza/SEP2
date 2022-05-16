@@ -2,7 +2,7 @@ package shared.objects.reservation;
 
 import shared.objects.product.ProductList;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Reservation
 {
