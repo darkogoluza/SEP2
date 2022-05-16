@@ -38,6 +38,7 @@ public class SingleOrderViewController {
     totalprice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
     finalTotalPrice.textProperty().bind(viewModel.getFinalTotalPriceProperty());
 
+    orderID.textProperty().bind(viewModel.getOrderID());
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();
   }

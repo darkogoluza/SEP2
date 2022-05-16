@@ -4,10 +4,7 @@ import client.model.ModelProxy;
 import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.objects.product.Product;
@@ -27,7 +24,7 @@ public class SingleOrderViewModel
   private StringProperty ordertime;
   private StringProperty returndate;
   private StringProperty finalTotalPriceProperty;
-  private int orderID;
+  private StringProperty orderID;
   private ObservableList<ProductsInBasket> productsInBaskets;
   private ManageProducts modelProduct;
   private ManageBasket modelBasket;
@@ -40,6 +37,7 @@ public class SingleOrderViewModel
     orderdate = new SimpleStringProperty();
     ordertime = new SimpleStringProperty();
     ordertime = new SimpleStringProperty();
+    orderID = new SimpleStringProperty();
     finalTotalPriceProperty = new SimpleStringProperty();
     productsInBaskets = FXCollections.observableArrayList();
     modelProduct = modelProxy.getManageProducts();
@@ -48,6 +46,8 @@ public class SingleOrderViewModel
     this.modelProxy = modelProxy;
     reservationlist= modelProxy.getManageReservations().getAllReservations();
     finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
+
+
 
     for(int i=1;i<reservationlist.size();i++ )
     {
@@ -94,6 +94,8 @@ public class SingleOrderViewModel
   public StringProperty getFinalTotalPriceProperty(){
     return finalTotalPriceProperty;
   }
+
+  public StringProperty getOrderID(){return orderID;}
 
 }
 
