@@ -37,10 +37,7 @@ public class EmployeeOrderDetailsViewModel
   private ManageReservations modelReservations;
   private ManageProducts modelProducts;
 
-
-  private Reservation reservation;
   private int id;
-  private ProductList products;
   private ObservableList<ProductsInBasket> productsInList;
 
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
