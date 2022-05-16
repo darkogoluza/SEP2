@@ -96,19 +96,12 @@ public class EmployeeOrderDetailsViewModel
   }
 
   public void changeStatus(int id, ReservationStatus status) {
-//    modelReservations.getReservation(id).setStatus(status);
-    //    OR ??
-//    statusProperty.set(String.valueOf(status));
+
     modelReservations.changeReservation(id,status);
   }
 
 
-//public void updateViewModelProductInfo(){
-//  statusProperty.set(""+modelReservations.getReservation(index).getStatus());
-//  nameOfProductProperty.set(""+modelProducts.getProduct(index).getType());
-//  sizeProperty.set(""+modelProducts.getProduct(index).getSize());
-//  priceProperty.set(""+modelProducts.getProduct(index).getSize());
-//}
+
 
 public void updateViewModelReservationInfo(){
   Reservation reservation=modelReservations.getAllReservations().getByIndex(0);
@@ -119,13 +112,8 @@ public void updateViewModelReservationInfo(){
   createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
   statusProperty.set(""+reservation.getStatus());
   returnedAtDateProperty.set(""+reservation.getReturnedAt());
-  //returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getReturnedAt()));
   //TODO dont forget the returnDateTime
 
-  //  quantityProperty.set(""+modelReservations.getReservation(index).getQuantity());
-//    totalPriceProperty.set(""+modelReservations.getReservation(index).getQuantity()*
-//      modelReservations.getReservation(index).getPrice());
-//  totalOverallPriceProperty.set(""+totalPriceProperty*getReservationsNum());
 
 }
 
@@ -137,10 +125,6 @@ public void updateViewModelReservationInfo(){
   public Property<String> getStatusProperty() {
     return statusProperty;
   }
-
-//  public IntegerProperty getPriceProperty() {
-//    return priceProperty;
-//  }
 
   public Property<String> getUserNameProperty() {
     return userNameProperty;
@@ -155,7 +139,7 @@ public void updateViewModelReservationInfo(){
   public Property<String> getReturnedAtTimeProperty() {return returnedAtTimeProperty;}
 
 
-  //  public IntegerProperty getQuantityProperty() {return quantityProperty;}
+
 
   public IntegerProperty gettotalOverallPriceProperty() {
     return totalOverallPriceProperty;
