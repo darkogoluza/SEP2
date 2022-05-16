@@ -78,6 +78,7 @@ public class CustomerBasketViewController
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();
 
+
   }
 
   public void showAllProductsInBasket() {
