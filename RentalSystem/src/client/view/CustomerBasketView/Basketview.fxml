@@ -32,8 +32,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="312.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" text="Miro Pele" />
-      <Label fx:id="finaltotalprice" layoutX="316.0" layoutY="317.0" prefHeight="18.0" prefWidth="43.0" text="65$" />
+      <Label fx:id="userName" layoutX="312.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" text="Miro Pele" />
+      <Label fx:id="finalTotalPrice" layoutX="316.0" layoutY="317.0" prefHeight="18.0" prefWidth="43.0" text="65$" />
       <Button layoutX="522.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButton" text="Go back" />
    </children>
 </AnchorPane>
