@@ -34,11 +34,7 @@ public class ManageReservationManager implements ManageReservations
     public void add(Reservation reservation) {
         list.add(reservation);
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
-        try {
-            manageReservationDatabase.save(reservation);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // TODO maybe save
     }
 
     @Override

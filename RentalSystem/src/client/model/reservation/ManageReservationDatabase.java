@@ -6,6 +6,7 @@ import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 
 import java.sql.*;
+import java.util.Map;
 
 public class ManageReservationDatabase implements ManageReservationPersistence
 {
@@ -84,7 +85,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             {
                 PreparedStatement statement =
                         connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at) VALUES(?, ?, ?, ?);");
-                executeStatement(statement, reservation);
+                executeStatementReservation(statement, reservation);
             }
             finally {
                 connection.close();
@@ -93,15 +94,20 @@ public class ManageReservationDatabase implements ManageReservationPersistence
     }
 
     @Override
-    public void save(Reservation reservation) throws SQLException {
+    public void save(Reservation reservation, Map<Product, Integer> map) throws SQLException {
         Connection connection = getConnection();
         try
         {
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at) VALUES(?, ?, ?, ?);");
-            executeStatement(statement, reservation);
+            executeStatementReservation(statement, reservation);
 
-            statement.executeUpdate();
+            for(Map.Entry<Product, Integer> entry : map.entrySet())
+            {
+                statement = connection.prepareStatement("INSERT INTO Contains(reservationid, productid, username, quantity) VALUES(?, ?, ?, ?);");
+                executeStatementContains(statement, reservation.getId(), entry.getKey().getId(), reservation.getUserName(), entry.getValue());
+            }
+
         }
         finally {
             connection.close();
@@ -131,7 +137,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             PreparedStatement statement =
                     connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
             statement.setInt(1, reservation.getId());
-            statement.executeUpdate();
+
         }
         finally {
             connection.close();
@@ -144,12 +150,21 @@ public class ManageReservationDatabase implements ManageReservationPersistence
     }
 
 
-    private void executeStatement(PreparedStatement statement, Reservation reservation) throws SQLException {
+    private void executeStatementReservation(PreparedStatement statement, Reservation reservation) throws SQLException {
         statement.setInt(1, reservation.getId());
         statement.setString(2, reservation.getUserName());
         statement.setString(3, reservation.getStatus().toString());
-        statement.setString(4, reservation.getCreatedAt().toString());
+        statement.setDate(4, reservation.getCreatedAt());
 
+
+        statement.executeUpdate();
+    }
+
+    private void executeStatementContains(PreparedStatement statement, int reservationId, int productId, String username, int quantity) throws SQLException {
+        statement.setInt(1, reservationId);
+        statement.setInt(2, productId);
+        statement.setString(3, username);
+        statement.setInt(4,quantity);
 
         statement.executeUpdate();
     }
