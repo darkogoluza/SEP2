@@ -25,7 +25,7 @@ public class SingleOrderViewController {
   private Button back;
 
   @FXML
-  private Label finaltotalprice;
+  private Label finalTotalPrice;
 
   @FXML
   private TableColumn<?, ?> name;
@@ -77,8 +77,7 @@ public class SingleOrderViewController {
     status.textProperty().bindBidirectional(viewModel.getStatusProperty());
     returndate.textProperty().bind(viewModel.getReturnedAtDateProperty());
     returnTime.textProperty().bind(viewModel.getReturnedAtTimeProperty());
-
-
+    finalTotalPrice.textProperty().bind(viewModel.gettotalOverallPriceProperty());
     name.setCellValueFactory(new PropertyValueFactory<>("name"));
     priceperunit.setCellValueFactory(new PropertyValueFactory<>("pricePerUnit"));
     quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));

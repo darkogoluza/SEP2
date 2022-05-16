@@ -44,10 +44,10 @@ public class ViewHandler
 	 */
     public void start(){
         //openAdministratorView();
-//        openCustomerAllEquipmentView();
+        //openCustomerAllEquipmentView();
+        openCustomerBasket();
 		//openEmployeeView();
-//        openCustomerBasket();
-      openSingleOrderView();
+        //openSingleOrderView();
         stage.show();
     }
 

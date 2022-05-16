@@ -1,14 +1,11 @@
 package client.model.reservation;
 
-import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class ManageReservationManager implements ManageReservations
 {
@@ -49,6 +46,11 @@ public class ManageReservationManager implements ManageReservations
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String getTotalPrice(int id) {
+        return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
     }
 
     @Override public Reservation getReservationByIndex(int index)

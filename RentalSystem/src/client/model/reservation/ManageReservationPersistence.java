@@ -15,4 +15,5 @@ public interface ManageReservationPersistence
     void change(Reservation reservation) throws SQLException;
     void remove(Reservation reservation) throws SQLException;
     void clear();
+    int getUniqueId() throws SQLException;
 }

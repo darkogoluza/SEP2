@@ -11,33 +11,24 @@ import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
-
 import java.beans.PropertyChangeEvent;
 import java.text.SimpleDateFormat;
-import java.util.Formatter;
 import java.util.Map;
 
 public class SingleOrderViewModel
 {
-
   private StringProperty orderIdProperty;
-  //  private IntegerProperty priceProperty;
   private StringProperty userNameProperty;
   private StringProperty statusProperty;
   private StringProperty createdAtDateProperty;
   private StringProperty createdAtTimeProperty;
   private StringProperty returnedAtTimeProperty;
   private StringProperty returnedAtDateProperty;
-  //  private IntegerProperty quantityProperty;
-  private IntegerProperty totalOverallPriceProperty;
-
+  private StringProperty totalOverallPriceProperty;
   private StringProperty nameOfProductProperty;
   private StringProperty sizeProperty;
-
   private ManageReservations modelReservations;
   private ManageProducts modelProducts;
-
-
   private Reservation reservation;
   private int id;
   private ProductList products;
@@ -50,24 +41,19 @@ public class SingleOrderViewModel
     this.modelReservations = modelProxy.getManageReservations();
     this.modelProducts = modelProxy.getManageProducts();
     modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
-
     createdAtTimeProperty=new SimpleStringProperty();
     orderIdProperty = new SimpleStringProperty();
-    //    priceProperty = new SimpleIntegerProperty();
     userNameProperty = new SimpleStringProperty();
     createdAtDateProperty = new SimpleStringProperty();
     nameOfProductProperty = new SimpleStringProperty();
     sizeProperty = new SimpleStringProperty();
     returnedAtDateProperty=new SimpleStringProperty();
     returnedAtTimeProperty = new SimpleStringProperty();
-    //    quantityProperty=new SimpleIntegerProperty();
-    totalOverallPriceProperty=new SimpleIntegerProperty();
+    totalOverallPriceProperty=new SimpleStringProperty();
     statusProperty = new SimpleStringProperty();
     statusProperty.setValue(ReservationStatus.rented.toString());;
     orderIdProperty.setValue(String.valueOf(id));
     updateViewModelReservationInfo();
-
-    //    modelReservations.addPropertyChangeListener("statusChanged", this:: changeStatus);
   }
 
   private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
@@ -89,60 +75,39 @@ public class SingleOrderViewModel
     }
   }
 
-  public void showCreatedAtTime(int index) {
-    //  There is no time
-  }
-
-  public void returnedAt(int index) {
-    //  ///////
-  }
-
   public void updateViewModelReservationInfo(){
     Reservation reservation=modelReservations.getReservationById(id);
 
     userNameProperty.set(reservation.getUserName());
     orderIdProperty.set(""+reservation.getId());
     createdAtDateProperty.set(""+reservation.getCreatedAt());
+    createdAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getCreatedAt()));
     createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
     statusProperty.set(""+reservation.getStatus());
-    returnedAtDateProperty.set(""+reservation.getReturnedAt());
-    //TODO dont forget the returnDateTime
-
-
+    returnedAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getExpiresAt()));
+    returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getExpiresAt()));
+    totalOverallPriceProperty.set(modelReservations.getTotalPrice(id) + "");
   }
-
 
   public Property<String> getOrderIdProperty() {
     return orderIdProperty;
   }
-
   public Property<String> getStatusProperty() {
     return statusProperty;
   }
-
   public Property<String> getUserNameProperty() {
     return userNameProperty;
   }
-
   public Property<String> getCreatedAtDateProperty() {return createdAtDateProperty;}
-
   public Property<String> getCreatedAtTimeProperty() {return createdAtTimeProperty;}
-
   public Property<String> getReturnedAtDateProperty() {return returnedAtDateProperty;}
-
   public Property<String> getReturnedAtTimeProperty() {return returnedAtTimeProperty;}
-
-
-
-
-  public IntegerProperty gettotalOverallPriceProperty() {
+  public StringProperty gettotalOverallPriceProperty() {
     return totalOverallPriceProperty;
   }
-
   public int getReservationsNum(){
     return modelReservations.getAllReservations().size();
   }
-
   public ObservableList<ProductsInBasket> getProductsInBaskets()
   {
     return productsInList;

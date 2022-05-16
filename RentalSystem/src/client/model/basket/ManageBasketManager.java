@@ -64,7 +64,13 @@ public class ManageBasketManager implements ManageBasket {
 
     @Override
     public void order() {
-        Reservation reservation = new Reservation(0, basket.getCustomerUsername(), basket.getProducts());
+        int reservationId = 0;
+        try {
+            reservationId = reservationDatabase.getUniqueId();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
         try {
             reservationDatabase.save(reservation, getAllProductsByQuantity());
         } catch (SQLException e) {
@@ -72,6 +78,10 @@ public class ManageBasketManager implements ManageBasket {
         }
     }
 
+    @Override
+    public boolean isEmpty() {
+        return basket.getProducts().isEmpty();
+    }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

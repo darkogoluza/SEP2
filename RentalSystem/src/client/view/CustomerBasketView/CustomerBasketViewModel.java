@@ -4,14 +4,12 @@ import client.model.ModelProxy;
 import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
-import client.model.product.ManageProductsManager;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import shared.objects.product.Product;
-
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class CustomerBasketViewModel
@@ -20,7 +18,6 @@ public class CustomerBasketViewModel
     private StringProperty finalTotalPriceProperty;
     private StringProperty userNameProperty;
 
-    private ManageProducts modelProduct;
     private ManageBasket modelBasket;
 
     public CustomerBasketViewModel(ModelProxy modelProxy)
@@ -29,13 +26,11 @@ public class CustomerBasketViewModel
         finalTotalPriceProperty = new SimpleStringProperty();
         userNameProperty = new SimpleStringProperty();
 
-        modelProduct = modelProxy.getManageProducts();
         modelBasket = modelProxy.getManageBasket();
-
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
-        finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
-
         modelBasket.addPropertyChangeListener("finalPriceEvent", this::modifiedBasket);
+
+        finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
@@ -68,14 +63,28 @@ public class CustomerBasketViewModel
 
     public void order()
     {
+        if(modelBasket.isEmpty()){
+            showWrongInputDialog();
+            return;
+        }
         modelBasket.order();
+        modelBasket.clear();
     }
 
     public StringProperty getFinalTotalPriceProperty(){
         return finalTotalPriceProperty;
     }
+
     public StringProperty getUserNameProperty()
     {
         return userNameProperty;
+    }
+
+    private void showWrongInputDialog() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("First you must select witch equipment to reserve");
+
+        alert.showAndWait();
     }
 }

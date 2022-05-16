@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.CustomerSingleOrderView.SingleOrderViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.CustomerSingleOrderView.SingleOrderViewController">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -32,19 +32,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="87.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
-            <Label layoutX="14.0" layoutY="111.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
-            <Label layoutX="199.0" layoutY="86.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
-            <Label layoutX="463.0" layoutY="110.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
+            <Label layoutX="6.0" layoutY="107.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
+            <Label layoutX="6.0" layoutY="131.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
+            <Label layoutX="191.0" layoutY="106.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
+            <Label layoutX="430.0" layoutY="107.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
             <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro" />
             <Label fx:id="orderID" layoutX="297.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
-            <Label fx:id="orderdate" layoutX="81.0" layoutY="87.0" text="22.05.2001" />
-            <Label fx:id="ordertime" layoutX="82.0" layoutY="111.0" prefHeight="18.0" prefWidth="101.0" text="11:59" />
-            <Label fx:id="returndate" layoutX="273.0" layoutY="87.0" prefHeight="18.0" prefWidth="59.0" text="22.05.2021" />
-            <Label fx:id="status" layoutX="505.0" layoutY="110.0" text="Rented" />
-            <Label fx:id="finaltotalprice" layoutX="321.0" layoutY="316.0" text="65$" />
-            <Label layoutX="199.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="Return time:" />
-            <Label fx:id="returnTime" layoutX="273.0" layoutY="110.0" prefHeight="18.0" prefWidth="59.0" text="12:00" />
+            <Label fx:id="orderdate" layoutX="73.0" layoutY="107.0" prefHeight="17.0" prefWidth="87.0" text="22.05.2001" />
+            <Label fx:id="ordertime" layoutX="74.0" layoutY="131.0" prefHeight="18.0" prefWidth="101.0" text="11:59" />
+            <Label fx:id="returndate" layoutX="265.0" layoutY="107.0" prefHeight="18.0" prefWidth="95.0" text="22.05.2021" />
+            <Label fx:id="status" layoutX="472.0" layoutY="107.0" text="Rented" />
+            <Label fx:id="finalTotalPrice" layoutX="321.0" layoutY="316.0" text="65$" />
+            <Label layoutX="191.0" layoutY="129.0" prefHeight="18.0" prefWidth="74.0" text="Return time:" />
+            <Label fx:id="returnTime" layoutX="265.0" layoutY="130.0" prefHeight="18.0" prefWidth="101.0" text="12:00" />
          </children>
       </AnchorPane>
    </children>
