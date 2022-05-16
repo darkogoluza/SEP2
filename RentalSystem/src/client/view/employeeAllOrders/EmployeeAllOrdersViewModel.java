@@ -23,7 +23,6 @@ public class EmployeeAllOrdersViewModel
 		loadAllProducts();
 	}
 
-	//
 	public void loadAllProducts() {
 		listOfOrders.set(
 				FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
@@ -38,7 +37,7 @@ public class EmployeeAllOrdersViewModel
 	}
 
 	public void openReservation(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservation(index);
-		System.out.println(r);
+		//Reservation r = modelProxy.getManageReservations().getReservation(index);
+		//System.out.println(r);
 	}
 }

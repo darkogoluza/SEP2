@@ -1,5 +1,6 @@
 package client.model.reservation;
 
+import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
@@ -7,6 +8,7 @@ import shared.objects.reservation.ReservationStatus;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class ManageReservationManager implements ManageReservations
 {
@@ -25,6 +27,7 @@ public class ManageReservationManager implements ManageReservations
         }
         try {
             list = manageReservationDatabase.load();
+            System.out.println(list.toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,14 +36,14 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void add(Reservation reservation) {
         list.add(reservation);
-        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+        changeSupport.firePropertyChange("reservationModified", null, "");
         // TODO maybe save
     }
 
     @Override
     public void remove(int index) {
         Reservation reservation = list.removeByIndex(index);
-        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+        changeSupport.firePropertyChange("reservationModified", null, "");
         try {
             manageReservationDatabase.remove(reservation);
         } catch (SQLException e) {
@@ -48,11 +51,15 @@ public class ManageReservationManager implements ManageReservations
         }
     }
 
-    @Override
-    public Reservation getReservation(int index) {
+    @Override public Reservation getReservationByIndex(int index)
+    {
         return list.getByIndex(index);
     }
 
+    @Override public Reservation getReservationById(int id)
+    {
+        return list.get(id);
+    }
 
     @Override public ReservationList getAllReservations()
     {
@@ -60,8 +67,8 @@ public class ManageReservationManager implements ManageReservations
     }
 
     @Override
-    public void changeReservation(int index, ReservationStatus newStatus) {
-        Reservation reservation = list.get(index);
+    public void changeReservation(int id, ReservationStatus newStatus) {
+        Reservation reservation = list.get(id);
         reservation.setStatus(newStatus);
 
         try {
@@ -70,14 +77,13 @@ public class ManageReservationManager implements ManageReservations
             e.printStackTrace();
         }
 
-        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+        changeSupport.firePropertyChange("reservationModified", null, "");
     }
 
     @Override
     public void showAllReservations() {
 
     }
-
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

@@ -4,6 +4,7 @@ package client.model.reservation;
 import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
+import shared.objects.reservation.ReservationStatus;
 
 import java.sql.*;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 
     @Override
     public ReservationList load() throws SQLException {
-            ReservationList list = new ReservationList();
+            ReservationList reservationList = new ReservationList();
             Connection connection = getConnection();
             try {
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM Reservation");
@@ -36,20 +37,22 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                     String status = resultSet.getString("status");
                     Date date = resultSet.getDate("created_at");
 
-                    Reservation reservation = new Reservation(id, userName, this.getProductFromReservation());
-                    list.add(reservation);
+                    Reservation reservation = new Reservation(id, userName, this.getProductFromReservation(id));
+                    reservation.setStatus(ReservationStatus.valueOf(status));
+                    reservationList.add(reservation);
                 }
             } finally {
                 connection.close();
             }
-            return list;
+
+            return reservationList;
         }
 
-    public ProductList getProductFromReservation() throws SQLException {
+    public ProductList getProductFromReservation(int reservationId) throws SQLException {
         ProductList list = new ProductList();
         Connection connection = getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Product WHERE id IN (SELECT reservationId FROM Contain");
+            PreparedStatement statement = connection.prepareStatement(String.format("SELECT id, name, size, color, price, quantity FROM Product, contains WHERE id IN (SELECT productId FROM contains where reservationId = %d)", reservationId));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -64,9 +67,13 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                 }
                 Color color = Color.valueOf(resultSet.getString("color"));
                 double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
 
                 Product product = new Product(id, price, color, type, size);
-                list.add(product);
+                for (int i = 0; i < quantity; i++)
+                {
+                    list.add(product);
+                }
             }
         } finally {
             connection.close();
@@ -120,8 +127,10 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE Reservation SET id = ?");
-            statement.setInt(1, reservation.getId());
+                    connection.prepareStatement("UPDATE Reservation SET status = ? WHERE id = ?");
+            statement.setString(1, reservation.getStatus().toString());
+            statement.setInt(2, reservation.getId());
+
             statement.executeUpdate();
         }
         finally {
