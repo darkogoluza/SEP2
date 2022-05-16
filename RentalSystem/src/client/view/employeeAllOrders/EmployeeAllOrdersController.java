@@ -1,4 +1,4 @@
-package client.view.EmployeeAllOrders;
+package client.view.employeeAllOrders;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
@@ -31,9 +31,10 @@ public class EmployeeAllOrdersController {
 
 	public void onSearchButton(ActionEvent event) {
 		int id = Integer.parseInt(searchInput.getText());
-		if (id >= 0 && id < viewModel.reservationsCount())
-//			viewModel.openReservationById(Integer.parseInt(searchInput.getText()));
-			viewHandler.openSingleOrderView();
+		if (id >= 0 && id < viewModel.reservationsCount()) {
+			id = viewModel.openReservationById(Integer.parseInt(searchInput.getText()));
+			viewHandler.openEmployeeOrderDetailsView(id);
+		}
 		else {
 			//error
 
@@ -49,7 +50,8 @@ public class EmployeeAllOrdersController {
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
 
-//		viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
-		viewHandler.openSingleOrderView();
+		int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
+
+		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 }

@@ -75,10 +75,10 @@ public class ViewModelFactory {
 		return singleOrderViewModel;
 	}
 
-	public EmployeeOrderDetailsViewModel getEmployeeOrderDetailsViewModel()
+	public EmployeeOrderDetailsViewModel getEmployeeOrderDetailsViewModel(int id)
 	{
 		if(employeeOrderDetailsViewModel == null) {
-			employeeOrderDetailsViewModel = new EmployeeOrderDetailsViewModel(modelProxy);
+			employeeOrderDetailsViewModel = new EmployeeOrderDetailsViewModel(modelProxy, id);
 		}
 
 		return employeeOrderDetailsViewModel;
