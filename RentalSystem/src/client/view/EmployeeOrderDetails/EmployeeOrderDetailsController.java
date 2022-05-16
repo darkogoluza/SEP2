@@ -76,7 +76,8 @@ public class EmployeeOrderDetailsController {
 
 		statusChoice.setItems(statusList);
 		statusChoice.setValue(ReservationStatus.rented);
-
+		viewModel.updateViewModelProductInfo();
+		viewModel.updateViewModelReservationInfo();
 	}
 
 	@FXML
@@ -88,5 +89,6 @@ public class EmployeeOrderDetailsController {
 	void onChangeStatus(ActionEvent event) {
 		viewModel.changeStatus(Integer.parseInt(orderID.getText()), statusChoice.getValue());
 	}
+
 
 }
