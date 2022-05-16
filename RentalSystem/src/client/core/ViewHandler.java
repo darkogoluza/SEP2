@@ -1,6 +1,7 @@
 package client.core;
 
 import client.view.CustomerBasketView.CustomerBasketViewController;
+import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
@@ -24,6 +25,7 @@ public class ViewHandler
     private Scene customerBasket;
 	private Scene employeeAllOrdersScene;
 	private Scene employeeOrderDetailsScene;
+	private Scene singleOrderView;
 
 
     /**
@@ -43,8 +45,9 @@ public class ViewHandler
     public void start(){
         //openAdministratorView();
 //        openCustomerAllEquipmentView();
-		openEmployeeView();
+		//openEmployeeView();
 //        openCustomerBasket();
+      openSingleOrderView();
         stage.show();
     }
 
@@ -155,5 +158,21 @@ public class ViewHandler
 		stage.setTitle("All reservations");
 		stage.setScene(employeeOrderDetailsScene);
 	}
+
+  public void openSingleOrderView(){
+    FXMLLoader loader = new FXMLLoader();
+
+    if (singleOrderView == null) {
+      Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
+
+      SingleOrderViewController controller = loader.getController();
+      //TODO change the ID later
+      controller.init(this, vmf, 0);
+      singleOrderView = new Scene(root);
+    }
+
+    stage.setTitle("Single Order");
+    stage.setScene(singleOrderView);
+  }
 
 }

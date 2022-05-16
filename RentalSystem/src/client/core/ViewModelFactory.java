@@ -67,9 +67,9 @@ public class ViewModelFactory {
 		return employeeAllOrdersViewModel;
 	}
 
-	public SingleOrderViewModel getSingleOrderView() {
+	public SingleOrderViewModel getSingleOrderViewModel(int id) {
 		if (singleOrderViewModel == null) {
-			singleOrderViewModel = new SingleOrderViewModel(modelProxy);
+			singleOrderViewModel = new SingleOrderViewModel(modelProxy, id);
 		}
 
 		return singleOrderViewModel;
@@ -83,4 +83,5 @@ public class ViewModelFactory {
 
 		return employeeOrderDetailsViewModel;
 	}
+
 }

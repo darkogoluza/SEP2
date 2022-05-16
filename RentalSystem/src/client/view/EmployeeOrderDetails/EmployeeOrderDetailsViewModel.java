@@ -37,15 +37,12 @@ public class EmployeeOrderDetailsViewModel
   private ManageReservations modelReservations;
   private ManageProducts modelProducts;
 
-
-  private Reservation reservation;
   private int id;
-  private ProductList products;
   private ObservableList<ProductsInBasket> productsInList;
 
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
   {
-	  this.id = 0;
+	  this.id = id;
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
     this.modelProducts = modelProxy.getManageProducts();
