@@ -45,8 +45,9 @@ public class ViewHandler
     public void start(){
         //openAdministratorView();
 //        openCustomerAllEquipmentView();
-		openEmployeeView();
+		//openEmployeeView();
 //        openCustomerBasket();
+      openSingleOrderView();
         stage.show();
     }
 
@@ -158,14 +159,15 @@ public class ViewHandler
 		stage.setScene(employeeOrderDetailsScene);
 	}
 
-  public void setSingleOrderView(){
+  public void openSingleOrderView(){
     FXMLLoader loader = new FXMLLoader();
 
     if (singleOrderView == null) {
-      Parent root = getRootByPath("/client/view/EmployeeOrderDetails/SingleOrderView.fxml", loader);
+      Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
 
       SingleOrderViewController controller = loader.getController();
-      controller.init(this, vmf);
+      //TODO change the ID later
+      controller.init(this, vmf, 0);
       singleOrderView = new Scene(root);
     }
 
