@@ -1,6 +1,7 @@
 package client.core;
 
 import client.view.CustomerBasketView.CustomerBasketViewController;
+import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
@@ -23,6 +24,7 @@ public class ViewHandler
     private Scene customerBasket;
 	private Scene employeeAllOrdersScene;
 	private Scene employeeOrderDetailsScene;
+	private Scene singleOrderView;
 
 
     /**
@@ -154,5 +156,20 @@ public class ViewHandler
 		stage.setTitle("All reservations");
 		stage.setScene(employeeOrderDetailsScene);
 	}
+
+  public void setSingleOrderView(){
+    FXMLLoader loader = new FXMLLoader();
+
+    if (singleOrderView == null) {
+      Parent root = getRootByPath("/client/view/EmployeeOrderDetails/SingleOrderView.fxml", loader);
+
+      SingleOrderViewController controller = loader.getController();
+      controller.init(this, vmf);
+      singleOrderView = new Scene(root);
+    }
+
+    stage.setTitle("Single Order");
+    stage.setScene(singleOrderView);
+  }
 
 }
