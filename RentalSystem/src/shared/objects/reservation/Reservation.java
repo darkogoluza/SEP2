@@ -42,6 +42,10 @@ public class Reservation
         return createdAt;
     }
 
+        public Date getCreatedAtTime () {
+        return createdAt;
+    }
+
         public Date getReturnedAt () {
         return returnedAt;
     }

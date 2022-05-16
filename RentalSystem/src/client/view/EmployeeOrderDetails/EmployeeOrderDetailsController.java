@@ -80,7 +80,7 @@ public class EmployeeOrderDetailsController {
 		orderdate.textProperty().bind(viewModel.getCreatedAtDateProperty());
 		ordertime.textProperty().bind(viewModel.getCreatedAtTimeProperty());
 		username.textProperty().bind(viewModel.getUserNameProperty());
-		status.textProperty().bind(viewModel.getStatusProperty());
+		status.textProperty().bindBidirectional(viewModel.getStatusProperty());
 		returndate.textProperty().bind(viewModel.getReturnedAtDateProperty());
 		returnTime.textProperty().bind(viewModel.getReturnedAtTimeProperty());
 
@@ -105,10 +105,6 @@ public class EmployeeOrderDetailsController {
 
 	@FXML
 	void onChangeStatus(ActionEvent event) {
-		viewModel.changeStatus(Integer.parseInt(orderID.getText()), ReservationStatus.valueOf(status.getText()));
+		viewModel.changeStatus(Integer.parseInt(orderID.getText()), statusChoice.getValue());
 	}
-
-
-
-
 }

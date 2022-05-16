@@ -4,6 +4,7 @@ package client.model.reservation;
 import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
+import shared.objects.reservation.ReservationStatus;
 
 import java.sql.*;
 import java.util.Map;
@@ -37,6 +38,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                     Date date = resultSet.getDate("created_at");
 
                     Reservation reservation = new Reservation(id, userName, this.getProductFromReservation(id));
+                    reservation.setStatus(ReservationStatus.valueOf(status));
                     reservationList.add(reservation);
                 }
             } finally {
@@ -125,8 +127,10 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE Reservation SET id = ?");
-            statement.setInt(1, reservation.getId());
+                    connection.prepareStatement("UPDATE Reservation SET status = ? WHERE id = ?");
+            statement.setString(1, reservation.getStatus().toString());
+            statement.setInt(2, reservation.getId());
+
             statement.executeUpdate();
         }
         finally {

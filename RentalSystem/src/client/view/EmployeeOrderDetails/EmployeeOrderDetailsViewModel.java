@@ -13,6 +13,8 @@ import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
 
 import java.beans.PropertyChangeEvent;
+import java.text.SimpleDateFormat;
+import java.util.Formatter;
 import java.util.Map;
 
 public class EmployeeOrderDetailsViewModel
@@ -71,7 +73,8 @@ public class EmployeeOrderDetailsViewModel
   }
 
   private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
-    statusProperty.set((String) propertyChangeEvent.getNewValue());
+   showAllProducts();
+   updateViewModelReservationInfo();
   }
 
   public void showAllProducts()
@@ -113,10 +116,13 @@ public void updateViewModelReservationInfo(){
   userNameProperty.set(reservation.getUserName());
   orderIdProperty.set(""+reservation.getId());
   createdAtDateProperty.set(""+reservation.getCreatedAt());
-  createdAtTimeProperty.set(""+reservation.getCreatedAt());
+  createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
   statusProperty.set(""+reservation.getStatus());
   returnedAtDateProperty.set(""+reservation.getReturnedAt());
-//  quantityProperty.set(""+modelReservations.getReservation(index).getQuantity());
+  //returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getReturnedAt()));
+  //TODO dont forget the returnDateTime
+
+  //  quantityProperty.set(""+modelReservations.getReservation(index).getQuantity());
 //    totalPriceProperty.set(""+modelReservations.getReservation(index).getQuantity()*
 //      modelReservations.getReservation(index).getPrice());
 //  totalOverallPriceProperty.set(""+totalPriceProperty*getReservationsNum());
