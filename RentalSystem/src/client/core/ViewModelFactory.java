@@ -5,6 +5,7 @@ import client.view.CustomerBasketView.CustomerBasketViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
+import client.view.CustomerSingleOrderView.SingleOrderViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
@@ -13,6 +14,7 @@ public class ViewModelFactory {
 
 	private ModelProxy modelProxy;
 	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
+	private SingleOrderViewModel singleOrderViewModel;
 
 
 	public ViewModelFactory(ModelProxy modelProxy)
@@ -62,5 +64,13 @@ public class ViewModelFactory {
 		}
 
 		return employeeAllOrdersViewModel;
+	}
+
+	public SingleOrderViewModel getSingleOrderView() {
+		if (singleOrderViewModel == null) {
+			singleOrderViewModel = new SingleOrderViewModel(modelProxy);
+		}
+
+		return singleOrderViewModel;
 	}
 }

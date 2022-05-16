@@ -36,7 +36,7 @@
             <Label layoutX="162.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
             <Label layoutX="307.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
             <Label layoutX="463.0" layoutY="110.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
-            <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro Pele" />
+            <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro" />
             <Label fx:id="orderID" layoutX="297.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
             <Label fx:id="orderdate" layoutX="81.0" layoutY="110.0" text="22.05.2001" />
             <Label fx:id="ordertime" layoutX="230.0" layoutY="110.0" prefHeight="18.0" prefWidth="34.0" text="11:59" />

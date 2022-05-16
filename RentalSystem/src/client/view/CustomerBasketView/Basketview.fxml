@@ -33,7 +33,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="312.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" text="Miro Pele" />
+      <Label fx:id="username" layoutX="312.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" text="Miro" />
       <Label fx:id="finaltotalprice" layoutX="316.0" layoutY="317.0" prefHeight="18.0" prefWidth="43.0" text="65$" />
    </children>
 </AnchorPane>

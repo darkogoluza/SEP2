@@ -57,6 +57,7 @@ public class ManageReservationManager implements ManageReservations
         return list.getByIndex(index);
     }
 
+
     @Override public ReservationList getAllReservations()
     {
         return list;
