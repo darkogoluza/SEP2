@@ -17,7 +17,8 @@ public class ManageReservationManager implements ManageReservations
     private ManageReservationDatabase manageReservationDatabase;
 
     public ManageReservationManager()
-    {	list = new ReservationList();
+    {
+		list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
 
         try {
@@ -27,7 +28,6 @@ public class ManageReservationManager implements ManageReservations
         }
         try {
             list = manageReservationDatabase.load();
-            System.out.println(list.toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,14 +36,14 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void add(Reservation reservation) {
         list.add(reservation);
-        changeSupport.firePropertyChange("reservationModified", null, "");
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
         // TODO maybe save
     }
 
     @Override
     public void remove(int index) {
         Reservation reservation = list.removeByIndex(index);
-        changeSupport.firePropertyChange("reservationModified", null, "");
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
         try {
             manageReservationDatabase.remove(reservation);
         } catch (SQLException e) {
@@ -67,8 +67,8 @@ public class ManageReservationManager implements ManageReservations
     }
 
     @Override
-    public void changeReservation(int id, ReservationStatus newStatus) {
-        Reservation reservation = list.get(id);
+    public void changeReservation(int index, ReservationStatus newStatus) {
+        Reservation reservation = list.get(index);
         reservation.setStatus(newStatus);
 
         try {
@@ -77,7 +77,7 @@ public class ManageReservationManager implements ManageReservations
             e.printStackTrace();
         }
 
-        changeSupport.firePropertyChange("reservationModified", null, "");
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
     }
 
     @Override
