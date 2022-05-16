@@ -71,9 +71,9 @@ public class EmployeeOrderDetailsController {
 	@FXML
 	private Label returnTime;
 
-	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
+	public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id) {
 		this.viewHandler = viewHandler;
-		viewModel = vmf.getEmployeeOrderDetailsViewModel();
+		viewModel = vmf.getEmployeeOrderDetailsViewModel(id);
 
 		orderID.textProperty().bindBidirectional(viewModel.getOrderIdProperty());
 		status.textProperty().bindBidirectional(viewModel.getStatusProperty());
@@ -105,6 +105,6 @@ public class EmployeeOrderDetailsController {
 
 	@FXML
 	void onChangeStatus(ActionEvent event) {
-		viewModel.changeStatus(Integer.parseInt(orderID.getText()), statusChoice.getValue());
+		viewModel.changeStatus(statusChoice.getValue());
 	}
 }
