@@ -71,19 +71,17 @@ public class Reservation
             && reservation.status.equals(status);
     }
 
-        public Reservation copy () {
+	public Reservation copy () {
         return new Reservation(id, userName, productList, status, createdAt);
     }
 
-        public String toString () {
+	public String toString () {
         StringBuilder value = new StringBuilder();
 
-        for (int i = 0; i < productList.size(); i++)
-        {
-            value.append(String.format(
-                "id: %d\nusername: %s\ncreated at: %s\nstatus: %s\n%s", id,
-                userName, createdAt, status, productList.toString()));
-        }
+
+		value.append(String.format(
+			"id: %d  username: %s  created at: %s  status: %s\n%s", id,
+			userName, createdAt, status, productList.toString()));
 
         return value.toString();
 
