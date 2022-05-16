@@ -36,7 +36,8 @@ public class EmployeeAllOrdersController {
 	public void onSearchButton(ActionEvent event) {
 		int id = Integer.parseInt(searchInput.getText());
 		if (id >= 0 && id < viewModel.reservationsCount())
-			viewModel.openReservationById(Integer.parseInt(searchInput.getText()));
+//			viewModel.openReservationById(Integer.parseInt(searchInput.getText()));
+			viewHandler.openSingleOrderView();
 		else {
 			//error
 
@@ -52,7 +53,7 @@ public class EmployeeAllOrdersController {
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
 
-		viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
+//		viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 		viewHandler.openSingleOrderView();
 	}
 }

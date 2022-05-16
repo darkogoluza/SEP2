@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import shared.objects.reservation.Reservation;
 
+import java.beans.PropertyChangeEvent;
+
 public class EmployeeAllOrdersViewModel
 {
 	private ListProperty<String> listOfOrders;
@@ -35,16 +37,16 @@ public class EmployeeAllOrdersViewModel
 	public Property<String> getSearchProperty() {
 		return searchInput;
 	}
-
-	public void openReservationByIndex(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservationByIndex(index);
-		System.out.println(r.getId());
-	}
-
-	public void openReservationById(int id) {
-		Reservation r = modelProxy.getManageReservations().getReservationById(id);
-		System.out.println(r.getId());
-	}
+//
+//	public void openReservationByIndex(int index) {
+//		Reservation r = modelProxy.getManageReservations().getReservationByIndex(index);
+//	}
+//
+//
+//	public void openReservationById(int id) {
+//		Reservation r = modelProxy.getManageReservations().getReservationById(id);
+//		System.out.println(r.getId());
+//	}
 
 	public int reservationsCount() {
 		return modelProxy.getManageReservations().getAllReservations().size();
