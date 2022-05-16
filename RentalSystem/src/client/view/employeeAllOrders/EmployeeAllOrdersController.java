@@ -18,7 +18,6 @@ public class EmployeeAllOrdersController {
 	@FXML
 	private ListView reservationsList;
 
-
 	private ViewHandler viewHandler;
 	private client.view.employeeAllOrders.EmployeeAllOrdersViewModel viewModel;
 
@@ -28,7 +27,6 @@ public class EmployeeAllOrdersController {
 
 		reservationsList.itemsProperty().bindBidirectional(viewModel.getListOfReservationsProperty());
 		searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
-
 	}
 
 	public void onSearchButton(ActionEvent event) {
