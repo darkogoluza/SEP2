@@ -1,9 +1,9 @@
 package client.core;
 
 import client.view.CustomerBasketView.CustomerBasketViewController;
+import client.view.EmployeeAllOrders.EmployeeAllOrdersController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
-import client.view.employeeAllOrders.EmployeeAllOrdersController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,8 +41,8 @@ public class ViewHandler
     public void start(){
         //openAdministratorView();
 //        openCustomerAllEquipmentView();
-		openEmployeeView();
-        //openCustomerBasket();
+		//openEmployeeView();
+        openCustomerBasket();
         stage.show();
     }
 
