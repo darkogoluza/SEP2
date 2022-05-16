@@ -40,13 +40,7 @@ public class Basket {
      * @return Dictionary with Product as key and Integer a value.
      */
     public Map<Product, Integer> getAllProductsByQuantity() {
-        Map<Product, Integer> map = new Hashtable<>();
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.getByIndex(i);
-            map.merge(product, 1, Integer::sum);
-        }
-
-        return map;
+       return products.getAllProductsByQuantity();
     }
 
     /**

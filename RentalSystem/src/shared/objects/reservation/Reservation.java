@@ -9,6 +9,7 @@ public class Reservation
     private int id;
     private String userName;
     private Date createdAt;
+    private Date returnedAt;
     private ProductList productList;
     private ReservationStatus status;
 
@@ -19,6 +20,7 @@ public class Reservation
         productList = products;
         status = ReservationStatus.rented;
         createdAt = new Date(System.currentTimeMillis());
+        returnedAt = null;
 
     }private Reservation( int id, String userName, ProductList products, ReservationStatus status, Date createdAt){
         this.id = id;
@@ -38,6 +40,10 @@ public class Reservation
 
         public Date getCreatedAt () {
         return createdAt;
+    }
+
+        public Date getReturnedAt () {
+        return returnedAt;
     }
 
         public ReservationStatus getStatus () {

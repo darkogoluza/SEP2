@@ -37,7 +37,7 @@ public class EmployeeAllOrdersViewModel
 	}
 
 	public void openReservation(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservation(index);
-		System.out.println(r);
+		//Reservation r = modelProxy.getManageReservations().getReservation(index);
+		//System.out.println(r);
 	}
 }
