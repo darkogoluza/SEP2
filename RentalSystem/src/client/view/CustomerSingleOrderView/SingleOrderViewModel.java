@@ -1,101 +1,150 @@
 package client.view.CustomerSingleOrderView;
 
 import client.model.ModelProxy;
-import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
+import client.model.reservation.ManageReservations;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.objects.product.Product;
+import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
-import shared.objects.reservation.ReservationList;
+import shared.objects.reservation.ReservationStatus;
 
-import java.util.HashMap;
+import java.beans.PropertyChangeEvent;
+import java.text.SimpleDateFormat;
+import java.util.Formatter;
 import java.util.Map;
 
 public class SingleOrderViewModel
 {
+
+  private StringProperty orderIdProperty;
+  //  private IntegerProperty priceProperty;
+  private StringProperty userNameProperty;
+  private StringProperty statusProperty;
+  private StringProperty createdAtDateProperty;
+  private StringProperty createdAtTimeProperty;
+  private StringProperty returnedAtTimeProperty;
+  private StringProperty returnedAtDateProperty;
+  //  private IntegerProperty quantityProperty;
+  private IntegerProperty totalOverallPriceProperty;
+
+  private StringProperty nameOfProductProperty;
+  private StringProperty sizeProperty;
+
+  private ManageReservations modelReservations;
+  private ManageProducts modelProducts;
+
+
   private Reservation reservation;
-  private StringProperty username;
-  private ListProperty<String> listOfProducts;
-  private ModelProxy modelProxy;
-  private StringProperty orderdate;
-  private StringProperty ordertime;
-  private StringProperty returndate;
-  private StringProperty finalTotalPriceProperty;
-  private StringProperty orderID;
-  private ObservableList<ProductsInBasket> productsInBaskets;
-  private ManageProducts modelProduct;
-  private ManageBasket modelBasket;
-  private ReservationList reservationlist;
+  private int id;
+  private ProductList products;
+  private ObservableList<ProductsInBasket> productsInList;
 
-
-  public SingleOrderViewModel(ModelProxy modelProxy)
+  public SingleOrderViewModel(ModelProxy modelProxy, int id)
   {
-    username = new SimpleStringProperty();
-    orderdate = new SimpleStringProperty();
-    ordertime = new SimpleStringProperty();
-    ordertime = new SimpleStringProperty();
-    orderID = new SimpleStringProperty();
-    finalTotalPriceProperty = new SimpleStringProperty();
-    productsInBaskets = FXCollections.observableArrayList();
-    modelProduct = modelProxy.getManageProducts();
-    modelBasket = modelProxy.getManageBasket();
-    listOfProducts = new SimpleListProperty<>();
-    this.modelProxy = modelProxy;
-    reservationlist= modelProxy.getManageReservations().getAllReservations();
-    finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
+    this.id = id;
+    productsInList = FXCollections.observableArrayList();
+    this.modelReservations = modelProxy.getManageReservations();
+    this.modelProducts = modelProxy.getManageProducts();
+    modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
+    createdAtTimeProperty=new SimpleStringProperty();
+    orderIdProperty = new SimpleStringProperty();
+    //    priceProperty = new SimpleIntegerProperty();
+    userNameProperty = new SimpleStringProperty();
+    createdAtDateProperty = new SimpleStringProperty();
+    nameOfProductProperty = new SimpleStringProperty();
+    sizeProperty = new SimpleStringProperty();
+    returnedAtDateProperty=new SimpleStringProperty();
+    returnedAtTimeProperty = new SimpleStringProperty();
+    //    quantityProperty=new SimpleIntegerProperty();
+    totalOverallPriceProperty=new SimpleIntegerProperty();
+    statusProperty = new SimpleStringProperty();
+    statusProperty.setValue(ReservationStatus.rented.toString());;
+    orderIdProperty.setValue(String.valueOf(id));
+    updateViewModelReservationInfo();
 
-
-    for(int i=1;i<reservationlist.size();i++ )
-    {
-      Reservation reservation = modelProxy.getManageReservations().getAllReservations().getByIndex(1);
-      reservation.getId();
-      reservation.getUserName();
-    }
-
-    username.setValue(reservation.getUserName());
-
-
+    //    modelReservations.addPropertyChangeListener("statusChanged", this:: changeStatus);
   }
 
-
-  public ObservableList<ProductsInBasket> getProductsInBaskets() {
-    return productsInBaskets;
+  private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
+    showAllProducts();
   }
 
-  public void showAllProductsInBasket()
+  private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
+    showAllProducts();
+    updateViewModelReservationInfo();
+  }
+
+  public void showAllProducts()
   {
-    productsInBaskets.clear();
-    Map<Product, Integer> map = modelBasket.getAllProductsByQuantity();
+    productsInList.clear();
+    Map<Product, Integer> map = modelReservations.getReservationById(id).getProducts().getAllProductsByQuantity();
     for(Map.Entry<Product, Integer> entry : map.entrySet())
     {
-      productsInBaskets.add(new ProductsInBasket(entry.getKey(), entry.getValue()));
+      productsInList.add(new ProductsInBasket(entry.getKey(), entry.getValue()));
     }
   }
 
-  public void updateUserName(String userName)
+  public void showCreatedAtTime(int index) {
+    //  There is no time
+  }
+
+  public void returnedAt(int index) {
+    //  ///////
+  }
+
+  public void updateViewModelReservationInfo(){
+    Reservation reservation=modelReservations.getReservationById(id);
+
+    userNameProperty.set(reservation.getUserName());
+    orderIdProperty.set(""+reservation.getId());
+    createdAtDateProperty.set(""+reservation.getCreatedAt());
+    createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
+    statusProperty.set(""+reservation.getStatus());
+    returnedAtDateProperty.set(""+reservation.getReturnedAt());
+    //TODO dont forget the returnDateTime
+
+
+  }
+
+
+  public Property<String> getOrderIdProperty() {
+    return orderIdProperty;
+  }
+
+  public Property<String> getStatusProperty() {
+    return statusProperty;
+  }
+
+  public Property<String> getUserNameProperty() {
+    return userNameProperty;
+  }
+
+  public Property<String> getCreatedAtDateProperty() {return createdAtDateProperty;}
+
+  public Property<String> getCreatedAtTimeProperty() {return createdAtTimeProperty;}
+
+  public Property<String> getReturnedAtDateProperty() {return returnedAtDateProperty;}
+
+  public Property<String> getReturnedAtTimeProperty() {return returnedAtTimeProperty;}
+
+
+
+
+  public IntegerProperty gettotalOverallPriceProperty() {
+    return totalOverallPriceProperty;
+  }
+
+  public int getReservationsNum(){
+    return modelReservations.getAllReservations().size();
+  }
+
+  public ObservableList<ProductsInBasket> getProductsInBaskets()
   {
-    username.setValue(userName);
+    return productsInList;
   }
-
-
-  public StringProperty getUsername()
-  {
-    return username;
-  }
-  public StringProperty getOrderDate(){return orderdate;}
-
-  public StringProperty getOrdertime(){return ordertime;}
-  public StringProperty getReturnDate(){return returndate;}
-
-  public StringProperty getFinalTotalPriceProperty(){
-    return finalTotalPriceProperty;
-  }
-
-  public StringProperty getOrderID(){return orderID;}
-
 }
-
