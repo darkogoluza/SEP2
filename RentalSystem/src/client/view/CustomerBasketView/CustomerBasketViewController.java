@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,7 +17,7 @@ import javax.swing.*;
 
 public class CustomerBasketViewController
 {
-  //TODO if this approach doesn't work there is another solution.
+
   @FXML
   private TableView<ProductsInBasket> tableView;
 
@@ -34,6 +35,11 @@ public class CustomerBasketViewController
 
   @FXML
   private TableColumn<String, ProductsInBasket> totalprice;
+
+  @FXML
+  private Label userName;
+  @FXML
+  private Label finalTotalPrice;
 
   private ViewHandler viewHandler;
   private CustomerBasketViewModel viewModel;
@@ -74,6 +80,8 @@ public class CustomerBasketViewController
     quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
     size.setCellValueFactory(new PropertyValueFactory<>("size"));
     totalprice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+    finalTotalPrice.textProperty().bind(viewModel.getFinalTotalPriceProperty());
+    userName.textProperty().bind(viewModel.getUserNameProperty());
 
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();

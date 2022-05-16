@@ -9,7 +9,7 @@ public interface ManageBasket extends PropertyChangeSubject {
     void add (Product product);
     Product remove (Product product);
     void clear();
-    double getTotalPrice();
+    String getTotalPrice();
     int size();
     Map<Product, Integer> getAllProductsByQuantity();
     void order();

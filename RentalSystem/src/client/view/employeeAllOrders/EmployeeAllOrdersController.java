@@ -1,4 +1,4 @@
-package client.view.employeeAllOrders;
+package client.view.EmployeeAllOrders;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
@@ -20,7 +20,7 @@ public class EmployeeAllOrdersController {
 
 
 	private ViewHandler viewHandler;
-	private EmployeeAllOrdersViewModel viewModel;
+	private client.view.employeeAllOrders.EmployeeAllOrdersViewModel viewModel;
 
 	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
 		this.viewHandler = viewHandler;

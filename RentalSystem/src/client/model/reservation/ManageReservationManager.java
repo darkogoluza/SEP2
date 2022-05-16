@@ -78,6 +78,7 @@ public class ManageReservationManager implements ManageReservations
 
     }
 
+
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);
