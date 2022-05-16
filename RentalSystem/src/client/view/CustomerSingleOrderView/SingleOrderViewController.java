@@ -28,13 +28,15 @@ public class SingleOrderViewController {
     this.viewHandler = viewHandler;
     viewModel = vmf.getSingleOrderView();
     username.textProperty().bind(viewModel.getUsername());
-    ordertime.textProperty().bind(viewModel.getOrdertime());
-    orderdate.textProperty().bind(viewModel.getOrderDate());
+    ordertime.textProperty().bindBidirectional(viewModel.getOrdertime());
+    orderdate.textProperty().bindBidirectional(viewModel.getOrderDate());
+    returndate.textProperty().bindBidirectional(viewModel.getReturnDate());
     name.setCellValueFactory(new PropertyValueFactory<>("name"));
     priceperunit.setCellValueFactory(new PropertyValueFactory<>("pricePerUnit"));
     quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
     size.setCellValueFactory(new PropertyValueFactory<>("size"));
     totalprice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+    finalTotalPrice.textProperty().bind(viewModel.getFinalTotalPriceProperty());
 
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();
@@ -63,6 +65,12 @@ public class SingleOrderViewController {
   private Label username;
 
   @FXML
+  private Label returndate;
+
+  @FXML
+  private Label status;
+
+  @FXML
   private Label orderID;
 
   @FXML
@@ -74,6 +82,9 @@ public class SingleOrderViewController {
 
   @FXML
   private Button back;
+
+  @FXML
+  private Label finalTotalPrice;
 
   public void BackButton(ActionEvent event)
   {

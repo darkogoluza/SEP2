@@ -25,10 +25,13 @@ public class SingleOrderViewModel
   private ModelProxy modelProxy;
   private StringProperty orderdate;
   private StringProperty ordertime;
+  private StringProperty returndate;
+  private StringProperty finalTotalPriceProperty;
   private int orderID;
   private ObservableList<ProductsInBasket> productsInBaskets;
   private ManageProducts modelProduct;
   private ManageBasket modelBasket;
+  private ReservationList reservationlist;
 
 
   public SingleOrderViewModel(ModelProxy modelProxy)
@@ -36,12 +39,26 @@ public class SingleOrderViewModel
     username = new SimpleStringProperty();
     orderdate = new SimpleStringProperty();
     ordertime = new SimpleStringProperty();
-    orderID = reservation.getId();
+    ordertime = new SimpleStringProperty();
+    finalTotalPriceProperty = new SimpleStringProperty();
     productsInBaskets = FXCollections.observableArrayList();
     modelProduct = modelProxy.getManageProducts();
     modelBasket = modelProxy.getManageBasket();
     listOfProducts = new SimpleListProperty<>();
     this.modelProxy = modelProxy;
+    reservationlist= modelProxy.getManageReservations().getAllReservations();
+    finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
+
+    for(int i=1;i<reservationlist.size();i++ )
+    {
+      Reservation reservation = modelProxy.getManageReservations().getReservation(1);
+      reservation.getId();
+      reservation.getUserName();
+    }
+
+    username.setValue(reservation.getUserName());
+
+
   }
 
 
@@ -65,7 +82,6 @@ public class SingleOrderViewModel
   }
 
 
-
   public StringProperty getUsername()
   {
     return username;
@@ -73,7 +89,11 @@ public class SingleOrderViewModel
   public StringProperty getOrderDate(){return orderdate;}
 
   public StringProperty getOrdertime(){return ordertime;}
+  public StringProperty getReturnDate(){return returndate;}
 
+  public StringProperty getFinalTotalPriceProperty(){
+    return finalTotalPriceProperty;
+  }
 
 }
 
