@@ -34,14 +34,14 @@
       <Label layoutX="14.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
       <Label layoutX="14.0" layoutY="136.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
       <Label layoutX="195.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
-      <Label layoutX="497.0" layoutY="109.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
+      <Label layoutX="431.0" layoutY="110.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
       <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro Pele" />
       <Label fx:id="orderID" layoutX="290.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
       <Label fx:id="orderdate" layoutX="81.0" layoutY="110.0" text="22.05.2001" />
       <Label fx:id="ordertime" layoutX="82.0" layoutY="136.0" prefHeight="18.0" prefWidth="86.0" text="11:59" />
       <Label fx:id="returndate" layoutX="269.0" layoutY="110.0" prefHeight="18.0" prefWidth="67.0" text="22.05.2021" />
-      <Label fx:id="status" layoutX="539.0" layoutY="109.0" text="Rented" />
-      <Label fx:id="finaltotalprice" layoutX="321.0" layoutY="316.0" text="65$" />
+      <Label fx:id="status" layoutX="473.0" layoutY="110.0" text="Rented" />
+      <Label fx:id="finalTotalPrice" layoutX="321.0" layoutY="316.0" text="65$" />
       <ChoiceBox fx:id="statusChoice" layoutX="345.0" layoutY="342.0" prefWidth="150.0" />
       <Button fx:id="changeStatus" layoutX="504.0" layoutY="342.0" mnemonicParsing="false" onAction="#onChangeStatus" text="Change" />
       <Label layoutX="193.0" layoutY="136.0" text="Return time:" />
