@@ -1,5 +1,6 @@
 package client.model.product;
 
+import server.model.product.ManageProductDatabase;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;

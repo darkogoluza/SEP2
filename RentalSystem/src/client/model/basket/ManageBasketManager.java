@@ -1,5 +1,7 @@
 package client.model.basket;
 
+import server.model.product.ManageProductDatabase;
+import server.model.reservation.ManageReservationDatabase;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
