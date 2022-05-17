@@ -81,7 +81,6 @@ public class ManageProductDatabase implements ManageProductsPersistence
         finally {
             connection.close();
         }
-
     }
 
     @Override

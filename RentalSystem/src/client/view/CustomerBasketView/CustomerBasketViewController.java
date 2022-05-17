@@ -3,17 +3,12 @@ package client.view.CustomerBasketView;
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import client.model.basket.ProductsInBasket;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import shared.objects.product.Product;
-
-import javax.swing.*;
 
 public class CustomerBasketViewController
 {
@@ -69,7 +64,6 @@ public class CustomerBasketViewController
       viewModel.order();
   }
 
-
   public void init(ViewHandler viewHandler, ViewModelFactory vmf)
   {
     this.viewHandler = viewHandler;
@@ -85,14 +79,9 @@ public class CustomerBasketViewController
 
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();
-
-
   }
 
   public void showAllProductsInBasket() {
       viewModel.showAllProductsInBasket();
   }
-
-
-
 }

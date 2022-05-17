@@ -117,4 +117,18 @@ public class ProductList {
 
         return values.toString();
     }
+
+    public double getTotalPrice() {
+        double sum = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i).getPrice();
+        }
+
+        return sum;
+    }
+
+    public boolean isEmpty() {
+        return list.size() == 0;
+    }
 }

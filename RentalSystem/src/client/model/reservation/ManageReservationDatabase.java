@@ -1,10 +1,9 @@
 package client.model.reservation;
 
-
 import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
-
+import shared.objects.reservation.ReservationStatus;
 import java.sql.*;
 import java.util.Map;
 
@@ -34,9 +33,14 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                     int id = resultSet.getInt("id");
                     String userName = resultSet.getString("UserName");
                     String status = resultSet.getString("status");
-                    Date date = resultSet.getDate("created_at");
+                    Timestamp createdAt = resultSet.getTimestamp("created_at");
+                    Timestamp expiresAt = resultSet.getTimestamp("expires_at");
 
                     Reservation reservation = new Reservation(id, userName, this.getProductFromReservation(id));
+                    reservation.setCreateAt(createdAt);
+                    reservation.setExpiresAt(expiresAt);
+                    reservation.setStatus(ReservationStatus.valueOf(status));
+
                     reservationList.add(reservation);
                 }
             } finally {
@@ -50,7 +54,16 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         ProductList list = new ProductList();
         Connection connection = getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement(String.format("SELECT id, name, size, color, price, quantity FROM Product, contains WHERE id IN (SELECT productId FROM contains where reservationId = %d)", reservationId));
+            PreparedStatement statement = connection.prepareStatement(String.format("""
+                    SELECT id, name, size, color, price, quantity
+                    FROM Product p, contains c
+                    WHERE id IN
+                          (
+                              SELECT productId
+                              FROM contains
+                              where reservationId = %d
+                                AND p.id = c.productId
+                    )""", reservationId));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -89,7 +102,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             try
             {
                 PreparedStatement statement =
-                        connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at) VALUES(?, ?, ?, ?);");
+                        connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at, expires_at) VALUES(?, ?, ?, ?, ?);");
                 executeStatementReservation(statement, reservation);
             }
             finally {
@@ -104,7 +117,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at) VALUES(?, ?, ?, ?);");
+                    connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at, expires_at) VALUES(?, ?, ?, ?, ?);");
             executeStatementReservation(statement, reservation);
 
             for(Map.Entry<Product, Integer> entry : map.entrySet())
@@ -125,8 +138,9 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("UPDATE Reservation SET id = ?");
-            statement.setInt(1, reservation.getId());
+                    connection.prepareStatement("UPDATE Reservation SET status = ? WHERE id = ?");
+            statement.setString(1, reservation.getStatus().toString());
+            statement.setInt(2, reservation.getId());
             statement.executeUpdate();
         }
         finally {
@@ -154,13 +168,35 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 
     }
 
+    @Override
+    public int getUniqueId() throws SQLException {
+        Connection connection = getConnection();
+        int id = -1;
+        try {
+            PreparedStatement statement = connection.prepareStatement("""
+                    SELECT id\s
+                    FROM reservation
+                    ORDER BY id desc\s
+                    LIMIT 1;""");
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("id") ;
+            }
+
+        } finally {
+            connection.close();
+        }
+
+        return ++id;
+    }
 
     private void executeStatementReservation(PreparedStatement statement, Reservation reservation) throws SQLException {
         statement.setInt(1, reservation.getId());
         statement.setString(2, reservation.getUserName());
         statement.setString(3, reservation.getStatus().toString());
-        statement.setDate(4, (Date) reservation.getCreatedAt());
-
+        statement.setTimestamp(4, reservation.getCreatedAt());
+        statement.setTimestamp(5, reservation.getExpiresAt());
 
         statement.executeUpdate();
     }

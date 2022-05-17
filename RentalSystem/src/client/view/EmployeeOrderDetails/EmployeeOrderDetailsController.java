@@ -28,7 +28,7 @@ public class EmployeeOrderDetailsController {
 	private Button changeStatus;
 
 	@FXML
-	private Label finaltotalprice;
+	private Label finalTotalPrice;
 
 	@FXML
 	private TableColumn<?, ?> name;
@@ -83,7 +83,7 @@ public class EmployeeOrderDetailsController {
 		status.textProperty().bindBidirectional(viewModel.getStatusProperty());
 		returndate.textProperty().bind(viewModel.getReturnedAtDateProperty());
 		returnTime.textProperty().bind(viewModel.getReturnedAtTimeProperty());
-
+		finalTotalPrice.textProperty().bind(viewModel.getFinalTotalPriceProperty());
 
 		name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		priceperunit.setCellValueFactory(new PropertyValueFactory<>("pricePerUnit"));
