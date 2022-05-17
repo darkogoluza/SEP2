@@ -11,8 +11,12 @@ import java.util.ArrayList;
 
 public class RMIServerProduct implements ServerProduct {
 
-	public RMIServerProduct() throws RemoteException {
-		UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
+	public RMIServerProduct() {
+		try {
+			UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
