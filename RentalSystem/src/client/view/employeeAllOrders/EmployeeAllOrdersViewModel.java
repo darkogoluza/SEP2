@@ -1,6 +1,7 @@
 package client.view.employeeAllOrders;
 
 import client.model.ModelProxy;
+import client.model.reservation.ManageReservations;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
@@ -14,14 +15,14 @@ public class EmployeeAllOrdersViewModel
 {
 	private ListProperty<String> listOfOrders;
 	private SimpleStringProperty searchInput;
-	private ModelProxy modelProxy;
+	private ManageReservations modelReservations;
 
-	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
+	public EmployeeAllOrdersViewModel(ManageReservations manageReservations)
 	{
 		searchInput = new SimpleStringProperty();
 		listOfOrders = new SimpleListProperty<>();
-		this.modelProxy = modelProxy;
-		modelProxy.getManageReservations().addPropertyChangeListener("reservationModified", this::modifiedReservation);
+		this.modelReservations = manageReservations;
+		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
 		loadAllProducts();
 	}
@@ -32,7 +33,7 @@ public class EmployeeAllOrdersViewModel
 
 	public void loadAllProducts() {
 		listOfOrders.set(
-				FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
+				FXCollections.observableArrayList(modelReservations.getAllReservations().convertToStringArrayList()));
 	}
 
 	public ListProperty<String> getListOfReservationsProperty() {
@@ -44,18 +45,16 @@ public class EmployeeAllOrdersViewModel
 	}
 
 	public int openReservationByIndex(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservationByIndex(index);
-
+		Reservation r = modelReservations.getReservationByIndex(index);
 		return r.getId();
 	}
 
 	public int reservationsCount() {
-		return modelProxy.getManageReservations().getAllReservations().size();
+		return modelReservations.getAllReservations().size();
 	}
 
 	public int openReservationById(int id) {
-		Reservation r = modelProxy.getManageReservations().getReservationById(id);
-
+		Reservation r = modelReservations.getReservationById(id);
 		return r.getId();
 	}
 }
