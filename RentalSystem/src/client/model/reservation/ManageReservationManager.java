@@ -11,23 +11,23 @@ public class ManageReservationManager implements ManageReservations
 {
     private ReservationList list;
     private PropertyChangeSupport changeSupport;
-    private ManageReservationDatabase manageReservationDatabase;
+//    private ManageReservationDatabase manageReservationDatabase;
 
     public ManageReservationManager()
     {
 		list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
 
-        try {
-            manageReservationDatabase = new ManageReservationDatabase();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            list = manageReservationDatabase.load();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            manageReservationDatabase = new ManageReservationDatabase();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            list = manageReservationDatabase.load();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -41,11 +41,11 @@ public class ManageReservationManager implements ManageReservations
     public void remove(int index) {
         Reservation reservation = list.removeByIndex(index);
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
-        try {
-            manageReservationDatabase.remove(reservation);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            manageReservationDatabase.remove(reservation);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -73,11 +73,11 @@ public class ManageReservationManager implements ManageReservations
         Reservation reservation = list.get(index);
         reservation.setStatus(newStatus);
 
-        try {
-            manageReservationDatabase.change(reservation);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            manageReservationDatabase.change(reservation);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
     }

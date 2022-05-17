@@ -1,6 +1,5 @@
 package client.model.basket;
 
-import client.model.reservation.ManageReservationDatabase;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
@@ -13,7 +12,7 @@ import java.util.Map;
 public class ManageBasketManager implements ManageBasket {
     private Basket basket;
     private PropertyChangeSupport changeSupport;
-    private ManageReservationDatabase reservationDatabase;
+
 
     public ManageBasketManager () {
         try {
