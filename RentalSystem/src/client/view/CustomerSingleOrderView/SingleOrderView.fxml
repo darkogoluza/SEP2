@@ -12,7 +12,7 @@
       <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
             <Button fx:id="back" layoutX="281.0" layoutY="350.0" mnemonicParsing="false" onAction="#BackButton" text="Back" />
-            <TableView fx:id="tableView" layoutX="1.0" layoutY="155.0" prefHeight="145.0" prefWidth="600.0">
+            <TableView layoutX="1.0" layoutY="155.0" prefHeight="145.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="name" prefWidth="123.20001524686813" text="Name:" />
                   <TableColumn fx:id="size" prefWidth="113.5999755859375" text="Size:" />
@@ -22,29 +22,30 @@
                </columns>
             </TableView>
             <Label layoutX="257.0" layoutY="308.0" prefHeight="34.0" prefWidth="59.0" text="Total Price:" />
-            <Label alignment="CENTER" layoutX="192.0" layoutY="61.0" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
+            <Label alignment="CENTER" layoutX="247.0" layoutY="61.0" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="192.0" layoutY="26.0" prefHeight="20.0" prefWidth="73.0" text="Username:">
+            <Label layoutX="244.0" layoutY="26.0" prefHeight="20.0" prefWidth="73.0" text="Username:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="87.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
-            <Label layoutX="14.0" layoutY="111.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
-            <Label layoutX="199.0" layoutY="86.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
-            <Label layoutX="463.0" layoutY="110.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
-            <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro" />
-            <Label fx:id="orderID" layoutX="297.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
-            <Label fx:id="orderdate" layoutX="81.0" layoutY="87.0" text="22.05.2001" />
-            <Label fx:id="ordertime" layoutX="82.0" layoutY="111.0" prefHeight="18.0" prefWidth="101.0" text="11:59" />
-            <Label fx:id="returndate" layoutX="273.0" layoutY="87.0" prefHeight="18.0" prefWidth="59.0" text="22.05.2021" />
-            <Label fx:id="status" layoutX="505.0" layoutY="110.0" text="Rented" />
+            <Label layoutX="17.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
+            <Label layoutX="182.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
+            <Label layoutX="330.0" layoutY="111.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
+            <Label layoutX="491.0" layoutY="111.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
+            <Label fx:id="username" layoutX="316.0" layoutY="23.0" prefHeight="26.0" prefWidth="104.0" text="Miro">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="orderID" layoutX="314.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
+            <Label fx:id="orderdate" layoutX="84.0" layoutY="110.0" text="22.05.2001" />
+            <Label fx:id="ordertime" layoutX="247.0" layoutY="111.0" prefHeight="18.0" prefWidth="34.0" text="11:59" />
+            <Label fx:id="returndate" layoutX="397.0" layoutY="111.0" prefHeight="18.0" prefWidth="59.0" text="22.05.2021" />
+            <Label fx:id="status" layoutX="528.0" layoutY="110.0" prefHeight="18.0" prefWidth="50.0" text="Rented" />
             <Label fx:id="finaltotalprice" layoutX="321.0" layoutY="316.0" text="65$" />
-            <Label layoutX="199.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="Return time:" />
-            <Label fx:id="returnTime" layoutX="273.0" layoutY="110.0" prefHeight="18.0" prefWidth="59.0" text="12:00" />
          </children>
       </AnchorPane>
    </children>
