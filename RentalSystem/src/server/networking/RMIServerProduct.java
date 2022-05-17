@@ -1,4 +1,4 @@
-package server;
+package server.networking;
 
 import shared.networking.ServerProduct;
 import shared.objects.product.*;
