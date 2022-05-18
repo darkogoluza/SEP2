@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.LoginView.LoginView">
+   <children>
+      <Label layoutX="268.0" layoutY="25.0" text="Login">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="103.0" text="username">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="226.0" layoutY="104.0" />
+      <Label layoutX="88.0" layoutY="172.0" text="password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField layoutX="225.0" layoutY="173.0" />
+      <Group layoutX="135.0" layoutY="268.0" />
+      <Group layoutX="182.0" layoutY="321.0" />
+      <Text layoutX="90.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you don't have an account yet, register now - " wrappingWidth="421.07769775390625">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#5324cc" layoutX="385.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="click here" wrappingWidth="85.07763671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
