@@ -70,5 +70,11 @@ public class ManageUserManager implements ManageUser{
 		}
 	}
 
+	@Override
+	public void logout() {
+		user = null;
+		//TODO fire event so we can open another window
+	}
+
 
 }

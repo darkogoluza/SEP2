@@ -64,4 +64,11 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	public void logout() {
+		try {
+			server.logout();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 }

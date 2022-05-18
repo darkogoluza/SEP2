@@ -1,6 +1,5 @@
 package shared.networking;
 
-import shared.objects.customer.Customer;
 import shared.objects.user.User;
 
 import java.rmi.Remote;
@@ -11,4 +10,5 @@ public interface ServerUser extends Remote {
 	User get(String username) throws RemoteException;
 	void login(String username, String password) throws RemoteException;
 	User getUser() throws RemoteException;
+	void logout() throws RemoteException;
 }

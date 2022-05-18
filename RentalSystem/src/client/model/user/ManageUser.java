@@ -10,5 +10,6 @@ public interface ManageUser
 	User get(String username);
 	void login(String username, String password);
 	User getUser();
+	void logout();
 
 }

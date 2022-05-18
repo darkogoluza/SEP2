@@ -49,21 +49,21 @@ public class ViewHandler
 	 */
     public void start(ManageUser manageUser){
 		//customer
-		manageUser.login("xoxo", "123456");
-		//admin
+//		manageUser.login("xoxo", "123456");
+//		//admin
 		manageUser.login("admin", "123456");
-		//employee
-		manageUser.login("employee", "123456");
+//		//employee
+//		manageUser.login("employee", "123456");
+		openRegistryView();
 
-
-		if (manageUser.getUser() == null)
-			openRegistryView();
-		else if (manageUser.getUser().getRole().equals(UserRole.customer))
-        	openCustomerAllEquipmentView();
-		else if (manageUser.getUser().getRole().equals(UserRole.employee))
-			openEmployeeView();
-		else if (manageUser.getUser().getRole().equals(UserRole.admin))
-        	openAdministratorView();
+//		if (manageUser.getUser() == null)
+//			openRegistryView();
+//		else if (manageUser.getUser().getRole().equals(UserRole.customer))
+//        	openCustomerAllEquipmentView();
+//		else if (manageUser.getUser().getRole().equals(UserRole.employee))
+//			openEmployeeView();
+//		else if (manageUser.getUser().getRole().equals(UserRole.admin))
+//        	openAdministratorView();
 
         stage.show();
     }

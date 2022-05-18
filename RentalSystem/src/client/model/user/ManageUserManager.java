@@ -39,4 +39,9 @@ public class ManageUserManager implements ManageUser
 		return clientProxy.getClientUser().getUser();
 	}
 
+	@Override
+	public void logout() {
+		clientProxy.getClientUser().logout();
+	}
+
 }

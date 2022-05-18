@@ -42,4 +42,9 @@ public class RMIServerUser implements ServerUser {
 		return model.getUser();
 	}
 
+	@Override
+	public void logout() {
+		model.logout();
+	}
+
 }

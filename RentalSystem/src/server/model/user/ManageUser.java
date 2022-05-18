@@ -8,4 +8,5 @@ public interface ManageUser {
 	User get(String username);
 	boolean login(String username, String password);
 	User getUser();
+	void logout();
 }
