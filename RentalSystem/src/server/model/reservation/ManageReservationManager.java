@@ -1,59 +1,90 @@
-package client.model.reservation;
+package server.model.reservation;
 
-import client.networking.ClientProxy;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
 
 public class ManageReservationManager implements ManageReservations
 {
+    private ReservationList list;
     private PropertyChangeSupport changeSupport;
-    private ClientProxy clientProxy;
+    private ManageReservationDatabase manageReservationDatabase;
 
-    public ManageReservationManager(ClientProxy clientProxy)
+    public ManageReservationManager()
     {
+		list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
-        this.clientProxy = clientProxy;
+
+        try {
+            manageReservationDatabase = new ManageReservationDatabase();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            list = manageReservationDatabase.load();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void add(Reservation reservation) {
-        clientProxy.getClientReservation().add(reservation);
-        changeSupport.firePropertyChange("reservationModified", null, clientProxy.getClientReservation().convertToStringArrayList());
+        list.add(reservation);
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+        // TODO maybe save
     }
 
     @Override
     public void remove(int index) {
-        clientProxy.getClientReservation().remove(index);
-        changeSupport.firePropertyChange("reservationModified", null, clientProxy.getClientReservation().convertToStringArrayList());
+        Reservation reservation = list.removeByIndex(index);
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+        try {
+            manageReservationDatabase.remove(reservation);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public String getTotalPrice(int id) {
-        return String.format("%.02f€", clientProxy.getClientReservation().get(id).getProducts().getTotalPrice());
+        return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
     }
 
     @Override public Reservation getReservationByIndex(int index)
     {
-        return clientProxy.getClientReservation().getByIndex(index);
+        return list.getByIndex(index);
     }
 
     @Override public Reservation getReservationById(int id)
     {
-        return clientProxy.getClientReservation().get(id);
+        return list.get(id);
     }
 
     @Override public ReservationList getAllReservations()
     {
-        return clientProxy.getClientReservation().getAll();
+        return list;
     }
 
     @Override
     public void changeReservation(int index, ReservationStatus newStatus) {
-        clientProxy.getClientReservation().changeReservation(index, newStatus);
-        changeSupport.firePropertyChange("reservationModified", null, clientProxy.getClientReservation().convertToStringArrayList());
+        Reservation reservation = list.get(index);
+        reservation.setStatus(newStatus);
+
+        try {
+            manageReservationDatabase.change(reservation);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+    }
+
+    @Override
+    public void showAllReservations() {
+
     }
 
     @Override

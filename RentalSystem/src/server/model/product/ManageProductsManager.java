@@ -1,15 +1,13 @@
-package client.model.product;
+package server.model.product;
 
-import server.model.product.ManageProductDatabase;
-import shared.objects.product.Product;
-import shared.objects.product.ProductList;
 import shared.objects.product.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
-public class ManageProductsManager implements ManageProducts {
+public class ManageProductsManager implements ManageProducts
+{
 	private ProductList list;
 	private PropertyChangeSupport changeSupport;
 	private ManageProductDatabase manageProductDatabase;

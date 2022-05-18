@@ -1,22 +1,17 @@
-package client.model;
+package server.model;
 
-import client.model.basket.ManageBasket;
-import client.model.basket.ManageBasketManager;
-import client.model.product.ManageProducts;
-import client.model.product.ManageProductsManager;
-import client.model.reservation.ManageReservationManager;
-import client.model.reservation.ManageReservations;
-import client.networking.ClientProxy;
+import server.model.basket.ManageBasket;
+import server.model.basket.ManageBasketManager;
+import server.model.product.ManageProducts;
+import server.model.product.ManageProductsManager;
+import server.model.reservation.ManageReservationManager;
+import server.model.reservation.ManageReservations;
 
-public class ModelProxyManager implements ModelProxy {
+public class ModelProxyManager implements ModelProxy
+{
     private ManageProducts manageProducts;
     private ManageReservations manageReservations;
     private ManageBasket manageBasket;
-    private ClientProxy clientProxy;
-
-    public ModelProxyManager(ClientProxy clientProxy) {
-        this.clientProxy = clientProxy;
-    }
 
     @Override
     public ManageProducts getManageProducts() {
@@ -30,7 +25,7 @@ public class ModelProxyManager implements ModelProxy {
     @Override
     public ManageReservations getManageReservations() {
         if(manageReservations == null){
-            manageReservations = new ManageReservationManager(clientProxy);
+            manageReservations = new ManageReservationManager();
         }
 
         return manageReservations ;

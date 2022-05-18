@@ -1,13 +1,9 @@
-package client.model.reservation;
+package server.model.reservation;
 
-import shared.objects.product.Product;
-import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
 import shared.util.PropertyChangeSubject;
-
-import java.util.Map;
 
 public interface ManageReservations extends PropertyChangeSubject
 {
@@ -17,5 +13,6 @@ public interface ManageReservations extends PropertyChangeSubject
     Reservation getReservationById(int id);
     ReservationList getAllReservations();
     void changeReservation(int index, ReservationStatus newStatus);
+    void showAllReservations();
     String getTotalPrice(int id);
 }
