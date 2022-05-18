@@ -40,7 +40,7 @@
             <Label fx:id="orderID" layoutX="297.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
             <Label fx:id="orderdate" layoutX="73.0" layoutY="107.0" prefHeight="17.0" prefWidth="87.0" text="22.05.2001" />
             <Label fx:id="ordertime" layoutX="74.0" layoutY="131.0" prefHeight="18.0" prefWidth="101.0" text="11:59" />
-            <Label fx:id="returndate" layoutX="265.0" layoutY="107.0" prefHeight="18.0" prefWidth="95.0" text="22.05.2021" />
+            <Label fx:id="returndate" layoutX="265.0" layoutY="107.0" prefHeight="18.0" prefWidth="122.0" text="22.05.2021" />
             <Label fx:id="status" layoutX="472.0" layoutY="107.0" text="Rented" />
             <Label fx:id="finalTotalPrice" layoutX="321.0" layoutY="316.0" text="65$" />
             <Label layoutX="191.0" layoutY="129.0" prefHeight="18.0" prefWidth="74.0" text="Return time:" />
