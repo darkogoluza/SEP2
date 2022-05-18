@@ -36,7 +36,6 @@ public class ServerProxy implements Server
       try
       {
         serverProduct = new RMIServerProduct(model.getManageProducts());
-        System.out.println("a");
       }
       catch (RemoteException e)
       {
