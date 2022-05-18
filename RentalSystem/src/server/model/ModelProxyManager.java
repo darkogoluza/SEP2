@@ -2,6 +2,8 @@ package server.model;
 
 import server.model.basket.ManageBasket;
 import server.model.basket.ManageBasketManager;
+import server.model.customer.ManageCustomer;
+import server.model.customer.ManageCustomerManager;
 import server.model.product.ManageProducts;
 import server.model.product.ManageProductsManager;
 import server.model.reservation.ManageReservationManager;
@@ -12,6 +14,7 @@ public class ModelProxyManager implements ModelProxy
     private ManageProducts manageProducts;
     private ManageReservations manageReservations;
     private ManageBasket manageBasket;
+    private ManageCustomer manageCustomer;
 
     @Override
     public ManageProducts getManageProducts() {
@@ -38,5 +41,14 @@ public class ModelProxyManager implements ModelProxy
         }
 
         return manageBasket;
+    }
+
+    @Override
+    public ManageCustomer getManageCustomer() {
+        if(manageCustomer == null) {
+            manageCustomer = new ManageCustomerManager();
+        }
+
+        return manageCustomer;
     }
 }

@@ -1,10 +1,12 @@
 package shared.objects.product;
 
+import java.io.Serializable;
 
 /**
  * Defines a single product that contains ID, Price, Color, EquipmentType and Size.
  */
-public class Product {
+public class Product implements Serializable
+{
     private int id;
     private double price;
     private Color color;

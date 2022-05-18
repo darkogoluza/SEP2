@@ -3,11 +3,11 @@ package client.core;
 import client.model.ModelProxy;
 import client.view.CustomerBasketView.CustomerBasketViewModel;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsViewModel;
-import client.view.LoginView.LoginViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.CustomerSingleOrderView.SingleOrderViewModel;
+import client.view.registryView.RegistryViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
@@ -17,8 +17,7 @@ public class ViewModelFactory {
 	private ModelProxy modelProxy;
 	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
 	private SingleOrderViewModel singleOrderViewModel;
-	private LoginViewModel loginViewModel;
-
+	private RegistryViewModel registryViewModel;
 
 	public ViewModelFactory(ModelProxy modelProxy)
 	{
@@ -86,13 +85,11 @@ public class ViewModelFactory {
 		return employeeOrderDetailsViewModel;
 	}
 
-	public LoginViewModel getLoginViewModel(int id)
-	{
-		if(loginViewModel == null) {
-			loginViewModel = new LoginViewModel(modelProxy);
+	public RegistryViewModel getRegistryViewModel() {
+		if(registryViewModel == null)
+		{
+			registryViewModel = new RegistryViewModel(modelProxy);
 		}
-
-		return loginViewModel;
+		return registryViewModel;
 	}
-
 }
