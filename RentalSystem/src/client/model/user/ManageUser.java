@@ -1,8 +1,14 @@
 package client.model.user;
 
-import shared.objects.customer.Customer;
+import shared.objects.user.User;
+
+import java.rmi.RemoteException;
 
 public interface ManageUser
 {
-    void add(Customer customer);
+	void add(User user);
+	User get(String username);
+	void login(String username, String password);
+	User getUser();
+
 }

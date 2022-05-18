@@ -1,5 +1,6 @@
 package client.core;
 
+import client.model.user.ManageUser;
 import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
@@ -11,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import shared.objects.user.User;
+import shared.objects.user.UserRole;
 
 import java.io.IOException;
 
@@ -44,13 +47,24 @@ public class ViewHandler
 	 * Open selected view
 	 * This is what is opened when we launch an application
 	 */
-    public void start(){
-        //openAdministratorView();
-        //openCustomerAllEquipmentView();
-        //openCustomerBasket();
-		openEmployeeView();
-        //openSingleOrderView();
-        //openRegistryView();
+    public void start(ManageUser manageUser){
+		//customer
+		manageUser.login("xoxo", "123456");
+		//admin
+		manageUser.login("admin", "123456");
+		//employee
+		manageUser.login("employee", "123456");
+
+
+		if (manageUser.getUser() == null)
+			openRegistryView();
+		else if (manageUser.getUser().getRole().equals(UserRole.customer))
+        	openCustomerAllEquipmentView();
+		else if (manageUser.getUser().getRole().equals(UserRole.employee))
+			openEmployeeView();
+		else if (manageUser.getUser().getRole().equals(UserRole.admin))
+        	openAdministratorView();
+
         stage.show();
     }
 

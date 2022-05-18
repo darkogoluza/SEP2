@@ -21,7 +21,8 @@ public class RMIServerUser implements ServerUser {
         }
     }
 
-    public void add(User user)
+	@Override
+	public void add(User user)
     {
         model.add(user);
     }

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-
+import java.util.ArrayList;
 
 
 public class RegistryViewController {
@@ -34,7 +34,7 @@ public class RegistryViewController {
     }
 
     public void createAccountButton(ActionEvent event)
-    {
+	{
         viewModel.createAccount();
         //viewHandler.openCustomerAllEquipmentView();
     }

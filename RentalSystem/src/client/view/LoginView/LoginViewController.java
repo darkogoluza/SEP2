@@ -32,7 +32,7 @@ public class LoginViewController
   public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id)
   {
     this.viewHandler = viewHandler;
-    viewModel = vmf.getLoginViewModel(id);
+//    viewModel = vmf.getLoginViewModel(id);
     userName.textProperty().bindBidirectional(viewModel.getUserNameProperty());
     password.textProperty().bindBidirectional(viewModel.getUserNameProperty());
 

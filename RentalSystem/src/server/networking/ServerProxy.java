@@ -1,10 +1,7 @@
 package server.networking;
 
 import server.model.ModelProxy;
-import shared.networking.Server;
-import shared.networking.ServerBasket;
-import shared.networking.ServerProduct;
-import shared.networking.ServerReservation;
+import shared.networking.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -14,7 +11,8 @@ public class ServerProxy implements Server
 
   private ServerReservation serverReservation;
   private ServerProduct serverProduct;
-  private  ServerBasket serverBasket;
+  private ServerBasket serverBasket;
+  private ServerUser serverUser;
 
   private ModelProxy model;
 
@@ -77,4 +75,13 @@ public class ServerProxy implements Server
 
     return serverReservation;
   }
+
+	@Override
+	public ServerUser getUserServer() {
+		if (serverUser == null) {
+			serverUser = new RMIServerUser(model.getManageUser());
+		}
+
+		return serverUser;
+	}
 }

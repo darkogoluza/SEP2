@@ -1,17 +1,15 @@
 package client.view.LoginView;
 
 import client.model.ModelProxy;
-import client.model.reservation.ManageReservations;
+import client.model.user.ManageUser;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import server.model.customer.ManageCustomer;
-import shared.objects.reservation.ReservationStatus;
 
 public class LoginViewModel
 {
-  private ModelProxy modelProxy;
-  private ManageCustomer modelCustomer;
+	private ManageUser modelUser;
+	private ModelProxy modelProxy;
   private StringProperty userNameProperty;
   private StringProperty passwordProperty;
 
@@ -19,7 +17,7 @@ public class LoginViewModel
   public LoginViewModel(ModelProxy modelProxy)
   {
     this.modelProxy = modelProxy;
-    this.modelCustomer = modelProxy.getManageCustomer();
+    this.modelUser = modelProxy.getManageUser();
     userNameProperty=new SimpleStringProperty();
     passwordProperty=new SimpleStringProperty();
   }

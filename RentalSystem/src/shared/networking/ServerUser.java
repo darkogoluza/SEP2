@@ -4,10 +4,11 @@ import shared.objects.customer.Customer;
 import shared.objects.user.User;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface ServerUser extends Remote {
-    void add(User user);
-	User get(String username);
-	void login(String username, String password);
-	User getUser();
+    void add(User user) throws RemoteException;
+	User get(String username) throws RemoteException;
+	void login(String username, String password) throws RemoteException;
+	User getUser() throws RemoteException;
 }
