@@ -3,28 +3,32 @@ package shared.objects.reservation;
 import shared.objects.product.ProductList;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Reservation {
     private int id;
     private String userName;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private ProductList productList;
     private ReservationStatus status;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
 
     public Reservation(int id, String userName, ProductList products) {
         this.id = id;
         this.userName = userName;
         productList = products;
         status = ReservationStatus.rented;
-        createdAt = new Date(System.currentTimeMillis());
+        LocalDateTime createdAt = LocalDateTime.now();
     }
 
-    private Reservation(int id, String userName, ProductList products, ReservationStatus status, Date createdAt) {
+    private Reservation(int id, String userName, ProductList products, ReservationStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.userName = new String(userName);
         this.productList = products.copy();
         this.status = ReservationStatus.valueOf(status.toString());
-        this.createdAt = new Date(createdAt.getTime());
+        this.createdAt = LocalDateTime.now();
     }
 
     public int getId() {
@@ -35,7 +39,7 @@ public class Reservation {
         return userName;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 

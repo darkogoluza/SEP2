@@ -2,6 +2,9 @@ package shared.objects.basket;
 
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
+
+
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import java.util.Map;
 public class Basket {
     private ProductList products;
     private String customerUsername;
+    private Date createdAt;
 
     /**
      * Constructor initializing ProductList and assigning customer username.
@@ -68,4 +72,6 @@ public class Basket {
     public void clear() {
         products = new ProductList();
     }
+
+
 }
