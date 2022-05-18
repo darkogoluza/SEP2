@@ -5,6 +5,8 @@ import shared.objects.product.ProductList;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Formatter;
 
 public class Reservation implements Serializable
 {
@@ -75,13 +77,8 @@ public class Reservation implements Serializable
     }
 
 	public String toString () {
-        StringBuilder value = new StringBuilder();
-
-		value.append(String.format(
-			"id: %d  username: %s  created at: %s   expires at: %s  status: %s\n%s", id,
-			userName, createdAt, expiresAt, status, productList.toString()));
-
-        return value.toString();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy K:mm a");
+		return String.format("<%03d> %s [%s - %s] status: %s", id, userName, simpleDateFormat.format(createdAt), simpleDateFormat.format(expiresAt), status.toString());
     }
 
     public void setCreateAt(Timestamp createdAt) {
