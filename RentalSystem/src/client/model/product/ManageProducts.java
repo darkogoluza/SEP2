@@ -9,5 +9,4 @@ public interface ManageProducts extends PropertyChangeSubject {
 	Product getProduct(int index);
 	ProductList getAllProducts();
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize);
-	void showAllProducts();
 }

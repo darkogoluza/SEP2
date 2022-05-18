@@ -18,7 +18,7 @@ public class RunServer {
         ManageReservations manageReservationManager = new ManageReservationManager();
         ManageProducts manageProductsManager = new ManageProductsManager();
         RMIServerReservation serverReservation = new RMIServerReservation(manageReservationManager);
-        RMIServerProduct serverProduct = new RMIServerProduct();
+        RMIServerProduct serverProduct = new RMIServerProduct(manageProductsManager);
         Registry registry = LocateRegistry.createRegistry(Utils.SERVER_PORT);
         registry.bind(Utils.SERVER_RESERVATION ,serverReservation);
         registry.bind(Utils.SERVER_PRODUCT ,serverProduct);
