@@ -1,7 +1,6 @@
 package client.networking;
 
-import shared.networking.ServerCustomer;
-import shared.networking.ServerReservation;
+import shared.networking.ServerUser;
 import shared.objects.customer.Customer;
 import shared.util.Utils;
 
@@ -11,13 +10,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class ClientCustomer {
-    private ServerCustomer server;
+    private ServerUser server;
 
     public ClientCustomer() {
         Registry registry = null;
         try {
             registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
-            server = (ServerCustomer) registry.lookup(Utils.SERVER_RESERVATION);
+            server = (ServerUser) registry.lookup(Utils.SERVER_RESERVATION);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }

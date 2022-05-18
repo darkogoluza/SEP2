@@ -21,6 +21,13 @@ public class User {
 		this.role = role;
 	}
 
+	public User(String username, String password, String phoneNo, UserRole role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.phoneNo = phoneNo;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -39,5 +46,14 @@ public class User {
 
 	public void setRole(UserRole role) {
 		this.role = role;
+	}
+
+	public String toString() {
+		return "User{" +
+				"username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", role=" + role +
+				", phoneNo='" + phoneNo + '\'' +
+				'}';
 	}
 }

@@ -11,7 +11,6 @@ public class ManageUserManager implements ManageUser{
 	private PropertyChangeSupport changeSupport;
 	private ManageUserPersistance db;
 
-
 	public ManageUserManager() {
 		user = null;
 
@@ -34,16 +33,42 @@ public class ManageUserManager implements ManageUser{
 
 	@Override
 	public User get(String username) {
-		return db.load(username);
+		try {
+			return db.load(username);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public boolean login(String username, String password) {
+		User userTmp = null;
+		try {
+			userTmp = db.load(username);
+		} catch (SQLException e) {
+			// user with this username doesn't exist
+			e.printStackTrace();
+		}
+
+		// if we get user and password is correct we can log in user
+		if (userTmp != null && userTmp.getPassword().equals(password)) {
+			user = userTmp;
+			return true;
+		}
+
 		return false;
 	}
 
 	@Override
-	public UserRole getRole() {
-		return null;
+	public User getUser() {
+		if (user != null) {
+			return user;
+		}
+		else {
+			return null;
+		}
 	}
+
+
 }
