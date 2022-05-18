@@ -6,6 +6,7 @@ import server.model.reservation.ManageReservations;
 import shared.networking.ServerReservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
+import shared.util.Utils;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,13 +14,10 @@ import java.rmi.server.UnicastRemoteObject;
 public class RMIServerReservation implements ServerReservation {
     private ManageReservations model;
 
-    public RMIServerReservation(ManageReservations model) {
+    public RMIServerReservation(ManageReservations model) throws RemoteException
+    {
         this.model = model;
-        try {
-            UnicastRemoteObject.exportObject(this, 0);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        UnicastRemoteObject.exportObject(this, 0);
     }
 
     @Override
@@ -52,3 +50,4 @@ public class RMIServerReservation implements ServerReservation {
         return model.getAllReservations().getUniqueId();
     }
 }
+

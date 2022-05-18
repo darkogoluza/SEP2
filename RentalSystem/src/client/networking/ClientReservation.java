@@ -1,25 +1,33 @@
 package client.networking;
 
+import shared.networking.Server;
 import shared.networking.ServerReservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
 import shared.util.Utils;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ClientReservation {
+public class ClientReservation implements Remote, Serializable
+{
     private ServerReservation server;
 
     public ClientReservation() {
-        Registry registry = null;
         try {
-            registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
-            server = (ServerReservation) registry.lookup(Utils.SERVER_RESERVATION);
+//            UnicastRemoteObject.exportObject(this,0);
+
+            Registry registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
+            Server serverProxy = (Server) registry.lookup(Utils.SERVER_RENTAL);
+
+            server = serverProxy.getReservationServer();
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -27,27 +35,73 @@ public class ClientReservation {
     }
 
     public void add(Reservation reservation) {
-        server.add(reservation);
+        try
+        {
+            server.add(reservation);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public ReservationList getAll() {
-        return server.getAll();
+        try
+        {
+            return server.getAll();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Reservation getByIndex(int index) {
-        return server.getByIndex(index);
+        try
+        {
+            return server.getByIndex(index);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public ArrayList<String> convertToStringArrayList() {
-        return server.getAll().convertToStringArrayList();
+        try
+        {
+            return server.getAll().convertToStringArrayList();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Reservation get(int id) {
-        return server.get(id);
+        try
+        {
+            return server.get(id);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void remove(int index) {
-        server.remove(index);
+        try
+        {
+            server.remove(index);
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void changeReservation(int index, ReservationStatus newStatus) {
@@ -55,6 +109,14 @@ public class ClientReservation {
 
   public int getUniqueId()
   {
-      return server.getUniqueId();
+      try
+      {
+          return server.getUniqueId();
+      }
+      catch (RemoteException e)
+      {
+          e.printStackTrace();
+      }
+      return -1;
   }
 }

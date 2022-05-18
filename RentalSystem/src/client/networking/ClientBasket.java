@@ -1,9 +1,11 @@
 package client.networking;
 
+import shared.networking.Server;
 import shared.networking.ServerBasket;
 import shared.objects.product.Product;
 import shared.util.Utils;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -12,16 +14,18 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
-public class ClientBasket implements Remote
+public class ClientBasket implements Remote, Serializable
 {
   private ServerBasket server;
 
   public ClientBasket(){
     try
     {
-      UnicastRemoteObject.exportObject(this,0);
+//      UnicastRemoteObject.exportObject(this,0);
       Registry registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
-      server = (ServerBasket) registry.lookup(Utils.SERVER_BASKET);
+      Server serverProxy = (Server) registry.lookup(Utils.SERVER_RENTAL);
+
+      server = serverProxy.getBasketServer();
     }
     catch (RemoteException | NotBoundException e)
     {
@@ -30,35 +34,95 @@ public class ClientBasket implements Remote
   }
   public void add(Product product)
   {
-    server.add(product);
+    try
+    {
+      server.add(product);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
   public Product remove(Product product)
   {
-    server.remove(product);
+    try
+    {
+      server.remove(product);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
     return product;
   }
   public void clear()
   {
-    server.clear();
+    try
+    {
+      server.clear();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
   public String getTotalPrice()
   {
-    return server.getTotalPrice();
+    try
+    {
+      return server.getTotalPrice();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
   public int Size()
   {
-    return server.size();
+    try
+    {
+      return server.size();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return -1;
   }
   public Map<Product, Integer> getAllProductsByQuantity()
   {
-    return server.getAllProductsByQuantity();
+    try
+    {
+      return server.getAllProductsByQuantity();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
   }
   public void order()
   {
-    server.order();
+    try
+    {
+      server.order();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
   public boolean isEmpty()
   {
-    return server.isEmpty();
+    try
+    {
+      return server.isEmpty();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+    return false;
   }
 }
