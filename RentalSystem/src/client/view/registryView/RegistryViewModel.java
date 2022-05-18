@@ -46,10 +46,12 @@ public class RegistryViewModel
 		if (passwordProperty.getValue().equals(confirmPasswordProperty.getValue())) {
 			boolean isAdmin = modelProxy.getManageUser().getUser() != null && modelProxy.getManageUser().getUser().getRole().equals(UserRole.admin);
 
-			if (isAdmin)
+			if (isAdmin) {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue(), UserRole.employee));
-			else
+			}
+			else {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue()));
+			}
 		}
     	else {
 			// TODO handle when passwords dont match
