@@ -2,10 +2,11 @@ package shared.objects.reservation;
 
 import shared.objects.product.ProductList;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Reservation
+public class Reservation implements Serializable
 {
     private int id;
     private String userName;

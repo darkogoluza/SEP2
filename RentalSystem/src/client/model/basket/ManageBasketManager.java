@@ -1,5 +1,6 @@
 package client.model.basket;
 
+import client.networking.ClientProxy;
 import server.model.product.ManageProductDatabase;
 import server.model.reservation.ManageReservationDatabase;
 import shared.objects.basket.Basket;
@@ -12,30 +13,26 @@ import java.sql.SQLException;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket {
-    private Basket basket;
+
+    private ClientProxy clientProxy;
     private PropertyChangeSupport changeSupport;
     private ManageReservationDatabase reservationDatabase;
 
-    public ManageBasketManager () {
-        try {
-            this.reservationDatabase = new ManageReservationDatabase();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        basket = new Basket("Darko");
+    public ManageBasketManager (ClientProxy clientProxy) {
         changeSupport = new PropertyChangeSupport(this);
+        this.clientProxy = clientProxy;
     }
 
     @Override
     public void add(Product product) {
-        basket.getProducts().add(product);
+        clientProxy.getClientBasket().add(product);
         changeSupport.firePropertyChange("modifiedBasket", null, size());
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
     @Override
     public Product remove(Product product) {
-        Product product1 = basket.getProducts().remove(product.getId());
+        Product product1 = clientProxy.getClientBasket().remove(product);
         changeSupport.firePropertyChange("modifiedBasket", null, size());
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
         return product1;
@@ -43,45 +40,34 @@ public class ManageBasketManager implements ManageBasket {
 
     @Override
     public void clear() {
-        basket.clear();
+        clientProxy.getClientBasket().clear();
         changeSupport.firePropertyChange("modifiedBasket", null, size());
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
     @Override
     public String getTotalPrice() {
-        return String.format("%.02f€", basket.getTotalPrice());
+        return clientProxy.getClientBasket().getTotalPrice();
     }
 
     @Override
     public int size() {
-        return basket.getProducts().size();
+        return clientProxy.getClientBasket().Size();
     }
 
     @Override
     public Map<Product, Integer> getAllProductsByQuantity() {
-        return basket.getAllProductsByQuantity();
+        return clientProxy.getClientBasket().getAllProductsByQuantity();
     }
 
     @Override
     public void order() {
-        int reservationId = 0;
-        try {
-            reservationId = reservationDatabase.getUniqueId();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
-        try {
-            reservationDatabase.save(reservation, getAllProductsByQuantity());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        clientProxy.getClientBasket().order();
     }
 
     @Override
     public boolean isEmpty() {
-        return basket.getProducts().isEmpty();
+        return clientProxy.getClientBasket().isEmpty();
     }
 
     @Override

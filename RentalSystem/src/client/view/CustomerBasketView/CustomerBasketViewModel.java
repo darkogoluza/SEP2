@@ -3,7 +3,6 @@ package client.view.CustomerBasketView;
 import client.model.ModelProxy;
 import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
-import client.model.product.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

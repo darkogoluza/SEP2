@@ -14,16 +14,10 @@ public class RMIServerBasket implements ServerBasket
 {
   private ManageBasket model;
 
-  public RMIServerBasket(ManageBasket model)
+  public RMIServerBasket(ManageBasket model) throws RemoteException
   {
     this.model = model;
-    try
-    {
-      UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
-    }
-    catch (RemoteException e){
-      e.printStackTrace();
-    }
+    UnicastRemoteObject.exportObject(this, 0);
   }
   @Override public void add(Product product)
   {
@@ -64,4 +58,5 @@ public class RMIServerBasket implements ServerBasket
   {
     return model.isEmpty();
   }
+
 }

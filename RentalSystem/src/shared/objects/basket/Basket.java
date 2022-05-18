@@ -2,13 +2,16 @@ package shared.objects.basket;
 
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
+
+import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Map;
 
 /**
  * Contains all product's customer username and all the product's customer wants to order.
  */
-public class Basket {
+public class Basket implements Serializable
+{
     private ProductList products;
     private String customerUsername;
 

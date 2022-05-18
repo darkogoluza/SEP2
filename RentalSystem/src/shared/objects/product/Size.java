@@ -1,6 +1,9 @@
 package shared.objects.product;
 
-public interface Size {
+import java.io.Serializable;
+
+public interface Size extends Serializable
+{
     String getSize();
     String getSizeWithoutUnit();
 }
