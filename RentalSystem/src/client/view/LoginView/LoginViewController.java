@@ -27,30 +27,20 @@ public class LoginViewController
   private Button logInButton;
 
   @FXML
-  private Button clickHere;
+  private Button createAccount;
 
-  public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id)
+  public void init(ViewHandler viewHandler, ViewModelFactory vmf)
   {
     this.viewHandler = viewHandler;
-//    viewModel = vmf.getLoginViewModel(id);
+    viewModel = vmf.getLoginViewModel();
     userName.textProperty().bindBidirectional(viewModel.getUserNameProperty());
-    password.textProperty().bindBidirectional(viewModel.getUserNameProperty());
+    password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
 
   }
-    @FXML
-    public void onUserNameInput() {
-      viewModel.checkUserName(userName.getText());
-    }
-
-    @FXML
-    void onPasswordInput() {
-      viewModel.checkPassword(password.getText());
-    }
 
     @FXML
     void logInToAccount() {
-//    if statements
-      viewHandler.openCustomerAllEquipmentView();
+    viewModel.checkIdentification(userName.getText(),password.getText());
     }
 
     @FXML

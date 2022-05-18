@@ -4,6 +4,7 @@ import client.model.user.ManageUser;
 import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
+import client.view.LoginView.LoginViewController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import client.view.employeeAllOrders.EmployeeAllOrdersController;
@@ -31,6 +32,7 @@ public class ViewHandler
 	private Scene employeeOrderDetailsScene;
 	private Scene singleOrderView;
 	private Scene registryScene;
+  private Scene loginScene;
 
 
     /**
@@ -54,7 +56,9 @@ public class ViewHandler
 		manageUser.login("admin", "123456");
 //		//employee
 //		manageUser.login("employee", "123456");
-		openRegistryView();
+//		openRegistryView();
+      openLoginView();
+
 
 //		if (manageUser.getUser() == null)
 //			openRegistryView();
@@ -209,4 +213,19 @@ public class ViewHandler
         stage.setTitle("Create Account");
         stage.setScene(registryScene);
     }
+
+  public void openLoginView(){
+    FXMLLoader loader = new FXMLLoader();
+
+    if (loginScene == null) {
+      Parent root = getRootByPath("/client/view/LoginView/LoginView.fxml", loader);
+
+      LoginViewController controller = loader.getController();
+      controller.init(this, vmf);
+      loginScene = new Scene(root);
+    }
+
+    stage.setTitle("Login to Account");
+    stage.setScene(loginScene);
+  }
 }

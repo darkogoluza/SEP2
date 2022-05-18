@@ -2,6 +2,7 @@ package client.view.LoginView;
 
 import client.model.ModelProxy;
 import client.model.user.ManageUser;
+import client.networking.ClientProxy;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,6 +13,7 @@ public class LoginViewModel
 	private ModelProxy modelProxy;
   private StringProperty userNameProperty;
   private StringProperty passwordProperty;
+  private ClientProxy clientProxy;
 
 
   public LoginViewModel(ModelProxy modelProxy)
@@ -22,15 +24,17 @@ public class LoginViewModel
     passwordProperty=new SimpleStringProperty();
   }
 
-  public void checkUserName(String userName) {
-    userNameProperty.set(userName);
-  }
-
-  public void checkPassword(String password) {
-    passwordProperty.set(password);
+  public void checkIdentification(String userName, String password) {
+    System.out.println(modelUser.get(userName));
+    userNameProperty.set(modelUser.get(userName).getUsername());
+    passwordProperty.set(modelUser.get(userName).getUsername());
+    modelUser.login(userName,password);
   }
 
   public Property<String> getUserNameProperty(){
     return userNameProperty;
+  }
+  public Property<String> getPasswordProperty(){
+    return passwordProperty;
   }
 }
