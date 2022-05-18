@@ -14,7 +14,7 @@ import java.util.Map;
 public class ManageBasketManager implements ManageBasket {
     private Basket basket;
     private PropertyChangeSupport changeSupport;
-
+    private ManageReservationDatabase reservationDatabase;
 
     public ManageBasketManager () {
         try {

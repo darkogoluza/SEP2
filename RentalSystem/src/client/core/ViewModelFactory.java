@@ -7,6 +7,7 @@ import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.CustomerSingleOrderView.SingleOrderViewModel;
+import client.view.registryView.RegistryViewModel;
 
 public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
@@ -16,7 +17,7 @@ public class ViewModelFactory {
 	private ModelProxy modelProxy;
 	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
 	private SingleOrderViewModel singleOrderViewModel;
-
+	private RegistryViewModel registryViewModel;
 
 	public ViewModelFactory(ModelProxy modelProxy)
 	{
@@ -84,4 +85,11 @@ public class ViewModelFactory {
 		return employeeOrderDetailsViewModel;
 	}
 
+	public RegistryViewModel getRegistryViewModel() {
+		if(registryViewModel == null)
+		{
+			registryViewModel = new RegistryViewModel(modelProxy);
+		}
+		return registryViewModel;
+	}
 }

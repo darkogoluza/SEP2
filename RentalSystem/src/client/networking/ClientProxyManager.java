@@ -3,6 +3,7 @@ package client.networking;
 public class ClientProxyManager implements ClientProxy {
     private ClientProduct clientProduct;
     private ClientReservation clientReservation;
+    private ClientCustomer clientCustomer;
 
     @Override
     public ClientProduct getClientProduct() {
@@ -21,4 +22,15 @@ public class ClientProxyManager implements ClientProxy {
 
         return clientReservation;
     }
+
+    @Override
+    public ClientCustomer getClientCustomer() {
+        if( clientCustomer == null) {
+            clientCustomer = new ClientCustomer();
+        }
+
+        return clientCustomer;
+    }
+
+
 }

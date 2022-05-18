@@ -6,6 +6,7 @@ import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import client.view.employeeAllOrders.EmployeeAllOrdersController;
+import client.view.registryView.RegistryViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,6 +27,7 @@ public class ViewHandler
 	private Scene employeeAllOrdersScene;
 	private Scene employeeOrderDetailsScene;
 	private Scene singleOrderView;
+	private Scene registryScene;
 
 
     /**
@@ -45,9 +47,10 @@ public class ViewHandler
     public void start(){
         //openAdministratorView();
         //openCustomerAllEquipmentView();
-        openCustomerBasket();
+        //openCustomerBasket();
 		//openEmployeeView();
         //openSingleOrderView();
+        openRegistryView();
         stage.show();
     }
 
@@ -175,4 +178,21 @@ public class ViewHandler
     stage.setScene(singleOrderView);
   }
 
+    /**
+     * open registry window
+     */
+    public void openRegistryView(){
+        FXMLLoader loader = new FXMLLoader();
+
+        if (employeeOrderDetailsScene == null) {
+            Parent root = getRootByPath("/client/view/registryView/RegistryView.fxml", loader);
+
+            RegistryViewController controller = loader.getController();
+            controller.init(this, vmf);
+            registryScene = new Scene(root);
+        }
+
+        stage.setTitle("Create Account");
+        stage.setScene(registryScene);
+    }
 }
