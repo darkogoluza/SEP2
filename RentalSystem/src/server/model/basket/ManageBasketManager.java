@@ -51,6 +51,7 @@ public class ManageBasketManager implements ManageBasket
     @Override
     public String getTotalPrice() {
         return String.format("%.02f€", basket.getTotalPrice());
+
     }
 
     @Override
@@ -83,6 +84,7 @@ public class ManageBasketManager implements ManageBasket
     public boolean isEmpty() {
         return basket.getProducts().isEmpty();
     }
+
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

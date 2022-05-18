@@ -11,4 +11,5 @@ public interface ServerReservation extends Remote {
     Reservation getByIndex(int index);
     Reservation get(int id);
     void remove(int index);
+  int getUniqueId();
 }

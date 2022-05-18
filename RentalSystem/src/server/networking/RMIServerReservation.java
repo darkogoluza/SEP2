@@ -46,4 +46,9 @@ public class RMIServerReservation implements ServerReservation {
     public void remove(int index) {
         model.remove(index);
     }
+
+    @Override public int getUniqueId()
+    {
+        return model.getAllReservations().getUniqueId();
+    }
 }

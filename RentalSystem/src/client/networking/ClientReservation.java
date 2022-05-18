@@ -52,4 +52,9 @@ public class ClientReservation {
 
     public void changeReservation(int index, ReservationStatus newStatus) {
     }
+
+  public int getUniqueId()
+  {
+      return server.getUniqueId();
+  }
 }

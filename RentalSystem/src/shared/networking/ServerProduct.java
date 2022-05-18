@@ -10,4 +10,5 @@ public interface ServerProduct extends Remote {
 	Product getProduct(int index);
 	ProductList getAllProducts();
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize);
+	void add(Product product);
 }

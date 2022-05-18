@@ -39,7 +39,7 @@ public class ModelProxyManager implements ModelProxy {
     @Override
     public ManageBasket getManageBasket() {
         if(manageBasket == null) {
-            manageBasket = new ManageBasketManager();
+            manageBasket = new ManageBasketManager(clientProxy);
         }
 
         return manageBasket;

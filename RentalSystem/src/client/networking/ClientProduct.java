@@ -44,4 +44,9 @@ public class ClientProduct implements Remote {
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
 		server.changeProduct(index, newPrice, newColor, newSize);
 	}
+
+	public void add(Product product)
+	{
+		server.add(product);
+	}
 }

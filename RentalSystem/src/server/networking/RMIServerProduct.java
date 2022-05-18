@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class RMIServerProduct implements ServerProduct {
 
+
+
 	public RMIServerProduct() {
 		try {
 			UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
@@ -41,6 +43,11 @@ public class RMIServerProduct implements ServerProduct {
 
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+
+	}
+
+	@Override public void add(Product product)
+	{
 
 	}
 }
