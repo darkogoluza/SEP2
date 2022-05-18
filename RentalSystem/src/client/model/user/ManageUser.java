@@ -1,7 +1,8 @@
-package server.model.customer;
+package client.model.user;
 
 import shared.objects.customer.Customer;
 
-public interface ManageCustomer {
+public interface ManageUser
+{
     void add(Customer customer);
 }
