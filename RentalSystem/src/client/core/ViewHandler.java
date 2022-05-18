@@ -48,9 +48,9 @@ public class ViewHandler
         //openAdministratorView();
         //openCustomerAllEquipmentView();
         //openCustomerBasket();
-		//openEmployeeView();
+		openEmployeeView();
         //openSingleOrderView();
-        openRegistryView();
+        //openRegistryView();
         stage.show();
     }
 
