@@ -3,9 +3,11 @@ package shared.objects.reservation;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReservationList {
+public class ReservationList implements Serializable
+{
 	private ArrayList<Reservation> reservations;
 
 	/**

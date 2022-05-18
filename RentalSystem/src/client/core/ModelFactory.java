@@ -2,6 +2,7 @@ package client.core;
 
 import client.model.ModelProxy;
 import client.model.ModelProxyManager;
+import client.networking.ClientProxy;
 
 /**
  * ModelFactory
@@ -9,12 +10,13 @@ import client.model.ModelProxyManager;
 public class ModelFactory {
 
     private ModelProxy model;
+    private ClientProxy clientProxy;
 
     /**
      * Empty constructor
      */
-    public ModelFactory() {
-
+    public ModelFactory(ClientProxy clientProxy) {
+        this.clientProxy = clientProxy;
     }
 
     /**
@@ -22,7 +24,7 @@ public class ModelFactory {
      */
     public ModelProxy getModel() {
         if(model == null) {
-            model = new ModelProxyManager();
+            model = new ModelProxyManager(clientProxy);
         }
 
         return model;

@@ -17,7 +17,6 @@ public class CustomerBasketViewModel
     private ObservableList<ProductsInBasket> productsInBaskets;
     private StringProperty finalTotalPriceProperty;
     private StringProperty userNameProperty;
-
     private ManageBasket modelBasket;
 
     public CustomerBasketViewModel(ModelProxy modelProxy)
