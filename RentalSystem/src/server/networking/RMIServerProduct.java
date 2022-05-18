@@ -38,7 +38,6 @@ public class RMIServerProduct implements ServerProduct {
 
 	@Override
 	public ProductList getAllProducts() throws RemoteException {
-		System.out.println("aa");
 		return productsManager.getAllProducts();
 	}
 

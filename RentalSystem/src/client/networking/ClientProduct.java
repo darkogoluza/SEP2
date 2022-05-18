@@ -78,7 +78,6 @@ public class ClientProduct implements Remote, Serializable
 		catch (RemoteException e)
 		{
 			e.printStackTrace();
-			System.out.println("a");
 		}
 		return null;
 	}

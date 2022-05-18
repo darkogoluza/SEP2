@@ -61,7 +61,7 @@ public class ViewModelFactory {
 
 	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
 		if (employeeAllOrdersViewModel == null) {
-			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy.getManageReservations());
 		}
 
 		return employeeAllOrdersViewModel;
