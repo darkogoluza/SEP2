@@ -1,6 +1,8 @@
 package shared.objects.product;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 
 public class ProductList {
     private ArrayList<Product> list;
@@ -53,6 +55,17 @@ public class ProductList {
         return list.remove(index);
     }
 
+    public Map<Product, Integer> getAllProductsByQuantity() {
+        Map<Product, Integer> map = new Hashtable<>();
+        for (int i = 0; i < list.size(); i++) {
+            Product product = list.get(i);
+            map.merge(product, 1, Integer::sum);
+        }
+
+        return map;
+    }
+
+
     public int size() {
         return list.size();
     }
@@ -103,5 +116,19 @@ public class ProductList {
         }
 
         return values.toString();
+    }
+
+    public double getTotalPrice() {
+        double sum = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i).getPrice();
+        }
+
+        return sum;
+    }
+
+    public boolean isEmpty() {
+        return list.size() == 0;
     }
 }

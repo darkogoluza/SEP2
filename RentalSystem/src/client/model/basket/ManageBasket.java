@@ -13,4 +13,5 @@ public interface ManageBasket extends PropertyChangeSubject {
     int size();
     Map<Product, Integer> getAllProductsByQuantity();
     void order();
+    boolean isEmpty();
 }

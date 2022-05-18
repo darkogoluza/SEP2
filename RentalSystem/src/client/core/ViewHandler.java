@@ -1,9 +1,11 @@
 package client.core;
 
 import client.view.CustomerBasketView.CustomerBasketViewController;
-import client.view.EmployeeAllOrders.EmployeeAllOrdersController;
+import client.view.CustomerSingleOrderView.SingleOrderViewController;
+import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
+import client.view.employeeAllOrders.EmployeeAllOrdersController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +24,8 @@ public class ViewHandler
     private Scene customerAllEquipmentScene;
     private Scene customerBasket;
 	private Scene employeeAllOrdersScene;
+	private Scene employeeOrderDetailsScene;
+	private Scene singleOrderView;
 
 
     /**
@@ -40,9 +44,10 @@ public class ViewHandler
 	 */
     public void start(){
         //openAdministratorView();
-//        openCustomerAllEquipmentView();
-		//openEmployeeView();
+        //openCustomerAllEquipmentView();
         openCustomerBasket();
+		//openEmployeeView();
+        //openSingleOrderView();
         stage.show();
     }
 
@@ -126,6 +131,7 @@ public class ViewHandler
 		if (employeeAllOrdersScene == null) {
 			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
 
+
 			EmployeeAllOrdersController controller = loader.getController();
 			controller.init(this, vmf);
 			employeeAllOrdersScene = new Scene(root);
@@ -134,5 +140,39 @@ public class ViewHandler
 		stage.setTitle("All reservations");
 		stage.setScene(employeeAllOrdersScene);
 	}
+
+	/**
+	 * open reservation details window
+	 */
+	public void openEmployeeOrderDetailsView(int id){
+		FXMLLoader loader = new FXMLLoader();
+
+		if (employeeOrderDetailsScene == null) {
+			Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
+
+			EmployeeOrderDetailsController controller = loader.getController();
+			controller.init(this, vmf, id);
+			employeeOrderDetailsScene = new Scene(root);
+		}
+
+		stage.setTitle("All reservations");
+		stage.setScene(employeeOrderDetailsScene);
+	}
+
+  public void openSingleOrderView(){
+    FXMLLoader loader = new FXMLLoader();
+
+    if (singleOrderView == null) {
+      Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
+
+      SingleOrderViewController controller = loader.getController();
+      //TODO change the ID later
+      controller.init(this, vmf, 0);
+      singleOrderView = new Scene(root);
+    }
+
+    stage.setTitle("Single Order");
+    stage.setScene(singleOrderView);
+  }
 
 }

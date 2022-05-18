@@ -4,10 +4,7 @@ import client.model.ModelProxy;
 import client.model.product.ManageProducts;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
-import shared.objects.product.Color;
-import shared.objects.product.EquipmentType;
-import shared.objects.product.Product;
-import shared.objects.product.Size;
+import shared.objects.product.*;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -62,7 +59,7 @@ public class AdministratorViewModel {
 
 	public void setFieldsTo(int index) {
 		Product product = model.getProduct(index);
-		size.set(product.getSize().toString());
+		size.set(product.getSize().getSizeWithoutUnit());
 		price.set(product.getPrice() + "");
 		type.set(product.getType().toString());
 		color.set(product.getColor().toString());

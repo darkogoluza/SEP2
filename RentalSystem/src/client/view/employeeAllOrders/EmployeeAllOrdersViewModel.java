@@ -1,6 +1,7 @@
 package client.view.employeeAllOrders;
 
 import client.model.ModelProxy;
+import client.model.reservation.ManageReservations;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
@@ -8,25 +9,31 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import shared.objects.reservation.Reservation;
 
+import java.beans.PropertyChangeEvent;
+
 public class EmployeeAllOrdersViewModel
 {
 	private ListProperty<String> listOfOrders;
 	private SimpleStringProperty searchInput;
-	private ModelProxy modelProxy;
+	private ManageReservations modelReservations;
 
-	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
+	public EmployeeAllOrdersViewModel(ManageReservations manageReservations)
 	{
 		searchInput = new SimpleStringProperty();
 		listOfOrders = new SimpleListProperty<>();
-		this.modelProxy = modelProxy;
+		this.modelReservations = manageReservations;
+		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
 		loadAllProducts();
 	}
 
-	//
+	private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
+		loadAllProducts();
+	}
+
 	public void loadAllProducts() {
 		listOfOrders.set(
-				FXCollections.observableArrayList(modelProxy.getManageReservations().getAllReservations().convertToStringArrayList()));
+				FXCollections.observableArrayList(modelReservations.getAllReservations().convertToStringArrayList()));
 	}
 
 	public ListProperty<String> getListOfReservationsProperty() {
@@ -37,8 +44,17 @@ public class EmployeeAllOrdersViewModel
 		return searchInput;
 	}
 
-	public void openReservation(int index) {
-		Reservation r = modelProxy.getManageReservations().getReservation(index);
-		System.out.println(r);
+	public int openReservationByIndex(int index) {
+		Reservation r = modelReservations.getReservationByIndex(index);
+		return r.getId();
+	}
+
+	public int reservationsCount() {
+		return modelReservations.getAllReservations().size();
+	}
+
+	public int openReservationById(int id) {
+		Reservation r = modelReservations.getReservationById(id);
+		return r.getId();
 	}
 }

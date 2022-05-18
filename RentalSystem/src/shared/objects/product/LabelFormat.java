@@ -50,4 +50,9 @@ public class LabelFormat implements Size {
     public String getSize() {
         return label;
     }
+
+    @Override
+    public String getSizeWithoutUnit() {
+        return label;
+    }
 }

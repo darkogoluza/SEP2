@@ -2,6 +2,7 @@ package client.core;
 
 import client.model.ModelProxy;
 import client.view.CustomerBasketView.CustomerBasketViewModel;
+import client.view.EmployeeOrderDetails.EmployeeOrderDetailsViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
@@ -11,7 +12,7 @@ public class ViewModelFactory {
 	private AdministratorViewModel administratorViewModel;
 	private CustomerAllEquipmentViewModel customerAllEquipmentViewModel;
 	private CustomerBasketViewModel customerBasketViewModel;
-
+	private EmployeeOrderDetailsViewModel employeeOrderDetailsViewModel;
 	private ModelProxy modelProxy;
 	private EmployeeAllOrdersViewModel employeeAllOrdersViewModel;
 	private SingleOrderViewModel singleOrderViewModel;
@@ -60,17 +61,27 @@ public class ViewModelFactory {
 
 	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
 		if (employeeAllOrdersViewModel == null) {
-			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy.getManageReservations());
 		}
 
 		return employeeAllOrdersViewModel;
 	}
 
-	public SingleOrderViewModel getSingleOrderView() {
+	public SingleOrderViewModel getSingleOrderViewModel(int id) {
 		if (singleOrderViewModel == null) {
-			singleOrderViewModel = new SingleOrderViewModel(modelProxy);
+			singleOrderViewModel = new SingleOrderViewModel(modelProxy, id);
 		}
 
 		return singleOrderViewModel;
 	}
+
+	public EmployeeOrderDetailsViewModel getEmployeeOrderDetailsViewModel(int id)
+	{
+		if(employeeOrderDetailsViewModel == null) {
+			employeeOrderDetailsViewModel = new EmployeeOrderDetailsViewModel(modelProxy, id);
+		}
+
+		return employeeOrderDetailsViewModel;
+	}
+
 }

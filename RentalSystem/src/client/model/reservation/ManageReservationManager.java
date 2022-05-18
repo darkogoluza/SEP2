@@ -3,7 +3,6 @@ package client.model.reservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
@@ -15,7 +14,8 @@ public class ManageReservationManager implements ManageReservations
     private ManageReservationDatabase manageReservationDatabase;
 
     public ManageReservationManager()
-    {	list = new ReservationList();
+    {
+		list = new ReservationList();
         changeSupport = new PropertyChangeSupport(this);
 
         try {
@@ -49,10 +49,19 @@ public class ManageReservationManager implements ManageReservations
     }
 
     @Override
-    public Reservation getReservation(int index) {
+    public String getTotalPrice(int id) {
+        return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
+    }
+
+    @Override public Reservation getReservationByIndex(int index)
+    {
         return list.getByIndex(index);
     }
 
+    @Override public Reservation getReservationById(int id)
+    {
+        return list.get(id);
+    }
 
     @Override public ReservationList getAllReservations()
     {
@@ -77,7 +86,6 @@ public class ManageReservationManager implements ManageReservations
     public void showAllReservations() {
 
     }
-
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

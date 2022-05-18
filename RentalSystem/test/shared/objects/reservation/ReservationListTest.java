@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import shared.objects.product.*;
 
+import java.sql.Timestamp;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReservationListTest {
@@ -114,12 +116,10 @@ class ReservationListTest {
 
 		list.add("name", productList);
 
-		String str = "id: 0\n" +
-				"username: name\n" +
-				//its hard to compare time
-				"created at: Wed May 11 21:54:18 CEST 2022\n" +
-				"status: rented\n" +
-				"Id: 000  red  2.00cm  ski  1.00€";
+		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+		Timestamp expiresAt = new Timestamp(System.currentTimeMillis() + 86400000);
+
+		String str = String.format("id: %d  username: %s  created at: %s   expires at: %s  status: %s\n%s\n", 0, "name", createdAt, expiresAt, "rented", productList.toString());
 
 		assertEquals(str, list.toString());
 	}
