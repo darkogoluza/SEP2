@@ -2,8 +2,8 @@ package client.view.registryView;
 
 import client.model.ModelProxy;
 import javafx.beans.property.*;
+import shared.objects.customer.Customer;
 
-import java.time.chrono.Chronology;
 
 public class RegistryViewModel
 {
@@ -37,4 +37,8 @@ public class RegistryViewModel
         return phoneNumberProperty;
     }
 
+    public void createAccount()
+    {
+        //TODO darko and tony finish it pls
+    }
 }

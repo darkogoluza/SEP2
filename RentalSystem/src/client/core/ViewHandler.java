@@ -184,7 +184,7 @@ public class ViewHandler
     public void openRegistryView(){
         FXMLLoader loader = new FXMLLoader();
 
-        if (employeeOrderDetailsScene == null) {
+        if (registryScene == null) {
             Parent root = getRootByPath("/client/view/registryView/RegistryView.fxml", loader);
 
             RegistryViewController controller = loader.getController();
