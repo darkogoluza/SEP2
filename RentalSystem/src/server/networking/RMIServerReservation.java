@@ -1,16 +1,20 @@
 package server.networking;
 
 import client.model.ModelProxy;
+import server.model.reservation.ManageReservationManager;
+import server.model.reservation.ManageReservations;
 import shared.networking.ServerReservation;
+import shared.objects.reservation.Reservation;
+import shared.objects.reservation.ReservationList;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class RMIServerReservation implements ServerReservation {
-    private ModelProxy modelProxy;
+    private ManageReservations model;
 
-    public RMIServerReservation(ModelProxy modelProxy) {
-        this.modelProxy = modelProxy;
+    public RMIServerReservation(ManageReservations model) {
+        this.model = model;
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
@@ -19,32 +23,27 @@ public class RMIServerReservation implements ServerReservation {
     }
 
     @Override
-    public void add() {
-
+    public void add(Reservation reservation) {
+        model.add(reservation);
     }
 
     @Override
-    public void remove() {
-
+    public ReservationList getAll() {
+        return model.getAllReservations();
     }
 
     @Override
-    public void changeStatus() {
-
+    public Reservation getByIndex(int index) {
+        return model.getReservationByIndex(index);
     }
 
     @Override
-    public void getAll() {
-
+    public Reservation get(int id) {
+        return model.getReservationById(id);
     }
 
     @Override
-    public void getById() {
-
-    }
-
-    @Override
-    public void getByIndex() {
-
+    public void remove(int index) {
+        model.remove(index);
     }
 }

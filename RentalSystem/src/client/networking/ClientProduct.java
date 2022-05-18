@@ -15,10 +15,14 @@ public class ClientProduct implements Remote {
 
 	private ServerProduct server;
 
-	public ClientProduct() throws RemoteException, NotBoundException {
-		UnicastRemoteObject.exportObject(this, 0);
-		Registry registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
-		server = (ServerProduct) registry.lookup(Utils.SERVER_PRODUCT);
+	public ClientProduct() {
+		try {
+			UnicastRemoteObject.exportObject(this, 0);
+			Registry registry = LocateRegistry.getRegistry(Utils.IP, Utils.SERVER_PORT);
+			server = (ServerProduct) registry.lookup(Utils.SERVER_PRODUCT);
+		} catch (RemoteException | NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {

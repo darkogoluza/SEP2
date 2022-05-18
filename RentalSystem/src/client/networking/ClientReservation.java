@@ -1,12 +1,16 @@
 package client.networking;
 
 import shared.networking.ServerReservation;
+import shared.objects.reservation.Reservation;
+import shared.objects.reservation.ReservationList;
+import shared.objects.reservation.ReservationStatus;
 import shared.util.Utils;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 
 public class ClientReservation {
     private ServerReservation server;
@@ -22,27 +26,30 @@ public class ClientReservation {
 
     }
 
-    public void add() {
-        server.add();
+    public void add(Reservation reservation) {
+        server.add(reservation);
     }
 
-    public void remove() {
-        server.remove();
+    public ReservationList getAll() {
+        return server.getAll();
     }
 
-    public void changeStatus() {
-        server.changeStatus();
+    public Reservation getByIndex(int index) {
+        return server.getByIndex(index);
     }
 
-    public void getAll() {
-        server.getAll();
+    public ArrayList<String> convertToStringArrayList() {
+        return server.getAll().convertToStringArrayList();
     }
 
-    public void getById() {
-        server.getById();
+    public Reservation get(int id) {
+        return server.get(id);
     }
 
-    public void getByIndex() {
-        server.getByIndex();
+    public void remove(int index) {
+        server.remove(index);
+    }
+
+    public void changeReservation(int index, ReservationStatus newStatus) {
     }
 }
