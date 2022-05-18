@@ -21,7 +21,7 @@ public class ModelProxyManager implements ModelProxy {
     @Override
     public ManageProducts getManageProducts() {
         if(manageProducts == null){
-            manageProducts = new ManageProductsManager();
+            manageProducts = new ManageProductsManager(clientProxy);
         }
 
         return manageProducts;
