@@ -3,6 +3,8 @@ package client.networking;
 import shared.networking.ServerCustomer;
 import shared.networking.ServerReservation;
 import shared.objects.customer.Customer;
+import shared.objects.customer.CustomerList;
+import shared.objects.reservation.ReservationList;
 import shared.util.Utils;
 
 import java.rmi.NotBoundException;
@@ -26,5 +28,17 @@ public class ClientCustomer {
     public void add(Customer customer)
     {
         server.add(customer);
+    }
+
+    public CustomerList getAll() {
+        try
+        {
+            return server.getAll();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

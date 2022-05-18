@@ -3,6 +3,7 @@ package server.networking;
 import server.model.customer.ManageCustomer;
 import shared.networking.ServerCustomer;
 import shared.objects.customer.Customer;
+import shared.objects.customer.CustomerList;
 import shared.util.Utils;
 
 import java.rmi.RemoteException;
@@ -26,5 +27,10 @@ public class RMIServerCustomer implements ServerCustomer {
     public void add(Customer customer)
     {
         model.add(customer);
+    }
+
+    @Override public CustomerList getAll() throws RemoteException
+    {
+        return model.getAllReservations();
     }
 }

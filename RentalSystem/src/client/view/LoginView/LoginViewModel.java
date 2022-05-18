@@ -5,12 +5,13 @@ import client.model.reservation.ManageReservations;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import server.model.customer.ManageCustomer;
 import shared.objects.reservation.ReservationStatus;
 
 public class LoginViewModel
 {
   private ModelProxy modelProxy;
-  private ManageReservations modelReservations;
+  private ManageCustomer modelCustomer;
   private StringProperty userNameProperty;
   private StringProperty passwordProperty;
 
@@ -18,7 +19,7 @@ public class LoginViewModel
   public LoginViewModel(ModelProxy modelProxy)
   {
     this.modelProxy = modelProxy;
-    this.modelReservations = modelProxy.getManageReservations();
+    this.modelCustomer = modelProxy.getManageCustomer();
     userNameProperty=new SimpleStringProperty();
     passwordProperty=new SimpleStringProperty();
   }

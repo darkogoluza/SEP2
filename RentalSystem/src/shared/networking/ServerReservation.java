@@ -12,5 +12,5 @@ public interface ServerReservation extends Remote {
     Reservation getByIndex(int index)throws RemoteException;
     Reservation get(int id)throws RemoteException;
     void remove(int index)throws RemoteException;
-  int getUniqueId()throws RemoteException;
+    int getUniqueId()throws RemoteException;
 }

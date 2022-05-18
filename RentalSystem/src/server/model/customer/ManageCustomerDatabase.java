@@ -1,12 +1,13 @@
 package server.model.customer;
 
 import shared.objects.customer.Customer;
+import shared.objects.customer.CustomerList;
 import shared.objects.product.Product;
+import shared.objects.reservation.Reservation;
+import shared.objects.reservation.ReservationList;
+import shared.objects.reservation.ReservationStatus;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ManageCustomerDatabase implements ManageCustomerPersistence{
 
@@ -21,6 +22,27 @@ public class ManageCustomerDatabase implements ManageCustomerPersistence{
         Connection connection = null;
         connection = DriverManager.getConnection(url, user, pw);
         return connection;
+    }
+
+    public CustomerList load() throws SQLException {
+        CustomerList customerList = new CustomerList();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Customer");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String userName = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String phoneNo = resultSet.getString("phoneNo");
+
+                Customer customer=new Customer(userName,password,phoneNo);
+                customerList.add(customer);
+            }
+        } finally {
+            connection.close();
+        }
+
+        return customerList;
     }
 
     public void save(Customer customer) throws SQLException

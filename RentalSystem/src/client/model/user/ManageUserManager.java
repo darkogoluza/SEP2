@@ -1,5 +1,6 @@
-package server.model.customer;
+package client.model.user;
 
+import server.model.customer.ManageCustomerDatabase;
 import shared.objects.customer.Customer;
 import shared.objects.customer.CustomerList;
 
@@ -7,12 +8,13 @@ import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ManageCustomerManager implements ManageCustomer{
+public class ManageUserManager implements ManageUser
+{
     private CustomerList customerList;
     private PropertyChangeSupport changeSupport;
     private ManageCustomerDatabase manageCustomerDatabase;
 
-    public ManageCustomerManager() {
+    public ManageUserManager() {
         customerList = new CustomerList();
         changeSupport = new PropertyChangeSupport(this);
 
@@ -41,5 +43,11 @@ public class ManageCustomerManager implements ManageCustomer{
     public ArrayList<Customer> getCustomers(){
         return customerList.getCustomers();
     }
+
+//    @Override public CustomerList getAllCustomers()
+//    {
+//        return customerList;
+//    }
+
 
 }
