@@ -1,10 +1,12 @@
 package shared.objects.product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class ProductList {
+public class ProductList implements Serializable
+{
     private ArrayList<Product> list;
 
     public ProductList() {

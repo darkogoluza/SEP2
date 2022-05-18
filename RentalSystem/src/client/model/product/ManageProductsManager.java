@@ -1,5 +1,7 @@
 package client.model.product;
 
+import client.networking.ClientProxy;
+import server.model.product.ManageProductDatabase;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;
@@ -11,21 +13,12 @@ import java.sql.SQLException;
 public class ManageProductsManager implements ManageProducts {
 	private ProductList list;
 	private PropertyChangeSupport changeSupport;
-	private ManageProductDatabase manageProductDatabase;
+	private ClientProxy clientProxy;
 
-	public ManageProductsManager() {
+	public ManageProductsManager(ClientProxy clientProxy) {
 		list = new ProductList();
 		changeSupport = new PropertyChangeSupport(this);
-		try {
-			manageProductDatabase = new ManageProductDatabase();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			list = manageProductDatabase.load();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		this.clientProxy = clientProxy;
 	}
 
 	/**
@@ -37,14 +30,10 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		try {
-			Product product = list.add(price, color, equipmentType, size);
-			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
-			manageProductDatabase.save(product);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		list.add(price, color, equipmentType, size);
+		clientProxy.getClientProduct().add(price, color, equipmentType, size);
 
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	/**
@@ -53,29 +42,24 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void remove(int index) {
-		try {
-			Product product = list.removeByIndex(index);
-			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
-			manageProductDatabase.remove(product);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		Product product = list.removeByIndex(index);
+		clientProxy.getClientProduct().remove(index);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	/**
-	 * Get product from list @todo change this for database when implemented
-	 * @param index of product
+	 * Get product from database
+	 * @param id of product
 	 * @return Product
 	 */
 	@Override
-	public Product getProduct(int index) {
-		return list.getByIndex(index);
+	public Product getProduct(int id) {
+		return clientProxy.getClientProduct().getProduct(id);
 	}
 
 	@Override
 	public ProductList getAllProducts() {
-		return list;
+		return clientProxy.getClientProduct().getAllProducts();
 	}
 
 	/**
@@ -87,22 +71,8 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
-		try {
-			Product product = list.getByIndex(index);
-			product.setPrice(newPrice);
-			product.setColor(newColor);
-			product.setSize(newSize);
-			manageProductDatabase.change(product);
-			list.change(index, newPrice, newColor, newSize);
-			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void showAllProducts() {
-
+		clientProxy.getClientProduct().changeProduct(index, newPrice, newColor, newSize);
+		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 	}
 
 	@Override
