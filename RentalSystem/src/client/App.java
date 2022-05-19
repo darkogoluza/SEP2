@@ -14,6 +14,6 @@ public class App extends Application {
         ModelFactory modelFactory = new ModelFactory(clientFactory.getClient());
         ViewModelFactory vmf = new ViewModelFactory(modelFactory.getModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
-        vh.start();
+        vh.start(modelFactory.getModel().getManageUser());
     }
 }

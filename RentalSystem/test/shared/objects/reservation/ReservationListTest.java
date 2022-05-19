@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import shared.objects.product.*;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -118,8 +119,13 @@ class ReservationListTest {
 
 		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 		Timestamp expiresAt = new Timestamp(System.currentTimeMillis() + 86400000);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy K:mm a");
 
-		String str = String.format("id: %d  username: %s  created at: %s   expires at: %s  status: %s\n%s\n", 0, "name", createdAt, expiresAt, "rented", productList.toString());
+		String str = String.format("<%03d> %s [%s - %s] status: %s\n",
+				0, "name",
+				simpleDateFormat.format(createdAt),
+				simpleDateFormat.format(expiresAt),
+				"rented");
 
 		assertEquals(str, list.toString());
 	}

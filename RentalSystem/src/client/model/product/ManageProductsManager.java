@@ -1,22 +1,17 @@
 package client.model.product;
 
 import client.networking.ClientProxy;
-import server.model.product.ManageProductDatabase;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.sql.SQLException;
 
 public class ManageProductsManager implements ManageProducts {
-	private ProductList list;
 	private PropertyChangeSupport changeSupport;
 	private ClientProxy clientProxy;
 
 	public ManageProductsManager(ClientProxy clientProxy) {
-		list = new ProductList();
 		changeSupport = new PropertyChangeSupport(this);
 		this.clientProxy = clientProxy;
 	}
@@ -30,10 +25,9 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		list.add(price, color, equipmentType, size);
 		clientProxy.getClientProduct().add(price, color, equipmentType, size);
 
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 
 	/**
@@ -42,9 +36,8 @@ public class ManageProductsManager implements ManageProducts {
 	 */
 	@Override
 	public void remove(int index) {
-		Product product = list.removeByIndex(index);
 		clientProxy.getClientProduct().remove(index);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 
 	/**
@@ -72,7 +65,7 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
 		clientProxy.getClientProduct().changeProduct(index, newPrice, newColor, newSize);
-		changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
+		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 
 	@Override

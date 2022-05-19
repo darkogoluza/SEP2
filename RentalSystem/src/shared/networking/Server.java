@@ -8,5 +8,6 @@ public interface Server extends Remote
   ServerProduct getProductServer() throws RemoteException;
   ServerBasket getBasketServer() throws RemoteException;
   ServerReservation getReservationServer() throws RemoteException;
+  ServerUser getUserServer() throws RemoteException;
 
 }

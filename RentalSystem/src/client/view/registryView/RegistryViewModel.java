@@ -3,6 +3,8 @@ package client.view.registryView;
 import client.model.ModelProxy;
 import javafx.beans.property.*;
 import shared.objects.customer.Customer;
+import shared.objects.user.User;
+import shared.objects.user.UserRole;
 
 
 public class RegistryViewModel
@@ -11,9 +13,10 @@ public class RegistryViewModel
     private StringProperty passwordProperty;
     private StringProperty confirmPasswordProperty;
     private StringProperty phoneNumberProperty;
+	private ModelProxy modelProxy;
 
     public RegistryViewModel(ModelProxy modelProxy) {
-
+		this.modelProxy = modelProxy;
 
         userNameProperty = new SimpleStringProperty();
         passwordProperty = new SimpleStringProperty();
@@ -39,6 +42,20 @@ public class RegistryViewModel
 
     public void createAccount()
     {
-        //TODO darko and tony finish it pls
-    }
+		// TODO validation here or in db?
+		if (passwordProperty.getValue().equals(confirmPasswordProperty.getValue())) {
+			boolean isAdmin = modelProxy.getManageUser().getUser() != null && modelProxy.getManageUser().getUser().getRole().equals(UserRole.admin);
+
+			if (isAdmin) {
+				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue(), UserRole.employee));
+			}
+			else {
+				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue()));
+			}
+		}
+    	else {
+			// TODO handle when passwords dont match
+			System.out.println("Passwords don't match");
+		}
+	}
 }

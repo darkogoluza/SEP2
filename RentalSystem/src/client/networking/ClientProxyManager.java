@@ -1,13 +1,9 @@
 package client.networking;
 
-import java.rmi.NotBoundException;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
 public class ClientProxyManager implements ClientProxy {
     private ClientProduct clientProduct;
     private ClientReservation clientReservation;
-    private ClientCustomer clientCustomer;
+    private ClientUser clientCustomer;
     private ClientBasket clientBasket;
 
     @Override
@@ -38,9 +34,9 @@ public class ClientProxyManager implements ClientProxy {
     }
 
     @Override
-    public ClientCustomer getClientCustomer() {
+    public ClientUser getClientUser() {
         if( clientCustomer == null) {
-            clientCustomer = new ClientCustomer();
+            clientCustomer = new ClientUser();
         }
 
         return clientCustomer;

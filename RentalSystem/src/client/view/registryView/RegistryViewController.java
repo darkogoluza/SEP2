@@ -5,18 +5,19 @@ import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-
+import java.util.ArrayList;
 
 
 public class RegistryViewController {
     @FXML
     private TextField userName;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
-    private TextField confirmPassword;
+    private PasswordField confirmPassword;
     @FXML
     private TextField phoneNumber;
 
@@ -34,10 +35,14 @@ public class RegistryViewController {
     }
 
     public void createAccountButton(ActionEvent event)
-    {
+	{
         viewModel.createAccount();
-        //viewHandler.openCustomerAllEquipmentView();
+        viewHandler.openCustomerAllEquipmentView();
     }
+
+	public void openLoginView() {
+//		viewHandler.openLoginView();
+	}
 
 
 }

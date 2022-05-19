@@ -100,15 +100,15 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         for (int i=0;i<reservationList.size();i++)
         {
             Reservation reservation = reservationList.get(i);
-            try
-            {
-                PreparedStatement statement =
-                        connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at, expires_at) VALUES(?, ?, ?, ?, ?);");
-                executeStatementReservation(statement, reservation);
-            }
-            finally {
-                connection.close();
-            }
+				try
+				{
+					PreparedStatement statement =
+							connection.prepareStatement("INSERT INTO Reservation(id, UserName, status, created_at, expires_at) VALUES(?, ?, ?, ?, ?);");
+					executeStatementReservation(statement, reservation);
+				}
+				finally {
+					connection.close();
+				}
         }
     }
 

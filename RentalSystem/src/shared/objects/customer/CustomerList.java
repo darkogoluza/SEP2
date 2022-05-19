@@ -17,4 +17,8 @@ public class CustomerList {
         customers.add(new Customer(username, phoneNo, password));
     }
 
+    public ArrayList<Customer> getCustomers()
+    {
+        return customers;
+    }
 }
