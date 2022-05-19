@@ -10,13 +10,13 @@ import client.networking.ClientProxy;
 public class ModelFactory {
 
     private ModelProxy model;
-    private ClientProxy clientProxy;
+    private ClientFactory client;
 
     /**
      * Empty constructor
      */
-    public ModelFactory(ClientProxy clientProxy) {
-        this.clientProxy = clientProxy;
+    public ModelFactory(ClientFactory client) {
+        this.client = client;
     }
 
     /**
@@ -24,7 +24,7 @@ public class ModelFactory {
      */
     public ModelProxy getModel() {
         if(model == null) {
-            model = new ModelProxyManager(clientProxy);
+            model = new ModelProxyManager(client.getClient());
         }
 
         return model;

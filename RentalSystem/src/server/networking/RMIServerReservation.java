@@ -1,13 +1,9 @@
 package server.networking;
 
-import client.model.ModelProxy;
-import server.model.reservation.ManageReservationManager;
 import server.model.reservation.ManageReservations;
 import shared.networking.ServerReservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
-import shared.util.Utils;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
