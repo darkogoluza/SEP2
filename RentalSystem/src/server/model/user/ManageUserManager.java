@@ -12,6 +12,8 @@ public class ManageUserManager implements ManageUser{
 	private ManageUserPersistance db;
 
 	public ManageUserManager() {
+		System.out.println("here1");
+
 		user = null;
 
 		try {
@@ -44,6 +46,7 @@ public class ManageUserManager implements ManageUser{
 	@Override
 	public boolean login(String username, String password) {
 		User userTmp = null;
+		System.out.println("here");
 		try {
 			userTmp = db.load(username);
 		} catch (SQLException e) {
