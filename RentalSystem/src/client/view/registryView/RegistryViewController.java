@@ -44,5 +44,4 @@ public class RegistryViewController {
 		viewHandler.openLoginView();
 	}
 
-
 }

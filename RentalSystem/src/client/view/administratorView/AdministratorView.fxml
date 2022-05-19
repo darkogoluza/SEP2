@@ -15,7 +15,7 @@
    <children>
       <FlowPane prefHeight="400.0" prefWidth="611.0">
          <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="135.0" prefWidth="271.0" spacing="18.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="135.0" prefWidth="271.0" spacing="22.0">
                <children>
                   <Label fx:id="typeLabelAdministrator" text="type">
                      <VBox.margin>
@@ -51,7 +51,7 @@
                   <Insets />
                </FlowPane.margin>
             </VBox>
-            <VBox prefHeight="133.0" prefWidth="327.0" spacing="10.0">
+            <VBox prefHeight="154.0" prefWidth="334.0" spacing="10.0">
                <children>
                   <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
                      <VBox.margin>
@@ -65,7 +65,7 @@
                   </ChoiceBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="sizeTextField" prefHeight="25.0" prefWidth="150.0" />
+                        <TextField fx:id="sizeTextField" prefHeight="26.0" prefWidth="153.0" />
                         <Label fx:id="sizeLabel">
                            <padding>
                               <Insets left="5.0" />
@@ -73,7 +73,10 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextField fx:id="priceTextField" />
+                  <TextField fx:id="priceTextField" maxWidth="-Infinity" prefWidth="153.0">
+                     <VBox.margin>
+                        <Insets right="6.0" />
+                     </VBox.margin></TextField>
                </children>
                <padding>
                   <Insets top="20.0" />
@@ -123,5 +126,6 @@
             <ListView fx:id="listView" prefHeight="247.0" prefWidth="611.0" />
          </children>
       </FlowPane>
+      <Button fx:id="logOff" layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOff" text="Log Off" translateZ="13.0" />
    </children>
 </AnchorPane>
