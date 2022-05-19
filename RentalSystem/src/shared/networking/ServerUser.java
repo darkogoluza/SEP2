@@ -6,9 +6,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ServerUser extends Remote {
-    void add(User user) throws RemoteException;
+	void add(User user) throws RemoteException;
 	User get(String username) throws RemoteException;
-	void login(String username, String password) throws RemoteException;
+	boolean login(String username, String password) throws RemoteException;
 	User getUser() throws RemoteException;
 	void logout() throws RemoteException;
 }

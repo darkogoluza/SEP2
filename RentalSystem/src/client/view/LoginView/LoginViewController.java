@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BackgroundFill;
@@ -21,7 +22,7 @@ public class LoginViewController
   private TextField userName;
 
   @FXML
-  private TextField password;
+  private PasswordField password;
 
   @FXML
   private Button logInButton;
@@ -38,9 +39,21 @@ public class LoginViewController
 
   }
 
-    @FXML
-    void logInToAccount() {
-    viewModel.checkIdentification(userName.getText(),password.getText());
+  @FXML
+    void openAccount(){
+    if(logInToAccount()==true){
+      viewHandler.openCustomerAllEquipmentView();
+    }
+
+    else{
+      System.out.println("User is not registered.");
+    }
+  }
+
+  @FXML
+    boolean logInToAccount() {
+    boolean isRegistered=viewModel.checkIdentification(userName.getText(),password.getText());
+    return isRegistered;
     }
 
     @FXML
