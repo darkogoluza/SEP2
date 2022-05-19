@@ -4,6 +4,7 @@ import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -53,5 +54,20 @@ public class EmployeeAllOrdersController {
 		int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 
 		viewHandler.openEmployeeOrderDetailsView(id);
+	}
+
+	public void onRemoveReservation(){
+		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
+			return;
+		else
+		{
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText("Confirm that you want to remove this order, you won't be able to change this decision later!");
+
+			alert.showAndWait();
+			viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
+
+		}
 	}
 }

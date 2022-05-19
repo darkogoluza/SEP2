@@ -151,7 +151,6 @@ public class ViewHandler
 		if (employeeAllOrdersScene == null) {
 			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
 
-
 			EmployeeAllOrdersController controller = loader.getController();
 			controller.init(this, vmf);
 			employeeAllOrdersScene = new Scene(root);
