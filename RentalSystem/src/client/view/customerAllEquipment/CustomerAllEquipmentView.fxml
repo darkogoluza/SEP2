@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="49.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="userNameLabel" alignment="CENTER" contentDisplay="CENTER" text="Username:" textAlignment="RIGHT">
+                  <Label fx:id="userNameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="93.0" text="Username:" textAlignment="RIGHT">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -35,12 +35,12 @@
                   </Label>
                   <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: [\?&quot;;.l/;'|]['o;lk//?\\,;" text="Log off" textAlignment="RIGHT">
                      <HBox.margin>
-                        <Insets left="380.0" />
+                        <Insets left="340.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../icons8-logout-24.png" />
+                              <Image url="@../../../image/icons8-logout-24.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,20 +57,20 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="20.0" prefWidth="29.0" style="-fx-border-color: none; -fx-background-color: red;">
+                  <Button fx:id="addToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="53.0" prefWidth="99.0" style="-fx-border-color: none; -fx-background-color: transparent;" text="Add to basket" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="43.0">
+                        <ImageView fitHeight="33.0" fitWidth="33.0">
                            <image>
-                              <Image url="@../../../Shopicons_Regular_Cart4.png" />
+                              <Image url="@../../../image/Shopicons_Regular_Cart4.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="gotToBasketButton" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="30.0" prefWidth="53.0">
+                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="63.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Go to basket">
                      <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="43.0">
+                        <ImageView fitHeight="33.0" fitWidth="33.0">
                            <image>
-                              <Image url="@../../../Shopicons_Regular_Cart3.png" />
+                              <Image url="@../../../image/Shopicons_Regular_Cart3.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>

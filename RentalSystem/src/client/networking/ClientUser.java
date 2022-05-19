@@ -2,8 +2,6 @@ package client.networking;
 
 import shared.networking.Server;
 import shared.networking.ServerUser;
-import shared.objects.customer.Customer;
-import shared.objects.customer.CustomerList;
 import shared.objects.user.User;
 import shared.util.Utils;
 
