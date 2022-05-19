@@ -2,8 +2,6 @@ package client.networking;
 
 import shared.networking.Server;
 import shared.networking.ServerUser;
-import shared.objects.customer.Customer;
-import shared.objects.customer.CustomerList;
 import shared.objects.user.User;
 import shared.util.Utils;
 
@@ -24,6 +22,7 @@ public class ClientUser implements Remote, Serializable {
 			Server serverProxy = (Server) registry.lookup(Utils.SERVER_RENTAL);
 
 			server = serverProxy.getUserServer();
+			System.out.println(server.login("employee", "123456"));
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
@@ -55,9 +54,9 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
-	public User getUser() {
+	public User getLoggedUser() {
 		try {
-			return server.getUser();
+			return server.getLoggedUser();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

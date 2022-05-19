@@ -51,6 +51,8 @@ public class ManageUserManager implements ManageUser{
 			e.printStackTrace();
 		}
 
+		System.out.println("here");
+
 		// if we get user and password is correct we can log in user
 		if (userTmp != null && userTmp.getPassword().equals(password)) {
 			user = userTmp;
@@ -61,7 +63,7 @@ public class ManageUserManager implements ManageUser{
 	}
 
 	@Override
-	public User getUser() {
+	public User getLoggedUser() {
 		if (user != null) {
 			return user;
 		}

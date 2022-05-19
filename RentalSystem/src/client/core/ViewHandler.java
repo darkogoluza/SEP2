@@ -13,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
 import java.io.IOException;
@@ -53,20 +52,21 @@ public class ViewHandler
 		//customer
 //		manageUser.login("xoxo", "123456");
 //		//admin
-		manageUser.login("admin", "123456");
+//		manageUser.login("admin", "123456");
 //		//employee
-//		manageUser.login("employee", "123456");
+		manageUser.login("employee", "123456");
 //		openRegistryView();
-      openLoginView();
+//		manageUser.logout();
+      	openLoginView();
 
 
-//		if (manageUser.getUser() == null)
+//		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
-//		else if (manageUser.getUser().getRole().equals(UserRole.customer))
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
 //        	openCustomerAllEquipmentView();
-//		else if (manageUser.getUser().getRole().equals(UserRole.employee))
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
 //			openEmployeeView();
-//		else if (manageUser.getUser().getRole().equals(UserRole.admin))
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
 //        	openAdministratorView();
 
         stage.show();
