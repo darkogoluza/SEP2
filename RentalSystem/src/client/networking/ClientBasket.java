@@ -1,5 +1,6 @@
 package client.networking;
 
+
 import shared.networking.Server;
 import shared.networking.ServerBasket;
 import shared.objects.product.Product;

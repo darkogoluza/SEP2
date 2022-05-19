@@ -213,4 +213,9 @@ public class AdministratorViewController {
 
         alert.showAndWait();
     }
+
+	@FXML
+	public void onLogOff() {
+		viewHandler.openLoginView();
+	}
 }

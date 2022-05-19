@@ -40,7 +40,8 @@ public class ManageReservationManager implements ManageReservations
         return clientProxy.getClientReservation().getByIndex(index);
     }
 
-    @Override public Reservation getReservationById(int id)
+    @Override
+	public Reservation getReservationById(int id)
     {
         return clientProxy.getClientReservation().get(id);
     }

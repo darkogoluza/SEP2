@@ -81,11 +81,11 @@ public class SingleOrderViewModel
     userNameProperty.set(reservation.getUserName());
     orderIdProperty.set(""+reservation.getId());
     createdAtDateProperty.set(""+reservation.getCreatedAt());
-    createdAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getCreatedAt()));
-    createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
+    createdAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getCreatedAt()));
+    createdAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getCreatedAt()));
     statusProperty.set(""+reservation.getStatus());
-    returnedAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getExpiresAt()));
-    returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getExpiresAt()));
+    returnedAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getExpiresAt()));
+    returnedAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getExpiresAt()));
     totalOverallPriceProperty.set(modelReservations.getTotalPrice(id) + "");
   }
 

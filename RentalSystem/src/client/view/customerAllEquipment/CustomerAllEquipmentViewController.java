@@ -40,7 +40,7 @@ public class CustomerAllEquipmentViewController
 
     public void onLogOff(ActionEvent event)
     {
-        viewHandler.openAdministratorView();
+        viewHandler.openLoginView();
     }
 
     public void onAddToBasket(ActionEvent event)

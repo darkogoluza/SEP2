@@ -1,6 +1,7 @@
 package client.model.basket;
 
 import client.networking.ClientProxy;
+import server.model.reservation.ManageReservationDatabase;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -10,7 +11,7 @@ public class ManageBasketManager implements ManageBasket {
 
     private ClientProxy clientProxy;
     private PropertyChangeSupport changeSupport;
-
+    private ManageReservationDatabase reservationDatabase;
 
     public ManageBasketManager (ClientProxy clientProxy) {
         changeSupport = new PropertyChangeSupport(this);

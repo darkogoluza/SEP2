@@ -22,12 +22,6 @@ public class EmployeeOrderDetailsController {
 	private EmployeeOrderDetailsViewModel viewModel;
 
 	@FXML
-	private Button back;
-
-	@FXML
-	private Button changeStatus;
-
-	@FXML
 	private Label finalTotalPrice;
 
 	@FXML
@@ -93,7 +87,7 @@ public class EmployeeOrderDetailsController {
 		tableView.setItems(viewModel.getProductsInBaskets());
 
 		statusChoice.setItems(statusList);
-		statusChoice.setValue(ReservationStatus.rented);
+		statusChoice.setValue(ReservationStatus.valueOf(viewModel.getStatusProperty().getValue()));
 		viewModel.showAllProducts();
 		viewModel.updateViewModelReservationInfo();
 	}

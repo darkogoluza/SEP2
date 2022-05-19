@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import shared.objects.product.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -93,6 +94,12 @@ class ReservationTest {
 
     @Test
     void testToString() {
-        String expectedResult = String.format("id: %d\nusername: %s\ncreated at: %s\nstatus: %s\n%s", 0, "testUser", reservation.getCreatedAt(), "rented", reservation.getProducts());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy K:mm a");
+        String expectedResult = String.format("<%03d> %s [%s - %s] status: %s",
+                0, "testUser",
+                simpleDateFormat.format(reservation.getCreatedAt()),
+                simpleDateFormat.format(reservation.getExpiresAt()), "rented");
+
+        assertEquals(expectedResult, reservation.toString());
     }
 }
