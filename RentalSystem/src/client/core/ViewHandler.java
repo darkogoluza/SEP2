@@ -43,10 +43,10 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-        //openAdministratorView();
-        //openCustomerAllEquipmentView();
-        openCustomerBasket();
-		//openEmployeeView();
+        openAdministratorView();
+//        openCustomerAllEquipmentView();
+//        openCustomerBasket();
+//		openEmployeeView();
         //openSingleOrderView();
         stage.show();
     }

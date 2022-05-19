@@ -1,4 +1,4 @@
-package client.model.product;
+package server.model.product;
 
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;

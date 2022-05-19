@@ -1,4 +1,4 @@
-package client.model.reservation;
+package server.model.reservation;
 
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;

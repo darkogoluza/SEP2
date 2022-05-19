@@ -1,5 +1,6 @@
 package client;
 
+import client.core.ClientFactory;
 import client.core.ModelFactory;
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
@@ -9,7 +10,8 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        ModelFactory modelFactory = new ModelFactory();
+        ClientFactory clientFactory = new ClientFactory();
+        ModelFactory modelFactory = new ModelFactory(clientFactory.getClient());
         ViewModelFactory vmf = new ViewModelFactory(modelFactory.getModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
         vh.start();
