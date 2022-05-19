@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
 import java.io.IOException;
