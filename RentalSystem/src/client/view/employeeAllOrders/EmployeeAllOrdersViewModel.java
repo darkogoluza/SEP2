@@ -57,4 +57,7 @@ public class EmployeeAllOrdersViewModel
 		Reservation r = modelReservations.getReservationById(id);
 		return r.getId();
 	}
+	public void removeReservation(int index){
+		modelReservations.remove(index);
+	}
 }

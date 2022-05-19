@@ -154,10 +154,14 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         Connection connection = getConnection();
         try
         {
-            PreparedStatement statement =
-                    connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
+            PreparedStatement statement =connection.prepareStatement("DELETE FROM Contains WHERE reservationid = ?");
             statement.setInt(1, reservation.getId());
-
+            statement.executeUpdate();
+               statement =
+                        connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
+                statement.setInt(1, reservation.getId());
+                statement.executeUpdate();
+            System.out.println(reservation.getId());
         }
         finally {
             connection.close();
