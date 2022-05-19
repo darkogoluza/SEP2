@@ -57,7 +57,8 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		openRegistryView();
-      openLoginView();
+      //openLoginView();
+        openCustomerAllEquipmentView();
 
 
 //		if (manageUser.getUser() == null)
