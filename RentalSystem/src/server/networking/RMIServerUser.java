@@ -49,10 +49,10 @@ public class RMIServerUser implements ServerUser {
 	 * @return
 	 */
 	@Override
-	public boolean login(String username, String password) {
-		System.out.println("aa");
-		model.login(username, password);
-		return false;
+	public boolean login(String username, String password)
+	{
+		System.out.println("aaa");
+		return model.login(username, password);
 	}
 
 	@Override

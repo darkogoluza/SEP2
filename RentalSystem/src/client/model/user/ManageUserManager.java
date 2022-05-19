@@ -20,14 +20,16 @@ public class ManageUserManager implements ManageUser
 		clientProxy.getClientUser().add(user);
     }
 
-	@Override
-	public void login(String username, String password) {
-		clientProxy.getClientUser().login(username, password);
-	}
+
 
 	@Override
 	public User get(String username) {
 		return clientProxy.getClientUser().get(username);
+	}
+
+	@Override public boolean login(String username, String password)
+	{
+		return clientProxy.getClientUser().login(username, password);
 	}
 
 	@Override
