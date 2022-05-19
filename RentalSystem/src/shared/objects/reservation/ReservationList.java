@@ -49,7 +49,7 @@ public class ReservationList implements Serializable
 	public Reservation get(int id) {
 		for (int i = 0; i < reservations.size(); i++) {
 			if (reservations.get(i).getId() == id)
-				return reservations.get(id);
+				return reservations.get(i);
 		}
 
 		return null;

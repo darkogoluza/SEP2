@@ -25,15 +25,5 @@ public class RunServer {
 
         System.out.println("Server started");
 
-
-		//TEST
-//		ManageUser manageUser = new ManageUserManager();
-//
-////		manageUser.add(new User("admin", "123456", UserRole.admin));
-//		manageUser.login("admin", "1234546");
-////		User user = manageUser.get("admin");
-//
-//		System.out.println(manageUser.getUser());
-
     }
 }

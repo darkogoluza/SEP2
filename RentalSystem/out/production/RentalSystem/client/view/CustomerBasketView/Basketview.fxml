@@ -4,14 +4,37 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.CustomerBasketView.CustomerBasketViewController">
    <children>
-    <Button fx:id="remove" layoutX="398.0" layoutY="351.0" mnemonicParsing="false" onAction="#onRemoveButton" text="Remove" />
-    <Button fx:id="clear" layoutX="279.0" layoutY="351.0" mnemonicParsing="false" onAction="#onClearButton" style="-fx-background-color: #ff6363;" text="Clear" />
-    <Button fx:id="order" layoutX="181.0" layoutY="351.0" mnemonicParsing="false" onAction="#onOrderButton" style="-fx-background-color: lightgreen;" text="Order" />
+    <Button fx:id="remove" contentDisplay="TOP" graphicTextGap="0.0" layoutX="398.0" layoutY="342.0" mnemonicParsing="false" onAction="#onRemoveButton" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: transparent;" text="Remove">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../../../image/Shopicons_Regular_Minus.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+    <Button fx:id="clear" contentDisplay="TOP" graphicTextGap="0.0" layoutX="244.0" layoutY="343.0" mnemonicParsing="false" onAction="#onClearButton" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: transparent;" text="Clear">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../../../image/Shopicons_Light_Cross.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+    <Button fx:id="order" contentDisplay="TOP" graphicTextGap="0.0" layoutX="92.0" layoutY="342.0" mnemonicParsing="false" onAction="#onOrderButton" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: transparent;" text="Order">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="23.0">
+               <image>
+                  <Image url="@../../../image/Shopicons_Light_Checkmark.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <TableView fx:id="tableView" layoutX="1.0" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="123.20001524686813" text="Name:" />
@@ -27,13 +50,20 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="238.0" layoutY="26.0" prefHeight="20.0" prefWidth="73.0" text="Username:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="userName" layoutX="312.0" layoutY="23.0" prefHeight="26.0" prefWidth="135.0" text="Miro Pele" />
+      <Label fx:id="userName" layoutX="279.0" layoutY="24.0" prefHeight="26.0" prefWidth="135.0" text="Miro Pele" />
       <Label fx:id="finalTotalPrice" layoutX="316.0" layoutY="317.0" prefHeight="18.0" prefWidth="43.0" text="65$" />
-      <Button layoutX="521.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButton" text="Go back" />
+      <Button layoutX="20.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="31.0">
+               <image>
+                  <Image url="@../../../image/Shopicons_Regular_ArrowLeft.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView layoutX="242.0" layoutY="24.0">
+         <image>
+            <Image url="@../../../image/profile.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
