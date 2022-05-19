@@ -3,6 +3,7 @@ package server.networking;
 import server.model.user.ManageUser;
 import shared.networking.ServerUser;
 import shared.objects.user.User;
+import shared.util.Utils;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -14,11 +15,12 @@ public class RMIServerUser implements ServerUser {
     public RMIServerUser(ManageUser model) {
         this.model = model;
         try {
-            UnicastRemoteObject.exportObject(this, 0);
+            UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
         }
         catch (RemoteException e){
             e.printStackTrace();
         }
+
     }
 
 	/**
@@ -50,8 +52,7 @@ public class RMIServerUser implements ServerUser {
 	 */
 	@Override
 	public boolean login(String username, String password) {
-		System.out.println("aa");
-		return  model.login(username, password);
+		return model.login(username, password);
 	}
 
 	@Override

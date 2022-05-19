@@ -2,8 +2,6 @@ package client.networking;
 
 import shared.networking.Server;
 import shared.networking.ServerUser;
-import shared.objects.customer.Customer;
-import shared.objects.customer.CustomerList;
 import shared.objects.user.User;
 import shared.util.Utils;
 
@@ -41,12 +39,13 @@ public class ClientUser implements Remote, Serializable {
 	public boolean login(String username, String password) {
 		try
 		{
-			server.login(username, password);
+			return server.login(username, password);
 		}
 		catch (RemoteException e)
 		{
 			e.printStackTrace();
 		}
+
 		return false;
 	}
 

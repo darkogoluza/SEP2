@@ -2,13 +2,13 @@ package server.networking;
 
 import server.model.ModelProxy;
 import shared.networking.*;
+import shared.util.Utils;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ServerProxy implements Server
 {
-
   private ServerReservation serverReservation;
   private ServerProduct serverProduct;
   private ServerBasket serverBasket;
@@ -20,7 +20,7 @@ public class ServerProxy implements Server
     this.model = model;
     try
     {
-      UnicastRemoteObject.exportObject(this, 0);
+      UnicastRemoteObject.exportObject(this, Utils.SERVER_PORT);
     }
     catch (RemoteException e)
     {

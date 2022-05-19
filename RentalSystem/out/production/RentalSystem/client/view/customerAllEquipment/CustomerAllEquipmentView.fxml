@@ -33,10 +33,17 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" style="-fx-background-color: red;" text="Log off" textAlignment="RIGHT">
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: [\?&quot;;.l/;'|]['o;lk//?\\,;" text="Log off" textAlignment="RIGHT">
                      <HBox.margin>
                         <Insets left="380.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../icons8-logout-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
                <padding>
@@ -50,7 +57,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="20.0" prefWidth="29.0">
+                  <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="20.0" prefWidth="29.0" style="-fx-border-color: none; -fx-background-color: red;">
                      <graphic>
                         <ImageView fitHeight="33.0" fitWidth="43.0">
                            <image>
