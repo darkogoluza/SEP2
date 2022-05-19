@@ -11,7 +11,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BackgroundFill;
+import shared.objects.product.EquipmentType;
 import shared.objects.reservation.ReservationStatus;
+import shared.objects.user.UserRole;
 
 public class LoginViewController
 {
@@ -40,21 +42,21 @@ public class LoginViewController
   }
 
   @FXML
-    void openAccount(){
-    if(logInToAccount()==true){
-      viewHandler.openCustomerAllEquipmentView();
-    }
+	void logInToAccount() {
+		boolean isLogged = viewModel.checkIdentification(userName.getText(),password.getText());
 
-    else{
-      System.out.println("User is not registered.");
-    }
-  }
+		if (isLogged) {
+			UserRole role = viewModel.getRoleOfUser();
 
-  @FXML
-    boolean logInToAccount() {
-    boolean isRegistered=viewModel.checkIdentification(userName.getText(),password.getText());
-    return isRegistered;
-    }
+			if (role == UserRole.admin)
+				viewHandler.openAdministratorView();
+			else if(role == UserRole.customer)
+				viewHandler.openCustomerAllEquipmentView();
+			else if(role == UserRole.employee)
+				viewHandler.openEmployeeView();
+		}
+
+	}
 
     @FXML
     void createAccount() {

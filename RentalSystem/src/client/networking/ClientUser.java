@@ -39,12 +39,13 @@ public class ClientUser implements Remote, Serializable {
 	public boolean login(String username, String password) {
 		try
 		{
-			server.login(username, password);
+			return server.login(username, password);
 		}
 		catch (RemoteException e)
 		{
 			e.printStackTrace();
 		}
+
 		return false;
 	}
 

@@ -43,7 +43,7 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onLogOff() {
-
+		viewHandler.openLoginView();
 	}
 
 	public void onOpenReservation() {

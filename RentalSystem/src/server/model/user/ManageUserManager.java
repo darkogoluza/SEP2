@@ -12,10 +12,7 @@ public class ManageUserManager implements ManageUser{
 	private ManageUserPersistance db;
 
 	public ManageUserManager() {
-		System.out.println("here1");
-
 		user = null;
-
 		try {
 			db = new ManageUserDatabase();
 		} catch (SQLException e) {
@@ -46,15 +43,12 @@ public class ManageUserManager implements ManageUser{
 	@Override
 	public boolean login(String username, String password) {
 		User userTmp = null;
-		System.out.println("here");
 		try {
 			userTmp = db.load(username);
 		} catch (SQLException e) {
 			// user with this username doesn't exist
 			e.printStackTrace();
 		}
-
-		System.out.println("here");
 
 		// if we get user and password is correct we can log in user
 		if (userTmp != null && userTmp.getPassword().equals(password)) {
