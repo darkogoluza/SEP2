@@ -21,28 +21,42 @@ public class RMIServerUser implements ServerUser {
         }
     }
 
+	/**
+	 * Add account to database
+	 * @param user object containing all information about user
+	 */
 	@Override
 	public void add(User user)
     {
         model.add(user);
     }
 
+	/**
+	 * Get user from db with username
+	 * @param username of user we want to get info about
+	 * @return object containing all information about user
+	 */
 	@Override
 	public User get(String username) {
 		return model.get(username);
 	}
 
-	@Override
-	public boolean login(String username, String password)
-	{
-		System.out.println("aaa");
-		return model.login(username, password);
 
+	/**
+	 * Login user with given credentials
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	@Override
+	public boolean login(String username, String password) {
+		System.out.println("aa");
+		return  model.login(username, password);
 	}
 
 	@Override
-	public User getUser() {
-		return model.getUser();
+	public User getLoggedUser() {
+		return model.getLoggedUser();
 	}
 
 	@Override

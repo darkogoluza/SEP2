@@ -2,7 +2,6 @@ package client.view.registryView;
 
 import client.model.ModelProxy;
 import javafx.beans.property.*;
-import shared.objects.customer.Customer;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
@@ -44,7 +43,7 @@ public class RegistryViewModel
     {
 		// TODO validation here or in db?
 		if (passwordProperty.getValue().equals(confirmPasswordProperty.getValue())) {
-			boolean isAdmin = modelProxy.getManageUser().getUser() != null && modelProxy.getManageUser().getUser().getRole().equals(UserRole.admin);
+			boolean isAdmin = modelProxy.getManageUser().getLoggedUser() != null && modelProxy.getManageUser().getLoggedUser().getRole().equals(UserRole.admin);
 
 			if (isAdmin) {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue(), UserRole.employee));

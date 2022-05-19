@@ -1,13 +1,9 @@
 package client.model.user;
 
 import client.networking.ClientProxy;
-import shared.objects.customer.Customer;
-import shared.objects.customer.CustomerList;
 import shared.objects.user.User;
 
 import java.beans.PropertyChangeSupport;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ManageUserManager implements ManageUser
 {
@@ -37,8 +33,8 @@ public class ManageUserManager implements ManageUser
 	}
 
 	@Override
-	public User getUser() {
-		return clientProxy.getClientUser().getUser();
+	public User getLoggedUser() {
+		return clientProxy.getClientUser().getLoggedUser();
 	}
 
 	@Override

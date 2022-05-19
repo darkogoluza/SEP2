@@ -9,6 +9,6 @@ public interface ServerUser extends Remote {
 	void add(User user) throws RemoteException;
 	User get(String username) throws RemoteException;
 	boolean login(String username, String password) throws RemoteException;
-	User getUser() throws RemoteException;
+	User getLoggedUser() throws RemoteException;
 	void logout() throws RemoteException;
 }
