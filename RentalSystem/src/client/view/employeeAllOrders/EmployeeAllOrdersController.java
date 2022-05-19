@@ -32,8 +32,8 @@ public class EmployeeAllOrdersController {
 
 	public void onSearchButton(ActionEvent event) {
 		int id = Integer.parseInt(searchInput.getText());
-		if (id >= 0 && id < viewModel.reservationsCount()) {
-			id = viewModel.openReservationById(Integer.parseInt(searchInput.getText()));
+		if (id >= 0 && id <= viewModel.reservationsCount()) {
+			id = viewModel.openReservationById(id);
 			viewHandler.openEmployeeOrderDetailsView(id);
 		}
 		else {

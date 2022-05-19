@@ -57,14 +57,14 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-		openLoginView();
+//		openLoginView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
 //        	openCustomerAllEquipmentView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-//			openEmployeeView();
+			openEmployeeView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
 //        	openAdministratorView();
 
