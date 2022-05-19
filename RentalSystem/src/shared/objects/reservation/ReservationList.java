@@ -1,8 +1,6 @@
 package shared.objects.reservation;
 
-import shared.objects.product.Product;
 import shared.objects.product.ProductList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

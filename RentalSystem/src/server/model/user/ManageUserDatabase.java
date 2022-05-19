@@ -59,7 +59,6 @@ public class ManageUserDatabase implements ManageUserPersistance {
 				String role = resultSet.getString("role");
 
 				user = new User(userName, password, phoneNo, UserRole.valueOf(role));
-
 			}
 		} finally {
 			connection.close();

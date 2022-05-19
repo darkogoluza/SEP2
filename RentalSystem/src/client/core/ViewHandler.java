@@ -53,12 +53,12 @@ public class ViewHandler
 		//customer
 //		manageUser.login("xoxo", "123456");
 //		//admin
-		manageUser.login("admin", "123456");
+//		manageUser.login("admin", "123456");
 //		//employee
 //		manageUser.login("employee", "123456");
 //		openRegistryView();
-      //openLoginView();
-        openCustomerAllEquipmentView();
+      manageUser.logout();
+      openLoginView();
 
 
 //		if (manageUser.getUser() == null)

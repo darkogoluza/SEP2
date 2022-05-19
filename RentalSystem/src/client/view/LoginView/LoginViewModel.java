@@ -24,11 +24,9 @@ public class LoginViewModel
     passwordProperty=new SimpleStringProperty();
   }
 
-  public void checkIdentification(String userName, String password) {
-    System.out.println(modelUser.get(userName));
-    userNameProperty.set(modelUser.get(userName).getUsername());
-    passwordProperty.set(modelUser.get(userName).getUsername());
-    modelUser.login(userName,password);
+  public boolean checkIdentification(String userName, String password) {
+    boolean isRegistered=modelUser.login(userName, password);
+    return isRegistered;
   }
 
   public Property<String> getUserNameProperty(){
