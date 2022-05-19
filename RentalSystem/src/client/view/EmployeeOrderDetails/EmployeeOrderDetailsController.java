@@ -22,12 +22,6 @@ public class EmployeeOrderDetailsController {
 	private EmployeeOrderDetailsViewModel viewModel;
 
 	@FXML
-	private Button back;
-
-	@FXML
-	private Button changeStatus;
-
-	@FXML
 	private Label finalTotalPrice;
 
 	@FXML

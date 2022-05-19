@@ -39,6 +39,7 @@ public class EmployeeOrderDetailsViewModel
     this.id = id;
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
+	modelReservations.getReservationById(1);
     this.modelProducts = modelProxy.getManageProducts();
     modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
@@ -81,7 +82,7 @@ public class EmployeeOrderDetailsViewModel
   }
 
   public void updateViewModelReservationInfo(){
-    Reservation reservation=modelReservations.getReservationById(id);
+    Reservation reservation = modelReservations.getReservationById(id);
 
     userNameProperty.set(reservation.getUserName());
     orderIdProperty.set(""+reservation.getId());

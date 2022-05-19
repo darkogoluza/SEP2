@@ -41,7 +41,6 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onLogOff() {
-
 	}
 
 	public void onOpenReservation() {
@@ -49,7 +48,6 @@ public class EmployeeAllOrdersController {
 			return;
 
 		int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
-
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 	public void onRemoveReservation(){

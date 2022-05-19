@@ -33,7 +33,7 @@ public class Reservation implements Serializable
         this.expiresAt = new Timestamp(expiresAt.getTime());
     }
 
-        public int getId () {
+	public int getId () {
         return id;
     }
 
