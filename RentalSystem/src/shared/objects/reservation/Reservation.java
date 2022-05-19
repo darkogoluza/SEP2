@@ -3,8 +3,8 @@ package shared.objects.reservation;
 import shared.objects.product.ProductList;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Reservation implements Serializable
 {
@@ -15,6 +15,12 @@ public class Reservation implements Serializable
     private ProductList productList;
     private ReservationStatus status;
 
+    /**
+     * Constructor
+     * @param id ID of the Reservation.
+     * @param userName User who created the Reservation.
+     * @param products All the products in the Reservation.
+     */
     public Reservation(int id, String userName, ProductList products)
     {
         this.id = id;
@@ -24,7 +30,18 @@ public class Reservation implements Serializable
         createdAt = new Timestamp(System.currentTimeMillis());
         expiresAt = new Timestamp(System.currentTimeMillis() + 86400000);
 
-    }private Reservation( int id, String userName, ProductList products, ReservationStatus status, Timestamp createdAt, Timestamp expiresAt){
+    }
+
+    /**
+     * Private constructor that is used for creating a copy of Reservation.
+     * @param id ID of the Reservation.
+     * @param userName User who created the Reservation.
+     * @param products All the products in the Reservation.
+     * @param status Status of the Reservation saying if the Reservation is ("rented", "notReturned", "Returned").
+     * @param createdAt Date and Time of the creation of this Reservation.
+     * @param expiresAt Date and Time when the Reservation expires and user must return it.
+     */
+    private Reservation( int id, String userName, ProductList products, ReservationStatus status, Timestamp createdAt, Timestamp expiresAt){
         this.id = id;
         this.userName = new String(userName);
         this.productList = products.copy();
@@ -33,35 +50,68 @@ public class Reservation implements Serializable
         this.expiresAt = new Timestamp(expiresAt.getTime());
     }
 
-	public int getId () {
+    /**
+     * Getter for ID.
+     * @return Returns ID.
+     */
+    public int getId () {
         return id;
     }
 
-        public String getUserName () {
+    /**
+     * Getter for userName.
+     * @return Returns userName.
+     */
+    public String getUserName () {
         return userName;
     }
 
-        public Timestamp getCreatedAt () {
+    /**
+     * Getter for creation TimeStamp.
+     * @return Returns TimeStamp of when the product is created.
+     */
+    public Timestamp getCreatedAt () {
         return createdAt;
     }
 
-        public Timestamp getExpiresAt() {
+    /**
+     * Getter for expiration TimeStamp.
+     * @return Returns TimeStamp of when the product will expire.
+     */
+    public Timestamp getExpiresAt() {
         return expiresAt;
     }
 
-        public ReservationStatus getStatus () {
+    /**
+     * Getter for Status of the Reservation.
+     * @return Returns the status of the Reservation which can be ("rented", "notReturned", "Returned").
+     */
+    public ReservationStatus getStatus () {
         return status;
     }
 
-        public ProductList getProducts () {
+    /**
+     * Getter for list of Products.
+     * @return Returns the full list of products this Reservation contains.
+     */
+    public ProductList getProducts () {
         return productList;
     }
 
-        public void setStatus (ReservationStatus status){
+    /**
+     * Setter for Reservation status.
+     * @param status New value for Reservation status which can be ("rented", "notReturned", "Returned").
+     */
+    public void setStatus (ReservationStatus status){
         this.status = status;
     }
 
-        public boolean equals (Object obj){
+    /**
+     * Equals method.
+     * @param obj Object we are checking if the Reservation is equal to.
+     * @return Returns true if the passed object equals this class, returns false if not.
+     */
+    public boolean equals (Object obj){
         if (!(obj instanceof Reservation reservation))
             return false;
 
@@ -70,24 +120,35 @@ public class Reservation implements Serializable
             && reservation.status.equals(status) && reservation.expiresAt.equals(expiresAt);
     }
 
+    /**
+     * Copy method.
+     * @return Returns exact copy of Reservation.
+     */
 	public Reservation copy () {
         return new Reservation(id, userName, productList, status, createdAt, expiresAt);
     }
 
+    /**
+     * Converts Reservation to string.
+     * @return Returns Product as string format is "<001> TestUser [19 Mar, 2022 9:17 AM - 20 Mar, 2022 9:17 AM] status rented".
+     */
 	public String toString () {
-        StringBuilder value = new StringBuilder();
-
-		value.append(String.format(
-			"id: %d  username: %s  created at: %s   expires at: %s  status: %s\n%s", id,
-			userName, createdAt, expiresAt, status, productList.toString()));
-
-        return value.toString();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM, yyyy K:mm a");
+		return String.format("<%03d> %s [%s - %s] status: %s", id, userName, simpleDateFormat.format(createdAt), simpleDateFormat.format(expiresAt), status.toString());
     }
 
+    /**
+     * Setter for Date and Time when Reservation was created.
+     * @param createdAt New value for creation Date and Time.
+     */
     public void setCreateAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Setter for Date and Time when Reservation expires.
+     * @param expiresAt New value for expiration Date nad Time.
+     */
     public void setExpiresAt(Timestamp expiresAt) {
         this.expiresAt = expiresAt;
     }

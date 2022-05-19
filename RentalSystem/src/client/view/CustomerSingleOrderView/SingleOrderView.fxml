@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -11,8 +13,15 @@
    <children>
       <AnchorPane layoutY="1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button fx:id="back" layoutX="281.0" layoutY="350.0" mnemonicParsing="false" onAction="#BackButton" text="Back" />
-            <TableView fx:id="tableView" layoutX="1.0" layoutY="155.0" prefHeight="145.0" prefWidth="600.0">
+            <Button fx:id="back" layoutX="15.0" layoutY="16.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="26.0" prefWidth="33.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="31.0">
+                     <image>
+                        <Image url="@../../../image/Shopicons_Regular_ArrowLeft.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <TableView fx:id="tableView" layoutX="1.0" layoutY="155.0" prefHeight="197.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="name" prefWidth="123.20001524686813" text="Name:" />
                   <TableColumn fx:id="size" prefWidth="113.5999755859375" text="Size:" />
@@ -21,30 +30,30 @@
                   <TableColumn fx:id="quantity" prefWidth="125.5999755859375" text="Quantity:" />
                </columns>
             </TableView>
-            <Label layoutX="257.0" layoutY="308.0" prefHeight="34.0" prefWidth="59.0" text="Total Price:" />
+            <Label layoutX="235.0" layoutY="352.0" prefHeight="34.0" prefWidth="59.0" text="Total Price:" />
             <Label alignment="CENTER" layoutX="192.0" layoutY="61.0" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
                <font>
                   <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="192.0" layoutY="26.0" prefHeight="20.0" prefWidth="73.0" text="Username:">
-               <font>
-                  <Font size="14.0" />
                </font>
             </Label>
             <Label layoutX="6.0" layoutY="107.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
             <Label layoutX="6.0" layoutY="131.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
             <Label layoutX="191.0" layoutY="106.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
             <Label layoutX="430.0" layoutY="107.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
-            <Label fx:id="username" layoutX="287.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro" />
+            <Label fx:id="username" layoutX="252.0" layoutY="29.0" prefHeight="18.0" prefWidth="74.0" text="Miro" />
             <Label fx:id="orderID" layoutX="297.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
             <Label fx:id="orderdate" layoutX="73.0" layoutY="107.0" prefHeight="17.0" prefWidth="87.0" text="22.05.2001" />
             <Label fx:id="ordertime" layoutX="74.0" layoutY="131.0" prefHeight="18.0" prefWidth="101.0" text="11:59" />
-            <Label fx:id="returndate" layoutX="265.0" layoutY="107.0" prefHeight="18.0" prefWidth="95.0" text="22.05.2021" />
+            <Label fx:id="returndate" layoutX="265.0" layoutY="107.0" prefHeight="18.0" prefWidth="122.0" text="22.05.2021" />
             <Label fx:id="status" layoutX="472.0" layoutY="107.0" text="Rented" />
-            <Label fx:id="finalTotalPrice" layoutX="321.0" layoutY="316.0" text="65$" />
+            <Label fx:id="finalTotalPrice" layoutX="306.0" layoutY="360.0" text="65$" />
             <Label layoutX="191.0" layoutY="129.0" prefHeight="18.0" prefWidth="74.0" text="Return time:" />
             <Label fx:id="returnTime" layoutX="265.0" layoutY="130.0" prefHeight="18.0" prefWidth="101.0" text="12:00" />
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="223.0" layoutY="25.0">
+               <image>
+                  <Image url="@../../../image/profile.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

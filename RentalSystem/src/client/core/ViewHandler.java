@@ -1,15 +1,20 @@
 package client.core;
 
+import client.model.user.ManageUser;
 import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
+import client.view.LoginView.LoginViewController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import client.view.employeeAllOrders.EmployeeAllOrdersController;
+import client.view.registryView.RegistryViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import shared.objects.user.User;
+import shared.objects.user.UserRole;
 
 import java.io.IOException;
 
@@ -26,6 +31,8 @@ public class ViewHandler
 	private Scene employeeAllOrdersScene;
 	private Scene employeeOrderDetailsScene;
 	private Scene singleOrderView;
+	private Scene registryScene;
+  private Scene loginScene;
 
 
     /**
@@ -42,12 +49,25 @@ public class ViewHandler
 	 * Open selected view
 	 * This is what is opened when we launch an application
 	 */
-    public void start(){
-//        openAdministratorView();
-//        openCustomerAllEquipmentView();
-//        openCustomerBasket();
-		openEmployeeView();
-        //openSingleOrderView();
+    public void start(ManageUser manageUser){
+		//customer
+//		manageUser.login("xoxo", "123456");
+//		//admin
+//		manageUser.login("admin", "123456");
+//		//employee
+//		manageUser.login("employee", "123456");
+//		System.out.println(manageUser.getLoggedUser());
+		openLoginView();
+
+//		if (manageUser.getLoggedUser() == null)
+//			openRegistryView();
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
+//        	openCustomerAllEquipmentView();
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
+//			openEmployeeView();
+//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
+//        	openAdministratorView();
+
         stage.show();
     }
 
@@ -175,4 +195,36 @@ public class ViewHandler
     stage.setScene(singleOrderView);
   }
 
+    /**
+     * open registry window
+     */
+    public void openRegistryView(){
+        FXMLLoader loader = new FXMLLoader();
+
+        if (registryScene == null) {
+            Parent root = getRootByPath("/client/view/registryView/RegistryView.fxml", loader);
+
+            RegistryViewController controller = loader.getController();
+            controller.init(this, vmf);
+            registryScene = new Scene(root);
+        }
+
+        stage.setTitle("Create Account");
+        stage.setScene(registryScene);
+    }
+
+  public void openLoginView(){
+    FXMLLoader loader = new FXMLLoader();
+
+    if (loginScene == null) {
+      Parent root = getRootByPath("/client/view/LoginView/LoginView.fxml", loader);
+
+      LoginViewController controller = loader.getController();
+      controller.init(this, vmf);
+      loginScene = new Scene(root);
+    }
+
+    stage.setTitle("Login to Account");
+    stage.setScene(loginScene);
+  }
 }
