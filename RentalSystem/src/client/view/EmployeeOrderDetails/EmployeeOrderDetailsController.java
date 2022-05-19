@@ -87,7 +87,7 @@ public class EmployeeOrderDetailsController {
 		tableView.setItems(viewModel.getProductsInBaskets());
 
 		statusChoice.setItems(statusList);
-		statusChoice.setValue(ReservationStatus.rented);
+		statusChoice.setValue(ReservationStatus.valueOf(viewModel.getStatusProperty().getValue()));
 		viewModel.showAllProducts();
 		viewModel.updateViewModelReservationInfo();
 	}
