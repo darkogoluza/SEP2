@@ -54,6 +54,7 @@
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                <children>
                   <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" text="Open" />
+                  <Button fx:id="removeReservationButton" mnemonicParsing="false" onAction="#onRemoveReservation" text="Remove" />
                </children>
             </HBox>
             <ListView fx:id="reservationsList" prefHeight="332.0" prefWidth="661.0" />
