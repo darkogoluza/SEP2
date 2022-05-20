@@ -57,4 +57,11 @@ public class RegistryViewModel
 			System.out.println("Passwords don't match");
 		}
 	}
+
+    public void clearFields() {
+        userNameProperty.set("");
+        passwordProperty.set("");
+        confirmPasswordProperty.set("");
+        phoneNumberProperty.set("");
+    }
 }

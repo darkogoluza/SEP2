@@ -4,11 +4,8 @@ import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import java.util.ArrayList;
 
 
 public class RegistryViewController {
@@ -32,16 +29,20 @@ public class RegistryViewController {
         password.textProperty().bindBidirectional(viewModel.getPassword());
         confirmPassword.textProperty().bindBidirectional(viewModel.getConfirmedPassword());
         phoneNumber.textProperty().bindBidirectional(viewModel.getPhoneNumber());
+
+        viewModel.clearFields();
     }
 
     public void createAccountButton(ActionEvent event)
 	{
         viewModel.createAccount();
         viewHandler.openCustomerAllEquipmentView();
+        viewModel.clearFields();
     }
 
 	public void openLoginView() {
 		viewHandler.openLoginView();
+		viewModel.clearFields();
 	}
 
 }

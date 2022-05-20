@@ -36,4 +36,9 @@ public class LoginViewModel
 	public UserRole getRoleOfUser() {
 	  return modelUser.getLoggedUser().getRole();
 	}
+
+  public void clearFields() {
+    userNameProperty.set("");
+    passwordProperty.set("");
+  }
 }
