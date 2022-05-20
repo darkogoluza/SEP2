@@ -1,16 +1,10 @@
 package server.networking;
 
-import server.model.ModelProxy;
 import server.model.product.ManageProducts;
-import server.model.product.ManageProductsManager;
 import shared.networking.ServerProduct;
 import shared.objects.product.*;
-import shared.util.Utils;
-
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 public class RMIServerProduct implements ServerProduct {
 	private ManageProducts productsManager;
