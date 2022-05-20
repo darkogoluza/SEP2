@@ -36,7 +36,6 @@ public class CustomerBasketViewModel
         finalTotalPriceProperty.set("" + event.getNewValue());
     }
 
-
     public ObservableList<ProductsInBasket> getProductsInBaskets() {
         return productsInBaskets;
     }

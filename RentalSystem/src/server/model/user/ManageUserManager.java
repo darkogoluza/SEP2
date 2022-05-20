@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
 public class ManageUserManager implements ManageUser{
-	private User user;
+	public static User user;
 	private PropertyChangeSupport changeSupport;
 	private ManageUserPersistance db;
 
@@ -59,7 +59,6 @@ public class ManageUserManager implements ManageUser{
 		return false;
 	}
 
-	@Override
 	public User getLoggedUser() {
 		if (user != null) {
 			return user;
