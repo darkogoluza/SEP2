@@ -5,6 +5,7 @@ import server.model.reservation.ManageReservationDatabase;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket {
@@ -56,8 +57,8 @@ public class ManageBasketManager implements ManageBasket {
     }
 
     @Override
-    public void order() {
-        clientProxy.getClientBasket().order();
+    public void order(Timestamp createAt, Timestamp returnAt) {
+        clientProxy.getClientBasket().order(createAt, returnAt);
     }
 
     @Override

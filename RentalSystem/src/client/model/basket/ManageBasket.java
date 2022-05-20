@@ -3,6 +3,7 @@ package client.model.basket;
 import shared.objects.product.Product;
 import shared.util.PropertyChangeSubject;
 
+import java.sql.Timestamp;
 import java.util.Map;
 
 public interface ManageBasket extends PropertyChangeSubject {
@@ -12,6 +13,6 @@ public interface ManageBasket extends PropertyChangeSubject {
     String getTotalPrice();
     int size();
     Map<Product, Integer> getAllProductsByQuantity();
-    void order();
+    void order(Timestamp createAt, Timestamp returnAt);
     boolean isEmpty();
 }

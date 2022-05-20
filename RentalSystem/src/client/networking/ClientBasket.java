@@ -13,6 +13,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public class ClientBasket implements Remote, Serializable
@@ -103,11 +104,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
-  public void order()
+  public void order(Timestamp createAt, Timestamp returnAt)
   {
     try
     {
-      server.order();
+      server.order(createAt, returnAt);
     }
     catch (RemoteException e)
     {

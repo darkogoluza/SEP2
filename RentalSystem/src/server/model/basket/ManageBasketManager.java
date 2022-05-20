@@ -8,6 +8,7 @@ import shared.objects.reservation.Reservation;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket
@@ -65,7 +66,7 @@ public class ManageBasketManager implements ManageBasket
     }
 
     @Override
-    public void order() {
+    public void order(Timestamp createAt, Timestamp returnAt) {
         int reservationId = 0;
         try {
             reservationId = reservationDatabase.getUniqueId();
@@ -73,6 +74,8 @@ public class ManageBasketManager implements ManageBasket
             e.printStackTrace();
         }
         Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
+        reservation.setCreateAt(createAt);
+        reservation.setExpiresAt(returnAt);
         try {
             reservationDatabase.save(reservation, getAllProductsByQuantity());
         } catch (SQLException e) {

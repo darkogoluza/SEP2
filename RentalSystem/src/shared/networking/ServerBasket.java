@@ -4,6 +4,7 @@ import shared.objects.product.Product;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public interface ServerBasket extends Remote
@@ -14,6 +15,6 @@ public interface ServerBasket extends Remote
   String getTotalPrice()throws RemoteException;
   int size()throws RemoteException;
   Map<Product, Integer> getAllProductsByQuantity()throws RemoteException;
-  void order()throws RemoteException;
+  void order(Timestamp createAt, Timestamp returnAt)throws RemoteException;
   boolean isEmpty()throws RemoteException;
 }

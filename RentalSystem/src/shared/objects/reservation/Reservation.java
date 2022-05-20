@@ -29,7 +29,6 @@ public class Reservation implements Serializable
         status = ReservationStatus.rented;
         createdAt = new Timestamp(System.currentTimeMillis());
         expiresAt = new Timestamp(System.currentTimeMillis() + 86400000);
-
     }
 
     /**

@@ -5,6 +5,8 @@ import shared.networking.ServerBasket;
 import shared.objects.product.Product;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public class RMIServerBasket implements ServerBasket
@@ -46,9 +48,9 @@ public class RMIServerBasket implements ServerBasket
     return model.getAllProductsByQuantity();
   }
 
-  @Override public void order()
+  @Override public void order(Timestamp createAt, Timestamp returnAt)
   {
-    model.order();
+    model.order(createAt, returnAt);
   }
 
   @Override public boolean isEmpty()

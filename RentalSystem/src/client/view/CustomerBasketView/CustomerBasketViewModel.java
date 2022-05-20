@@ -9,6 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeEvent;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Map;
 
 public class CustomerBasketViewModel
@@ -16,6 +19,8 @@ public class CustomerBasketViewModel
     private ObservableList<ProductsInBasket> productsInBaskets;
     private StringProperty finalTotalPriceProperty;
     private StringProperty userNameProperty;
+    private Property<LocalDate> createDateProperty;
+    private Property<LocalDate> returnDateProperty;
     private ManageBasket modelBasket;
 
     public CustomerBasketViewModel(ModelProxy modelProxy)
@@ -23,6 +28,8 @@ public class CustomerBasketViewModel
         productsInBaskets = FXCollections.observableArrayList();
         finalTotalPriceProperty = new SimpleStringProperty();
         userNameProperty = new SimpleStringProperty();
+        createDateProperty = new SimpleObjectProperty<>();
+        returnDateProperty = new SimpleObjectProperty<>();
 
         modelBasket = modelProxy.getManageBasket();
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
@@ -65,17 +72,25 @@ public class CustomerBasketViewModel
             showWrongInputDialog();
             return;
         }
-        modelBasket.order();
+
+        Timestamp createAt = Timestamp.valueOf(createDateProperty.getValue().atTime(LocalTime.now()));
+        Timestamp returnAt = Timestamp.valueOf(returnDateProperty.getValue().atTime(LocalTime.of(17,0,0)));
+        modelBasket.order(createAt, returnAt);
         modelBasket.clear();
     }
 
     public StringProperty getFinalTotalPriceProperty(){
         return finalTotalPriceProperty;
     }
-
     public StringProperty getUserNameProperty()
     {
         return userNameProperty;
+    }
+    public Property<LocalDate> getCreateDateProperty() {
+        return createDateProperty;
+    }
+    public Property<LocalDate> getReturnDateProperty() {
+        return returnDateProperty;
     }
 
     private void showWrongInputDialog() {
