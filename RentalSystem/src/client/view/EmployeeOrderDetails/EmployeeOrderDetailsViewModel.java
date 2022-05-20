@@ -39,6 +39,7 @@ public class EmployeeOrderDetailsViewModel
     this.id = id;
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
+	modelReservations.getReservationById(1);
     this.modelProducts = modelProxy.getManageProducts();
     modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
@@ -81,15 +82,15 @@ public class EmployeeOrderDetailsViewModel
   }
 
   public void updateViewModelReservationInfo(){
-    Reservation reservation=modelReservations.getReservationById(id);
+    Reservation reservation = modelReservations.getReservationById(id);
 
     userNameProperty.set(reservation.getUserName());
     orderIdProperty.set(""+reservation.getId());
-    createdAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getCreatedAt()));
-    createdAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getCreatedAt()));
+    createdAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getCreatedAt()));
+    createdAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getCreatedAt()));
     statusProperty.set(""+reservation.getStatus());
-    returnedAtDateProperty.set(new SimpleDateFormat("dd/MM/yyyy").format(reservation.getExpiresAt()));
-    returnedAtTimeProperty.set(new SimpleDateFormat("HH:mm:ss").format(reservation.getExpiresAt()));
+    returnedAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getExpiresAt()));
+    returnedAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getExpiresAt()));
   }
 
 

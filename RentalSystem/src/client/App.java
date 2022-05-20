@@ -11,9 +11,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         ClientFactory clientFactory = new ClientFactory();
-        ModelFactory modelFactory = new ModelFactory(clientFactory.getClient());
+        ModelFactory modelFactory = new ModelFactory(clientFactory);
         ViewModelFactory vmf = new ViewModelFactory(modelFactory.getModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
-        vh.start();
+        vh.start(modelFactory.getModel().getManageUser());
     }
 }

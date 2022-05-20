@@ -6,6 +6,8 @@ import client.model.product.ManageProducts;
 import client.model.product.ManageProductsManager;
 import client.model.reservation.ManageReservationManager;
 import client.model.reservation.ManageReservations;
+import client.model.user.ManageUser;
+import client.model.user.ManageUserManager;
 import client.networking.ClientProxy;
 
 public class ModelProxyManager implements ModelProxy {
@@ -13,6 +15,7 @@ public class ModelProxyManager implements ModelProxy {
     private ManageReservations manageReservations;
     private ManageBasket manageBasket;
     private ClientProxy clientProxy;
+    private ManageUser manageUser;
 
     public ModelProxyManager(ClientProxy clientProxy) {
         this.clientProxy = clientProxy;
@@ -43,5 +46,14 @@ public class ModelProxyManager implements ModelProxy {
         }
 
         return manageBasket;
+    }
+
+    @Override
+    public ManageUser getManageUser() {
+        if(manageUser == null) {
+			manageUser = new ManageUserManager(clientProxy);
+        }
+
+        return manageUser;
     }
 }

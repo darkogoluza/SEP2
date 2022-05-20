@@ -60,7 +60,8 @@ public class ManageReservationManager implements ManageReservations
 
     @Override public Reservation getReservationById(int id)
     {
-        return list.get(id);
+		System.out.println(id);
+		return list.get(id);
     }
 
     @Override public ReservationList getAllReservations()
