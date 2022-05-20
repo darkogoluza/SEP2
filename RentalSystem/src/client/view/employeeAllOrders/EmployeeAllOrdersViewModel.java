@@ -53,9 +53,8 @@ public class EmployeeAllOrdersViewModel
 		return modelReservations.getAllReservations().size();
 	}
 
-	public int openReservationById(int id) {
-		Reservation r = modelReservations.getReservationById(id);
-		return r.getId();
+	public Reservation openReservationById(int id) {
+		return modelReservations.getReservationById(id);
 	}
 	public void removeReservation(int index){
 		modelReservations.remove(index);

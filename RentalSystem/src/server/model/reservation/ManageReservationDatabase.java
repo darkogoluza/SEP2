@@ -123,7 +123,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 
             for(Map.Entry<Product, Integer> entry : map.entrySet())
             {
-                statement = connection.prepareStatement("INSERT INTO Reservation_product(reservationid, productid, quantity) VALUES(?, ?, ?, ?);");
+                statement = connection.prepareStatement("INSERT INTO Reservation_product(reservationid, productid, quantity) VALUES(?, ?, ?);");
                 executeStatementContains(statement, reservation.getId(), entry.getKey().getId(), entry.getValue());
             }
 
@@ -209,7 +209,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
     private void executeStatementContains(PreparedStatement statement, int reservationId, int productId, int quantity) throws SQLException {
         statement.setInt(1, reservationId);
         statement.setInt(2, productId);
-        statement.setInt(4,quantity);
+        statement.setInt(3,quantity);
 
         statement.executeUpdate();
     }
