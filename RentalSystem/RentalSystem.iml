@@ -17,7 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="JavaFX" level="application" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
@@ -28,8 +27,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="JavaFX" level="application" />
-    <orderEntry type="library" name="javaFx" level="application" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.7.0">
         <CLASSES>
@@ -46,7 +43,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javaFx" level="application" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.8.1">
         <CLASSES>
@@ -63,5 +59,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javafx" level="application" />
   </component>
 </module>
