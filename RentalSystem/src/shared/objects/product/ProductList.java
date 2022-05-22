@@ -105,13 +105,23 @@ public class ProductList implements Serializable
      * @return
      */
     public Map<Product, Integer> getAllProductsByQuantity() {
-        Map<Product, Integer> map = new Hashtable<>();
+        Map<Product, Integer> products = new Hashtable<>();
+		int quantity = 1;
+
         for (int i = 0; i < list.size(); i++) {
             Product product = list.get(i);
-            map.merge(product, 1, Integer::sum);
+
+			if (products.containsKey(product)) {
+				quantity += products.get(product);
+				System.out.println(product.getId() + "//" + quantity);
+			}
+			products.put(product, quantity);
+
         }
 
-        return map;
+		System.out.println(products);
+
+        return products;
     }
 
     /**

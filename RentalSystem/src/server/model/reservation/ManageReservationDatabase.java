@@ -161,7 +161,6 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                         connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
                 statement.setInt(1, reservation.getId());
                 statement.executeUpdate();
-            System.out.println(reservation.getId());
         }
         finally {
             connection.close();
