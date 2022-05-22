@@ -2,12 +2,9 @@ package server;
 
 import server.model.ModelProxy;
 import server.model.ModelProxyManager;
-import server.model.Time;
-import server.model.user.ManageUser;
-import server.model.user.ManageUserManager;
+import server.model.CustomerNotification;
 import server.networking.ServerProxy;
 import shared.networking.Server;
-import shared.objects.user.User;
 import shared.util.Utils;
 
 import java.rmi.AlreadyBoundException;
@@ -19,8 +16,8 @@ public class RunServer {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 
         ModelProxy model = new ModelProxyManager();
-        Time time = new Time(model);
-        Thread timeThread = new Thread(time);
+        CustomerNotification customerNotification = new CustomerNotification(model);
+        Thread timeThread = new Thread(customerNotification);
         timeThread.start();
         Server server = new ServerProxy(model);
 

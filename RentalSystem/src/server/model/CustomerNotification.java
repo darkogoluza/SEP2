@@ -5,10 +5,10 @@ import shared.objects.reservation.ReservationStatus;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
-public class Time implements Runnable {
+public class CustomerNotification implements Runnable {
     ModelProxy modelProxy;
 
-    public Time(ModelProxy modelProxy) {
+    public CustomerNotification(ModelProxy modelProxy) {
         this.modelProxy = modelProxy;
     }
 
@@ -22,6 +22,8 @@ public class Time implements Runnable {
             }
 
             User user = modelProxy.getManageUser().getLoggedUser();
+            System.out.println(user);
+            System.out.println("it is working");
             if(user == null)
                 continue;
 

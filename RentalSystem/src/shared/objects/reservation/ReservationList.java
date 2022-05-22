@@ -161,4 +161,25 @@ public class ReservationList implements Serializable
 
 		return filterReservationList;
     }
+
+	public ReservationList filterByStatus(String filterStatus) {
+		ArrayList<String> temp = new ArrayList<>();
+		temp.add("rented");
+		temp.add("returned");
+		temp.add("notReturned");
+
+		ReservationList filterReservationList = new ReservationList();
+
+		for (Reservation reservation : reservations) {
+			if(temp.contains(filterStatus)) {
+				if (reservation.getStatus().equals(ReservationStatus.valueOf(filterStatus))) {
+					filterReservationList.add(reservation);
+				}
+			} else {
+				filterReservationList.add(reservation);
+			}
+		}
+
+		return filterReservationList;
+	}
 }
