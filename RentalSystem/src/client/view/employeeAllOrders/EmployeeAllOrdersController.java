@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import shared.objects.errors.AlertHandler;
 import shared.objects.reservation.Reservation;
 
 public class EmployeeAllOrdersController {
@@ -39,13 +40,11 @@ public class EmployeeAllOrdersController {
 				viewHandler.openEmployeeOrderDetailsView(r.getId());
 			}
 			else {
-				//error
-
+				AlertHandler.getInstance().orderDontExist();
 			}
 		}
 		else {
-			//error
-
+			AlertHandler.getInstance().orderDontExist();
 		}
 
 	}

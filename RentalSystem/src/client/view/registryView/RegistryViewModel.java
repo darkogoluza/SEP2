@@ -2,6 +2,7 @@ package client.view.registryView;
 
 import client.model.ModelProxy;
 import javafx.beans.property.*;
+import shared.objects.errors.AlertHandler;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
@@ -39,8 +40,14 @@ public class RegistryViewModel
         return phoneNumberProperty;
     }
 
-    public void createAccount()
+    public boolean createAccount()
     {
+
+		if (modelProxy.getManageUser().get(userNameProperty.getValue()) != null) {
+			AlertHandler.getInstance().userExists();
+			return false;
+		}
+
 		// TODO validation here or in db?
 		if (passwordProperty.getValue().equals(confirmPasswordProperty.getValue())) {
 			boolean isAdmin = modelProxy.getManageUser().getLoggedUser() != null && modelProxy.getManageUser().getLoggedUser().getRole().equals(UserRole.admin);
@@ -51,10 +58,12 @@ public class RegistryViewModel
 			else {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue()));
 			}
+			return true;
 		}
     	else {
-			// TODO handle when passwords dont match
-			System.out.println("Passwords don't match");
+			AlertHandler.getInstance().passwordsDontMatch();
+			return false;
 		}
+
 	}
 }

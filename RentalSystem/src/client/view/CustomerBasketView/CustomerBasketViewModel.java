@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeEvent;
 import java.util.Map;
@@ -61,10 +62,13 @@ public class CustomerBasketViewModel
     public void order()
     {
         if(modelBasket.isEmpty()){
-            showWrongInputDialog();
+			AlertHandler.getInstance().emptyBasket();
             return;
         }
         modelBasket.order();
+
+		AlertHandler.getInstance().orderCreated();
+
         modelBasket.clear();
     }
 
@@ -77,11 +81,4 @@ public class CustomerBasketViewModel
         return userNameProperty;
     }
 
-    private void showWrongInputDialog() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("First you must select witch equipment to reserve");
-
-        alert.showAndWait();
-    }
 }
