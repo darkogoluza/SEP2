@@ -2,6 +2,7 @@ package server;
 
 import server.model.ModelProxy;
 import server.model.ModelProxyManager;
+import server.model.Time;
 import server.model.user.ManageUser;
 import server.model.user.ManageUserManager;
 import server.networking.ServerProxy;
@@ -18,6 +19,9 @@ public class RunServer {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 
         ModelProxy model = new ModelProxyManager();
+        Time time = new Time(model);
+        Thread timeThread = new Thread(time);
+        timeThread.start();
         Server server = new ServerProxy(model);
 
         Registry registry = LocateRegistry.createRegistry(Utils.SERVER_PORT);

@@ -57,13 +57,13 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         try {
             PreparedStatement statement = connection.prepareStatement(String.format("""
                     SELECT id, name, size, color, price, quantity
-                    FROM Product p, contains c
+                    FROM Product p, reservation_product rp
                     WHERE id IN
                           (
                               SELECT productId
-                              FROM contains
+                              FROM reservation_product
                               where reservationId = %d
-                                AND p.id = c.productId
+                                AND p.id = rp.productId
                     )""", reservationId));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {

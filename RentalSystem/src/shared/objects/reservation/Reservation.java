@@ -151,5 +151,13 @@ public class Reservation implements Serializable
     public void setExpiresAt(Timestamp expiresAt) {
         this.expiresAt = expiresAt;
     }
+
+    public boolean expiresIn(int hours) {
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        long diffInMilliseconds = expiresAt.getTime() - currentTimestamp.getTime();
+        double diffInHours = diffInMilliseconds / 3600000;
+
+        return diffInHours <= hours;
+    }
 }
 

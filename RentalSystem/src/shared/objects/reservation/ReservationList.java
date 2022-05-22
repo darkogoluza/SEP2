@@ -149,4 +149,16 @@ public class ReservationList implements Serializable
 
 		return values.toString();
 	}
+
+    public ReservationList filterByCustomerUsername(String username) {
+		ReservationList filterReservationList = new ReservationList();
+
+		for (Reservation reservation : reservations) {
+			if (reservation.getUserName().equals(username)) {
+				filterReservationList.add(reservation);
+			}
+		}
+
+		return filterReservationList;
+    }
 }
