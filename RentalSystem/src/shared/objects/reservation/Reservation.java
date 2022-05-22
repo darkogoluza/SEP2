@@ -152,6 +152,11 @@ public class Reservation implements Serializable
         this.expiresAt = expiresAt;
     }
 
+    /**
+     * Checks if the Reservation expires in given amount of hours.
+     * @param hours Hours to check if the Reservation will expire in that given time.
+     * @return Returns true if the Reservation expires in given amount of hours and false if not.
+     */
     public boolean expiresIn(int hours) {
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
         long diffInMilliseconds = expiresAt.getTime() - currentTimestamp.getTime();

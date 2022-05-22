@@ -2,14 +2,21 @@ package client.view.employeeAllOrders;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import shared.objects.reservation.ReservationStatus;
 
 public class EmployeeAllOrdersController {
+	ObservableList<String> statuses = FXCollections.observableArrayList(
+			ReservationStatus.notReturned.toString(),
+			ReservationStatus.rented.toString(),
+			ReservationStatus.returned.toString(),
+			"All"
+	);
+
 	@FXML
 	private Button searchButton;
 	@FXML
@@ -18,6 +25,8 @@ public class EmployeeAllOrdersController {
 	private TextField searchInput;
 	@FXML
 	private ListView reservationsList;
+	@FXML
+	private ChoiceBox<String> filterByStatus;
 
 	private ViewHandler viewHandler;
 	private client.view.employeeAllOrders.EmployeeAllOrdersViewModel viewModel;
@@ -25,6 +34,9 @@ public class EmployeeAllOrdersController {
 	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
 		this.viewHandler = viewHandler;
 		viewModel = vmf.getEmployeeViewModel();
+
+		filterByStatus.setItems(statuses);
+		filterByStatus.setValue(ReservationStatus.notReturned.toString());
 
 		reservationsList.itemsProperty().bindBidirectional(viewModel.getListOfReservationsProperty());
 		searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
@@ -69,5 +81,9 @@ public class EmployeeAllOrdersController {
 			viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
 
 		}
+	}
+
+	public void onFilterChoiceChanged(ActionEvent event) {
+		viewModel.changedFilterStatus(filterByStatus.getValue());
 	}
 }

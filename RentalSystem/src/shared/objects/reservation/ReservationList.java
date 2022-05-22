@@ -150,6 +150,11 @@ public class ReservationList implements Serializable
 		return values.toString();
 	}
 
+	/**
+	 * Filters the ReservationList by username.
+	 * @param username Username used for filtering Reservations.
+	 * @return Only returns the Reservations that have the given username.
+	 */
     public ReservationList filterByCustomerUsername(String username) {
 		ReservationList filterReservationList = new ReservationList();
 
@@ -162,6 +167,11 @@ public class ReservationList implements Serializable
 		return filterReservationList;
     }
 
+	/**
+	 * Filters the ReservationList by status.
+	 * @param filterStatus Status used for filtering Reservations.
+	 * @return Only returns the Reservations that have the given Status, if status does not exist it returns all the elements, example status is "All".
+	 */
 	public ReservationList filterByStatus(String filterStatus) {
 		ArrayList<String> temp = new ArrayList<>();
 		temp.add("rented");

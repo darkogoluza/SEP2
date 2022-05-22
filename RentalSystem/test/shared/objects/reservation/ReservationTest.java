@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import shared.objects.product.*;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -101,5 +102,23 @@ class ReservationTest {
                 simpleDateFormat.format(reservation.getExpiresAt()), "rented");
 
         assertEquals(expectedResult, reservation.toString());
+    }
+
+    @Test
+    void expiresInTrue() {
+        Timestamp currentPlusOneHour = new Timestamp(System.currentTimeMillis() + 3600000);
+
+        reservation.setExpiresAt(currentPlusOneHour);
+
+        assertTrue(reservation.expiresIn(1));
+    }
+
+    @Test
+    void expiresInFalse() {
+        Timestamp currentPlusTwoHours = new Timestamp(System.currentTimeMillis() + (3600000 * 2));
+
+        reservation.setExpiresAt(currentPlusTwoHours);
+
+        assertFalse(reservation.expiresIn(1));
     }
 }

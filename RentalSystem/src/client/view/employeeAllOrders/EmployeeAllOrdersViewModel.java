@@ -2,10 +2,7 @@ package client.view.employeeAllOrders;
 
 import client.model.ModelProxy;
 import client.model.reservation.ManageReservations;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import shared.objects.reservation.Reservation;
 
@@ -17,6 +14,7 @@ public class EmployeeAllOrdersViewModel
 	private SimpleStringProperty searchInput;
 	private ManageReservations modelReservations;
 
+	private String filterStatus;
 	public EmployeeAllOrdersViewModel(ManageReservations manageReservations)
 	{
 		searchInput = new SimpleStringProperty();
@@ -33,7 +31,7 @@ public class EmployeeAllOrdersViewModel
 
 	public void loadAllProducts() {
 		listOfOrders.set(
-				FXCollections.observableArrayList(modelReservations.getAllReservations().convertToStringArrayList()));
+				FXCollections.observableArrayList(modelReservations.getAllReservations().filterByStatus(filterStatus).convertToStringArrayList()));
 	}
 
 	public ListProperty<String> getListOfReservationsProperty() {
@@ -59,5 +57,10 @@ public class EmployeeAllOrdersViewModel
 	}
 	public void removeReservation(int index){
 		modelReservations.remove(index);
+	}
+
+	public void changedFilterStatus(String newFilterStatus) {
+		filterStatus = newFilterStatus;
+		loadAllProducts();
 	}
 }

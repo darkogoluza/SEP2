@@ -129,4 +129,50 @@ class ReservationListTest {
 
 		assertEquals(str, list.toString());
 	}
+
+	@Test
+	public void filterByCustomerUsername() {
+		list.add(new Reservation(0, "testUser1", new ProductList()));
+		list.add(new Reservation(1, "testUser1", new ProductList()));
+		list.add(new Reservation(2, "testUser2", new ProductList()));
+		list.add(new Reservation(3, "testUser3", new ProductList()));
+
+		assertEquals(2, list.filterByCustomerUsername("testUser1").size());
+	}
+
+	@Test
+	public void filterByStatus() {
+		Reservation r1 = new Reservation(0, "testUser", new ProductList());
+		r1.setStatus(ReservationStatus.notReturned);
+		Reservation r2 = new Reservation(1, "testUser", new ProductList());
+		r2.setStatus(ReservationStatus.notReturned);
+		Reservation r3 = new Reservation(2, "testUser", new ProductList());
+		r3.setStatus(ReservationStatus.notReturned);
+		Reservation r4 = new Reservation(3, "testUser", new ProductList());
+
+		list.add(r1);
+		list.add(r2);
+		list.add(r3);
+		list.add(r4);
+
+		assertEquals(3, list.filterByStatus(ReservationStatus.notReturned.toString()).size());
+	}
+
+	@Test
+	public void filterByStatusAllElements() {
+		Reservation r1 = new Reservation(0, "testUser", new ProductList());
+		r1.setStatus(ReservationStatus.notReturned);
+		Reservation r2 = new Reservation(1, "testUser", new ProductList());
+		r2.setStatus(ReservationStatus.notReturned);
+		Reservation r3 = new Reservation(2, "testUser", new ProductList());
+		r3.setStatus(ReservationStatus.notReturned);
+		Reservation r4 = new Reservation(3, "testUser", new ProductList());
+
+		list.add(r1);
+		list.add(r2);
+		list.add(r3);
+		list.add(r4);
+
+		assertEquals(4, list.filterByStatus("All").size());
+	}
 }
