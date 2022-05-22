@@ -2,23 +2,25 @@ package server;
 
 import server.model.ModelProxy;
 import server.model.ModelProxyManager;
-import server.model.basket.ManageBasket;
-import server.model.basket.ManageBasketManager;
-import server.model.product.ManageProducts;
-import server.model.product.ManageProductsManager;
-import server.model.reservation.ManageReservationManager;
-import server.model.reservation.ManageReservations;
-import server.networking.RMIServerBasket;
-import server.networking.RMIServerProduct;
-import server.networking.RMIServerReservation;
+import server.model.user.ManageUser;
+import server.model.user.ManageUserManager;
 import server.networking.ServerProxy;
 import shared.networking.Server;
+import shared.objects.product.Color;
+import shared.objects.product.EquipmentType;
+import shared.objects.product.MetricFormat;
+import shared.objects.product.Product;
+import shared.objects.user.User;
 import shared.util.Utils;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 public class RunServer {
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
@@ -30,5 +32,6 @@ public class RunServer {
         registry.bind(Utils.SERVER_RENTAL, server);
 
         System.out.println("Server started");
+
     }
 }

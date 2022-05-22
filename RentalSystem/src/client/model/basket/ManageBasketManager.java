@@ -1,22 +1,17 @@
 package client.model.basket;
 
 import client.networking.ClientProxy;
-import server.model.product.ManageProductDatabase;
 import server.model.reservation.ManageReservationDatabase;
-import shared.objects.basket.Basket;
 import shared.objects.product.Product;
-import shared.objects.reservation.Reservation;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.sql.SQLException;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket {
 
     private ClientProxy clientProxy;
     private PropertyChangeSupport changeSupport;
-
+    private ManageReservationDatabase reservationDatabase;
 
     public ManageBasketManager (ClientProxy clientProxy) {
         changeSupport = new PropertyChangeSupport(this);

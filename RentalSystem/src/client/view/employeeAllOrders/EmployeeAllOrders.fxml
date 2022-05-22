@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -29,22 +31,45 @@
                               <Insets right="9.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="searchInput" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0" />
-                        <Button fx:id="searchButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="26.0" prefWidth="60.0" text="Search">
+                        <TextField fx:id="searchInput" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                            <HBox.margin>
-                              <Insets left="17.0" />
+                              <Insets top="1.0" />
+                           </HBox.margin></TextField>
+                        <Button fx:id="searchButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="22.0" prefWidth="34.0" style="-fx-background-color: transparent;">
+                           <HBox.margin>
+                              <Insets left="5.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0">
+                                 <image>
+                                    <Image url="@../../../image/Shopicons_Regular_Search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="346.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="75.0">
                      <children>
-                        <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: red;" text="Log off" textAlignment="RIGHT">
+                        <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../../image/icons8-logout-24.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
+                     <HBox.margin>
+                        <Insets left="270.0" />
+                     </HBox.margin>
                   </HBox>
                </children>
                <padding>
@@ -54,6 +79,7 @@
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                <children>
                   <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" text="Open" />
+                  <Button fx:id="removeReservationButton" mnemonicParsing="false" onAction="#onRemoveReservation" text="Remove" />
                </children>
             </HBox>
             <ListView fx:id="reservationsList" prefHeight="332.0" prefWidth="661.0" />
