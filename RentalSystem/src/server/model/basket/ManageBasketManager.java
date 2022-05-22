@@ -74,7 +74,6 @@ public class ManageBasketManager implements ManageBasket
             e.printStackTrace();
         }
 		basket.setCustomerUsername(ManageUserManager.user.getUsername());
-
         Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
         try {
             reservationDatabase.save(reservation, getAllProductsByQuantity());
