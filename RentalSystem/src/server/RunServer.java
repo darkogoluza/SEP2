@@ -33,31 +33,5 @@ public class RunServer {
 
         System.out.println("Server started");
 
-		Map<Product, Integer> products = new Hashtable<>();
-		ArrayList<Product> list = new ArrayList<>();
-		list.add(new Product(1, 10, Color.red, EquipmentType.ski, new MetricFormat(10)));
-		list.add(new Product(1, 10, Color.red, EquipmentType.ski, new MetricFormat(10)));
-		list.add(new Product(1, 10, Color.red, EquipmentType.ski, new MetricFormat(10)));
-		list.add(new Product(1, 10, Color.red, EquipmentType.ski, new MetricFormat(10)));
-		int quantity = 1;
-
-		products.put(list.get(0), 1);
-
-		for (int i = 1; i < list.size(); i++) {
-			Product product = list.get(i);
-
-			products.forEach((p, q) -> {
-				if (p.equals(product)) {
-					products.put(product, 1);
-				}
-				else {
-					products.put(product, 1);
-				}
-			});
-
-		}
-
-		System.out.println(products);
-
     }
 }

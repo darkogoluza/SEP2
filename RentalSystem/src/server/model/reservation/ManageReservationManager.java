@@ -20,14 +20,12 @@ public class ManageReservationManager implements ManageReservations
 
         try {
             manageReservationDatabase = new ManageReservationDatabase();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
             list = manageReservationDatabase.load();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

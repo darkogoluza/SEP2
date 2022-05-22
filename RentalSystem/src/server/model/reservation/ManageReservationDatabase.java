@@ -56,15 +56,10 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(String.format("""
-                    SELECT id, name, size, color, price, quantity
-                    FROM Product p, reservation_product rp
-                    WHERE id IN
-                          (
-                              SELECT productId
-                              FROM reservation_product
-                              where reservationId = %d
-                                AND p.id = rp.productId
-                    )""", reservationId));
+					select id, name, size, color, price, quantity from product
+					    join reservation_product rp on product.id = rp.productid
+					where reservationid = %d
+					""", reservationId));
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -90,6 +85,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         } finally {
             connection.close();
         }
+
         return list;
     }
 

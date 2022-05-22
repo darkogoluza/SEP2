@@ -77,7 +77,6 @@ public class EmployeeOrderDetailsViewModel
   }
 
   public void changeStatus(ReservationStatus status) {
-
     modelReservations.changeReservation(id,status);
   }
 
