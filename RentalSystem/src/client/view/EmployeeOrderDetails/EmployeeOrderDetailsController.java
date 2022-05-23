@@ -65,6 +65,9 @@ public class EmployeeOrderDetailsController {
 	@FXML
 	private Label returnTime;
 
+	@FXML
+	private Label phoneNumber;
+
 	public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id) {
 		this.viewHandler = viewHandler;
 		viewModel = vmf.getEmployeeOrderDetailsViewModel(id);
@@ -78,6 +81,7 @@ public class EmployeeOrderDetailsController {
 		returndate.textProperty().bind(viewModel.getReturnedAtDateProperty());
 		returnTime.textProperty().bind(viewModel.getReturnedAtTimeProperty());
 		finalTotalPrice.textProperty().bind(viewModel.getFinalTotalPriceProperty());
+		phoneNumber.textProperty().bind(viewModel.getPhoneNumber());
 
 		name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		priceperunit.setCellValueFactory(new PropertyValueFactory<>("pricePerUnit"));
@@ -88,6 +92,7 @@ public class EmployeeOrderDetailsController {
 
 		statusChoice.setItems(statusList);
 		statusChoice.setValue(ReservationStatus.valueOf(viewModel.getStatusProperty().getValue()));
+
 		viewModel.showAllProducts();
 		viewModel.updateViewModelReservationInfo();
 	}

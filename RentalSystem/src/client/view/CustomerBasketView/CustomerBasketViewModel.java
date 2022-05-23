@@ -29,6 +29,7 @@ public class CustomerBasketViewModel
         modelBasket.addPropertyChangeListener("finalPriceEvent", this::modifiedBasket);
 
         finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
+        userNameProperty.set(modelBasket.getUserName());
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {

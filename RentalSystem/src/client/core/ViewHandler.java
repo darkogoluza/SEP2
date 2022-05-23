@@ -102,7 +102,7 @@ public class ViewHandler
             administratorScene = new Scene(root);
         }
 
-        stage.setTitle("Login");
+        stage.setTitle("Administrator View");
         stage.setScene(administratorScene);
     }
 
@@ -174,7 +174,7 @@ public class ViewHandler
 			employeeOrderDetailsScene = new Scene(root);
 		}
 
-		stage.setTitle("All reservations");
+		stage.setTitle("Details about ");
 		stage.setScene(employeeOrderDetailsScene);
 	}
 
