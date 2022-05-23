@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
 
 public class AdministratorViewController {
@@ -95,8 +96,8 @@ public class AdministratorViewController {
     public void addButton(ActionEvent event)
     {
         if(!isInputOkay()){
-            showWrongInputDialog();
-            return;
+			AlertHandler.getInstance().administratorWrongInput();
+			return;
         }
 
         viewModel.addProduct(Double.parseDouble(priceTextField.getText()),
@@ -109,7 +110,7 @@ public class AdministratorViewController {
 
     public void changeProduct() {
         if(!isInputOkay()){
-            showWrongInputDialog();
+            AlertHandler.getInstance().administratorWrongInput();
             return;
         }
 
@@ -203,15 +204,6 @@ public class AdministratorViewController {
         return typeChoiceBox.getValue().toString().equals(EquipmentType.helmet.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.skiShoes.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.snowboardShoes.toString());
-    }
-
-    private void showWrongInputDialog() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("You must have entered wrong input");
-        alert.setContentText("Price needs to be a number.\nLabel size need to be one of [\"S\",\"M\",\"L\",\"XL\",\"XXL\",\"XXXL\"]\nHeight size must be a number.\nLabel for shoes is a number between 35 and 45. ");
-
-        alert.showAndWait();
     }
 
 	@FXML

@@ -33,7 +33,7 @@ public class LoginViewModel
     return passwordProperty;
   }
 
-	public UserRole getRoleOfUser() {
+  public UserRole getRoleOfUser() {
 	  return modelUser.getLoggedUser().getRole();
 	}
 }

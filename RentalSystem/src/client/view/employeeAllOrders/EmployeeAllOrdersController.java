@@ -8,6 +8,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import shared.objects.errors.AlertHandler;
+import shared.objects.reservation.Reservation;
 
 public class EmployeeAllOrdersController {
 	@FXML
@@ -33,12 +35,16 @@ public class EmployeeAllOrdersController {
 	public void onSearchButton(ActionEvent event) {
 		int id = Integer.parseInt(searchInput.getText());
 		if (id >= 0 && id <= viewModel.reservationsCount()) {
-			id = viewModel.openReservationById(id);
-			viewHandler.openEmployeeOrderDetailsView(id);
+			Reservation r = viewModel.openReservationById(id);
+			if (r != null) {
+				viewHandler.openEmployeeOrderDetailsView(r.getId());
+			}
+			else {
+				AlertHandler.getInstance().orderDontExist();
+			}
 		}
 		else {
-			//error
-
+			AlertHandler.getInstance().orderDontExist();
 		}
 
 	}

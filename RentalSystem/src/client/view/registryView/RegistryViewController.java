@@ -36,8 +36,8 @@ public class RegistryViewController {
 
     public void createAccountButton(ActionEvent event)
 	{
-        viewModel.createAccount();
-        viewHandler.openCustomerAllEquipmentView();
+        if (viewModel.createAccount())
+        	viewHandler.openCustomerAllEquipmentView();
     }
 
 	public void openLoginView() {
