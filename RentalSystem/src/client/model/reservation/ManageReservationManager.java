@@ -4,6 +4,8 @@ import client.networking.ClientProxy;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
+import shared.objects.user.User;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -16,6 +18,10 @@ public class ManageReservationManager implements ManageReservations
     {
         changeSupport = new PropertyChangeSupport(this);
         this.clientProxy = clientProxy;
+    }
+    public User getUser(String username)
+    {
+        return clientProxy.getClientUser().get(username);
     }
 
     @Override

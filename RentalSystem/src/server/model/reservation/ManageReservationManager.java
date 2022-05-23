@@ -80,6 +80,7 @@ public class ManageReservationManager implements ManageReservations
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
     }
 
+
     @Override
     public void showAllReservations() {
 

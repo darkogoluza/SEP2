@@ -55,5 +55,7 @@
             <Image url="@../../../image/profile.png" />
          </image>
       </ImageView>
+      <Label layoutX="168.0" layoutY="87.0" text="Phone number:" />
+      <Label fx:id="phoneNumber" layoutX="287.0" layoutY="87.0" text="223454678" />
    </children>
 </AnchorPane>

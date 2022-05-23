@@ -4,6 +4,7 @@ import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
+import shared.objects.user.User;
 
 import java.sql.*;
 import java.util.Map;
@@ -190,6 +191,10 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 
         return ++id;
     }
+
+    
+
+
 
     private void executeStatementReservation(PreparedStatement statement, Reservation reservation) throws SQLException {
         statement.setInt(1, reservation.getId());
