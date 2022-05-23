@@ -20,4 +20,5 @@ public interface ManageReservations extends PropertyChangeSubject
     void changeReservation(int index, ReservationStatus newStatus);
     String getTotalPrice(int id);
     User getUser(String username);
+    //chuj
 }
