@@ -26,7 +26,7 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
 		clientProxy.getClientProduct().add(price, color, equipmentType, size);
-
+		System.out.println("Fire Listener");
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 
@@ -71,11 +71,13 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.addPropertyChangeListener(listener);
+
 	}
 
 	@Override
 	public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
 		changeSupport.addPropertyChangeListener(name, listener);
+		System.out.println("adding listener");
 	}
 
 	@Override

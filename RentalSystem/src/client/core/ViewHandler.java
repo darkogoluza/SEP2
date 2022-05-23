@@ -23,160 +23,161 @@ import java.io.IOException;
  */
 public class ViewHandler
 {
-    private Stage stage;
-    private ViewModelFactory vmf;
-    private Scene administratorScene;
-    private Scene customerAllEquipmentScene;
-    private Scene customerBasket;
-	private Scene employeeAllOrdersScene;
-	private Scene employeeOrderDetailsScene;
-	private Scene singleOrderView;
-	private Scene registryScene;
+  private Stage stage;
+  private ViewModelFactory vmf;
+  private Scene administratorScene;
+  private Scene customerAllEquipmentScene;
+  private Scene customerBasket;
+  private Scene employeeAllOrdersScene;
+  private Scene employeeOrderDetailsScene;
+  private Scene singleOrderView;
+  private Scene registryScene;
   private Scene loginScene;
 
 
-    /**
-     * Constructor assigning ViewModelFactory and Stage
-     * @param vmf ViewModelFactory
-     * @param stage Stage
-     */
-    public ViewHandler(ViewModelFactory vmf, Stage stage){
-        this.vmf = vmf;
-        this.stage = stage;
+  /**
+   * Constructor assigning ViewModelFactory and Stage
+   * @param vmf ViewModelFactory
+   * @param stage Stage
+   */
+  public ViewHandler(ViewModelFactory vmf, Stage stage){
+    this.vmf = vmf;
+    this.stage = stage;
+  }
+
+  /**
+   * Open selected view
+   * This is what is opened when we launch an application
+   */
+  public void start(ManageUser manageUser){
+    //customer
+    //		manageUser.login("xoxo", "123456");
+    //		//admin
+    //		manageUser.login("admin", "123456");
+    //		//employee
+    //		manageUser.login("employee", "123456");
+    //		System.out.println(manageUser.getLoggedUser());
+    		openLoginView();
+
+    //		if (manageUser.getLoggedUser() == null)
+    //			openRegistryView();
+    //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
+    //        	openCustomerAllEquipmentView();
+    //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
+    //			openEmployeeView();
+//    openAdministratorView();
+    //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
+    //        	openAdministratorView();
+
+    stage.show();
+  }
+
+  /**
+   * Get root with provided path
+   * @param path
+   * @param loader
+   * @return Parent root
+   */
+  private Parent getRootByPath(String path, FXMLLoader loader){
+    loader.setLocation(getClass().getResource(path));
+    Parent root = null;
+
+    try {
+      root = loader.load();
+    } catch (IOException e){
+      e.printStackTrace();
     }
 
-	/**
-	 * Open selected view
-	 * This is what is opened when we launch an application
-	 */
-    public void start(ManageUser manageUser){
-		//customer
-//		manageUser.login("xoxo", "123456");
-//		//admin
-//		manageUser.login("admin", "123456");
-//		//employee
-//		manageUser.login("employee", "123456");
-//		System.out.println(manageUser.getLoggedUser());
-//		openLoginView();
+    return root;
+  }
 
-//		if (manageUser.getLoggedUser() == null)
-//			openRegistryView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
-//        	openCustomerAllEquipmentView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-			openEmployeeView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
-//        	openAdministratorView();
-
-        stage.show();
+  /**
+   * Open administrator window
+   */
+  public void openAdministratorView(){
+    FXMLLoader loader = new FXMLLoader();
+    if(administratorScene == null){
+      Parent root = getRootByPath("/client/view/administratorView/AdministratorView.fxml", loader);
+      AdministratorViewController controller = loader.getController();
+      controller.init(this,vmf);
+      administratorScene = new Scene(root);
     }
 
-	/**
-	 * Get root with provided path
-	 * @param path
-	 * @param loader
-	 * @return Parent root
-	 */
-    private Parent getRootByPath(String path, FXMLLoader loader){
-        loader.setLocation(getClass().getResource(path));
-        Parent root = null;
+    stage.setTitle("Login");
+    stage.setScene(administratorScene);
+  }
 
-        try {
-            root = loader.load();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+  /**
+   * Open window with all equipment
+   */
+  public void openCustomerAllEquipmentView(){
+    FXMLLoader loader = new FXMLLoader();
+    if(customerAllEquipmentScene == null){
 
-        return root;
+      Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
+      CustomerAllEquipmentViewController controller = loader.getController();
+      controller.init(this,vmf);
+      customerAllEquipmentScene = new Scene(root);
     }
 
-	/**
-	 * Open administrator window
-	 */
-    public void openAdministratorView(){
-        FXMLLoader loader = new FXMLLoader();
-        if(administratorScene == null){
-            Parent root = getRootByPath("/client/view/administratorView/AdministratorView.fxml", loader);
-            AdministratorViewController controller = loader.getController();
-            controller.init(this,vmf);
-            administratorScene = new Scene(root);
-        }
+    stage.setTitle("All equipment");
+    stage.setScene(customerAllEquipmentScene);
+  }
 
-        stage.setTitle("Login");
-        stage.setScene(administratorScene);
+
+
+  /**
+   * Open window with customer basket
+   */
+  public void openCustomerBasket(){
+    FXMLLoader loader = new FXMLLoader();
+    if(customerBasket == null){
+
+      Parent root = getRootByPath("/client/view/CustomerBasketView/Basketview.fxml", loader);
+      CustomerBasketViewController controller = loader.getController();
+      controller.init(this,vmf);
+      customerBasket = new Scene(root);
     }
 
-	/**
-	 * Open window with all equipment
-	 */
-    public void openCustomerAllEquipmentView(){
-        FXMLLoader loader = new FXMLLoader();
-        if(customerAllEquipmentScene == null){
+    stage.setTitle("Customer Basket");
+    stage.setScene(customerBasket);
+  }
 
-            Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
-            CustomerAllEquipmentViewController controller = loader.getController();
-            controller.init(this,vmf);
-            customerAllEquipmentScene = new Scene(root);
-        }
+  /**
+   * open window with all reservations
+   */
+  public void openEmployeeView(){
+    FXMLLoader loader = new FXMLLoader();
 
-        stage.setTitle("All equipment");
-        stage.setScene(customerAllEquipmentScene);
+    if (employeeAllOrdersScene == null) {
+      Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
+
+      EmployeeAllOrdersController controller = loader.getController();
+      controller.init(this, vmf);
+      employeeAllOrdersScene = new Scene(root);
     }
 
+    stage.setTitle("All reservations");
+    stage.setScene(employeeAllOrdersScene);
+  }
 
+  /**
+   * open reservation details window
+   */
+  public void openEmployeeOrderDetailsView(int id){
+    FXMLLoader loader = new FXMLLoader();
 
-    /**
-     * Open window with customer basket
-     */
-    public void openCustomerBasket(){
-        FXMLLoader loader = new FXMLLoader();
-        if(customerBasket == null){
+    if (employeeOrderDetailsScene == null) {
+      Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
 
-            Parent root = getRootByPath("/client/view/CustomerBasketView/Basketview.fxml", loader);
-            CustomerBasketViewController controller = loader.getController();
-            controller.init(this,vmf);
-            customerBasket = new Scene(root);
-        }
-
-        stage.setTitle("Customer Basket");
-        stage.setScene(customerBasket);
+      EmployeeOrderDetailsController controller = loader.getController();
+      controller.init(this, vmf, id);
+      employeeOrderDetailsScene = new Scene(root);
     }
 
-	/**
-	 * open window with all reservations
-	 */
-	public void openEmployeeView(){
-		FXMLLoader loader = new FXMLLoader();
-
-		if (employeeAllOrdersScene == null) {
-			Parent root = getRootByPath("/client/view/employeeAllOrders/EmployeeAllOrders.fxml", loader);
-
-			EmployeeAllOrdersController controller = loader.getController();
-			controller.init(this, vmf);
-			employeeAllOrdersScene = new Scene(root);
-		}
-
-		stage.setTitle("All reservations");
-		stage.setScene(employeeAllOrdersScene);
-	}
-
-	/**
-	 * open reservation details window
-	 */
-	public void openEmployeeOrderDetailsView(int id){
-		FXMLLoader loader = new FXMLLoader();
-
-		if (employeeOrderDetailsScene == null) {
-			Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
-
-			EmployeeOrderDetailsController controller = loader.getController();
-			controller.init(this, vmf, id);
-			employeeOrderDetailsScene = new Scene(root);
-		}
-
-		stage.setTitle("All reservations");
-		stage.setScene(employeeOrderDetailsScene);
-	}
+    stage.setTitle("All reservations");
+    stage.setScene(employeeOrderDetailsScene);
+  }
 
   public void openSingleOrderView(){
     FXMLLoader loader = new FXMLLoader();
@@ -194,23 +195,23 @@ public class ViewHandler
     stage.setScene(singleOrderView);
   }
 
-    /**
-     * open registry window
-     */
-    public void openRegistryView(){
-        FXMLLoader loader = new FXMLLoader();
+  /**
+   * open registry window
+   */
+  public void openRegistryView(){
+    FXMLLoader loader = new FXMLLoader();
 
-        if (registryScene == null) {
-            Parent root = getRootByPath("/client/view/registryView/RegistryView.fxml", loader);
+    if (registryScene == null) {
+      Parent root = getRootByPath("/client/view/registryView/RegistryView.fxml", loader);
 
-            RegistryViewController controller = loader.getController();
-            controller.init(this, vmf);
-            registryScene = new Scene(root);
-        }
-
-        stage.setTitle("Create Account");
-        stage.setScene(registryScene);
+      RegistryViewController controller = loader.getController();
+      controller.init(this, vmf);
+      registryScene = new Scene(root);
     }
+
+    stage.setTitle("Create Account");
+    stage.setScene(registryScene);
+  }
 
   public void openLoginView(){
     FXMLLoader loader = new FXMLLoader();

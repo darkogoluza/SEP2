@@ -33,11 +33,20 @@ public class CustomerAllEquipmentViewModel
         totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
 
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
+        System.out.println("Hello"+modelBasket);
+//        modelProducts.addPropertyChangeListener("productModified",this::modifiedAllEquipment);
+        modelProducts.addPropertyChangeListener("productModified",this::loadAllProducts2);
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
+        System.out.println("Here Basket");
         totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
+    }
 
+    private void modifiedAllEquipment(PropertyChangeEvent event) {
+        System.out.println("Here++++++++++++++++++");
+        System.out.println(listOfProducts.toString());
+        loadAllProducts();
     }
 
 
@@ -48,6 +57,14 @@ public class CustomerAllEquipmentViewModel
     }
 
     public void loadAllProducts() {
+        System.out.println("Here END");
+        listOfProducts.clear();
+        listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
+    }
+
+    public void loadAllProducts2(PropertyChangeEvent event) {
+        System.out.println("WIIIIIIIIIIIIIINNNN");
+        listOfProducts.clear();
         listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
     }
 

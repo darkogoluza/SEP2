@@ -43,6 +43,6 @@ public class RMIServerProduct implements ServerProduct {
 
 	@Override public void add(Product product)throws RemoteException
 	{
-
+		System.out.println("WTFFFFFFFFFFFFFFFFFFFFFFF");
 	}
 }

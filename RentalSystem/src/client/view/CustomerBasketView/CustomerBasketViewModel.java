@@ -33,6 +33,7 @@ public class CustomerBasketViewModel
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
+        System.out.println("almost there");
         showAllProductsInBasket();
         finalTotalPriceProperty.set("" + event.getNewValue());
     }
@@ -43,6 +44,7 @@ public class CustomerBasketViewModel
 
     public void showAllProductsInBasket()
     {
+        System.out.println("Called");
         productsInBaskets.clear();
         Map<Product, Integer> map = modelBasket.getAllProductsByQuantity();
         for(Map.Entry<Product, Integer> entry : map.entrySet())
