@@ -31,8 +31,9 @@ public class CustomerAllEquipmentViewModel
         modelProducts = modelProxy.getManageProducts();
 
         totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
-
+        editableLabelUserNameProperty.set(modelBasket.getUserName());
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
+
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
@@ -49,11 +50,6 @@ public class CustomerAllEquipmentViewModel
 
     public void loadAllProducts() {
         listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
-    }
-
-    public void updateUserName(String userName)
-    {
-        editableLabelUserNameProperty.setValue(userName);
     }
 
     public StringProperty getEditableLabelUserNameProperty()

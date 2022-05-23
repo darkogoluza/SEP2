@@ -50,5 +50,4 @@ public class ModelProxyManager implements ModelProxy
 		}
 		return manageUser;
 	}
-
 }

@@ -53,6 +53,7 @@ public class SingleOrderViewModel
     statusProperty = new SimpleStringProperty();
     statusProperty.setValue(ReservationStatus.rented.toString());;
     orderIdProperty.setValue(String.valueOf(id));
+    userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
     updateViewModelReservationInfo();
   }
 
