@@ -59,6 +59,7 @@ public class EmployeeAllOrdersController {
 
 		int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 
+		System.out.println(id);
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 

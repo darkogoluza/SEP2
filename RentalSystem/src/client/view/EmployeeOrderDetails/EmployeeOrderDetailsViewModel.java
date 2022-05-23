@@ -61,9 +61,6 @@ public class EmployeeOrderDetailsViewModel
     orderIdProperty.setValue(String.valueOf(id));
     finalTotalPriceProperty = new SimpleStringProperty();
     updateViewModelReservationInfo();
-
-    //phoneNumberProperty.set(modelProxy.getManageUser().getLoggedUser().getPhoneNo());
-    //userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
     finalTotalPriceProperty.set(modelReservations.getTotalPrice(id) + "");
   }
 
@@ -96,6 +93,7 @@ public class EmployeeOrderDetailsViewModel
     statusProperty.set(""+reservation.getStatus());
     returnedAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getExpiresAt()));
     returnedAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getExpiresAt()));
+    phoneNumberProperty.setValue(modelReservations.getUser(reservation.getUserName()).getPhoneNo());
   }
 
 
