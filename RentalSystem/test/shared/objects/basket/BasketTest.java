@@ -15,10 +15,10 @@ class BasketTest {
 
     @BeforeEach
     void setUp() {
-        Product p1 = new Product(0, 10, Color.black, EquipmentType.helmet, new LabelFormat("XL"));
-        Product p2 = new Product(1, 5, Color.black, EquipmentType.helmet, new LabelFormat("XL"));
-        Product p3 = new Product(2, 10, Color.red, EquipmentType.helmet, new LabelFormat("XL"));
-        Product p4 = new Product(3, 10, Color.black, EquipmentType.helmet, new LabelFormat("L"));
+        Product p1 = new Product(0, 10, Color.black, EquipmentType.helmet, new LabelFormat("XL"), 5);
+        Product p2 = new Product(1, 5, Color.black, EquipmentType.helmet, new LabelFormat("XL"), 5);
+        Product p3 = new Product(2, 10, Color.red, EquipmentType.helmet, new LabelFormat("XL"), 5);
+        Product p4 = new Product(3, 10, Color.black, EquipmentType.helmet, new LabelFormat("L"), 5);
         basket = new Basket("testUser");
 
         basket.getProducts().add(p1);
