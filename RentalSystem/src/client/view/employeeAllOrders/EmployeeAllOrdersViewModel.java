@@ -16,13 +16,15 @@ public class EmployeeAllOrdersViewModel
 	private ListProperty<String> listOfOrders;
 	private SimpleStringProperty searchInput;
 	private ManageReservations modelReservations;
+	private ModelProxy modelProxy;
 
-	public EmployeeAllOrdersViewModel(ManageReservations manageReservations)
+	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
 	{
 		searchInput = new SimpleStringProperty();
 		listOfOrders = new SimpleListProperty<>();
-		this.modelReservations = manageReservations;
+		this.modelReservations = modelProxy.getManageReservations();
 		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
+		this.modelProxy = modelProxy;
 
 		loadAllProducts();
 	}
@@ -59,4 +61,8 @@ public class EmployeeAllOrdersViewModel
 	public void removeReservation(int index){
 		modelReservations.remove(index);
 	}
+
+    public void logOff() {
+		modelProxy.getManageUser().logout();
+    }
 }

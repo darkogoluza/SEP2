@@ -20,13 +20,15 @@ public class CustomerAllEquipmentViewModel
 
     private ManageBasket modelBasket;
     private ManageProducts modelProducts;
+	private ModelProxy modelProxy;
 
-    public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
+	public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
     {
         editableLabelUserNameProperty = new SimpleStringProperty();
         listOfProducts = new SimpleListProperty<>();
         totalItemsInBasketProperty = new SimpleStringProperty();
 
+		this.modelProxy = modelProxy;
         modelBasket = modelProxy.getManageBasket();
         modelProducts = modelProxy.getManageProducts();
 
@@ -63,4 +65,7 @@ public class CustomerAllEquipmentViewModel
         return listOfProducts;
     }
 
+    public void logOff() {
+		modelProxy.getManageUser().logout();
+    }
 }

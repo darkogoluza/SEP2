@@ -68,5 +68,6 @@ public class RegistryViewModel
 			return false;
 		}
 
+
 	}
 }

@@ -50,6 +50,7 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onLogOff() {
+		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 

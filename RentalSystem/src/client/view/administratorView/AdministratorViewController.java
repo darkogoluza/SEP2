@@ -209,6 +209,7 @@ public class AdministratorViewController {
 
 	@FXML
 	public void onLogOff() {
+		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 }

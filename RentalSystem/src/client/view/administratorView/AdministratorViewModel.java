@@ -18,6 +18,7 @@ public class AdministratorViewModel {
 	private StringProperty color;
 	private StringProperty type;
 	private ManageProducts model;
+	private ModelProxy modelProxy;
 
 	public AdministratorViewModel(ModelProxy modelProxy) {
 		listViewAdministrator = new SimpleListProperty<>();
@@ -26,6 +27,7 @@ public class AdministratorViewModel {
 		type = new SimpleStringProperty();
 		color = new SimpleStringProperty();
 		this.model = modelProxy.getManageProducts();
+		this.modelProxy = modelProxy;
 
 		model.addPropertyChangeListener("productModified", this::productModified);
 	}
@@ -82,5 +84,9 @@ public class AdministratorViewModel {
 
 	public StringProperty getColor() {
 		return color;
+	}
+
+	public void logOff() {
+		modelProxy.getManageUser().logout();
 	}
 }

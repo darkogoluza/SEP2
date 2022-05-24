@@ -37,6 +37,7 @@ public class CustomerAllEquipmentViewController
 
     public void onLogOff(ActionEvent event)
     {
+		viewModel.logOff();
         viewHandler.openLoginView();
     }
 
