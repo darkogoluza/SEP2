@@ -57,7 +57,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         Connection connection = getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement(String.format("""
-					select id, name, size, color, price, quantity from product
+					select id, name, size, color, price, quantity, amount from product
 					    join reservation_product rp on product.id = rp.productid
 					where reservationid = %d
 					""", reservationId));
