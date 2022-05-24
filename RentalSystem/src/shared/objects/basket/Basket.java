@@ -24,7 +24,22 @@ public class Basket implements Serializable
         products = new ProductList();
     }
 
-    /**
+	/**
+	 * Empty constructor to initialize product list
+	 */
+	public Basket() {
+		products = new ProductList();
+	}
+
+	/**
+	 * Set customer username
+	 * @param customerUsername
+	 */
+	public void setCustomerUsername(String customerUsername) {
+		this.customerUsername = customerUsername;
+	}
+
+	/**
      * @return Returns all ProductList with all products.
      */
     public ProductList getProducts() {

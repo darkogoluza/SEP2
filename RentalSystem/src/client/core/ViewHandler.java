@@ -57,14 +57,14 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-        openLoginView();
+		openLoginView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
 //        	openCustomerAllEquipmentView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-			//openEmployeeView();
+//			openEmployeeView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
 //        	openAdministratorView();
 
@@ -102,7 +102,7 @@ public class ViewHandler
             administratorScene = new Scene(root);
         }
 
-        stage.setTitle("Login");
+        stage.setTitle("Administrator View");
         stage.setScene(administratorScene);
     }
 
@@ -174,7 +174,7 @@ public class ViewHandler
 			employeeOrderDetailsScene = new Scene(root);
 		}
 
-		stage.setTitle("All reservations");
+		stage.setTitle("Details about ");
 		stage.setScene(employeeOrderDetailsScene);
 	}
 

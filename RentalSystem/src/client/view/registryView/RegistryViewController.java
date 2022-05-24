@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-
 public class RegistryViewController {
     @FXML
     private TextField userName;
@@ -35,9 +34,10 @@ public class RegistryViewController {
 
     public void createAccountButton(ActionEvent event)
 	{
-        viewModel.createAccount();
-        viewHandler.openCustomerAllEquipmentView();
-        viewModel.clearFields();
+        if (viewModel.createAccount()) {
+            viewHandler.openCustomerAllEquipmentView();
+            viewModel.clearFields();
+        }
     }
 
 	public void openLoginView() {

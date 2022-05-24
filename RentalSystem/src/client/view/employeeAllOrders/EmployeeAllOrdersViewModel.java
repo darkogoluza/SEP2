@@ -15,11 +15,11 @@ public class EmployeeAllOrdersViewModel
 	private ManageReservations modelReservations;
 
 	private String filterStatus;
-	public EmployeeAllOrdersViewModel(ManageReservations manageReservations)
+	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
 	{
 		searchInput = new SimpleStringProperty();
 		listOfOrders = new SimpleListProperty<>();
-		this.modelReservations = manageReservations;
+		this.modelReservations = modelProxy.getManageReservations();
 		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 
 		loadAllProducts();
@@ -51,13 +51,16 @@ public class EmployeeAllOrdersViewModel
 		return modelReservations.getAllReservations().size();
 	}
 
-	public int openReservationById(int id) {
-		Reservation r = modelReservations.getReservationById(id);
-		return r.getId();
+	public Reservation openReservationById(int id) {
+		return modelReservations.getReservationById(id);
 	}
 	public void removeReservation(int index){
 		modelReservations.remove(index);
 	}
+
+    public void logOff() {
+		modelProxy.getManageUser().logout();
+    }
 
 	public void changedFilterStatus(String newFilterStatus) {
 		filterStatus = newFilterStatus;

@@ -5,6 +5,7 @@ import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
 import client.model.reservation.ManageReservations;
 import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import shared.objects.product.Product;
@@ -31,6 +32,7 @@ public class EmployeeOrderDetailsViewModel
   private StringProperty finalTotalPriceProperty;
   private ManageReservations modelReservations;
   private ManageProducts modelProducts;
+  private StringProperty phoneNumberProperty;
   private int id;
   private ObservableList<ProductsInBasket> productsInList;
 
@@ -53,11 +55,12 @@ public class EmployeeOrderDetailsViewModel
     returnedAtTimeProperty = new SimpleStringProperty();
     totalOverallPriceProperty=new SimpleIntegerProperty();
     statusProperty = new SimpleStringProperty();
+    phoneNumberProperty = new SimpleStringProperty();
+
     statusProperty.setValue(ReservationStatus.rented.toString());;
     orderIdProperty.setValue(String.valueOf(id));
     finalTotalPriceProperty = new SimpleStringProperty();
     updateViewModelReservationInfo();
-
     finalTotalPriceProperty.set(modelReservations.getTotalPrice(id) + "");
   }
 
@@ -77,7 +80,6 @@ public class EmployeeOrderDetailsViewModel
   }
 
   public void changeStatus(ReservationStatus status) {
-
     modelReservations.changeReservation(id,status);
   }
 
@@ -91,6 +93,7 @@ public class EmployeeOrderDetailsViewModel
     statusProperty.set(""+reservation.getStatus());
     returnedAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getExpiresAt()));
     returnedAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getExpiresAt()));
+    phoneNumberProperty.setValue(modelReservations.getUser(reservation.getUserName()).getPhoneNo());
   }
 
 
@@ -119,5 +122,8 @@ public class EmployeeOrderDetailsViewModel
   public ObservableList<ProductsInBasket> getProductsInBaskets()
   {
     return productsInList;
+  }
+  public ObservableValue<String> getPhoneNumber() {
+      return  phoneNumberProperty;
   }
 }

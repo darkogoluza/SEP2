@@ -1,6 +1,7 @@
 package server.model.basket;
 
 import server.model.reservation.ManageReservationDatabase;
+import server.model.user.ManageUserManager;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
@@ -23,7 +24,7 @@ public class ManageBasketManager implements ManageBasket
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        basket = new Basket("Darko");
+        basket = new Basket();
         changeSupport = new PropertyChangeSupport(this);
     }
 
@@ -73,6 +74,7 @@ public class ManageBasketManager implements ManageBasket
         } catch (SQLException e) {
             e.printStackTrace();
         }
+		basket.setCustomerUsername(ManageUserManager.user.getUsername());
         Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
         reservation.setCreateAt(createAt);
         reservation.setExpiresAt(returnAt);

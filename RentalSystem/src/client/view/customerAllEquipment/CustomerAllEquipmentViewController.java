@@ -15,12 +15,6 @@ public class CustomerAllEquipmentViewController
     @FXML
     private Label editableLabelUserName;
     @FXML
-    private Button logOffButton;
-    @FXML
-    private Button addToBasketButton;
-    @FXML
-    private Button gotToBasketButton;
-    @FXML
     private ListView listOfProducts;
     @FXML
     private Label totalItemsInBasket;
@@ -35,11 +29,15 @@ public class CustomerAllEquipmentViewController
         editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
         totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
         listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
+        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
+
         viewModel.loadAllProducts();
+
     }
 
     public void onLogOff(ActionEvent event)
     {
+		viewModel.logOff();
         viewHandler.openLoginView();
     }
 
@@ -56,9 +54,5 @@ public class CustomerAllEquipmentViewController
         viewHandler.openCustomerBasket();
     }
 
-    public void updateUserName(ActionEvent event, String userName)
-    {
-        viewModel.updateUserName(userName);
-    }
 }
 

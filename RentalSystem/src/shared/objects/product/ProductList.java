@@ -2,6 +2,7 @@ package shared.objects.product;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -105,13 +106,41 @@ public class ProductList implements Serializable
      * @return
      */
     public Map<Product, Integer> getAllProductsByQuantity() {
-        Map<Product, Integer> map = new Hashtable<>();
-        for (int i = 0; i < list.size(); i++) {
-            Product product = list.get(i);
-            map.merge(product, 1, Integer::sum);
-        }
+		// final map which will return product object as key and quantity as value
+        Map<Product, Integer> products = new Hashtable<>();
 
-        return map;
+		// helping map which saves product id as key and quantity as value
+		Map<Integer, Integer> tmp = new Hashtable<>();
+
+		// in this loop we put combination of id of product and quantity
+		// id: quantity
+		// example: {2:1, 1:4}
+		// this means there is product with id 2 only once and product with quantity 2 4 times
+		for (int i = 0; i < list.size(); i++) {
+			int id = list.get(i).getId();
+			int quantity = 1;
+
+			if (tmp.containsKey(id)) {
+				quantity = tmp.get(id) + 1;
+			}
+			tmp.put(id, quantity);
+
+		}
+
+		// this loop goes through tmp map and add in final products map product as value and quantity as key
+		// Product object: quantity
+		// example: {Id: 001  red  10.00cm  ski  10.00€=4, Id: 002  red  10.00cm  ski  10.00€=1}
+		// this means there is product with id 2 only once and product with quantity 2 4 times
+		tmp.forEach((id, q) -> {
+			for (int i = 0; i < list.size(); i++) {
+				if (id == list.get(i).getId()) {
+					products.put(list.get(i), q);
+					break;
+				}
+			}
+		});
+
+		return products;
     }
 
     /**

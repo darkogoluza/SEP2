@@ -8,6 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import shared.objects.reservation.ReservationStatus;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import shared.objects.errors.AlertHandler;
+import shared.objects.reservation.Reservation;
 
 public class EmployeeAllOrdersController {
 	ObservableList<String> statuses = FXCollections.observableArrayList(
@@ -45,17 +51,22 @@ public class EmployeeAllOrdersController {
 	public void onSearchButton(ActionEvent event) {
 		int id = Integer.parseInt(searchInput.getText());
 		if (id >= 0 && id <= viewModel.reservationsCount()) {
-			id = viewModel.openReservationById(id);
-			viewHandler.openEmployeeOrderDetailsView(id);
+			Reservation r = viewModel.openReservationById(id);
+			if (r != null) {
+				viewHandler.openEmployeeOrderDetailsView(r.getId());
+			}
+			else {
+				AlertHandler.getInstance().orderDontExist();
+			}
 		}
 		else {
-			//error
-
+			AlertHandler.getInstance().orderDontExist();
 		}
 
 	}
 
 	public void onLogOff() {
+		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 
@@ -68,18 +79,13 @@ public class EmployeeAllOrdersController {
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 
-	public void onRemoveReservation(){
+	public void onRemoveReservation(ActionEvent event){
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
 		else
 		{
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle("Warning");
-			alert.setHeaderText("Confirm that you want to remove this order, you won't be able to change this decision later!");
-
-			alert.showAndWait();
-			viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
-
+			if (AlertHandler.getInstance().onRemoveReservation(event))
+				viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
 		}
 	}
 

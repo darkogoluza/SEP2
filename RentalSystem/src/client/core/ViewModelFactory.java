@@ -26,6 +26,10 @@ public class ViewModelFactory {
 		this.modelProxy = modelProxy;
 	}
 
+	public ModelProxy getModelProxy() {
+		return modelProxy;
+	}
+
 	/**
 	 * Lazy initiation of view model for administrator
 	 * @return AdministratorViewModel object
@@ -64,7 +68,7 @@ public class ViewModelFactory {
 
 	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
 		if (employeeAllOrdersViewModel == null) {
-			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy.getManageReservations());
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
 		}
 
 		return employeeAllOrdersViewModel;

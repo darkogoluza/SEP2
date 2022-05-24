@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeEvent;
 import java.sql.Timestamp;
@@ -36,13 +37,13 @@ public class CustomerBasketViewModel
         modelBasket.addPropertyChangeListener("finalPriceEvent", this::modifiedBasket);
 
         finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
+        userNameProperty.set(modelBasket.getUserName());
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
         showAllProductsInBasket();
         finalTotalPriceProperty.set("" + event.getNewValue());
     }
-
 
     public ObservableList<ProductsInBasket> getProductsInBaskets() {
         return productsInBaskets;
@@ -69,35 +70,32 @@ public class CustomerBasketViewModel
     public void order()
     {
         if(modelBasket.isEmpty()){
-            showWrongInputDialog();
+			AlertHandler.getInstance().emptyBasket();
             return;
         }
 
         Timestamp createAt = Timestamp.valueOf(createDateProperty.getValue().atTime(LocalTime.now()));
         Timestamp returnAt = Timestamp.valueOf(returnDateProperty.getValue().atTime(LocalTime.of(17,0,0)));
         modelBasket.order(createAt, returnAt);
+        AlertHandler.getInstance().orderCreated();
         modelBasket.clear();
     }
 
     public StringProperty getFinalTotalPriceProperty(){
         return finalTotalPriceProperty;
     }
+
     public StringProperty getUserNameProperty()
     {
         return userNameProperty;
     }
+
     public Property<LocalDate> getCreateDateProperty() {
         return createDateProperty;
     }
+
     public Property<LocalDate> getReturnDateProperty() {
         return returnDateProperty;
     }
 
-    private void showWrongInputDialog() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText("First you must select witch equipment to reserve");
-
-        alert.showAndWait();
-    }
 }

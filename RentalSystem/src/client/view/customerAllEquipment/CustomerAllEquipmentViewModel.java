@@ -20,19 +20,22 @@ public class CustomerAllEquipmentViewModel
 
     private ManageBasket modelBasket;
     private ManageProducts modelProducts;
+	private ModelProxy modelProxy;
 
-    public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
+	public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
     {
         editableLabelUserNameProperty = new SimpleStringProperty();
         listOfProducts = new SimpleListProperty<>();
         totalItemsInBasketProperty = new SimpleStringProperty();
 
+		this.modelProxy = modelProxy;
         modelBasket = modelProxy.getManageBasket();
         modelProducts = modelProxy.getManageProducts();
 
         totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
-
+        editableLabelUserNameProperty.set(modelBasket.getUserName());
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
+
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
@@ -51,11 +54,6 @@ public class CustomerAllEquipmentViewModel
         listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
     }
 
-    public void updateUserName(String userName)
-    {
-        editableLabelUserNameProperty.setValue(userName);
-    }
-
     public StringProperty getEditableLabelUserNameProperty()
     {
         return editableLabelUserNameProperty;
@@ -67,4 +65,7 @@ public class CustomerAllEquipmentViewModel
         return listOfProducts;
     }
 
+    public void logOff() {
+		modelProxy.getManageUser().logout();
+    }
 }

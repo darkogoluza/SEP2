@@ -67,6 +67,11 @@ public class ManageBasketManager implements ManageBasket {
     }
 
     @Override
+    public String getUserName() {
+        return clientProxy.getClientUser().getLoggedUser().getUsername();
+    }
+
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);
     }
