@@ -43,6 +43,7 @@ public class CustomerBasketViewModel
     private void modifiedBasket(PropertyChangeEvent event) {
         showAllProductsInBasket();
         finalTotalPriceProperty.set("" + event.getNewValue());
+        userNameProperty.set(modelBasket.getUserName());
     }
 
     public ObservableList<ProductsInBasket> getProductsInBaskets() {

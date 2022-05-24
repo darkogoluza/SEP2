@@ -42,7 +42,7 @@ public class EmployeeAllOrdersController {
 		viewModel = vmf.getEmployeeViewModel();
 
 		filterByStatus.setItems(statuses);
-		filterByStatus.setValue(ReservationStatus.notReturned.toString());
+		filterByStatus.setValue(ReservationStatus.rented.toString());
 
 		reservationsList.itemsProperty().bindBidirectional(viewModel.getListOfReservationsProperty());
 		searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
