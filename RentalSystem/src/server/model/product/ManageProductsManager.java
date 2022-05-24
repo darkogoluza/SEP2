@@ -30,9 +30,9 @@ public class ManageProductsManager implements ManageProducts
 	 * @param size
 	 */
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
 		try {
-			Product product = list.add(price, color, equipmentType, size);
+			Product product = list.add(price, color, equipmentType, size, amount);
 			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 			manageProductDatabase.save(product);
 			update();
@@ -84,12 +84,13 @@ public class ManageProductsManager implements ManageProducts
 	 * @param newSize
 	 */
 	@Override
-	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
 		try {
 			Product product = list.getByIndex(index);
 			product.setPrice(newPrice);
 			product.setColor(newColor);
 			product.setSize(newSize);
+			product.setAmount(amount);
 			manageProductDatabase.change(product);
 			list.change(index, newPrice, newColor, newSize);
 

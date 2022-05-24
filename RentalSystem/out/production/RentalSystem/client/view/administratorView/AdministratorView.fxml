@@ -42,6 +42,11 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
+                  <Label fx:id="priceLabel1" alignment="CENTER" contentDisplay="CENTER" text="amount" textAlignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -79,6 +84,7 @@
                      <VBox.margin>
                         <Insets right="6.0" />
                      </VBox.margin></TextField>
+                  <TextField fx:id="amountTextFiled" maxWidth="-Infinity" prefWidth="153.0" />
                </children>
                <padding>
                   <Insets top="20.0" />

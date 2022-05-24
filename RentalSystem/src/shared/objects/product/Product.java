@@ -12,6 +12,7 @@ public class Product implements Serializable
     private Color color;
     private EquipmentType type;
     private Size size;
+    private int amount;
 
     /**
      * Constructor
@@ -20,13 +21,15 @@ public class Product implements Serializable
      * @param color Color of the product values can be: red, blue, green, black, white, pink.
      * @param type Type of equipment values can be: helmet, ski, skiPoles, snowboard, skiShoes, snowboardShoes.
      * @param size Size of equipment values can be LabelFormat or MetricFormat.
+     * @param amount Quantity of product available in inventory.
      */
-    public Product(int id, double price, Color color, EquipmentType type, Size size) {
+    public Product(int id, double price, Color color, EquipmentType type, Size size, int amount) {
         this.price = price;
         this.id = id;
         this.color = color;
         this.type = type;
         this.size = size;
+        this.amount = amount;
     }
 
     /**
@@ -86,6 +89,22 @@ public class Product implements Serializable
     }
 
     /**
+     * Getter for amount.
+     * @return Returns amount.
+     */
+    public int getAmount() {
+        return amount;
+    }
+
+    /**
+     * Setter for amount
+     * @param amount New value for amount.
+     */
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    /**
      * Setter for the size of equipment.
      * @param size New value for Size.
      */
@@ -98,7 +117,7 @@ public class Product implements Serializable
      * @return Returns Product as string format is "Id: (id)\nPrice: (price)€\nColor: (color)\nType: (type)\nSize: (size)".
      */
     public String toString() {
-        return String.format("Id: %03d  %s  %s  %s  %.02f€", id, color, size, type, price);
+        return String.format("Id: %03d  %s  %s  %s  %.02f€ Amount: %d", id, color, size, type, price, amount);
     }
 
     /**
@@ -114,7 +133,8 @@ public class Product implements Serializable
                 product.id == id &&
                 product.color.equals(color) &&
                 product.type.equals(type) &&
-                product.size.equals(size);
+                product.size.equals(size) &&
+                product.amount == amount;
     };
 
     /**
@@ -122,6 +142,6 @@ public class Product implements Serializable
      * @return Returns exact copy of Product.
      */
     public Product copy() {
-        return new Product(id, price, color, type, size);
+        return new Product(id, price, color, type, size, amount);
     }
 }

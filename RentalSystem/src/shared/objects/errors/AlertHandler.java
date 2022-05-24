@@ -35,8 +35,13 @@ public class AlertHandler {
 	public void administratorWrongInput() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
-		alert.setHeaderText("You must have entered wrong input");
-		alert.setContentText("Price needs to be a number.\nLabel size need to be one of [\"S\",\"M\",\"L\",\"XL\",\"XXL\",\"XXXL\"]\nHeight size must be a number.\nLabel for shoes is a number between 35 and 45. ");
+		alert.setHeaderText("You must have entered wrong input or one field is left empty");
+		alert.setContentText("""
+				Price needs to be a number.
+				Label size need to be one of ["S","M","L","XL","XXL","XXXL"]
+				Height size must be a number.
+				Label for shoes is a number between 35 and 45.
+				Amount must be a number\s""");
 
 		alert.showAndWait();
 	}

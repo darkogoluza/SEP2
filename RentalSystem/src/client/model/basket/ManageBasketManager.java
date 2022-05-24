@@ -3,9 +3,12 @@ package client.model.basket;
 import client.networking.ClientProxy;
 import server.model.reservation.ManageReservationDatabase;
 import shared.objects.product.Product;
+import shared.objects.product.ProductList;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket {
@@ -69,6 +72,25 @@ public class ManageBasketManager implements ManageBasket {
     @Override
     public String getUserName() {
         return clientProxy.getClientUser().getLoggedUser().getUsername();
+    }
+
+    @Override
+    public ArrayList<String> getAllProductsAsString() {
+        Map<Product, Integer> map = getAllProductsByQuantity();
+        ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
+        ArrayList<String> temp = new ArrayList<>();
+
+        for (int i = 0; i < allProducts.size(); i++) {
+            Product product = allProducts.getByIndex(i);
+            int inStock = product.getAmount();
+            if(map.containsKey(product))
+                inStock -= map.get(product);
+
+            String value = product.toString() + " in stock: " + inStock;
+            temp.add(value);
+        }
+
+        return temp;
     }
 
     @Override

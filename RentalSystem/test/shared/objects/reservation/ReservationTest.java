@@ -16,7 +16,7 @@ class ReservationTest {
     @BeforeEach
     void setUp() {
         ProductList arrayList = new ProductList();
-        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150)));
+        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150), 5));
         reservation = new Reservation(0, "testUser", arrayList);
     }
 
@@ -43,7 +43,7 @@ class ReservationTest {
 
     @Test
     void getProducts() {
-        Product product = new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150));
+        Product product = new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150), 5);
         assertEquals(product, reservation.getProducts().get(0));
     }
 
@@ -62,7 +62,7 @@ class ReservationTest {
     @Test
     void testEqualsTrue() {
         ProductList arrayList = new ProductList();
-        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150)));
+        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150), 5));
         Reservation reservationDuplicate = new Reservation(0, "testUser", arrayList);
 
         assertEquals(reservationDuplicate, reservationDuplicate);
@@ -71,7 +71,7 @@ class ReservationTest {
     @Test
     void testEqualsFalse1() {
         ProductList arrayList = new ProductList();
-        arrayList.add(new Product(1, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150)));
+        arrayList.add(new Product(1, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150), 5));
         Reservation reservationDuplicate = new Reservation(0, "testUser", arrayList);
 
         assertNotEquals(reservationDuplicate, reservation);
@@ -80,7 +80,7 @@ class ReservationTest {
     @Test
     void testEqualsFalse2() {
         ProductList arrayList = new ProductList();
-        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150)));
+        arrayList.add(new Product(0, 14.99, Color.black, EquipmentType.ski, new MetricFormat(150), 5));
         Reservation reservationDuplicate = new Reservation(1, "testUser", arrayList);
 
         assertNotEquals(reservationDuplicate, reservation);

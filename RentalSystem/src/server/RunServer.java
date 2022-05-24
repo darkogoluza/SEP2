@@ -21,6 +21,5 @@ public class RunServer {
         registry.bind(Utils.SERVER_RENTAL, server);
 
         System.out.println("Server started");
-
     }
 }

@@ -17,6 +17,7 @@ public class AdministratorViewModel {
 	private StringProperty price;
 	private StringProperty color;
 	private StringProperty type;
+	private StringProperty amount;
 	private ManageProducts model;
 	private ModelProxy modelProxy;
 
@@ -26,6 +27,7 @@ public class AdministratorViewModel {
 		price = new SimpleStringProperty();
 		type = new SimpleStringProperty();
 		color = new SimpleStringProperty();
+		amount = new SimpleStringProperty();
 		this.model = modelProxy.getManageProducts();
 		this.modelProxy = modelProxy;
 
@@ -40,9 +42,9 @@ public class AdministratorViewModel {
 		listViewAdministrator.set(FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
 	}
 
-	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size) {
+	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
 
-		model.add(price, color, equipmentType, size);
+		model.add(price, color, equipmentType, size, amount);
 	}
 
 	public void removeProduct(int index) {
@@ -52,10 +54,11 @@ public class AdministratorViewModel {
 	public void clearFields() {
 		size.set("");
 		price.set("");
+		amount.set("");
 	}
 
-	public void changeProduct(int index, double price, Color color, Size size) {
-		model.changeProduct(index, price, color, size);
+	public void changeProduct(int index, double price, Color color, Size size, int amount) {
+		model.changeProduct(index, price, color, size, amount);
 	}
 
 	public void setFieldsTo(int index) {
@@ -64,6 +67,7 @@ public class AdministratorViewModel {
 		price.set(product.getPrice() + "");
 		type.set(product.getType().toString());
 		color.set(product.getColor().toString());
+		amount.set(product.getAmount() + "");
 	}
 
 	public ListProperty<String> getListViewAdministrator() {
@@ -88,5 +92,9 @@ public class AdministratorViewModel {
 
 	public void logOff() {
 		modelProxy.getManageUser().logout();
+	}
+
+	public StringProperty getAmountStringProperty() {
+		return amount;
 	}
 }

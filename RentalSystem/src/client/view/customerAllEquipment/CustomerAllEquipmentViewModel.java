@@ -55,10 +55,11 @@ public class CustomerAllEquipmentViewModel
     {
         Product product = modelProducts.getProduct(index);
         modelBasket.add(product);
+        loadAllProducts();
     }
 
     public void loadAllProducts() {
-        listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
+        listOfProducts.set(FXCollections.observableArrayList(modelBasket.getAllProductsAsString()));
     }
 
     public StringProperty getUsernameProperty()

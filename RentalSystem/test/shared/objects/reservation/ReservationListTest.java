@@ -113,7 +113,7 @@ class ReservationListTest {
 	@Test
 	void testToString() {
 		ProductList productList = new ProductList();
-		productList.add(1, Color.red, EquipmentType.ski, new MetricFormat(2));
+		productList.add(1, Color.red, EquipmentType.ski, new MetricFormat(2), 5);
 
 		list.add("name", productList);
 

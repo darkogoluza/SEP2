@@ -11,7 +11,7 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10));
+        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10), 5);
     }
 
     @Test
@@ -53,7 +53,7 @@ class ProductTest {
 
     @Test
     void getSizeLabelFormat() {
-        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new LabelFormat("XL"));
+        product = new Product(0, 14.99, Color.red, EquipmentType.ski, new LabelFormat("XL"), 5);
         assertEquals(new LabelFormat("XL"), product.getSize());
     }
 
@@ -71,7 +71,7 @@ class ProductTest {
 
     @Test
     void testEqualsFalse() {
-        Product product1 = new Product(1, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10));
+        Product product1 = new Product(1, 14.99, Color.red, EquipmentType.ski, new MetricFormat( 10), 5);
         assertNotEquals(product, product1);
     }
 

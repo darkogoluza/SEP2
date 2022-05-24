@@ -42,6 +42,8 @@ public class AdministratorViewController {
     private ListView listView;
     @FXML
     private TextField priceTextField;
+    @FXML
+    private TextField amountTextFiled;
 
     @FXML
     private HBox normalButtons;
@@ -60,6 +62,7 @@ public class AdministratorViewController {
 
 		sizeTextField.textProperty().bindBidirectional(viewModel.getSizeStringProperty());
 		priceTextField.textProperty().bindBidirectional(viewModel.getPriceStringProperty());
+		amountTextFiled.textProperty().bindBidirectional(viewModel.getAmountStringProperty());
 
 		typeChoiceBox.setItems(equipmentTypeList);
         typeChoiceBox.valueProperty().bindBidirectional(viewModel.getType());
@@ -103,7 +106,9 @@ public class AdministratorViewController {
         viewModel.addProduct(Double.parseDouble(priceTextField.getText()),
                 Color.valueOf(colorChoiceBox.getValue().toString()),
                 EquipmentType.valueOf(typeChoiceBox.getValue().toString()),
-                getSize());
+                getSize(),
+                Integer.parseInt(amountTextFiled.getText())
+        );
 
         viewModel.clearFields();
     }
@@ -119,7 +124,8 @@ public class AdministratorViewController {
         viewModel.changeProduct(currentEditingProductIndex,
                 Double.parseDouble(priceTextField.getText()),
                 Color.valueOf(colorChoiceBox.getValue().toString()),
-                getSize()
+                getSize(),
+                Integer.parseInt(amountTextFiled.getText())
         );
         viewModel.clearFields();
     }
@@ -174,10 +180,16 @@ public class AdministratorViewController {
             return false;
         }
 
+        try {
+            Integer.parseInt(amountTextFiled.getText());
+        } catch (NumberFormatException  | NullPointerException e) {
+            return false;
+        }
+
         if(!isLabelFormat()) {
             try {
                 Double.parseDouble(sizeTextField.getText());
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | NullPointerException e) {
                 return false;
             }
         } else if(typeChoiceBox.getValue().toString().equals(EquipmentType.helmet.toString())) {

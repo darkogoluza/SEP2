@@ -37,10 +37,10 @@ public class ClientProduct implements Remote, Serializable
 
 	}
 
-	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
 		try
 		{
-			server.add(price, color, equipmentType, size);
+			server.add(price, color, equipmentType, size, amount);
 		}
 		catch (RemoteException e)
 		{
@@ -83,10 +83,10 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
-	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
 		try
 		{
-			server.changeProduct(index, newPrice, newColor, newSize);
+			server.changeProduct(index, newPrice, newColor, newSize, amount);
 		}
 		catch (RemoteException e)
 		{

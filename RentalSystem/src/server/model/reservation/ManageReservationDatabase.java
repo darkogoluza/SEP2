@@ -76,8 +76,9 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                 Color color = Color.valueOf(resultSet.getString("color"));
                 double price = resultSet.getDouble("price");
                 int quantity = resultSet.getInt("quantity");
+                int amount = resultSet.getInt("amount");
 
-                Product product = new Product(id, price, color, type, size);
+                Product product = new Product(id, price, color, type, size, amount);
                 for (int i = 0; i < quantity; i++)
                 {
                     list.add(product);

@@ -24,8 +24,8 @@ public class ManageProductsManager implements ManageProducts {
 	 * @param size
 	 */
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
-		clientProxy.getClientProduct().add(price, color, equipmentType, size);
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
+		clientProxy.getClientProduct().add(price, color, equipmentType, size, amount);
 
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
@@ -63,8 +63,8 @@ public class ManageProductsManager implements ManageProducts {
 	 * @param newSize
 	 */
 	@Override
-	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
-		clientProxy.getClientProduct().changeProduct(index, newPrice, newColor, newSize);
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
+		clientProxy.getClientProduct().changeProduct(index, newPrice, newColor, newSize, amount);
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 

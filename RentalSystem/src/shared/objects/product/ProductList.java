@@ -35,8 +35,8 @@ public class ProductList implements Serializable
      * @param size Size of the product.
      * @return Returns the same product that was created and inserted in to the list.
      */
-    public Product add(double price, Color color, EquipmentType equipmentType, Size size) {
-        Product product = new Product(getUniqueId(), price, color, equipmentType, size);
+    public Product add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
+        Product product = new Product(getUniqueId(), price, color, equipmentType, size, amount);
         list.add(product);
         return product;
     }

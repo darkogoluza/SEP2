@@ -12,5 +12,4 @@ public interface ManageProductsPersistence
     void save(Product product) throws SQLException;
     void change(Product product) throws SQLException;
     void remove(Product product) throws SQLException;
-    void clear();
 }

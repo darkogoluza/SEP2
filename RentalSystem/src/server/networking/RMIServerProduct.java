@@ -16,8 +16,8 @@ public class RMIServerProduct implements ServerProduct {
 	}
 
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size) throws RemoteException{
-		productsManager.add(price, color, equipmentType, size);
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) throws RemoteException{
+		productsManager.add(price, color, equipmentType, size, amount);
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class RMIServerProduct implements ServerProduct {
 	}
 
 	@Override
-	public void changeProduct(int index, double newPrice, Color newColor, Size newSize)
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount)
 			throws RemoteException{
-		productsManager.changeProduct(index, newPrice, newColor, newSize);
+		productsManager.changeProduct(index, newPrice, newColor, newSize, amount);
 	}
 
 	@Override public void add(Product product)throws RemoteException
