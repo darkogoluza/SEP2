@@ -33,15 +33,17 @@ public class EmployeeAllOrdersController {
 	}
 
 	public void onSearchButton(ActionEvent event) {
-		int id = Integer.parseInt(searchInput.getText());
-		if (id >= 0 && id <= viewModel.reservationsCount()) {
-			Reservation r = viewModel.openReservationById(id);
-			if (r != null) {
-				viewHandler.openEmployeeOrderDetailsView(r.getId());
-			}
-			else {
-				AlertHandler.getInstance().orderDontExist();
-			}
+		int id = -1;
+		try {
+			id = Integer.parseInt(searchInput.getText());
+		} catch (NumberFormatException e) {
+			AlertHandler.getInstance().wrongOrderIdInput();
+			return;
+		}
+
+		Reservation r = viewModel.openReservationById(id);
+		if (r != null) {
+			viewHandler.openEmployeeOrderDetailsView(r.getId());
 		}
 		else {
 			AlertHandler.getInstance().orderDontExist();

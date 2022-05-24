@@ -3,6 +3,7 @@ package client.model.user;
 import client.networking.ClientProxy;
 import shared.objects.user.User;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class ManageUserManager implements ManageUser
@@ -21,7 +22,6 @@ public class ManageUserManager implements ManageUser
     }
 
 
-
 	@Override
 	public User get(String username) {
 		return clientProxy.getClientUser().get(username);
@@ -29,7 +29,9 @@ public class ManageUserManager implements ManageUser
 
 	@Override public boolean login(String username, String password)
 	{
-		return clientProxy.getClientUser().login(username, password);
+		boolean bool = clientProxy.getClientUser().login(username, password);
+		changeSupport.firePropertyChange("login", null, username);
+		return bool;
 	}
 
 	@Override
@@ -40,6 +42,26 @@ public class ManageUserManager implements ManageUser
 	@Override
 	public void logout() {
 		clientProxy.getClientUser().logout();
+	}
+
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	@Override
+	public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(name, listener);
+	}
+
+	@Override
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	@Override
+	public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(name, listener);
 	}
 
 }

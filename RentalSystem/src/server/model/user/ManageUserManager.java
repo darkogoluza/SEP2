@@ -3,6 +3,7 @@ package server.model.user;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
@@ -12,13 +13,13 @@ public class ManageUserManager implements ManageUser{
 	private ManageUserPersistance db;
 
 	public ManageUserManager() {
+		changeSupport = new PropertyChangeSupport(this);
 		user = null;
 		try {
 			db = new ManageUserDatabase();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class ManageUserManager implements ManageUser{
 		// if we get user and password is correct we can log in user
 		if (userTmp != null && userTmp.getPassword().equals(password)) {
 			user = userTmp;
+			changeSupport.firePropertyChange("login", null, username);
 			return true;
 		}
 
@@ -75,5 +77,24 @@ public class ManageUserManager implements ManageUser{
 		//TODO fire event so we can open another window
 	}
 
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	@Override
+	public void addPropertyChangeListener(String name, PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(name, listener);
+	}
+
+	@Override
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	@Override
+	public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(name, listener);
+	}
 
 }

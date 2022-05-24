@@ -15,7 +15,7 @@ import java.beans.PropertyChangeEvent;
 public class CustomerAllEquipmentViewModel
 {
     private ListProperty<String> listOfProducts;
-    private StringProperty editableLabelUserNameProperty;
+    private StringProperty usernameProperty;
     private StringProperty totalItemsInBasketProperty;
 
     private ManageBasket modelBasket;
@@ -24,7 +24,7 @@ public class CustomerAllEquipmentViewModel
 
 	public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
     {
-        editableLabelUserNameProperty = new SimpleStringProperty();
+        usernameProperty = new SimpleStringProperty();
         listOfProducts = new SimpleListProperty<>();
         totalItemsInBasketProperty = new SimpleStringProperty();
 
@@ -33,12 +33,19 @@ public class CustomerAllEquipmentViewModel
         modelProducts = modelProxy.getManageProducts();
 
         totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
-        editableLabelUserNameProperty.set(modelBasket.getUserName());
+        usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
+		modelProxy.getManageUser().addPropertyChangeListener("login",
+				(event) ->  usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername())
+		);
 
     }
 
-    private void modifiedBasket(PropertyChangeEvent event) {
+	private void login(PropertyChangeEvent propertyChangeEvent) {
+		System.out.println(propertyChangeEvent.getNewValue());
+	}
+
+	private void modifiedBasket(PropertyChangeEvent event) {
         totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
 
     }
@@ -54,9 +61,9 @@ public class CustomerAllEquipmentViewModel
         listOfProducts.set(FXCollections.observableArrayList(modelProducts.getAllProducts().convertToStringArrayList()));
     }
 
-    public StringProperty getEditableLabelUserNameProperty()
+    public StringProperty getUsernameProperty()
     {
-        return editableLabelUserNameProperty;
+        return usernameProperty;
     }
     public StringProperty getTotalItemsInBasketProperty() {
         return totalItemsInBasketProperty;
