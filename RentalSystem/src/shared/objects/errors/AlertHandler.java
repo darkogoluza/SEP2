@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import shared.objects.product.Product;
 
 import java.util.Optional;
 
@@ -139,4 +140,12 @@ public class AlertHandler {
 
 		alert.showAndWait();
     }
+
+	public void onProductOutOfStock(Product product) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText(String.format("Product %s %s %.2f€ is out of stock and can not be put to basket", product.getColor(), product.getType(), product.getPrice()));
+
+		alert.showAndWait();
+	}
 }

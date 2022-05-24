@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 
 import java.beans.PropertyChangeEvent;
@@ -47,6 +48,7 @@ public class CustomerAllEquipmentViewModel
 
 	private void modifiedBasket(PropertyChangeEvent event) {
         totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
+        loadAllProducts();
 
     }
 
@@ -54,8 +56,11 @@ public class CustomerAllEquipmentViewModel
     public void addProductToBasket(int index)
     {
         Product product = modelProducts.getProduct(index);
+        if(!modelBasket.checkIfProductIsInStock(product.getId())) {
+            AlertHandler.getInstance().onProductOutOfStock(product);
+            return;
+        }
         modelBasket.add(product);
-        loadAllProducts();
     }
 
     public void loadAllProducts() {
@@ -74,6 +79,7 @@ public class CustomerAllEquipmentViewModel
     }
 
     public void logOff() {
+	    modelBasket.clear();
 		modelProxy.getManageUser().logout();
     }
 }

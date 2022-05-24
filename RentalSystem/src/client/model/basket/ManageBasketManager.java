@@ -83,14 +83,43 @@ public class ManageBasketManager implements ManageBasket {
         for (int i = 0; i < allProducts.size(); i++) {
             Product product = allProducts.getByIndex(i);
             int inStock = product.getAmount();
-            if(map.containsKey(product))
-                inStock -= map.get(product);
 
-            String value = product.toString() + " in stock: " + inStock;
+            for(Map.Entry<Product, Integer> entry : map.entrySet()) {
+                if(entry.getKey().equals(product)) {
+                    inStock -= entry.getValue();
+                }
+            }
+
+            String value = String.format("[%s %s] %.02f€    %s",
+                    product.getColor(),
+                    product.getType().toString(),
+                    product.getPrice(),
+                    inStock <= 0 ? "out of stock" : inStock + " left in stock"
+                    );
             temp.add(value);
         }
 
         return temp;
+    }
+
+    @Override
+    public boolean checkIfProductIsInStock(int id) {
+        Map<Product, Integer> map = getAllProductsByQuantity();
+        ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
+
+        for (int i = 0; i < allProducts.size(); i++) {
+            Product product = allProducts.getByIndex(i);
+
+            if(product.getId() == id) {
+                for (Map.Entry<Product, Integer> entry : map.entrySet()) {
+                    if (entry.getKey().equals(product)) {
+                        if(product.getAmount() - entry.getValue() <= 0)
+                            return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     @Override
