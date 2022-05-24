@@ -20,8 +20,6 @@ public class ManageReservationManager implements ManageReservations
 
         try {
             manageReservationDatabase = new ManageReservationDatabase();
-            list = manageReservationDatabase.load();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -31,6 +29,7 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void add(Reservation reservation) {
         list.add(reservation);
+		update();
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
         // TODO maybe save
     }
@@ -38,6 +37,7 @@ public class ManageReservationManager implements ManageReservations
     @Override
     public void remove(int index) {
         Reservation reservation = list.removeByIndex(index);
+		update();
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
         try {
             manageReservationDatabase.remove(reservation);
@@ -48,21 +48,25 @@ public class ManageReservationManager implements ManageReservations
 
     @Override
     public String getTotalPrice(int id) {
+		update();
         return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
     }
 
     @Override public Reservation getReservationByIndex(int index)
     {
+		update();
         return list.getByIndex(index);
     }
 
     @Override public Reservation getReservationById(int id)
     {
+		update();
 		return list.get(id);
     }
 
     @Override public ReservationList getAllReservations()
     {
+		update();
         return list;
     }
 
@@ -73,6 +77,7 @@ public class ManageReservationManager implements ManageReservations
 
         try {
             manageReservationDatabase.change(reservation);
+			update();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,6 +90,14 @@ public class ManageReservationManager implements ManageReservations
     public void showAllReservations() {
 
     }
+
+	private void update() {
+		try {
+			list = manageReservationDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {

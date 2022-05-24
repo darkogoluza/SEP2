@@ -59,7 +59,6 @@ public class EmployeeAllOrdersController {
 
 		int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 
-		System.out.println(id);
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 
@@ -68,13 +67,9 @@ public class EmployeeAllOrdersController {
 			return;
 		else
 		{
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle("Warning");
-			alert.setHeaderText("Confirm that you want to remove this order, you won't be able to change this decision later!");
+			AlertHandler.getInstance().onRemoveReservation();
 
-			alert.showAndWait();
 			viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
-
 		}
 	}
 }

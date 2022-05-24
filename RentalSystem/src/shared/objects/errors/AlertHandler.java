@@ -84,6 +84,14 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+    public void onRemoveReservation() {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Confirm that you want to remove this order, you won't be able to change this decision later!");
+
+		alert.showAndWait();
+    }
+
 //	public void
 
 }

@@ -25,6 +25,7 @@ public class ManageUserManager implements ManageUser{
 	public void add(User user) {
 		try {
 			db.save(user);
+			login(user.getUsername(), user.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

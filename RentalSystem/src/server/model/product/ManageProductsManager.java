@@ -20,11 +20,6 @@ public class ManageProductsManager implements ManageProducts
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			list = manageProductDatabase.load();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -40,6 +35,7 @@ public class ManageProductsManager implements ManageProducts
 			Product product = list.add(price, color, equipmentType, size);
 			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 			manageProductDatabase.save(product);
+			update();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -56,6 +52,7 @@ public class ManageProductsManager implements ManageProducts
 			Product product = list.removeByIndex(index);
 			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 			manageProductDatabase.remove(product);
+			update();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,11 +66,13 @@ public class ManageProductsManager implements ManageProducts
 	 */
 	@Override
 	public Product getProduct(int index) {
+		update();
 		return list.getByIndex(index);
 	}
 
 	@Override
 	public ProductList getAllProducts() {
+		update();
 		return list;
 	}
 
@@ -93,6 +92,8 @@ public class ManageProductsManager implements ManageProducts
 			product.setSize(newSize);
 			manageProductDatabase.change(product);
 			list.change(index, newPrice, newColor, newSize);
+
+			update();
 			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,6 +103,14 @@ public class ManageProductsManager implements ManageProducts
 	@Override
 	public void showAllProducts() {
 
+	}
+
+	private void update() {
+		try {
+			list = manageProductDatabase.load();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
