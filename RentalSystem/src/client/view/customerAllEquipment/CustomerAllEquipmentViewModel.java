@@ -1,20 +1,18 @@
 package client.view.customerAllEquipment;
 
 import client.model.ModelProxy;
-import client.model.basket.ManageBasket;
-import client.model.product.ManageProducts;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shared.networking.model.ManageBasket;
+import shared.networking.model.ManageProducts;
 import shared.objects.product.EquipmentType;
 import shared.objects.product.Product;
-import shared.objects.reservation.ReservationStatus;
 
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 
 public class CustomerAllEquipmentViewModel
 {

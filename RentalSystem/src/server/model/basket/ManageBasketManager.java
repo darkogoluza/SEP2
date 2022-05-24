@@ -2,6 +2,7 @@ package server.model.basket;
 
 import server.model.reservation.ManageReservationDatabase;
 import server.model.user.ManageUserManager;
+import shared.networking.model.ManageBasket;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;

@@ -1,5 +1,6 @@
 package server.model.product;
 
+import shared.networking.model.ManageProducts;
 import shared.objects.product.*;
 
 import java.beans.PropertyChangeListener;
@@ -98,11 +99,6 @@ public class ManageProductsManager implements ManageProducts
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void showAllProducts() {
-
 	}
 
 	@Override

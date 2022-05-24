@@ -2,6 +2,7 @@ package client.model.product;
 
 import client.networking.ClientProxy;
 import javafx.collections.ObservableList;
+import shared.networking.model.ManageProducts;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;

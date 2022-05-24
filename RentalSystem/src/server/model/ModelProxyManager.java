@@ -1,12 +1,12 @@
 package server.model;
 
-import server.model.basket.ManageBasket;
+import shared.networking.model.ManageBasket;
 import server.model.basket.ManageBasketManager;
-import server.model.product.ManageProducts;
+import shared.networking.model.ManageProducts;
 import server.model.product.ManageProductsManager;
 import server.model.reservation.ManageReservationManager;
-import server.model.reservation.ManageReservations;
-import server.model.user.ManageUser;
+import shared.networking.model.ManageReservations;
+import shared.networking.model.ManageUser;
 import server.model.user.ManageUserManager;
 
 public class ModelProxyManager implements ModelProxy

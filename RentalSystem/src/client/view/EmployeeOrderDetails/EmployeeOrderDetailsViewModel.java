@@ -2,12 +2,12 @@ package client.view.EmployeeOrderDetails;
 
 import client.model.ModelProxy;
 import client.model.basket.ProductsInBasket;
-import client.model.product.ManageProducts;
-import client.model.reservation.ManageReservations;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shared.networking.model.ManageProducts;
+import shared.networking.model.ManageReservations;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
@@ -36,9 +36,12 @@ public class EmployeeOrderDetailsViewModel
   private int id;
   private ObservableList<ProductsInBasket> productsInList;
 
+  private ModelProxy modelProxy;
+
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
   {
     this.id = id;
+	this.modelProxy = modelProxy;
 
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
@@ -93,7 +96,7 @@ public class EmployeeOrderDetailsViewModel
     statusProperty.set(""+reservation.getStatus());
     returnedAtDateProperty.set(new SimpleDateFormat("dd MMM, yyyy").format(reservation.getExpiresAt()));
     returnedAtTimeProperty.set(new SimpleDateFormat("K:mm a").format(reservation.getExpiresAt()));
-    phoneNumberProperty.setValue(modelReservations.getUser(reservation.getUserName()).getPhoneNo());
+    phoneNumberProperty.setValue(modelProxy.getManageUser().get(reservation.getUserName()).getPhoneNo());
 	finalTotalPriceProperty.set(modelReservations.getTotalPrice(id) + "");
 
   }

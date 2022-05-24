@@ -1,8 +1,8 @@
 package client.networking;
 
 
-import shared.networking.Server;
-import shared.networking.ServerBasket;
+import shared.networking.server.Server;
+import shared.networking.server.ServerBasket;
 import shared.objects.product.Product;
 import shared.util.Utils;
 
@@ -12,7 +12,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
 public class ClientBasket implements Remote, Serializable

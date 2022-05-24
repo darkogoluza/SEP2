@@ -2,6 +2,7 @@ package client.model.basket;
 
 import client.networking.ClientProxy;
 import server.model.reservation.ManageReservationDatabase;
+import shared.networking.model.ManageBasket;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -63,11 +64,6 @@ public class ManageBasketManager implements ManageBasket {
     @Override
     public boolean isEmpty() {
         return clientProxy.getClientBasket().isEmpty();
-    }
-
-    @Override
-    public String getUserName() {
-        return clientProxy.getClientUser().getLoggedUser().getUsername();
     }
 
     @Override

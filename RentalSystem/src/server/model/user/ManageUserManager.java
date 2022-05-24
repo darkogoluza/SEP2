@@ -1,13 +1,13 @@
 package server.model.user;
 
+import shared.networking.model.ManageUser;
 import shared.objects.user.User;
-import shared.objects.user.UserRole;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
-public class ManageUserManager implements ManageUser{
+public class ManageUserManager implements ManageUser {
 	public static User user;
 	private PropertyChangeSupport changeSupport;
 	private ManageUserPersistance db;

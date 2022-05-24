@@ -1,7 +1,7 @@
 package server.networking;
 
-import server.model.user.ManageUser;
-import shared.networking.ServerUser;
+import shared.networking.model.ManageUser;
+import shared.networking.server.ServerUser;
 import shared.objects.user.User;
 import shared.util.Utils;
 

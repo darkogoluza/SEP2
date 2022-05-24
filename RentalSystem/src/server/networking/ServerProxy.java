@@ -1,7 +1,7 @@
 package server.networking;
 
 import server.model.ModelProxy;
-import shared.networking.*;
+import shared.networking.server.*;
 import shared.util.Utils;
 
 import java.rmi.RemoteException;

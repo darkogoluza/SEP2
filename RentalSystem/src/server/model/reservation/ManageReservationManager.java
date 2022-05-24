@@ -1,5 +1,6 @@
 package server.model.reservation;
 
+import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
@@ -83,12 +84,6 @@ public class ManageReservationManager implements ManageReservations
         }
 
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
-    }
-
-
-    @Override
-    public void showAllReservations() {
-
     }
 
 	private void update() {

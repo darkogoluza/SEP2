@@ -1,6 +1,5 @@
 package client.core;
 
-import client.model.user.ManageUser;
 import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
@@ -13,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import shared.networking.model.ManageUser;
 
 import java.io.IOException;
 
@@ -47,7 +47,7 @@ public class ViewHandler
 	 * Open selected view
 	 * This is what is opened when we launch an application
 	 */
-    public void start(ManageUser manageUser){
+    public void start(){
 		//customer
 //		manageUser.login("xoxo", "123456");
 //		//admin
@@ -109,13 +109,11 @@ public class ViewHandler
 	 */
     public void openCustomerAllEquipmentView(){
         FXMLLoader loader = new FXMLLoader();
-        if(customerAllEquipmentScene == null){
 
-            Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
-            CustomerAllEquipmentViewController controller = loader.getController();
-            controller.init(this,vmf);
-            customerAllEquipmentScene = new Scene(root);
-        }
+		Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
+		CustomerAllEquipmentViewController controller = loader.getController();
+		controller.init(this,vmf);
+		customerAllEquipmentScene = new Scene(root);
 
         stage.setTitle("All equipment");
         stage.setScene(customerAllEquipmentScene);
