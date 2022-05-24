@@ -1,8 +1,9 @@
 package client.model.user;
 
 import shared.objects.user.User;
+import shared.util.PropertyChangeSubject;
 
-public interface ManageUser
+public interface ManageUser extends PropertyChangeSubject
 {
 	void add(User user);
 	User get(String username);
