@@ -110,7 +110,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("DELETE FROM Product WHERE id = ?");
+                    connection.prepareStatement("DELETE FROM reservation_product WHERE productid = ?");
+            statement.setInt(1, product.getId());
+            statement.executeUpdate();
+
+			statement = connection.prepareStatement("DELETE FROM Product WHERE id = ?");
             statement.setInt(1, product.getId());
             statement.executeUpdate();
         }

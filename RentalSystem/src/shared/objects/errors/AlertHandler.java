@@ -104,12 +104,19 @@ public class AlertHandler {
 		}
 	}
 
-	public void onRemoveProduct() {
+	public boolean onRemoveProduct() {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Warning");
 		alert.setHeaderText("Confirm that you want to remove this product, you won't be able to change this decision later!");
 
-		alert.showAndWait();
+		Optional<ButtonType> result = alert.showAndWait();
+
+		if (result.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }

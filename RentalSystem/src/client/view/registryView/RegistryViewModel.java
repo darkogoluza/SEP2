@@ -58,6 +58,9 @@ public class RegistryViewModel
 			else {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue()));
 			}
+
+			modelProxy.getManageUser().login(userNameProperty.getValue(), passwordProperty.getValue());
+
 			return true;
 		}
     	else {

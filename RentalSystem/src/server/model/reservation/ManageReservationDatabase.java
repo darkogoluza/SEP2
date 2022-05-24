@@ -154,10 +154,10 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             PreparedStatement statement =connection.prepareStatement("DELETE FROM reservation_product WHERE reservationid = ?");
             statement.setInt(1, reservation.getId());
             statement.executeUpdate();
-               statement =
-                        connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
-                statement.setInt(1, reservation.getId());
-                statement.executeUpdate();
+
+		   	statement = connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
+			statement.setInt(1, reservation.getId());
+			statement.executeUpdate();
         }
         finally {
             connection.close();
@@ -192,7 +192,7 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         return ++id;
     }
 
-    
+
 
 
 

@@ -129,9 +129,8 @@ public class AdministratorViewController {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
             return;
 
-		AlertHandler.getInstance().onRemoveProduct();
-
-		viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
+		if (AlertHandler.getInstance().onRemoveProduct())
+			viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
     }
 
     public void editButton(ActionEvent event)
