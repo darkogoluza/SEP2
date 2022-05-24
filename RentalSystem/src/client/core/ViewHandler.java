@@ -13,8 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import shared.objects.user.User;
-import shared.objects.user.UserRole;
 
 import java.io.IOException;
 
@@ -57,14 +55,14 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-		openLoginView();
+//		openLoginView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
 //        	openCustomerAllEquipmentView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-//			openEmployeeView();
+			openEmployeeView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
 //        	openAdministratorView();
 
@@ -166,15 +164,13 @@ public class ViewHandler
 	public void openEmployeeOrderDetailsView(int id){
 		FXMLLoader loader = new FXMLLoader();
 
-		if (employeeOrderDetailsScene == null) {
-			Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
+		Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
 
-			EmployeeOrderDetailsController controller = loader.getController();
-			controller.init(this, vmf, id);
-			employeeOrderDetailsScene = new Scene(root);
-		}
+		EmployeeOrderDetailsController controller = loader.getController();
+		controller.init(this, vmf, id);
+		employeeOrderDetailsScene = new Scene(root);
 
-		stage.setTitle("Details about ");
+		stage.setTitle("Reservation <" + id + ">");
 		stage.setScene(employeeOrderDetailsScene);
 	}
 

@@ -25,7 +25,7 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="editableLabelUserName" text="Darko">
+                  <Label fx:id="username">
                      <font>
                         <Font size="18.0" />
                      </font>

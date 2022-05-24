@@ -93,6 +93,7 @@ public class EmployeeOrderDetailsController {
 		statusChoice.setItems(statusList);
 		statusChoice.setValue(ReservationStatus.valueOf(viewModel.getStatusProperty().getValue()));
 
+		viewModel.setId(id);
 		viewModel.showAllProducts();
 		viewModel.updateViewModelReservationInfo();
 	}

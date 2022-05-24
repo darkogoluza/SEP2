@@ -4,16 +4,13 @@ import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import shared.objects.product.Product;
 
 public class CustomerAllEquipmentViewController
 {
     @FXML
-    private Label editableLabelUserName;
+    private Label username;
     @FXML
     private ListView listOfProducts;
     @FXML
@@ -26,10 +23,9 @@ public class CustomerAllEquipmentViewController
     {
         this.viewHandler = viewHandler;
         viewModel = vmf.getCustomerAllEquipmentView();
-        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
+        username.textProperty().bind(viewModel.getUsernameProperty());
         totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
         listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
-        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
 
         viewModel.loadAllProducts();
 

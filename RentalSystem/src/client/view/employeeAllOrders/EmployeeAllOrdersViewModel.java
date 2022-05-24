@@ -49,10 +49,6 @@ public class EmployeeAllOrdersViewModel
 		return r.getId();
 	}
 
-	public int reservationsCount() {
-		return modelReservations.getAllReservations().size();
-	}
-
 	public Reservation openReservationById(int id) {
 		return modelReservations.getReservationById(id);
 	}

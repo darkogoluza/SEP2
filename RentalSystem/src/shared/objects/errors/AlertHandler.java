@@ -119,6 +119,14 @@ public class AlertHandler {
 		}
 	}
 
+	public void wrongOrderIdInput() {
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Order ID can be only number!");
+
+		alert.showAndWait();
+	}
+
     public void onOrderExpireSoon(int id, int hoursBeforeExpiration) {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
