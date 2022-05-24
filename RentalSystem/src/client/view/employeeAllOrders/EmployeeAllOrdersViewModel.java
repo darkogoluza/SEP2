@@ -1,9 +1,9 @@
 package client.view.employeeAllOrders;
 
 import client.model.ModelProxy;
-import client.model.reservation.ManageReservations;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
+import client.model.reservation.ManageReservations;
 import shared.objects.reservation.Reservation;
 
 import java.beans.PropertyChangeEvent;
@@ -13,6 +13,7 @@ public class EmployeeAllOrdersViewModel
 	private ListProperty<String> listOfOrders;
 	private SimpleStringProperty searchInput;
 	private ManageReservations modelReservations;
+	private ModelProxy modelProxy;
 
 	private String filterStatus;
 	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
@@ -21,6 +22,7 @@ public class EmployeeAllOrdersViewModel
 		listOfOrders = new SimpleListProperty<>();
 		this.modelReservations = modelProxy.getManageReservations();
 		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
+		this.modelProxy = modelProxy;
 
 		loadAllProducts();
 	}
