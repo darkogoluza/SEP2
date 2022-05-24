@@ -4,13 +4,20 @@ import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import shared.objects.product.EquipmentType;
 
 public class CustomerAllEquipmentViewController
 {
     @FXML
     private Label username;
+	@FXML
+    private Button filterButton;
+	@FXML
+	private ChoiceBox<String> filterChoiceBox;
     @FXML
     private ListView listOfProducts;
     @FXML
@@ -26,6 +33,8 @@ public class CustomerAllEquipmentViewController
         username.textProperty().bind(viewModel.getUsernameProperty());
         totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
         listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
+		filterChoiceBox.setItems(viewModel.getCategoriesProperty());
+		filterChoiceBox.getSelectionModel().selectFirst();
 
         viewModel.loadAllProducts();
 
@@ -49,6 +58,10 @@ public class CustomerAllEquipmentViewController
     {
         viewHandler.openCustomerBasket();
     }
+
+	public void filter() {
+		viewModel.filterByCategory(filterChoiceBox.getSelectionModel().getSelectedIndex());
+	}
 
 }
 

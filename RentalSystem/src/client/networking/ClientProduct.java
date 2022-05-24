@@ -11,7 +11,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class ClientProduct implements Remote, Serializable
@@ -113,6 +112,15 @@ public class ClientProduct implements Remote, Serializable
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+
+    public ProductList getProductByCategory(EquipmentType category) {
+		try {
+			return server.getProductsByCategory(category);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }

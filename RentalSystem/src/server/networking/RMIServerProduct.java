@@ -41,8 +41,13 @@ public class RMIServerProduct implements ServerProduct {
 		productsManager.changeProduct(index, newPrice, newColor, newSize);
 	}
 
-	@Override public void add(Product product)throws RemoteException
-	{
+	@Override
+	public void add(Product product) throws RemoteException {
 
+	}
+
+	@Override
+	public ProductList getProductsByCategory(EquipmentType category) throws RemoteException {
+		return productsManager.getProductsByCategory(category);
 	}
 }

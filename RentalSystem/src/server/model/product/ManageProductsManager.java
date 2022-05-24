@@ -105,6 +105,11 @@ public class ManageProductsManager implements ManageProducts
 
 	}
 
+	@Override
+	public ProductList getProductsByCategory(EquipmentType category) {
+		return list.getAllByCategory(category);
+	}
+
 	private void update() {
 		try {
 			list = manageProductDatabase.load();

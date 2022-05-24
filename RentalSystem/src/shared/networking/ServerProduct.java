@@ -13,4 +13,6 @@ public interface ServerProduct extends Remote {
 	ProductList getAllProducts()throws RemoteException;
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize)throws RemoteException;
 	void add(Product product)throws RemoteException;
+
+    ProductList getProductsByCategory(EquipmentType category) throws RemoteException;
 }

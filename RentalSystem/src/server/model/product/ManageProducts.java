@@ -10,4 +10,5 @@ public interface ManageProducts extends PropertyChangeSubject {
 	ProductList getAllProducts();
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize);
 	void showAllProducts();
+    ProductList getProductsByCategory(EquipmentType category);
 }

@@ -1,11 +1,13 @@
 package client.model.product;
 
 import client.networking.ClientProxy;
+import javafx.collections.ObservableList;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ManageProductsManager implements ManageProducts {
 	private PropertyChangeSupport changeSupport;
@@ -66,6 +68,11 @@ public class ManageProductsManager implements ManageProducts {
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
 		clientProxy.getClientProduct().changeProduct(index, newPrice, newColor, newSize);
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
+	}
+
+	@Override
+	public ProductList getProductsByCategory(EquipmentType category) {
+		return clientProxy.getClientProduct().getProductByCategory(category);
 	}
 
 	@Override

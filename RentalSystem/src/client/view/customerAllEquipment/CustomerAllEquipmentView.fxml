@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
@@ -11,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.customerAllEquipment.CustomerAllEquipmentViewController">
+<AnchorPane prefHeight="394.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.customerAllEquipment.CustomerAllEquipmentViewController">
    <children>
-      <VBox layoutY="-5.0" prefHeight="400.0" prefWidth="600.0">
+      <VBox layoutY="-5.0" prefHeight="415.0" prefWidth="600.0">
          <children>
             <HBox prefHeight="49.0" prefWidth="600.0">
                <children>
@@ -75,6 +76,22 @@
                         </ImageView>
                      </graphic></Button>
                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="569.0">
+               <children>
+                  <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" />
+                  <Button fx:id="filterButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="26.0" prefWidth="70.0" text="Filter">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="9.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="16.0" />
+               </padding>
             </HBox>
             <ListView fx:id="listOfProducts" prefHeight="305.0" prefWidth="600.0" />
          </children>

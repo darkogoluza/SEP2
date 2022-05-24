@@ -31,6 +31,10 @@ public class CustomerBasketViewModel
 
         finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
         userNameProperty.set(modelBasket.getUserName());
+
+		modelProxy.getManageUser().addPropertyChangeListener("login",
+				(event) ->  userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername())
+		);
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {
