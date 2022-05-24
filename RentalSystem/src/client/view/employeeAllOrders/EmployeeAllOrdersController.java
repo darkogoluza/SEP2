@@ -62,14 +62,13 @@ public class EmployeeAllOrdersController {
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 
-	public void onRemoveReservation(){
+	public void onRemoveReservation(ActionEvent event){
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
 		else
 		{
-			AlertHandler.getInstance().onRemoveReservation();
-
-			viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
+			if (AlertHandler.getInstance().onRemoveReservation(event))
+				viewModel.removeReservation(reservationsList.getSelectionModel().getSelectedIndex());
 		}
 	}
 }

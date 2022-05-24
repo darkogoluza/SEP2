@@ -129,6 +129,8 @@ public class AdministratorViewController {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
             return;
 
+		AlertHandler.getInstance().onRemoveProduct();
+
 		viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
     }
 

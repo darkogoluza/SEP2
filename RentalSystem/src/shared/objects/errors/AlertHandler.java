@@ -1,6 +1,11 @@
 package shared.objects.errors;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class AlertHandler {
 
@@ -84,14 +89,27 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
-    public void onRemoveReservation() {
+    public boolean onRemoveReservation(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Warning");
-		alert.setHeaderText("Confirm that you want to remove this order, you won't be able to change this decision later!");
+		alert.setHeaderText("Confirm that you want to remove this reservation, you won't be able to change this decision later!");
+
+		Optional<ButtonType> result = alert.showAndWait();
+
+		if (result.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	public void onRemoveProduct() {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Confirm that you want to remove this product, you won't be able to change this decision later!");
 
 		alert.showAndWait();
-    }
-
-//	public void
+	}
 
 }
