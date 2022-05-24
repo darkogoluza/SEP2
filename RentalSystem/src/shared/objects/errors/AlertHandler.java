@@ -119,4 +119,11 @@ public class AlertHandler {
 		}
 	}
 
+    public void onOrderExpireSoon(int id, int hoursBeforeExpiration) {
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Warning");
+		alert.setHeaderText(String.format("Order with id(%d) will expire in %dh pleas make sure to return the equipment in time", id, hoursBeforeExpiration));
+
+		alert.showAndWait();
+    }
 }

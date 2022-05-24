@@ -1,6 +1,7 @@
 package client.model.reservation;
 
 import client.networking.ClientProxy;
+import shared.objects.errors.AlertHandler;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
