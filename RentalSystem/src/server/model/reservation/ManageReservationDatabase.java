@@ -146,6 +146,23 @@ public class ManageReservationDatabase implements ManageReservationPersistence
             statement.setString(1, reservation.getStatus().toString());
             statement.setInt(2, reservation.getId());
             statement.executeUpdate();
+
+            Map<Product, Integer> map = reservation.getProducts().getAllProductsByQuantity();
+            for(Map.Entry<Product, Integer> entry : map.entrySet()) {
+                if(reservation.getStatus().equals(ReservationStatus.returned)) {
+                    statement = connection.prepareStatement("UPDATE Product SET amount_rented = amount_rented - ? WHERE id = ?;");
+                    statement.setInt(1, entry.getValue());
+                    statement.setInt(2, entry.getKey().getId());
+                    statement.executeUpdate();
+
+                } else {
+                    statement = connection.prepareStatement("UPDATE Product SET amount_rented = amount_rented + ? WHERE id = ?;");
+                    statement.setInt(1, entry.getValue());
+                    statement.setInt(2, entry.getKey().getId());
+                    statement.executeUpdate();
+                }
+            }
+
         }
         finally {
             connection.close();
@@ -164,6 +181,14 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 		   	statement = connection.prepareStatement("DELETE FROM Reservation WHERE id = ?");
 			statement.setInt(1, reservation.getId());
 			statement.executeUpdate();
+
+            Map<Product, Integer> map = reservation.getProducts().getAllProductsByQuantity();
+            for(Map.Entry<Product, Integer> entry : map.entrySet()) {
+                statement = connection.prepareStatement("UPDATE Product SET amount_rented = amount_rented - ? WHERE id = ?;");
+                statement.setInt(1, entry.getValue());
+                statement.setInt(2, entry.getKey().getId());
+                statement.executeUpdate();
+            }
         }
         finally {
             connection.close();
