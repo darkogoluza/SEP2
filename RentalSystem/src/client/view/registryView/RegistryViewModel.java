@@ -60,7 +60,7 @@ public class RegistryViewModel
 			}
 
 			modelProxy.getManageUser().login(userNameProperty.getValue(), passwordProperty.getValue());
-
+      System.out.println("KURWA\n");
 			return true;
 		}
     	else {
