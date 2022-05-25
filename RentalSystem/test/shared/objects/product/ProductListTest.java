@@ -160,4 +160,58 @@ class ProductListTest {
 
         assertEquals(temp, productList.toString());
     }
+
+    @Test
+    void getAllProductsByQuantitySize() {
+        productList = new ProductList();
+        Product p1 = new Product(1,1, Color.black, EquipmentType.helmet, new LabelFormat("S"), 5);
+        Product p2 = new Product(2,5, Color.red, EquipmentType.helmet, new LabelFormat("M"), 5);
+        Product p3 = new Product(3,10, Color.blue, EquipmentType.helmet, new LabelFormat("L"), 10);
+
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p2);
+        productList.add(p2);
+        productList.add(p3);
+        productList.add(p3);
+
+        assertEquals(3, productList.getAllProductsByQuantity().size());
+    }
+
+    @Test
+    void getAllProductsByQuantity1() {
+        productList = new ProductList();
+        Product p1 = new Product(1,1, Color.black, EquipmentType.helmet, new LabelFormat("S"), 5);
+        Product p2 = new Product(2,5, Color.red, EquipmentType.helmet, new LabelFormat("M"), 5);
+        Product p3 = new Product(3,10, Color.blue, EquipmentType.helmet, new LabelFormat("L"), 10);
+
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p2);
+        productList.add(p2);
+        productList.add(p3);
+        productList.add(p3);
+
+        assertEquals(3, productList.getAllProductsByQuantity().get(p1));
+    }
+
+    @Test
+    void getAllProductsByQuantity2() {
+        productList = new ProductList();
+        Product p1 = new Product(1,1, Color.black, EquipmentType.helmet, new LabelFormat("S"), 5);
+        Product p2 = new Product(2,5, Color.red, EquipmentType.helmet, new LabelFormat("M"), 5);
+        Product p3 = new Product(3,10, Color.blue, EquipmentType.helmet, new LabelFormat("L"), 10);
+
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p1);
+        productList.add(p2);
+        productList.add(p2);
+        productList.add(p3);
+        productList.add(p3);
+
+        assertEquals(2, productList.getAllProductsByQuantity().get(p3));
+    }
 }

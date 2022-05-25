@@ -58,8 +58,19 @@ class ProductTest {
     }
 
     @Test
+    void getAmount() {
+        assertEquals(5, product.getAmount());
+    }
+
+    @Test
+    void setAmount() {
+        product.setAmount(10);
+        assertEquals(10, product.getAmount());
+    }
+
+    @Test
     void testToString() {
-        String expectedValue = String.format("Id: %03d  %s  %s  %s  %.02f€", 0, Color.red, new MetricFormat(10), EquipmentType.ski, 14.99);
+        String expectedValue = String.format("Id: %03d  %s  %s  %s  %.02f€ Total Amount: %s", 0, Color.red, new MetricFormat(10), EquipmentType.ski, 14.99, 5);
         assertEquals(expectedValue, product.toString());
     }
 
