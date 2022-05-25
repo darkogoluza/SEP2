@@ -22,7 +22,10 @@ public class CustomerBasketViewModel
     private StringProperty userNameProperty;
     private Property<LocalDate> createDateProperty;
     private Property<LocalDate> returnDateProperty;
+    private StringProperty totalItemsInBasketProperty;
+
     private ManageBasket modelBasket;
+    private ModelProxy modelProxy;
 
     public CustomerBasketViewModel(ModelProxy modelProxy)
     {
@@ -31,10 +34,12 @@ public class CustomerBasketViewModel
         userNameProperty = new SimpleStringProperty();
         createDateProperty = new SimpleObjectProperty<>();
         returnDateProperty = new SimpleObjectProperty<>();
+        totalItemsInBasketProperty = new SimpleStringProperty();
 
         modelBasket = modelProxy.getManageBasket();
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
         modelBasket.addPropertyChangeListener("finalPriceEvent", this::modifiedBasket);
+        totalItemsInBasketProperty.set("" + modelBasket.size());
 
         finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
         userNameProperty.set(modelBasket.getUserName());
@@ -42,6 +47,7 @@ public class CustomerBasketViewModel
 
     private void modifiedBasket(PropertyChangeEvent event) {
         showAllProductsInBasket();
+        totalItemsInBasketProperty.set("" + event.getNewValue());
         finalTotalPriceProperty.set("" + event.getNewValue());
         userNameProperty.set(modelBasket.getUserName());
     }
@@ -97,6 +103,15 @@ public class CustomerBasketViewModel
 
     public Property<LocalDate> getReturnDateProperty() {
         return returnDateProperty;
+    }
+
+    public void logOff() {
+        modelBasket.clear();
+        modelProxy.getManageUser().logout();
+    }
+
+    public StringProperty getTotalItemsInBasketProperty() {
+        return totalItemsInBasketProperty;
     }
 
 }

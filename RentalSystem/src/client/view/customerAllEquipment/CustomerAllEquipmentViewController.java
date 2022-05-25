@@ -49,6 +49,13 @@ public class CustomerAllEquipmentViewController
     {
         viewHandler.openCustomerBasket();
     }
-
+    public void backButton(ActionEvent event)
+    {
+        viewHandler.openCustomerAllEquipmentView();
+    }
+    public void onGoToReservations(ActionEvent event)
+    {
+        viewHandler.openSingleOrderView();
+    }
 }
 

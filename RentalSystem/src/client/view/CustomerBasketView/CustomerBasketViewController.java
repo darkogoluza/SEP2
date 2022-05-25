@@ -40,6 +40,8 @@ public class CustomerBasketViewController
   private DatePicker createDate;
   @FXML
   private DatePicker returnDate;
+  @FXML
+  private Label totalItemsInBasket;
 
   private ViewHandler viewHandler;
   private CustomerBasketViewModel viewModel;
@@ -83,6 +85,8 @@ public class CustomerBasketViewController
     userName.textProperty().bind(viewModel.getUserNameProperty());
     createDate.valueProperty().bindBidirectional(viewModel.getCreateDateProperty());
     returnDate.valueProperty().bindBidirectional(viewModel.getReturnDateProperty());
+    totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
+
 
     tableView.setItems(viewModel.getProductsInBaskets());
     viewModel.showAllProductsInBasket();
@@ -124,5 +128,19 @@ public class CustomerBasketViewController
       });
       returnDate.setValue(createDate.getValue().plusDays(1));
     });
+  }
+  public void onLogOff(ActionEvent event)
+  {
+    viewModel.logOff();
+    viewHandler.openLoginView();
+  }
+  public void onGoToBasketButton(ActionEvent event)
+  {
+    viewHandler.openCustomerBasket();
+  }
+
+  public void onGoToReservations(ActionEvent event)
+  {
+    viewHandler.openSingleOrderView();
   }
 }

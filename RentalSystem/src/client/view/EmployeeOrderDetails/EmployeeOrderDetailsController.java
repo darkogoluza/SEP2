@@ -107,4 +107,10 @@ public class EmployeeOrderDetailsController {
 	void onChangeStatus(ActionEvent event) {
 		viewModel.changeStatus(statusChoice.getValue());
 	}
+
+	public void onLogOff(ActionEvent event)
+	{
+		viewModel.logOff();
+		viewHandler.openLoginView();
+	}
 }

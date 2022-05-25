@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -8,54 +9,114 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.EmployeeOrderDetails.EmployeeOrderDetailsController">
    <children>
-      <Button fx:id="back" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="40.0" prefWidth="41.0" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fitHeight="33.0" fitWidth="34.0">
-               <image>
-                  <Image url="@../../../image/Shopicons_Regular_ArrowLeft.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <TableView fx:id="tableView" layoutX="1.0" layoutY="155.0" prefHeight="145.0" prefWidth="600.0">
-         <columns>
-            <TableColumn fx:id="name" prefWidth="123.20001524686813" text="Name:" />
-            <TableColumn fx:id="size" prefWidth="113.5999755859375" text="Size:" />
-            <TableColumn fx:id="priceperunit" prefWidth="118.40000915527344" text="Price per unit:" />
-            <TableColumn fx:id="totalprice" prefWidth="124.800048828125" text="Total price:" />
-            <TableColumn fx:id="quantity" prefWidth="125.5999755859375" text="Quantity:" />
-         </columns>
-      </TableView>
-      <Label layoutX="242.0" layoutY="308.0" prefHeight="34.0" prefWidth="74.0" text="Total Price:" />
-      <Label alignment="CENTER" layoutX="192.0" layoutY="61.0" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="110.0" prefHeight="18.0" prefWidth="74.0" text="Order date:" />
-      <Label layoutX="14.0" layoutY="136.0" prefHeight="18.0" prefWidth="74.0" text="Order time:" />
-      <Label layoutX="195.0" layoutY="109.0" prefHeight="18.0" prefWidth="74.0" text="Return date:" />
-      <Label layoutX="431.0" layoutY="110.0" prefHeight="18.0" prefWidth="41.0" text="Status:" />
-      <Label fx:id="username" layoutX="279.0" layoutY="28.0" prefHeight="18.0" prefWidth="74.0" text="Miro Pele" />
-      <Label fx:id="orderID" layoutX="290.0" layoutY="65.0" prefHeight="18.0" prefWidth="33.0" text="001" />
-      <Label fx:id="orderdate" layoutX="81.0" layoutY="110.0" prefHeight="18.0" prefWidth="102.0" text="22.05.2001" />
-      <Label fx:id="ordertime" layoutX="82.0" layoutY="136.0" prefHeight="18.0" prefWidth="86.0" text="11:59" />
-      <Label fx:id="returndate" layoutX="269.0" layoutY="110.0" prefHeight="18.0" prefWidth="140.0" text="22.05.2021" />
-      <Label fx:id="status" layoutX="473.0" layoutY="110.0" text="Rented" />
-      <Label fx:id="finalTotalPrice" layoutX="321.0" layoutY="316.0" text="65$" />
-      <ChoiceBox fx:id="statusChoice" layoutX="345.0" layoutY="342.0" prefWidth="150.0" />
-      <Button fx:id="changeStatus" layoutX="504.0" layoutY="342.0" mnemonicParsing="false" onAction="#onChangeStatus" text="Change" />
-      <Label layoutX="193.0" layoutY="136.0" text="Return time:" />
-      <Label fx:id="returnTime" layoutX="273.0" layoutY="137.0" prefHeight="18.0" prefWidth="74.0" text="12:00" />
-      <ImageView layoutX="242.0" layoutY="25.0">
-         <image>
-            <Image url="@../../../image/profile.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="168.0" layoutY="87.0" text="Phone number:" />
-      <Label fx:id="phoneNumber" layoutX="287.0" layoutY="87.0" text="223454678" />
+      <HBox layoutY="-4.0" prefHeight="408.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="85.0" style="-fx-background-color: #7FB5FF;">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/jasna_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="back" contentDisplay="TOP" mnemonicParsing="false" onAction="#BackButton" prefHeight="40.0" prefWidth="41.0" style="-fx-background-color: transparent;" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="34.0">
+                           <image>
+                              <Image url="@../../../image/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="200.0" top="40.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../image/icons8-logout-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="305.0" prefWidth="511.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../image/profile.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="username" prefHeight="18.0" prefWidth="74.0" text="Miro Pele" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="orderID" prefHeight="18.0" prefWidth="33.0" text="001" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Phone number:" />
+                        <Label fx:id="phoneNumber" text="223454678" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="74.0" text="Order date:" />
+                        <Label fx:id="orderdate" prefHeight="18.0" prefWidth="102.0" text="22.05.2001" />
+                        <Label prefHeight="18.0" prefWidth="74.0" text="Return date:" />
+                        <Label fx:id="returndate" prefHeight="18.0" prefWidth="140.0" text="22.05.2021" />
+                        <Label prefHeight="18.0" prefWidth="41.0" text="Status:" />
+                        <Label fx:id="status" text="Rented" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="74.0" text="Order time:" />
+                        <Label fx:id="ordertime" prefHeight="18.0" prefWidth="86.0" text="11:59" />
+                        <Label text="Return time:" />
+                        <Label fx:id="returnTime" prefHeight="18.0" prefWidth="74.0" text="12:00" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" prefHeight="145.0" prefWidth="600.0">
+                     <columns>
+                        <TableColumn fx:id="name" prefWidth="159.33330023288727" text="Name:" />
+                        <TableColumn fx:id="size" prefWidth="96.66667175292969" text="Size:" />
+                        <TableColumn fx:id="priceperunit" prefWidth="109.33331298828125" text="Price per unit:" />
+                        <TableColumn fx:id="totalprice" prefWidth="150.66668701171875" text="Total price:" />
+                        <TableColumn fx:id="quantity" prefWidth="94.0" text="Quantity:" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="74.0" text="Total Price:" />
+                        <Label fx:id="finalTotalPrice" text="65$" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="statusChoice" prefWidth="150.0" />
+                        <Button fx:id="changeStatus" mnemonicParsing="false" onAction="#onChangeStatus" text="Change" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
