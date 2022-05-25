@@ -117,7 +117,7 @@ public class Product implements Serializable
      * @return Returns Product as string format is "Id: (id)\nPrice: (price)€\nColor: (color)\nType: (type)\nSize: (size)".
      */
     public String toString() {
-        return String.format("Id: %03d  %s  %s  %s  %.02f€ Amount: %d", id, color, size, type, price, amount);
+        return String.format("Id: %03d  %s  %s  %s  %.02f€ Total Amount: %d", id, color, size, type, price, amount);
     }
 
     /**
