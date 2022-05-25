@@ -30,7 +30,9 @@ public class ManageUserManager implements ManageUser
 	@Override public boolean login(String username, String password)
 	{
 		boolean bool = clientProxy.getClientUser().login(username, password);
-		changeSupport.firePropertyChange("login", null, username);
+		if(bool) {
+			changeSupport.firePropertyChange("login", null, username);
+		}
 		return bool;
 	}
 

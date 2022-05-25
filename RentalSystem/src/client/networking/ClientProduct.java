@@ -115,4 +115,14 @@ public class ClientProduct implements Remote, Serializable
 
 		return null;
 	}
+
+	public int getRentedAmount(int id) {
+		try {
+			return server.getRentedAmount(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 }

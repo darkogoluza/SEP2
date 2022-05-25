@@ -45,4 +45,9 @@ public class RMIServerProduct implements ServerProduct {
 	{
 
 	}
+
+	@Override
+	public int getRentedAmount(int id) throws RemoteException {
+		return productsManager.getRentedAmount(id);
+	}
 }

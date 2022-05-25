@@ -125,6 +125,11 @@ public class ManageReservationDatabase implements ManageReservationPersistence
                 executeStatementContains(statement, reservation.getId(), entry.getKey().getId(), entry.getValue());
             }
 
+            for(Map.Entry<Product, Integer> entry : map.entrySet()) {
+                statement = connection.prepareStatement("UPDATE Product SET amount_rented = amount_rented + ? WHERE id = ?;");
+                executeStatementProduct(statement, entry.getValue(), entry.getKey().getId());
+            }
+
         }
         finally {
             connection.close();
@@ -207,6 +212,13 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         statement.setInt(1, reservationId);
         statement.setInt(2, productId);
         statement.setInt(3,quantity);
+
+        statement.executeUpdate();
+    }
+
+    private void executeStatementProduct(PreparedStatement statement, int value, int id) throws SQLException {
+        statement.setInt(1, value);
+        statement.setInt(2, id);
 
         statement.executeUpdate();
     }

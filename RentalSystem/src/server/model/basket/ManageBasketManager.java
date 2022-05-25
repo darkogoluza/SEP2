@@ -90,7 +90,6 @@ public class ManageBasketManager implements ManageBasket
         return basket.getProducts().isEmpty();
     }
 
-
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);

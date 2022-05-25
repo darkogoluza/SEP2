@@ -106,6 +106,17 @@ public class ManageProductsManager implements ManageProducts
 
 	}
 
+	@Override
+	public int getRentedAmount(int id) {
+		try {
+			return manageProductDatabase.getRentedAmount(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+
 	private void update() {
 		try {
 			list = manageProductDatabase.load();

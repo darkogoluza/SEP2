@@ -3,6 +3,7 @@ package server.model.product;
 import shared.objects.product.*;
 
 import java.sql.*;
+import java.util.PropertyPermission;
 
 public class ManageProductDatabase implements ManageProductsPersistence
 {
@@ -75,7 +76,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO Product(id, name, size, color, price, amount) VALUES(?, ?, ?, ?, ?, ?);");
+                    connection.prepareStatement("INSERT INTO Product(id, name, size, color, price, amount, amount_rented) VALUES(?, ?, ?, ?, ?, ?, ?);");
             executeStatement(statement, product);
         }
         finally {
@@ -124,13 +125,31 @@ public class ManageProductDatabase implements ManageProductsPersistence
         }
     }
 
-	private void executeStatement(PreparedStatement statement, Product product) throws SQLException {
+    @Override
+    public int getRentedAmount(int id) throws SQLException {
+        Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement("""
+                SELECT amount_rented
+                FROM Product
+                WHERE id = ?;""");
+        statement.setInt(1, id);
+
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            return resultSet.getInt("amount_rented");
+        }
+
+        return 0;
+    }
+
+    private void executeStatement(PreparedStatement statement, Product product) throws SQLException {
 		statement.setInt(1, product.getId());
 		statement.setString(2, product.getType().toString());
 		statement.setString(3, product.getSize().toString());
 		statement.setString(4, product.getColor().toString());
 		statement.setDouble(5, product.getPrice());
 		statement.setInt(6, product.getAmount());
+		statement.setInt(7, 0);
 
 		statement.executeUpdate();
 	}

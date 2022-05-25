@@ -37,7 +37,10 @@ public class CustomerAllEquipmentViewModel
         usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
 		modelProxy.getManageUser().addPropertyChangeListener("login",
-				(event) ->  usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername())
+				(event) ->  {
+		            usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
+		            loadAllProducts();
+		}
 		);
 
     }

@@ -82,7 +82,8 @@ public class ManageBasketManager implements ManageBasket {
 
         for (int i = 0; i < allProducts.size(); i++) {
             Product product = allProducts.getByIndex(i);
-            int inStock = product.getAmount();
+            int rented = clientProxy.getClientProduct().getRentedAmount(product.getId());
+            int inStock = product.getAmount() - rented;
 
             for(Map.Entry<Product, Integer> entry : map.entrySet()) {
                 if(entry.getKey().equals(product)) {
@@ -113,12 +114,14 @@ public class ManageBasketManager implements ManageBasket {
             if(product.getId() == id) {
                 for (Map.Entry<Product, Integer> entry : map.entrySet()) {
                     if (entry.getKey().equals(product)) {
-                        if(product.getAmount() - entry.getValue() <= 0)
+                        int inStock = product.getAmount() - entry.getValue() - clientProxy.getClientProduct().getRentedAmount(product.getId());
+                        if(inStock <= 0)
                             return false;
                     }
                 }
             }
         }
+
         return true;
     }
 
