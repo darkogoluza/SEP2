@@ -7,12 +7,20 @@ import shared.objects.reservation.ReservationStatus;
 import java.sql.*;
 import java.util.Map;
 
+/**
+ * Class deals with communication with SQL database.
+ */
 public class ManageReservationDatabase implements ManageReservationPersistence
 {
     public ManageReservationDatabase() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * Establishes a connection with database.
+     * @return
+     * @throws SQLException
+     */
     private Connection getConnection() throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=rentalsystem";
         String user = "postgres";
@@ -22,34 +30,45 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         return connection;
     }
 
+    /**
+     * Loads all the Reservations from SQL database and returns them as a list.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ReservationList load() throws SQLException {
-            ReservationList reservationList = new ReservationList();
-            Connection connection = getConnection();
-            try {
-                PreparedStatement statement = connection.prepareStatement("SELECT * FROM Reservation");
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String userName = resultSet.getString("UserName");
-                    String status = resultSet.getString("status");
-                    Timestamp createdAt = resultSet.getTimestamp("created_at");
-                    Timestamp expiresAt = resultSet.getTimestamp("expires_at");
+        ReservationList reservationList = new ReservationList();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Reservation");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String userName = resultSet.getString("UserName");
+                String status = resultSet.getString("status");
+                Timestamp createdAt = resultSet.getTimestamp("created_at");
+                Timestamp expiresAt = resultSet.getTimestamp("expires_at");
 
-                    Reservation reservation = new Reservation(id, userName, this.getProductFromReservation(id));
-                    reservation.setCreateAt(createdAt);
-                    reservation.setExpiresAt(expiresAt);
-                    reservation.setStatus(ReservationStatus.valueOf(status));
+                Reservation reservation = new Reservation(id, userName, this.getProductFromReservation(id));
+                reservation.setCreateAt(createdAt);
+                reservation.setExpiresAt(expiresAt);
+                reservation.setStatus(ReservationStatus.valueOf(status));
 
-                    reservationList.add(reservation);
-                }
-            } finally {
-                connection.close();
+                reservationList.add(reservation);
             }
-
-            return reservationList;
+        } finally {
+            connection.close();
         }
 
+        return reservationList;
+    }
+
+    /**
+     * Returns a list of Products from a single Reservation matching ID.
+     * @param reservationId
+     * @return
+     * @throws SQLException
+     */
     public ProductList getProductFromReservation(int reservationId) throws SQLException {
         ProductList list = new ProductList();
         Connection connection = getConnection();
@@ -89,6 +108,11 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         return list;
     }
 
+    /**
+     * Clears Reservation and Reservation_product tables and inserts new list of Reservations into them.
+     * @param reservationList
+     * @throws SQLException
+     */
     @Override
     public void save(ReservationList reservationList) throws SQLException {
         clear();
@@ -108,6 +132,12 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         }
     }
 
+    /**
+     * Saves a single Reservation to database.
+     * @param reservation
+     * @param map
+     * @throws SQLException
+     */
     @Override
     public void save(Reservation reservation, Map<Product, Integer> map) throws SQLException {
         Connection connection = getConnection();
@@ -134,6 +164,11 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         }
     }
 
+    /**
+     * Changes a single Reservation from database.
+     * @param reservation
+     * @throws SQLException
+     */
     @Override
     public void change(Reservation reservation) throws SQLException {
         Connection connection = getConnection();
@@ -167,6 +202,11 @@ public class ManageReservationDatabase implements ManageReservationPersistence
         }
     }
 
+    /**
+     * Removes a single Reservation form database.
+     * @param reservation
+     * @throws SQLException
+     */
     @Override
     public void remove(Reservation reservation) throws SQLException {
         Connection connection = getConnection();
@@ -198,6 +238,11 @@ public class ManageReservationDatabase implements ManageReservationPersistence
 
     }
 
+    /**
+     * Gets the current highest ID from Reservation table and increments it by one, so it can always return a unique ID.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public int getUniqueId() throws SQLException {
         Connection connection = getConnection();

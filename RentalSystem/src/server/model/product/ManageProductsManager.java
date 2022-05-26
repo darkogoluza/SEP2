@@ -2,17 +2,22 @@ package server.model.product;
 
 import shared.networking.model.ManageProducts;
 import shared.objects.product.*;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
+/**
+ * Class manly deals with loading and saving of Products.
+ */
 public class ManageProductsManager implements ManageProducts
 {
 	private ProductList list;
 	private PropertyChangeSupport changeSupport;
 	private ManageProductDatabase manageProductDatabase;
 
+	/**
+	 * Instantiates a database manager.
+	 */
 	public ManageProductsManager() {
 		list = new ProductList();
 		changeSupport = new PropertyChangeSupport(this);
@@ -107,11 +112,21 @@ public class ManageProductsManager implements ManageProducts
 
 	}
 
+	/**
+	 * Returns list of Products filtered by EquipmentType
+	 * @param category
+	 * @return
+	 */
 	@Override
 	public ProductList getProductsByCategory(EquipmentType category) {
 		return list.getAllByCategory(category);
 	}
 
+	/**
+	 * Returns a rented quantity of a single Product that matches a given ID.
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public int getRentedAmount(int id) {
 		try {
@@ -123,6 +138,9 @@ public class ManageProductsManager implements ManageProducts
 		return 0;
 	}
 
+	/**
+	 * Updates internal list of products by loading data from database.
+	 */
 	private void update() {
 		try {
 			list = manageProductDatabase.load();
