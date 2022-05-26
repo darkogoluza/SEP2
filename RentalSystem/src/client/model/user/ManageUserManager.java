@@ -1,6 +1,7 @@
 package client.model.user;
 
 import client.networking.ClientProxy;
+import shared.networking.model.ManageUser;
 import shared.objects.user.User;
 
 import java.beans.PropertyChangeListener;

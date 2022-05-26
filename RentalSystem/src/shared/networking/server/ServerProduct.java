@@ -1,4 +1,4 @@
-package shared.networking;
+package shared.networking.server;
 
 import shared.objects.product.*;
 
@@ -14,4 +14,5 @@ public interface ServerProduct extends Remote {
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount)throws RemoteException;
 	void add(Product product)throws RemoteException;
 	int getRentedAmount(int id) throws RemoteException;
+    ProductList getProductsByCategory(EquipmentType category) throws RemoteException;
 }

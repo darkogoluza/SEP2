@@ -1,5 +1,6 @@
 package server.model.product;
 
+import shared.networking.model.ManageProducts;
 import shared.objects.product.*;
 
 import java.beans.PropertyChangeListener;
@@ -102,8 +103,8 @@ public class ManageProductsManager implements ManageProducts
 	}
 
 	@Override
-	public void showAllProducts() {
-
+	public ProductList getProductsByCategory(EquipmentType category) {
+		return list.getAllByCategory(category);
 	}
 
 	@Override

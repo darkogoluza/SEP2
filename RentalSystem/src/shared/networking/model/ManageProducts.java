@@ -1,4 +1,4 @@
-package server.model.product;
+package shared.networking.model;
 
 import shared.objects.product.*;
 import shared.util.PropertyChangeSubject;
@@ -11,4 +11,5 @@ public interface ManageProducts extends PropertyChangeSubject {
 	void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount);
 	void showAllProducts();
 	int getRentedAmount(int id);
+    ProductList getProductsByCategory(EquipmentType category);
 }

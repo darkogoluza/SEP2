@@ -1,7 +1,7 @@
 package server.networking;
 
-import server.model.basket.ManageBasket;
-import shared.networking.ServerBasket;
+import shared.networking.model.ManageBasket;
+import shared.networking.server.ServerBasket;
 import shared.objects.product.Product;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

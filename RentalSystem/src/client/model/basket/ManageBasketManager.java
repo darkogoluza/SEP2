@@ -2,6 +2,7 @@ package client.model.basket;
 
 import client.networking.ClientProxy;
 import server.model.reservation.ManageReservationDatabase;
+import shared.networking.model.ManageBasket;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 

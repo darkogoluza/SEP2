@@ -1,4 +1,4 @@
-package shared.networking;
+package shared.networking.server;
 
 import shared.objects.user.User;
 

@@ -1,11 +1,10 @@
 package client.view.LoginView;
 
 import client.model.ModelProxy;
-import client.model.user.ManageUser;
-import client.networking.ClientProxy;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import shared.networking.model.ManageUser;
 import shared.objects.user.UserRole;
 
 public class LoginViewModel

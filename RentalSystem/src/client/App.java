@@ -20,6 +20,6 @@ public class App extends Application {
 
         ViewModelFactory vmf = new ViewModelFactory(modelFactory.getModel());
         ViewHandler vh = new ViewHandler(vmf, stage);
-        vh.start(modelFactory.getModel().getManageUser());
+        vh.start();
     }
 }

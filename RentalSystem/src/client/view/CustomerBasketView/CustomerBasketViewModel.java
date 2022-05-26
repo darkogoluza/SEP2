@@ -1,12 +1,11 @@
 package client.view.CustomerBasketView;
 
 import client.model.ModelProxy;
-import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
+import shared.networking.model.ManageBasket;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 import java.beans.PropertyChangeEvent;
@@ -42,7 +41,11 @@ public class CustomerBasketViewModel
         totalItemsInBasketProperty.set("" + modelBasket.size());
 
         finalTotalPriceProperty.set(modelBasket.getTotalPrice() + "");
-        userNameProperty.set(modelBasket.getUserName());
+        userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
+
+		modelProxy.getManageUser().addPropertyChangeListener("login",
+				(event) ->  userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername())
+		);
     }
 
     private void modifiedBasket(PropertyChangeEvent event) {

@@ -1,14 +1,16 @@
 package client.view.customerAllEquipment;
 
 import client.model.ModelProxy;
-import client.model.basket.ManageBasket;
-import client.model.product.ManageProducts;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import shared.objects.errors.AlertHandler;
+import javafx.collections.ObservableList;
+import shared.networking.model.ManageBasket;
+import shared.networking.model.ManageProducts;
+import shared.objects.product.EquipmentType;
 import shared.objects.product.Product;
 
 import java.beans.PropertyChangeEvent;
@@ -18,6 +20,7 @@ public class CustomerAllEquipmentViewModel
     private ListProperty<String> listOfProducts;
     private StringProperty usernameProperty;
     private StringProperty totalItemsInBasketProperty;
+	private ObservableList<String> categoriesProperty;
 
     private ManageBasket modelBasket;
     private ManageProducts modelProducts;
@@ -28,6 +31,9 @@ public class CustomerAllEquipmentViewModel
         usernameProperty = new SimpleStringProperty();
         listOfProducts = new SimpleListProperty<>();
         totalItemsInBasketProperty = new SimpleStringProperty();
+		categoriesProperty = FXCollections.observableArrayList(
+				getEquipmentTypes()
+		);
 
 		this.modelProxy = modelProxy;
         modelBasket = modelProxy.getManageBasket();
@@ -45,14 +51,10 @@ public class CustomerAllEquipmentViewModel
 
     }
 
-	private void login(PropertyChangeEvent propertyChangeEvent) {
-		System.out.println(propertyChangeEvent.getNewValue());
-	}
-
 	private void modifiedBasket(PropertyChangeEvent event) {
+        totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
         totalItemsInBasketProperty.set("" + event.getNewValue());
         loadAllProducts();
-
     }
 
 
@@ -81,8 +83,34 @@ public class CustomerAllEquipmentViewModel
         return listOfProducts;
     }
 
+	public ObservableList<String> getCategoriesProperty() {
+		return categoriesProperty;
+	}
+
     public void logOff() {
 	    modelBasket.clear();
 		modelProxy.getManageUser().logout();
     }
+
+	public void filterByCategory(int index) {
+		if (index == 0) {
+			loadAllProducts();
+		}
+		else {
+			EquipmentType category = EquipmentType.valueOf( categoriesProperty.get(index) );
+			listOfProducts.set(FXCollections.observableArrayList(modelProducts.getProductsByCategory(category).convertToStringArrayList()));
+		}
+	}
+
+	private ObservableList<String> getEquipmentTypes() {
+		ObservableList<String> types = FXCollections.observableArrayList();
+		types.add("show all");
+
+		for (EquipmentType type :
+				EquipmentType.values()) {
+			types.add(type.toString());
+		}
+
+		return types;
+	}
 }

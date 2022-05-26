@@ -1,9 +1,9 @@
 package server.model;
 
-import server.model.basket.ManageBasket;
-import server.model.product.ManageProducts;
-import server.model.reservation.ManageReservations;
-import server.model.user.ManageUser;
+import shared.networking.model.ManageBasket;
+import shared.networking.model.ManageProducts;
+import shared.networking.model.ManageReservations;
+import shared.networking.model.ManageUser;
 
 public interface ModelProxy {
     ManageProducts getManageProducts();

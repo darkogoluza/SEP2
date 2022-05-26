@@ -1,7 +1,7 @@
 package server.networking;
 
-import server.model.product.ManageProducts;
-import shared.networking.ServerProduct;
+import shared.networking.model.ManageProducts;
+import shared.networking.server.ServerProduct;
 import shared.objects.product.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -49,5 +49,10 @@ public class RMIServerProduct implements ServerProduct {
 	@Override
 	public int getRentedAmount(int id) throws RemoteException {
 		return productsManager.getRentedAmount(id);
+	}
+
+	@Override
+	public ProductList getProductsByCategory(EquipmentType category) throws RemoteException {
+		return productsManager.getProductsByCategory(category);
 	}
 }

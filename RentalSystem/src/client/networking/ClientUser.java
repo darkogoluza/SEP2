@@ -1,7 +1,7 @@
 package client.networking;
 
-import shared.networking.Server;
-import shared.networking.ServerUser;
+import shared.networking.server.Server;
+import shared.networking.server.ServerUser;
 import shared.objects.user.User;
 import shared.util.Utils;
 
