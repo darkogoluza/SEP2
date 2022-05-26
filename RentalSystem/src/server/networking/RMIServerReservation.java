@@ -2,6 +2,7 @@ package server.networking;
 
 import shared.networking.model.ManageReservations;
 import shared.networking.server.ServerReservation;
+import shared.networking.ServerReservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
@@ -32,6 +33,10 @@ public class RMIServerReservation implements ServerReservation {
     public Reservation getByIndex(int index) {
         return model.getReservationByIndex(index);
     }
+    @Override public ReservationList getByUsername(String username)
+    {
+        return model.getReservationByUsername(username);
+    }
 
     @Override
     public Reservation get(int id) {
@@ -47,5 +52,7 @@ public class RMIServerReservation implements ServerReservation {
     public void changeReservation(int index, ReservationStatus newStatus) throws RemoteException {
         model.changeReservation(index, newStatus);
     }
+
+
 }
 

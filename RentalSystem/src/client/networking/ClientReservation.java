@@ -90,6 +90,18 @@ public class ClientReservation implements Remote, Serializable
         }
         return null;
     }
+    public ReservationList getByUsername(String username)
+    {
+        try
+         {
+            return server.getByUsername(username);
+         }
+        catch (RemoteException e)
+        {
+             e.printStackTrace();
+         }
+        return null;
+    }
 
     public void remove(int index) {
         try
@@ -109,4 +121,6 @@ public class ClientReservation implements Remote, Serializable
             e.printStackTrace();
         }
     }
+
+
 }

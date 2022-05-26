@@ -54,6 +54,16 @@ public class ReservationList implements Serializable
 
 		return null;
 	}
+	public ReservationList getByUsername(String username)
+	{
+		ReservationList userReservations = new ReservationList();
+		for (int i = 0; i < reservations.size(); i++)
+		{
+			if(reservations.get(i).getUserName().equals(username))
+				userReservations.add(reservations.get(i));
+		}
+		return userReservations;
+	}
 
 	/**
 	 * Get reservation with its index from list
@@ -192,4 +202,6 @@ public class ReservationList implements Serializable
 
 		return filterReservationList;
 	}
+
+
 }

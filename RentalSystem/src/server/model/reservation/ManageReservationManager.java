@@ -54,6 +54,12 @@ public class ManageReservationManager implements ManageReservations
         return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
     }
 
+    @Override public ReservationList getReservationByUsername(String username)
+    {
+        update();
+        return list.getByUsername(username);
+    }
+
     @Override public Reservation getReservationByIndex(int index)
     {
 		update();
@@ -85,6 +91,12 @@ public class ManageReservationManager implements ManageReservations
         }
 
         changeSupport.firePropertyChange("reservationModified", null, list.convertToStringArrayList());
+    }
+
+
+    @Override
+    public void showAllReservations() {
+
     }
 
 	private void update() {
