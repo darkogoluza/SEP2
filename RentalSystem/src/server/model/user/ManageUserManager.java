@@ -2,6 +2,8 @@ package server.model.user;
 
 import shared.networking.model.ManageUser;
 import shared.objects.user.User;
+
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 

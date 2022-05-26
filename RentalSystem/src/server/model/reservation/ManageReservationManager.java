@@ -4,17 +4,22 @@ import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
+/**
+ * Class manly does loading and saving of Reservations.
+ */
 public class ManageReservationManager implements ManageReservations
 {
     private ReservationList list;
     private PropertyChangeSupport changeSupport;
     private ManageReservationDatabase manageReservationDatabase;
 
+    /**
+     * Making connection with database.
+     */
     public ManageReservationManager()
     {
 		list = new ReservationList();

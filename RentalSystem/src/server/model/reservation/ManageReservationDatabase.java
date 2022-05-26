@@ -4,8 +4,6 @@ import shared.objects.product.*;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
-import shared.objects.user.User;
-
 import java.sql.*;
 import java.util.Map;
 
