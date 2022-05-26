@@ -23,7 +23,7 @@
                         <Image url="@../../../image/jasna_logo.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="76.0" text="username">
+                  <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: #C4DDFF; -fx-background-radius: 30;" text="username">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

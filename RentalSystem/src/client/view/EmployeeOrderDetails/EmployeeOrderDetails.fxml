@@ -17,7 +17,7 @@
    <children>
       <HBox layoutY="-4.0" prefHeight="408.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="85.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
