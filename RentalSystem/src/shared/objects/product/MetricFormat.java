@@ -59,6 +59,10 @@ public class MetricFormat implements Size {
         return String.format("%.02fcm", height);
     }
 
+    /**
+     * Returns size without metric unit at the end.
+     * @return
+     */
     @Override
     public String getSizeWithoutUnit() {
         return height + "";

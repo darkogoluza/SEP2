@@ -64,7 +64,7 @@ public class RegistryViewModel
 			return true;
 		}
     	else {
-			AlertHandler.getInstance().passwordsDontMatch();
+			AlertHandler.getInstance().passwordsDoNotMatch();
 			return false;
 		}
 

@@ -8,6 +8,9 @@ import shared.objects.product.Product;
 
 import java.util.Optional;
 
+/**
+ * Singleton that handles all kind of alert pop-ups.
+ */
 public class AlertHandler {
 
 	private static AlertHandler instance;
@@ -33,6 +36,9 @@ public class AlertHandler {
 		return instance;
 	}
 
+	/**
+	 * Called when administrator enters wrong input while creating product.
+	 */
 	public void administratorWrongInput() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -47,6 +53,9 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when customer tries to other something without products in basket.
+	 */
 	public void emptyBasket() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -55,6 +64,9 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when entering wrong username or password while trying to log in.
+	 */
 	public void wrongCredentials() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -63,6 +75,9 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when trying to create new User with already existing username in database.
+	 */
 	public void userExists() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -71,7 +86,10 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
-	public void passwordsDontMatch() {
+	/**
+	 * Called when trying to create new User but confirmation password does not match.
+	 */
+	public void passwordsDoNotMatch() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
 		alert.setHeaderText("Those passwords don’t match. Please try again!");
@@ -79,6 +97,9 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when Order is successfully created.
+	 */
 	public void orderCreated() {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Success");
@@ -87,7 +108,10 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
-	public void orderDontExist() {
+	/**
+	 * Called when trying to access Order by ID that does not match.
+	 */
+	public void orderDoNotExist() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
 		alert.setHeaderText("Order with this id don't exist!");
@@ -95,6 +119,14 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when trying to remove Reservation.
+	 * Pop-up shows two options, depending on what option is chosen method returns boolean.
+	 * If cancel is chosen method returns false and Reservation would not be removed.
+	 * If ok is chosen method returns true and Reservation is removed.
+	 * @param event
+	 * @return
+	 */
     public boolean onRemoveReservation(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Warning");
@@ -110,6 +142,13 @@ public class AlertHandler {
 		}
 	}
 
+	/**
+	 * Called when trying to remove Product.
+	 * Pop-up shows two options, depending on what option is chosen method returns boolean.
+	 * If cancel is chosen method returns false and Product would not be removed.
+	 * If ok is chosen method returns true and Product is removed.
+	 * @return
+	 */
 	public boolean onRemoveProduct() {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Warning");
@@ -125,6 +164,9 @@ public class AlertHandler {
 		}
 	}
 
+	/**
+	 * Called when employee enters a letter in to ID input field.
+	 */
 	public void wrongOrderIdInput() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -133,6 +175,11 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Called when customers order will expire soon.
+	 * @param id ID of the order that will expire soon.
+	 * @param hoursBeforeExpiration How many hours are left before order will expire.
+	 */
     public void onOrderExpireSoon(int id, int hoursBeforeExpiration) {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
@@ -141,6 +188,10 @@ public class AlertHandler {
 		alert.showAndWait();
     }
 
+	/**
+	 * Called when customers try to add a product to basket which is out of stock.
+	 * @param product Details about the product that is out of stock.
+	 */
 	public void onProductOutOfStock(Product product) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle("Error");
