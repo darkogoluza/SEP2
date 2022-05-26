@@ -64,7 +64,7 @@ public class CustomerAllOrdersController
       viewHandler.openSingleOrderView(r.getId());
     }
     else {
-      AlertHandler.getInstance().orderDontExist();
+      AlertHandler.getInstance().orderDoNotExist();
     }
 
   }

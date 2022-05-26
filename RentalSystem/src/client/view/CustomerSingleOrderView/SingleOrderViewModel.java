@@ -43,6 +43,7 @@ public class SingleOrderViewModel
 
   public SingleOrderViewModel(ModelProxy modelProxy, int id)
   {
+    this.modelProxy = modelProxy;
     this.id = id;
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
