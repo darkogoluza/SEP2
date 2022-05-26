@@ -103,6 +103,11 @@ public class ManageProductsManager implements ManageProducts
 	}
 
 	@Override
+	public void showAllProducts() {
+
+	}
+
+	@Override
 	public ProductList getProductsByCategory(EquipmentType category) {
 		return list.getAllByCategory(category);
 	}

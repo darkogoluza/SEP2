@@ -70,7 +70,6 @@ public class ManageBasketManager implements ManageBasket {
         return clientProxy.getClientBasket().isEmpty();
     }
 
-    @Override
     public String getUserName() {
         return clientProxy.getClientUser().getLoggedUser().getUsername();
     }

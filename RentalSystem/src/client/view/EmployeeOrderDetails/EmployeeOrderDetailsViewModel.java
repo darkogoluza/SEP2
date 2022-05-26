@@ -37,11 +37,9 @@ public class EmployeeOrderDetailsViewModel
   private ManageBasket modelBasket;
   private ModelProxy modelProxy;
 
-
   private int id;
   private ObservableList<ProductsInBasket> productsInList;
 
-  private ModelProxy modelProxy;
 
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
   {

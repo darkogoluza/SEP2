@@ -4,6 +4,7 @@ import shared.objects.product.Product;
 import shared.util.PropertyChangeSubject;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Map;
 
 public interface ManageBasket extends PropertyChangeSubject {
@@ -15,4 +16,6 @@ public interface ManageBasket extends PropertyChangeSubject {
     Map<Product, Integer> getAllProductsByQuantity();
     void order(Timestamp createAt, Timestamp returnAt);
     boolean isEmpty();
+	boolean checkIfProductIsInStock(int id);
+	ArrayList<String> getAllProductsAsString();
 }

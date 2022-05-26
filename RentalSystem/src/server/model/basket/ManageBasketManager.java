@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ManageBasketManager implements ManageBasket
@@ -91,7 +92,17 @@ public class ManageBasketManager implements ManageBasket
         return basket.getProducts().isEmpty();
     }
 
-    @Override
+	@Override
+	public boolean checkIfProductIsInStock(int id) {
+		return false;
+	}
+
+	@Override
+	public ArrayList<String> getAllProductsAsString() {
+		return null;
+	}
+
+	@Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);
     }

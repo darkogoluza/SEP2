@@ -107,7 +107,10 @@
                   </HBox>
 				   <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="569.0">
 					   <children>
-						   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" />
+						   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></ChoiceBox>
 						   <Button fx:id="filterButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="26.0" prefWidth="70.0" text="Filter">
 							   <HBox.margin>
 								   <Insets left="20.0" />
@@ -115,7 +118,7 @@
 						   </Button>
 					   </children>
 					   <VBox.margin>
-						   <Insets bottom="9.0" />
+						   <Insets bottom="9.0" top="10.0" />
 					   </VBox.margin>
 					   <padding>
 						   <Insets right="16.0" />

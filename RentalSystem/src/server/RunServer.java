@@ -2,10 +2,7 @@ package server;
 
 import server.model.ModelProxy;
 import server.model.ModelProxyManager;
-import server.model.user.ManageUser;
-import server.model.user.ManageUserManager;
 import server.networking.ServerProxy;
-import shared.networking.Server;
 import shared.networking.server.Server;
 import shared.util.Utils;
 

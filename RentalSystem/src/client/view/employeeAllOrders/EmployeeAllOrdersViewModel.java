@@ -7,7 +7,6 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import client.model.reservation.ManageReservations;
 import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 

@@ -52,7 +52,7 @@ public class CustomerBasketViewModel
         showAllProductsInBasket();
         totalItemsInBasketProperty.set("" + event.getNewValue());
         finalTotalPriceProperty.set("" + event.getNewValue());
-        userNameProperty.set(modelBasket.getUserName());
+        userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
     }
 
     public ObservableList<ProductsInBasket> getProductsInBaskets() {
