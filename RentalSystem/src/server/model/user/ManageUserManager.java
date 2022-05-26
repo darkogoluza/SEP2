@@ -1,16 +1,20 @@
 package server.model.user;
 
 import shared.objects.user.User;
-import shared.objects.user.UserRole;
-
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
+/**
+ * Class manly handles logging, creating of users and logging off.
+ */
 public class ManageUserManager implements ManageUser{
 	private User user;
 	private PropertyChangeSupport changeSupport;
 	private ManageUserPersistance db;
 
+	/**
+	 * Instantiates database manager.
+	 */
 	public ManageUserManager() {
 		user = null;
 		try {
@@ -21,6 +25,10 @@ public class ManageUserManager implements ManageUser{
 
 	}
 
+	/**
+	 * Adds new User to database.
+	 * @param user
+	 */
 	@Override
 	public void add(User user) {
 		try {
@@ -30,6 +38,11 @@ public class ManageUserManager implements ManageUser{
 		}
 	}
 
+	/**
+	 * Returns a User from database by matching usernames.
+	 * @param username
+	 * @return Returns null if usernames do not match.
+	 */
 	@Override
 	public User get(String username) {
 		try {
@@ -40,6 +53,12 @@ public class ManageUserManager implements ManageUser{
 		return null;
 	}
 
+	/**
+	 * Searches for User in database by matching username and password.
+	 * @param username
+	 * @param password
+	 * @return Returns false if logging in failed, meaning username or password were not matching.
+	 */
 	@Override
 	public boolean login(String username, String password) {
 		User userTmp = null;
@@ -59,6 +78,10 @@ public class ManageUserManager implements ManageUser{
 		return false;
 	}
 
+	/**
+	 * Returns currently logged-in User. Returns null if there is no User logged-in.
+	 * @return
+	 */
 	@Override
 	public User getLoggedUser() {
 		if (user != null) {
@@ -69,11 +92,12 @@ public class ManageUserManager implements ManageUser{
 		}
 	}
 
+	/**
+	 * Sets the user to equal null.
+	 */
 	@Override
 	public void logout() {
 		user = null;
 		//TODO fire event so we can open another window
 	}
-
-
 }
