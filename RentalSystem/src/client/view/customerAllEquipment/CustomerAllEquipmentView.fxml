@@ -15,7 +15,7 @@
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="438.0" prefWidth="89.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="419.0" prefWidth="94.0" style="-fx-background-color: #7FB5FF;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -24,7 +24,7 @@
                   </ImageView>
                   <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="76.0" text="username">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="10.0" />
