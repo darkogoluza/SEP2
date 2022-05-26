@@ -1,6 +1,7 @@
 package client.view.EmployeeOrderDetails;
 
 import client.model.ModelProxy;
+import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
 import client.model.reservation.ManageReservations;
@@ -33,6 +34,10 @@ public class EmployeeOrderDetailsViewModel
   private ManageReservations modelReservations;
   private ManageProducts modelProducts;
   private StringProperty phoneNumberProperty;
+  private ManageBasket modelBasket;
+  private ModelProxy modelProxy;
+
+
   private int id;
   private ObservableList<ProductsInBasket> productsInList;
 
@@ -132,4 +137,8 @@ public class EmployeeOrderDetailsViewModel
 	public void setId(int id) {
 		this.id = id;
 	}
+  public void logOff() {
+    modelBasket.clear();
+    modelProxy.getManageUser().logout();
+  }
 }

@@ -33,7 +33,7 @@ public class CustomerAllEquipmentViewModel
         modelBasket = modelProxy.getManageBasket();
         modelProducts = modelProxy.getManageProducts();
 
-        totalItemsInBasketProperty.set("Total Items in basket: " + modelBasket.size());
+        totalItemsInBasketProperty.set("" + modelBasket.size());
         usernameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
 		modelProxy.getManageUser().addPropertyChangeListener("login",
@@ -50,7 +50,7 @@ public class CustomerAllEquipmentViewModel
 	}
 
 	private void modifiedBasket(PropertyChangeEvent event) {
-        totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
+        totalItemsInBasketProperty.set("" + event.getNewValue());
         loadAllProducts();
 
     }

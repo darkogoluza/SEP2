@@ -1,6 +1,7 @@
 package client.view.CustomerSingleOrderView;
 
 import client.model.ModelProxy;
+import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import client.model.product.ManageProducts;
 import client.model.reservation.ManageReservations;
@@ -25,12 +26,18 @@ public class SingleOrderViewModel
   private StringProperty returnedAtTimeProperty;
   private StringProperty returnedAtDateProperty;
   private StringProperty totalOverallPriceProperty;
+  private StringProperty totalItemsInBasketProperty;
+
   private StringProperty nameOfProductProperty;
   private StringProperty sizeProperty;
   private ManageReservations modelReservations;
+  private ManageBasket modelBasket;
   private ManageProducts modelProducts;
   private Reservation reservation;
+  private ModelProxy modelProxy;
+
   private int id;
+
   private ProductList products;
   private ObservableList<ProductsInBasket> productsInList;
 
@@ -51,6 +58,9 @@ public class SingleOrderViewModel
     returnedAtTimeProperty = new SimpleStringProperty();
     totalOverallPriceProperty=new SimpleStringProperty();
     statusProperty = new SimpleStringProperty();
+    totalItemsInBasketProperty = new SimpleStringProperty();
+
+    totalItemsInBasketProperty.set("" + modelBasket.size());
     statusProperty.setValue(ReservationStatus.rented.toString());;
     orderIdProperty.setValue(String.valueOf(id));
     userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
@@ -112,5 +122,13 @@ public class SingleOrderViewModel
   public ObservableList<ProductsInBasket> getProductsInBaskets()
   {
     return productsInList;
+  }
+  public void logOff() {
+    modelBasket.clear();
+    modelProxy.getManageUser().logout();
+  }
+
+  public StringProperty getTotalItemsInBasketProperty() {
+    return totalItemsInBasketProperty;
   }
 }

@@ -24,10 +24,6 @@ public class EmployeeAllOrdersController {
 	);
 
 	@FXML
-	private Button searchButton;
-	@FXML
-	private Button logOffButton;
-	@FXML
 	private TextField searchInput;
 	@FXML
 	private ListView reservationsList;
@@ -93,5 +89,9 @@ public class EmployeeAllOrdersController {
 
 	public void onFilterChoiceChanged(ActionEvent event) {
 		viewModel.changedFilterStatus(filterByStatus.getValue());
+	}
+	public void onAllOrders(ActionEvent event)
+	{
+		viewHandler.openEmployeeView();
 	}
 }
