@@ -1,6 +1,7 @@
 package client.view.CustomerBasketView;
 
 import client.model.ModelProxy;
+import client.model.ModelProxyManager;
 import client.model.basket.ProductsInBasket;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -35,6 +36,7 @@ public class CustomerBasketViewModel
         createDateProperty = new SimpleObjectProperty<>();
         returnDateProperty = new SimpleObjectProperty<>();
         totalItemsInBasketProperty = new SimpleStringProperty();
+        this.modelProxy = modelProxy;
 
         modelBasket = modelProxy.getManageBasket();
         modelBasket.addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
