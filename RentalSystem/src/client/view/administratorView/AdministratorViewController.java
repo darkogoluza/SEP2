@@ -224,4 +224,9 @@ public class AdministratorViewController {
 		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
+
+	public void onCreateAccount()
+    {
+        viewHandler.openRegistryView();
+    }
 }
