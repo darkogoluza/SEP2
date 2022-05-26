@@ -15,4 +15,5 @@ public interface ManageReservations extends PropertyChangeSubject
     void changeReservation(int index, ReservationStatus newStatus);
     void showAllReservations();
     String getTotalPrice(int id);
+  ReservationList getReservationByUsername(String username);
 }

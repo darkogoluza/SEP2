@@ -1,13 +1,8 @@
 package server.model.reservation;
 
-import client.model.ModelProxy;
-import server.model.user.ManageUser;
-import server.model.user.ManageUserManager;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
-import shared.objects.user.User;
-import shared.objects.user.UserRole;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -56,6 +51,12 @@ public class ManageReservationManager implements ManageReservations
     public String getTotalPrice(int id) {
 		update();
         return String.format("%.02f€", list.get(id).getProducts().getTotalPrice());
+    }
+
+    @Override public ReservationList getReservationByUsername(String username)
+    {
+        update();
+        return list.getByUsername(username);
     }
 
     @Override public Reservation getReservationByIndex(int index)

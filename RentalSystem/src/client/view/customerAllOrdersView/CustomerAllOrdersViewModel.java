@@ -35,7 +35,7 @@ public class CustomerAllOrdersViewModel
 
   public void loadAllProducts() {
     listOfOrders.set(
-        FXCollections.observableArrayList(modelReservations.getAllReservations().convertToStringArrayList()));
+        FXCollections.observableArrayList(modelReservations.getReservationByUsername(modelProxy.getManageUser().getLoggedUser().getUsername()).convertToStringArrayList()));
   }
   public ListProperty<String> getListOfReservationsProperty() {
     return listOfOrders;

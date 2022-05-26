@@ -32,7 +32,7 @@
                               <Insets right="9.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="searchInput1" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0">
+                        <TextField fx:id="searchInput" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -54,8 +54,8 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ChoiceBox fx:id="filterByStatus1" minWidth="100.0" onAction="#onFilterChoiceChanged" prefHeight="26.0" prefWidth="74.0" />
-                  <Button fx:id="logOffButton1" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                  <ChoiceBox fx:id="filterByStatus" minWidth="100.0" onAction="#onFilterChoiceChanged" prefHeight="26.0" prefWidth="74.0" />
+                  <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
                      <graphic>
                         <ImageView>
                            <image>
