@@ -2,11 +2,9 @@ package client.view.customerAllOrdersView;
 
 import client.model.ModelProxy;
 
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
+import shared.networking.model.ManageBasket;
 import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 
@@ -14,10 +12,13 @@ import java.beans.PropertyChangeEvent;
 
 public class CustomerAllOrdersViewModel
 {
+  private StringProperty totalItemsInBasketProperty;
+  private StringProperty userNameProperty;
   private ListProperty<String> listOfOrders;
   private SimpleStringProperty searchInput;
   private ManageReservations modelReservations;
   private ModelProxy modelProxy;
+  private ManageBasket modelBasket;
   private String filterStatus;
 
   public CustomerAllOrdersViewModel(ModelProxy modelProxy)
@@ -26,43 +27,61 @@ public class CustomerAllOrdersViewModel
     listOfOrders = new SimpleListProperty<>();
     this.modelReservations = modelProxy.getManageReservations();
     this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
-    this.modelProxy=modelProxy;
-
+    this.modelProxy = modelProxy;
+    this.modelBasket = modelProxy.getManageBasket();
+    userNameProperty = new SimpleStringProperty();
+    totalItemsInBasketProperty = new SimpleStringProperty();
+    totalItemsInBasketProperty.set("" + modelBasket.size());
+    userNameProperty.set(
+        modelProxy.getManageUser().getLoggedUser().getUsername());
     loadAllProducts();
   }
-  private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
+
+  private void modifiedReservation(PropertyChangeEvent propertyChangeEvent)
+  {
     loadAllProducts();
   }
 
-  public void loadAllProducts() {
-    listOfOrders.set(
-        FXCollections.observableArrayList(modelReservations.getReservationByUsername(modelProxy.getManageUser().getLoggedUser().getUsername()).convertToStringArrayList()));
+  public void loadAllProducts()
+  {
+    listOfOrders.set(FXCollections.observableArrayList(modelReservations.getReservationByUsername(
+        modelProxy.getManageUser().getLoggedUser().getUsername()).convertToStringArrayList()));
   }
-  public ListProperty<String> getListOfReservationsProperty() {
+
+  public ListProperty<String> getListOfReservationsProperty()
+  {
     return listOfOrders;
   }
 
-  public Property<String> getSearchProperty() {
+  public Property<String> getSearchProperty()
+  {
     return searchInput;
   }
 
-  public int openReservationByIndex(int index) {
+  public int openReservationByIndex(int index)
+  {
     Reservation r = modelReservations.getReservationByIndex(index);
     return r.getId();
   }
 
-  public int reservationsCount() {
-    return modelReservations.getAllReservations().size();
-  }
-
-  public Reservation openReservationById(int id) {
+  public Reservation openReservationById(int id)
+  {
     return modelReservations.getReservationById(id);
   }
-  public void logOff() {
+
+  public void logOff()
+  {
+    modelBasket.clear();
     modelProxy.getManageUser().logout();
   }
-  public void changedFilterStatus(String newFilterStatus) {
-    filterStatus = newFilterStatus;
-    loadAllProducts();
+
+  public StringProperty getTotalItemsInBasketProperty()
+  {
+    return totalItemsInBasketProperty;
+  }
+
+  public Property<String> getUserNameProperty()
+  {
+    return userNameProperty;
   }
 }

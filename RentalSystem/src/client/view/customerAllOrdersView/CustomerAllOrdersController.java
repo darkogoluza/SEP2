@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import shared.objects.errors.AlertHandler;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
@@ -23,19 +20,21 @@ public class CustomerAllOrdersController
       "All"
   );
   @FXML
+  private TextField searchInput;
+  @FXML
+  private Label username;
+  @FXML
+  private Label totalItemsInBasket;
+  @FXML
+  private Button gotToBasketButton;
+  @FXML
   private Button logOffButton;
   @FXML
   private Button searchButton;
   @FXML
-  private Button goBackButton;
-  @FXML
   private Button openReservationButton;
   @FXML
-  private TextField searchInput;
-  @FXML
   private ListView reservationsList;
-  @FXML
-  private ChoiceBox<String> filterByStatus;
 
   private ViewHandler viewHandler;
   private client.view.customerAllOrdersView.CustomerAllOrdersViewModel viewModel;
@@ -45,10 +44,12 @@ public class CustomerAllOrdersController
     this.viewHandler = viewHandler;
     viewModel = vmf.getCustomerAllOrdersViewModel();
 
+    username.textProperty().bind(viewModel.getUserNameProperty());
+    totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
     reservationsList.itemsProperty().bindBidirectional(viewModel.getListOfReservationsProperty());
     searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
   }
-
+  @FXML
   public void onSearchButton(ActionEvent event) {
     int id = -1;
     try {
@@ -60,19 +61,20 @@ public class CustomerAllOrdersController
 
     Reservation r = viewModel.openReservationById(id);
     if (r != null) {
-      viewHandler.openEmployeeOrderDetailsView(r.getId());
+      viewHandler.openSingleOrderView(r.getId());
     }
     else {
       AlertHandler.getInstance().orderDontExist();
     }
 
   }
-
+  @FXML void backButton(ActionEvent event) {
+    viewHandler.openCustomerAllEquipmentView();
+  }
   public void onLogOff() {
     viewModel.logOff();
     viewHandler.openLoginView();
   }
-
   public void onOpenReservation() {
     if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
       return;
@@ -80,5 +82,14 @@ public class CustomerAllOrdersController
     int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 
     viewHandler.openSingleOrderView(id);
+  }
+  public void onGoToBasketButton(ActionEvent event)
+  {
+    viewHandler.openCustomerBasket();
+  }
+
+  public void onGoToReservations(ActionEvent event)
+  {
+    viewHandler.openCustomerAllOrdersView();
   }
 }

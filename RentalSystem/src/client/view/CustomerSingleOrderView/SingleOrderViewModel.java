@@ -47,6 +47,7 @@ public class SingleOrderViewModel
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();
     this.modelProducts = modelProxy.getManageProducts();
+    this.modelBasket = modelProxy.getManageBasket();
     modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
     createdAtTimeProperty=new SimpleStringProperty();
     orderIdProperty = new SimpleStringProperty();
@@ -59,6 +60,7 @@ public class SingleOrderViewModel
     totalOverallPriceProperty=new SimpleStringProperty();
     statusProperty = new SimpleStringProperty();
     totalItemsInBasketProperty = new SimpleStringProperty();
+
 
     totalItemsInBasketProperty.set("" + modelBasket.size());
     statusProperty.setValue(ReservationStatus.rented.toString());;

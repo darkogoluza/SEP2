@@ -12,48 +12,67 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="416.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.customerAllOrdersView.CustomerAllOrdersController">
-    <children>
-        <VBox minWidth="-Infinity" prefHeight="415.0" prefWidth="661.0">
-            <children>
-                <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="52.0" prefWidth="577.0">
-                    <children>
-                  <HBox prefHeight="32.0" prefWidth="572.0">
-                     <children>
-                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="34.0" text="Id:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets right="9.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="searchInput" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets top="1.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="searchButton1" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="22.0" prefWidth="34.0" style="-fx-background-color: transparent;">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="22.0">
-                                 <image>
-                                    <Image url="@../../../image/Shopicons_Regular_Search.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+<AnchorPane prefHeight="407.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.customerAllOrdersView.CustomerAllOrdersController">
+   <children>
+      <HBox prefHeight="407.0" prefWidth="664.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="434.0" prefWidth="85.0" style="-fx-background-color: #7FB5FF;">
+               <children>
+                  <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/jasna_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="74.0" text="Miro">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;" text="Home">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="32.0">
+                           <image>
+                              <Image url="@../../../image/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="totalItemsInBasket" prefHeight="17.0" prefWidth="19.0" text="0">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="9.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="63.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Basket">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="33.0">
+                           <image>
+                              <Image url="@../../../image/Shopicons_Regular_Cart3.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToReservations" style="-fx-background-color: transparent;" text="Reservations">
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/appointment.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="18.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
                      <graphic>
                         <ImageView>
                            <image>
@@ -61,33 +80,73 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <VBox.margin>
+                        <Insets top="70.0" />
+                     </VBox.margin>
                   </Button>
-                    </children>
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
-                </HBox>
-                <ListView fx:id="reservationsList" prefHeight="342.0" prefWidth="661.0" />
-            </children>
-        </VBox>
-      <HBox alignment="CENTER_LEFT" layoutX="9.0" layoutY="411.0" prefHeight="32.0" prefWidth="645.0" spacing="10.0">
-         <children>
-                  <Button fx:id="goBackButton" depthTest="DISABLE" mnemonicParsing="false" onAction="#onGoBack" text="Back" />
-            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="500.0">
-               <children>
-                        <Button fx:id="openReservationButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOpenReservation" text="Open" />
                </children>
-            </HBox>
+            </VBox>
+            <VBox minWidth="-Infinity" prefHeight="407.0" prefWidth="569.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="50.0" prefWidth="548.0">
+                     <children>
+                        <HBox prefHeight="32.0" prefWidth="418.0">
+                           <children>
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="34.0" text="Id:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets right="9.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="searchInput" minWidth="-Infinity" prefHeight="26.0" prefWidth="191.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets top="1.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="searchButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" prefHeight="22.0" prefWidth="34.0" style="-fx-background-color: transparent;">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0">
+                                       <image>
+                                          <Image url="@../../../image/Shopicons_Regular_Search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <ListView fx:id="reservationsList" prefHeight="371.0" prefWidth="569.0" />
+                  <HBox alignment="CENTER" prefHeight="86.0" prefWidth="569.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" style="-fx-background-color: transparent;" text="Open">
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/focus.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
       </HBox>
-    </children>
-    <padding>
-        <Insets top="15.0" />
-    </padding>
+   </children>
 </AnchorPane>

@@ -22,9 +22,6 @@ public class SingleOrderViewController {
   private SingleOrderViewModel viewModel;
 
   @FXML
-  private Button back;
-
-  @FXML
   private Label finalTotalPrice;
 
   @FXML
@@ -105,5 +102,9 @@ public class SingleOrderViewController {
   public void onGoToReservations(ActionEvent event)
   {
     viewHandler.openCustomerAllOrdersView();
+  }
+  public void onGoToBasketButton(ActionEvent event)
+  {
+    viewHandler.openCustomerBasket();
   }
 }
