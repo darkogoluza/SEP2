@@ -64,7 +64,7 @@ public class CustomerAllEquipmentViewController
     }
     public void onGoToReservations(ActionEvent event)
     {
-        viewHandler.openSingleOrderView();
+        viewHandler.openCustomerAllOrdersView();
     }
 
 	public void filter() {

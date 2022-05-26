@@ -94,10 +94,6 @@ public class ManageReservationManager implements ManageReservations
     }
 
 
-    @Override
-    public void showAllReservations() {
-
-    }
 
 	private void update() {
 		try {

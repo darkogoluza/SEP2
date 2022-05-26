@@ -1,12 +1,13 @@
 package client.view.customerAllOrdersView;
 
 import client.model.ModelProxy;
-import client.model.reservation.ManageReservations;
+
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 
 import java.beans.PropertyChangeEvent;

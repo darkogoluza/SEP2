@@ -79,14 +79,6 @@ public class CustomerAllOrdersController
 
     int id = viewModel.openReservationByIndex(reservationsList.getSelectionModel().getSelectedIndex());
 
-    viewHandler.openEmployeeOrderDetailsView(id);
-  }
-  public void onGoBack()
-  {
-    viewHandler.openCustomerBasket();
-    // TODO: 5/21/2022 from where do we go to customer all orders? where should it go back? 
-  }
-  public void onFilterChoiceChanged(ActionEvent event) {
-    viewModel.changedFilterStatus(filterByStatus.getValue());
+    viewHandler.openSingleOrderView(id);
   }
 }

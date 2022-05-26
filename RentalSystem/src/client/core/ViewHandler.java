@@ -57,8 +57,8 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-      //openLoginView();
-      openCustomerAllOrdersView();
+      openLoginView();
+      //openCustomerAllOrdersView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
@@ -188,17 +188,16 @@ public class ViewHandler
 		stage.setScene(employeeOrderDetailsScene);
 	}
 
-  public void openSingleOrderView(){
+  public void openSingleOrderView(int id){
     FXMLLoader loader = new FXMLLoader();
 
-    if (singleOrderView == null) {
-      Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
+    Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
 
-      SingleOrderViewController controller = loader.getController();
-      //TODO change the ID later
-      controller.init(this, vmf, 0);
-      singleOrderView = new Scene(root);
-    }
+    SingleOrderViewController controller = loader.getController();
+    //TODO change the ID later
+    controller.init(this, vmf, id);
+    singleOrderView = new Scene(root);
+
 
     stage.setTitle("Single Order");
     stage.setScene(singleOrderView);

@@ -1,13 +1,11 @@
 package client.view.administratorView;
 
 import client.model.ModelProxy;
-import client.model.product.ManageProducts;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import shared.networking.model.ManageProducts;
 import shared.objects.product.*;

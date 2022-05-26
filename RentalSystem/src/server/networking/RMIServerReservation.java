@@ -2,7 +2,6 @@ package server.networking;
 
 import shared.networking.model.ManageReservations;
 import shared.networking.server.ServerReservation;
-import shared.networking.ServerReservation;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;

@@ -5,6 +5,7 @@ import client.model.basket.ProductsInBasket;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import shared.networking.model.ManageBasket;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
