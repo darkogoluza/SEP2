@@ -4,14 +4,19 @@ import shared.networking.model.ManageUser;
 import shared.networking.server.ServerUser;
 import shared.objects.user.User;
 import shared.util.Utils;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * Class manly deals with users, such as logging, creating and logging off users.
+ */
 public class RMIServerUser implements ServerUser {
 
     private ManageUser model;
 
+	/**
+	 * @param model Contains all the functionality.
+	 */
     public RMIServerUser(ManageUser model) {
         this.model = model;
         try {
@@ -48,18 +53,24 @@ public class RMIServerUser implements ServerUser {
 	 * Login user with given credentials
 	 * @param username
 	 * @param password
-	 * @return
+	 * @return Returns whether the login was successful.
 	 */
 	@Override
 	public boolean login(String username, String password) {
 		return model.login(username, password);
 	}
 
+	/**
+	 * @return Returns the user that is currently being logged in to the system.
+	 */
 	@Override
 	public User getLoggedUser() {
 		return model.getLoggedUser();
 	}
 
+	/**
+	 * Removes the user from model.
+	 */
 	@Override
 	public void logout() {
 		model.logout();
