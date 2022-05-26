@@ -2,16 +2,20 @@ package server.model.user;
 
 import shared.networking.model.ManageUser;
 import shared.objects.user.User;
-
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
 
+/**
+ * Class manly handles logging, creating of users and logging off.
+ */
 public class ManageUserManager implements ManageUser {
 	public static User user;
 	private PropertyChangeSupport changeSupport;
 	private ManageUserPersistance db;
 
+	/**
+	 * Instantiates database manager.
+	 */
 	public ManageUserManager() {
 		changeSupport = new PropertyChangeSupport(this);
 		user = null;
@@ -22,6 +26,10 @@ public class ManageUserManager implements ManageUser {
 		}
 	}
 
+	/**
+	 * Adds new User to database.
+	 * @param user
+	 */
 	@Override
 	public void add(User user) {
 		try {
@@ -32,6 +40,11 @@ public class ManageUserManager implements ManageUser {
 		}
 	}
 
+	/**
+	 * Returns a User from database by matching usernames.
+	 * @param username
+	 * @return Returns null if usernames do not match.
+	 */
 	@Override
 	public User get(String username) {
 		try {
@@ -42,6 +55,12 @@ public class ManageUserManager implements ManageUser {
 		return null;
 	}
 
+	/**
+	 * Searches for User in database by matching username and password.
+	 * @param username
+	 * @param password
+	 * @return Returns false if logging in failed, meaning username or password were not matching.
+	 */
 	@Override
 	public boolean login(String username, String password) {
 		User userTmp = null;
@@ -62,6 +81,11 @@ public class ManageUserManager implements ManageUser {
 		return false;
 	}
 
+	/**
+	 * Returns currently logged-in User. Returns null if there is no User logged-in.
+	 * @return
+	 */
+	@Override
 	public User getLoggedUser() {
 		if (user != null) {
 			return user;
@@ -71,6 +95,9 @@ public class ManageUserManager implements ManageUser {
 		}
 	}
 
+	/**
+	 * Sets the user to equal null.
+	 */
 	@Override
 	public void logout() {
 		user = null;

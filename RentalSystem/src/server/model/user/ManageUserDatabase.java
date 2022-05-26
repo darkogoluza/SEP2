@@ -1,17 +1,23 @@
 package server.model.user;
 
-import shared.objects.reservation.Reservation;
-import shared.objects.reservation.ReservationStatus;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
-
 import java.sql.*;
 
+/**
+ * Class deals with communication with SQL database.
+ */
 public class ManageUserDatabase implements ManageUserPersistance {
+
 	public ManageUserDatabase() throws SQLException {
 		DriverManager.registerDriver(new org.postgresql.Driver());
 	}
 
+	/**
+	 * Establishes a connection to SQL database.
+	 * @return
+	 * @throws SQLException
+	 */
 	private Connection getConnection() throws SQLException {
 		String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=rentalsystem";
 		String user = "postgres";
@@ -19,6 +25,12 @@ public class ManageUserDatabase implements ManageUserPersistance {
 		Connection connection = DriverManager.getConnection(url, user, pw);
 		return connection;
 	}
+
+	/**
+	 * Saves a single User to database.
+	 * @param user
+	 * @throws SQLException
+	 */
 	@Override
 	public void save(User user) throws SQLException {
 		Connection connection = getConnection();
@@ -33,6 +45,12 @@ public class ManageUserDatabase implements ManageUserPersistance {
 		}
 	}
 
+	/**
+	 * This method is used when saving Users to help reduce code in a single method.
+	 * @param statement
+	 * @param user
+	 * @throws SQLException
+	 */
 	private void executeStatementUser(PreparedStatement statement, User user) throws SQLException {
 		statement.setString(1, user.getUsername());
 		statement.setString(2, user.getPassword());
@@ -42,6 +60,12 @@ public class ManageUserDatabase implements ManageUserPersistance {
 		statement.executeUpdate();
 	}
 
+	/**
+	 * Loads a Single User from database with matching username.
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
 	@Override
 	public User load(String username) throws SQLException {
 		User user = null;
