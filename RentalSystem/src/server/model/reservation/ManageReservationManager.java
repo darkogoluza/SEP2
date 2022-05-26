@@ -77,6 +77,12 @@ public class ManageReservationManager implements ManageReservations
      * @param index
      * @return
      */
+    @Override public ReservationList getReservationByUsername(String username)
+    {
+        update();
+        return list.getByUsername(username);
+    }
+
     @Override public Reservation getReservationByIndex(int index)
     {
 		update();

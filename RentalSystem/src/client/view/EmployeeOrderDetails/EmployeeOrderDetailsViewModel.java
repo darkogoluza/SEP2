@@ -1,12 +1,12 @@
 package client.view.EmployeeOrderDetails;
 
 import client.model.ModelProxy;
-import client.model.basket.ManageBasket;
 import client.model.basket.ProductsInBasket;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import shared.networking.model.ManageBasket;
 import shared.networking.model.ManageProducts;
 import shared.networking.model.ManageReservations;
 import shared.objects.product.Product;

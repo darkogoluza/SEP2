@@ -52,6 +52,10 @@ public class RMIServerReservation implements ServerReservation {
     public Reservation getByIndex(int index) {
         return model.getReservationByIndex(index);
     }
+    @Override public ReservationList getByUsername(String username)
+    {
+        return model.getReservationByUsername(username);
+    }
 
     /**
      * Returns a single Reservation from database by matching ID.
@@ -82,5 +86,7 @@ public class RMIServerReservation implements ServerReservation {
     public void changeReservation(int index, ReservationStatus newStatus) throws RemoteException {
         model.changeReservation(index, newStatus);
     }
+
+
 }
 

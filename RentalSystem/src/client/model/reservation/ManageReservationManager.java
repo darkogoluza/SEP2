@@ -49,6 +49,10 @@ public class ManageReservationManager implements ManageReservations
     {
         return clientProxy.getClientReservation().get(id);
     }
+    @Override public ReservationList getReservationByUsername(String username)
+    {
+        return clientProxy.getClientReservation().getByUsername(username);
+    }
 
     @Override public ReservationList getAllReservations()
     {

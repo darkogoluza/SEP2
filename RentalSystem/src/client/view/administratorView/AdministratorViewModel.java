@@ -1,7 +1,11 @@
 package client.view.administratorView;
 
 import client.model.ModelProxy;
-import javafx.beans.property.*;
+
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import shared.networking.model.ManageProducts;
 import shared.objects.product.*;
@@ -39,7 +43,8 @@ public class AdministratorViewModel {
 	}
 
 	public void loadData() {
-		listViewAdministrator.set(FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
+		listViewAdministrator.set(
+				FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
 	}
 
 	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size, int amount) {

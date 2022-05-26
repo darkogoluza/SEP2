@@ -141,6 +141,6 @@ public class CustomerBasketViewController
 
   public void onGoToReservations(ActionEvent event)
   {
-    viewHandler.openSingleOrderView();
+    viewHandler.openCustomerAllOrdersView();
   }
 }
