@@ -1,7 +1,12 @@
 package server.model.product;
 
+import javafx.scene.image.Image;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.*;
 
 public class ManageProductDatabase implements ManageProductsPersistence
@@ -70,13 +75,13 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
     @Override
-    public void save(Product product) throws SQLException {
+    public void save(Product product, String path) throws SQLException {
         Connection connection = getConnection();
         try
         {
             PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO Product(id, name, size, color, price) VALUES(?, ?, ?, ?, ?);");
-            executeStatement(statement, product);
+                    connection.prepareStatement("INSERT INTO Product(id, name, size, color, price, image) VALUES(?, ?, ?, ?, ?, ?);");
+            executeStatement(statement, product, path);
         }
         finally {
             connection.close();
@@ -128,14 +133,58 @@ public class ManageProductDatabase implements ManageProductsPersistence
         //TODO: make this
     }
 
-	private void executeStatement(PreparedStatement statement, Product product) throws SQLException {
+	public byte[] getImage(int id) {
+		byte[] byteImg = null;
+
+		Connection connection = null;
+		try {
+			connection = getConnection();
+
+			PreparedStatement ps =
+					connection.prepareStatement("SELECT image FROM product WHERE id = ?");
+
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				byteImg = rs.getBytes(1);
+			}
+			rs.close();
+			ps.close();
+
+			return byteImg;
+		} catch (Exception e) {
+			AlertHandler.getInstance().wrongFile();
+			return null;
+		}
+	}
+
+	private void executeStatement(PreparedStatement statement, Product product, String path) throws SQLException {
 		statement.setInt(1, product.getId());
 		statement.setString(2, product.getType().toString());
 		statement.setString(3, product.getSize().toString());
 		statement.setString(4, product.getColor().toString());
 		statement.setDouble(5, product.getPrice());
+		System.out.println(path);
+		File file = new File(path);
+		System.out.println(file.getAbsolutePath());
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			statement.setBinaryStream(6, fis, file.length());
+			statement.executeUpdate();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
+	private void executeStatement(PreparedStatement statement, Product product) throws SQLException {
+
+		statement.setInt(1, product.getId());
+		statement.setString(2, product.getType().toString());
+		statement.setString(3, product.getSize().toString());
+		statement.setString(4, product.getColor().toString());
+		statement.setDouble(5, product.getPrice());
 		statement.executeUpdate();
+
 	}
 
 }

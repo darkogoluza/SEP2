@@ -2,7 +2,6 @@ package client.view.productDetails;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
-import client.view.registryView.RegistryViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
@@ -17,6 +16,8 @@ public class ProductDetailsController {
 		this.viewHandler = viewHandler;
 		viewModel = vmf.getProductDetailsViewModel();
 
+		viewModel.setId(0);
+		viewModel.setProduct();
 		imageView.setImage(viewModel.getImage());
 	}
 

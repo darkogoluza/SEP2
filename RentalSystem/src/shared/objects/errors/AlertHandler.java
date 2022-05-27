@@ -126,4 +126,12 @@ public class AlertHandler {
 
 		alert.showAndWait();
 	}
+
+    public void wrongFile() {
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Warning");
+		alert.setHeaderText("You did not select any file!");
+
+		alert.showAndWait();
+    }
 }

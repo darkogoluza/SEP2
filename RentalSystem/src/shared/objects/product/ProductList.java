@@ -1,5 +1,8 @@
 package shared.objects.product;
 
+import javafx.scene.image.Image;
+
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

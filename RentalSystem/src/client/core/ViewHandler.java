@@ -59,7 +59,7 @@ public class ViewHandler
 //		System.out.println(manageUser.getLoggedUser());
 //		openLoginView();
 
-		openProductDetailsView(1);
+		openProductDetailsView(3);
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();

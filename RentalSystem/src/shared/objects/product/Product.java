@@ -1,5 +1,8 @@
 package shared.objects.product;
 
+import javafx.scene.image.Image;
+
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
@@ -13,23 +16,23 @@ public class Product implements Serializable
     private EquipmentType type;
     private Size size;
 
-    /**
-     * Constructor
-     * @param id ID of the product.
-     * @param price Price of the product in euros.
-     * @param color Color of the product values can be: red, blue, green, black, white, pink.
-     * @param type Type of equipment values can be: helmet, ski, skiPoles, snowboard, skiShoes, snowboardShoes.
-     * @param size Size of equipment values can be LabelFormat or MetricFormat.
-     */
-    public Product(int id, double price, Color color, EquipmentType type, Size size) {
-        this.price = price;
-        this.id = id;
-        this.color = color;
-        this.type = type;
-        this.size = size;
-    }
+	/**
+	 * Constructor
+	 * @param id ID of the product.
+	 * @param price Price of the product in euros.
+	 * @param color Color of the product values can be: red, blue, green, black, white, pink.
+	 * @param type Type of equipment values can be: helmet, ski, skiPoles, snowboard, skiShoes, snowboardShoes.
+	 * @param size Size of equipment values can be LabelFormat or MetricFormat.
+	 */
+	public Product(int id, double price, Color color, EquipmentType type, Size size) {
+		this.price = price;
+		this.id = id;
+		this.color = color;
+		this.type = type;
+		this.size = size;
+	}
 
-    /**
+	/**
      * Getter for price.
      * @return Returns price.
      */
@@ -117,7 +120,7 @@ public class Product implements Serializable
                 product.size.equals(size);
     };
 
-    /**
+	/**
      * Copy method.
      * @return Returns exact copy of Product.
      */
