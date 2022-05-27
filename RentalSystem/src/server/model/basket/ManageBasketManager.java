@@ -6,7 +6,6 @@ import shared.networking.model.ManageBasket;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
@@ -14,12 +13,18 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Class manly deals with Adding and removing Products from basket.
+ */
 public class ManageBasketManager implements ManageBasket
 {
     private Basket basket;
     private PropertyChangeSupport changeSupport;
     private ManageReservationDatabase reservationDatabase;
 
+    /**
+     * Initializes a database manager.
+     */
     public ManageBasketManager () {
         try {
             this.reservationDatabase = new ManageReservationDatabase();
@@ -30,6 +35,10 @@ public class ManageBasketManager implements ManageBasket
         changeSupport = new PropertyChangeSupport(this);
     }
 
+    /**
+     * Adds a single Product to Basket.
+     * @param product
+     */
     @Override
     public void add(Product product) {
         basket.getProducts().add(product);
@@ -37,6 +46,11 @@ public class ManageBasketManager implements ManageBasket
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
+    /**
+     * Removes a single Product from basket.
+     * @param product
+     * @return
+     */
     @Override
     public Product remove(Product product) {
         Product product1 = basket.getProducts().remove(product.getId());
@@ -45,6 +59,9 @@ public class ManageBasketManager implements ManageBasket
         return product1;
     }
 
+    /**
+     * Empties the Basket from all Products.
+     */
     @Override
     public void clear() {
         basket.clear();
@@ -52,22 +69,40 @@ public class ManageBasketManager implements ManageBasket
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
+    /**
+     * Returns formatted sum of Product prices.
+     * @return
+     */
     @Override
     public String getTotalPrice() {
         return String.format("%.02f€", basket.getTotalPrice());
 
     }
 
+    /**
+     * Returns count of all Products in Basket.
+     * @return
+     */
     @Override
     public int size() {
         return basket.getProducts().size();
     }
 
+    /**
+     * Returns a Map that contains Product as a key and quantity as Value.
+     * Value for each key just tells how many of that Product the Basket contains.
+     * @return
+     */
     @Override
     public Map<Product, Integer> getAllProductsByQuantity() {
         return basket.getAllProductsByQuantity();
     }
 
+    /**
+     * Creates new Order with createAt and returnAt Timestamps passed from view.
+     * @param createAt
+     * @param returnAt
+     */
     @Override
     public void order(Timestamp createAt, Timestamp returnAt) {
         int reservationId = 0;
@@ -87,16 +122,30 @@ public class ManageBasketManager implements ManageBasket
         }
     }
 
+    /**
+     * Checks if the Basket is empty.
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return basket.getProducts().isEmpty();
     }
 
+    /**
+     * Checks if the Product with matching ID is in stock, and can be ordered.
+     * @param id
+     * @return
+     */
 	@Override
 	public boolean checkIfProductIsInStock(int id) {
 		return false;
 	}
 
+    /**
+     * Returns all the Products as a ArrayList of strings.
+     * Every Product is converted in to a string plus quantity.
+     * @return
+     */
 	@Override
 	public ArrayList<String> getAllProductsAsString() {
 		return null;

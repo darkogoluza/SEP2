@@ -54,6 +54,12 @@ public class ReservationList implements Serializable
 
 		return null;
 	}
+
+	/**
+	 * Get all Reservations filtered by matching username.
+	 * @param username
+	 * @return
+	 */
 	public ReservationList getByUsername(String username)
 	{
 		ReservationList userReservations = new ReservationList();

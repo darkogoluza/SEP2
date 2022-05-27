@@ -1,16 +1,22 @@
 package server.model.product;
 
 import shared.objects.product.*;
-
 import java.sql.*;
-import java.util.PropertyPermission;
 
+/**
+ * Class deals with communication with SQL database.
+ */
 public class ManageProductDatabase implements ManageProductsPersistence
 {
     public ManageProductDatabase() throws SQLException {
         DriverManager.registerDriver(new org.postgresql.Driver());
     }
 
+    /**
+     * Establishes a connection with database.
+     * @return
+     * @throws SQLException
+     */
     private Connection getConnection() throws SQLException {
     String url = "jdbc:postgresql://localhost:5432/postgres?currentSchema=rentalsystem";
     String user = "postgres";
@@ -20,6 +26,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
     return connection;
 }
 
+    /**
+     * Loads all Products from SQL database and returns them as a list.
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ProductList load() throws SQLException {
         ProductList list = new ProductList();
@@ -51,6 +62,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
         return list;
     }
 
+    /**
+     * Clears Product table from database and inserts new Products from list.
+     * @param productList
+     * @throws SQLException
+     */
     @Override
     public void save(ProductList productList) throws SQLException {
         Connection connection = getConnection();
@@ -70,6 +86,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
 
     }
 
+    /**
+     * Saves a single Product to database.
+     * @param product
+     * @throws SQLException
+     */
     @Override
     public void save(Product product) throws SQLException {
         Connection connection = getConnection();
@@ -84,6 +105,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
         }
     }
 
+    /**
+     * Changes a single Product from database.
+     * @param product
+     * @throws SQLException
+     */
     @Override
     public void change(Product product) throws SQLException {
 		Connection connection = getConnection();
@@ -106,6 +132,11 @@ public class ManageProductDatabase implements ManageProductsPersistence
     }
 
 
+    /**
+     * Removes a single Product from database.
+     * @param product
+     * @throws SQLException
+     */
     @Override
     public void remove(Product product) throws SQLException {
         Connection connection = getConnection();
@@ -125,6 +156,12 @@ public class ManageProductDatabase implements ManageProductsPersistence
         }
     }
 
+    /**
+     * Returns a rented quantity of a single Product that matches a given ID.
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     @Override
     public int getRentedAmount(int id) throws SQLException {
         Connection connection = getConnection();

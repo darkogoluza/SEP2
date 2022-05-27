@@ -1,7 +1,6 @@
 package shared.objects.reservation;
 
 import shared.objects.product.ProductList;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
