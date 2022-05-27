@@ -42,7 +42,7 @@ public class ClientProduct implements Remote, Serializable
 	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
 		try
 		{
-			server.add(price, color, equipmentType, amount, size);
+			server.add(price, color, equipmentType, size, amount, file);
 		}
 		catch (RemoteException e)
 		{

@@ -55,7 +55,7 @@
             </VBox>
             <FlowPane prefHeight="503.0" prefWidth="503.0">
                <children>
-                  <VBox alignment="TOP_RIGHT" prefHeight="184.0" prefWidth="209.0" spacing="22.0">
+                  <VBox alignment="TOP_RIGHT" prefHeight="220.0" prefWidth="209.0" spacing="22.0">
                      <children>
                         <Label fx:id="typeLabelAdministrator" text="type">
                            <VBox.margin>
@@ -85,6 +85,11 @@
                               <Insets />
                            </opaqueInsets>
                         </Label>
+                        <Label fx:id="priceLabel11" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="186.0" text="image" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -96,7 +101,7 @@
                         <Insets />
                      </FlowPane.margin>
                   </VBox>
-                  <VBox prefHeight="190.0" prefWidth="191.0" spacing="10.0">
+                  <VBox prefHeight="237.0" prefWidth="191.0" spacing="11.0">
                      <children>
                         <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
                            <VBox.margin>

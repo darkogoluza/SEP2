@@ -104,7 +104,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
         {
             PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO Product(id, name, size, color, price, amount, amount_rented, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
-            executeStatement(statement, product);
+            executeStatement(statement, product, path);
         }
         finally {
             connection.close();

@@ -3,20 +3,37 @@ package client.view.productDetails;
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class ProductDetailsController {
 	@FXML
+	private Label amountInStock;
+	@FXML
+	private Label color;
+	@FXML
 	private ImageView imageView;
+	@FXML
+	private Label name;
+	@FXML
+	private Label price;
+	@FXML
+	private Label size;
+	@FXML
+	private Label totalItemsInBasket;
+	@FXML
+	private Label userName;
 
 	private ViewHandler viewHandler;
 	private ProductDetailsViewModel viewModel;
 
-	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
+	public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id) {
 		this.viewHandler = viewHandler;
 		viewModel = vmf.getProductDetailsViewModel();
 
-		viewModel.setId(0);
+		bindItems();
+
+		viewModel.setId(id);
 		viewModel.setProduct();
 		imageView.setImage(viewModel.getImage());
 	}
@@ -31,8 +48,7 @@ public class ProductDetailsController {
 	}
 
 	public void onGoToReservations() {
-		//@todo
-//		viewHandler.openCustomerAllOrdersView();
+		viewHandler.openCustomerAllOrdersView();
 	}
 
 	public void addToBasket() {
@@ -43,4 +59,13 @@ public class ProductDetailsController {
 		viewHandler.openCustomerBasket();
 	}
 
+	private void bindItems() {
+		userName.textProperty().bindBidirectional(viewModel.usernameProperty());
+		size.textProperty().bindBidirectional(viewModel.sizeProperty());
+		color.textProperty().bindBidirectional(viewModel.colorProperty());
+		name.textProperty().bindBidirectional(viewModel.nameProperty());
+		price.textProperty().bindBidirectional(viewModel.priceProperty());
+		amountInStock.textProperty().bindBidirectional(viewModel.amountInStockProperty());
+		totalItemsInBasket.textProperty().bindBidirectional(viewModel.amountInBasketProperty());
+	}
 }

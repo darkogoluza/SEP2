@@ -242,7 +242,7 @@ public class ViewHandler
 		Parent root = getRootByPath("/client/view/productDetails/ProductDetails.fxml", loader);
 
 		ProductDetailsController controller = loader.getController();
-		controller.init(this, vmf);
+		controller.init(this, vmf, id);
 		productDetailsScene = new Scene(root);
 
 		stage.setTitle("Product Details");

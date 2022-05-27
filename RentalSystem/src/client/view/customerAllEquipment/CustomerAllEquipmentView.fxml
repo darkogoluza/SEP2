@@ -127,7 +127,7 @@
                   <ListView fx:id="listOfProducts" prefHeight="383.0" prefWidth="515.0" />
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="View details">
+                        <Button mnemonicParsing="false" onAction="#openProduct" style="-fx-background-color: transparent;" text="View details">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

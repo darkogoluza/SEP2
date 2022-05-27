@@ -50,8 +50,6 @@ public class AdministratorViewController {
     private TextField priceTextField;
     @FXML
     private TextField amountTextFiled;
-	@FXML
-    private Button addFile;
 
     @FXML
     private HBox normalButtons;
