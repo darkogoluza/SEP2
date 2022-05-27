@@ -7,15 +7,12 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
-import javafx.scene.image.Image;
 import shared.networking.model.ManageProducts;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
 
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 
@@ -116,7 +113,7 @@ public class AdministratorViewModel {
 	public void addFile(File file) {
 		if (file != null) {
 			String imagePath = file.getPath();
-			System.out.println(imagePath);
+
 			this.image = imagePath;
 		}
 		else {

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,7 +16,8 @@ import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
 
 import java.io.File;
-import java.net.MalformedURLException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class AdministratorViewController {
     ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(
@@ -50,6 +52,8 @@ public class AdministratorViewController {
     private TextField priceTextField;
     @FXML
     private TextField amountTextFiled;
+	@FXML
+	private Button addFileButton;
 
     @FXML
     private HBox normalButtons;
@@ -243,6 +247,16 @@ public class AdministratorViewController {
 		File file = fc.showOpenDialog(new Stage());
 
 		viewModel.addFile(file);
+
+		try {
+			Image img = new Image(new FileInputStream(file.getPath()));
+			ImageView imgView = new ImageView(img);
+			imgView.setFitHeight(20);
+			imgView.setFitWidth(20);
+			addFileButton.setGraphic(imgView);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
