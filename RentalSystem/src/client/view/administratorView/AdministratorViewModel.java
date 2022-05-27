@@ -7,10 +7,15 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.scene.image.Image;
 import shared.networking.model.ManageProducts;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
 
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 
@@ -18,6 +23,7 @@ public class AdministratorViewModel {
 
 	private ListProperty<String> listViewAdministrator;
 	private StringProperty size;
+	private String image;
 	private StringProperty price;
 	private StringProperty color;
 	private StringProperty type;
@@ -49,7 +55,11 @@ public class AdministratorViewModel {
 
 	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
 
-		model.add(price, color, equipmentType, size, amount);
+		if (image == null) {
+			AlertHandler.getInstance().wrongFile();
+		} {
+			model.add(price, color, equipmentType, size, amount, image);
+		}
 	}
 
 	public void removeProduct(int index) {
@@ -101,5 +111,16 @@ public class AdministratorViewModel {
 
 	public StringProperty getAmountStringProperty() {
 		return amount;
+	}
+
+	public void addFile(File file) {
+		if (file != null) {
+			String imagePath = file.getPath();
+			System.out.println(imagePath);
+			this.image = imagePath;
+		}
+		else {
+			AlertHandler.getInstance().wrongFile();
+		}
 	}
 }

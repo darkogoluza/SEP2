@@ -1,12 +1,14 @@
 package client.model.product;
 
 import client.networking.ClientProxy;
+import javafx.collections.ObservableList;
 import shared.networking.model.ManageProducts;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.product.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
 
 public class ManageProductsManager implements ManageProducts {
 	private PropertyChangeSupport changeSupport;
@@ -25,8 +27,8 @@ public class ManageProductsManager implements ManageProducts {
 	 * @param size
 	 */
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
-		clientProxy.getClientProduct().add(price, color, equipmentType, size, amount);
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
+		clientProxy.getClientProduct().add(price, color, equipmentType, size, amount, file);
 
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
@@ -70,11 +72,6 @@ public class ManageProductsManager implements ManageProducts {
 	}
 
 	@Override
-	public void showAllProducts() {
-
-	}
-
-	@Override
 	public int getRentedAmount(int id) {
 		return 0;
 	}
@@ -82,6 +79,11 @@ public class ManageProductsManager implements ManageProducts {
 	@Override
 	public ProductList getProductsByCategory(EquipmentType category) {
 		return clientProxy.getClientProduct().getProductByCategory(category);
+	}
+
+	@Override
+	public byte[] getImage(int id) {
+		return clientProxy.getClientProduct().getImage(id);
 	}
 
 	@Override

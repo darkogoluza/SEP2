@@ -7,9 +7,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
+
+import java.io.File;
+import java.net.MalformedURLException;
 
 public class AdministratorViewController {
     ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(
@@ -44,6 +50,8 @@ public class AdministratorViewController {
     private TextField priceTextField;
     @FXML
     private TextField amountTextFiled;
+	@FXML
+    private Button addFile;
 
     @FXML
     private HBox normalButtons;
@@ -224,6 +232,22 @@ public class AdministratorViewController {
 		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
+
+	public void browseFiles() {
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Open File");
+
+		fc.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("Image Files",
+						"*.png", "*.jpg", "*.jpeg"
+				));
+
+		File file = fc.showOpenDialog(new Stage());
+
+		viewModel.addFile(file);
+
+	}
+
 
 	public void onCreateAccount()
     {

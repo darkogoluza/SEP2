@@ -1,10 +1,13 @@
 package client.networking;
 
+import javafx.scene.image.Image;
 import shared.networking.server.Server;
 import shared.networking.server.ServerProduct;
 import shared.objects.product.*;
 import shared.util.Utils;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
@@ -36,10 +39,10 @@ public class ClientProduct implements Remote, Serializable
 
 	}
 
-	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
 		try
 		{
-			server.add(price, color, equipmentType, size, amount);
+			server.add(price, color, equipmentType, amount, size);
 		}
 		catch (RemoteException e)
 		{
@@ -132,5 +135,14 @@ public class ClientProduct implements Remote, Serializable
 		}
 
 		return 0;
+	}
+
+	public byte[] getImage(int id) {
+		try {
+			return server.getImage(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

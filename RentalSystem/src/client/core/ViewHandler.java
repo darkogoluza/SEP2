@@ -8,6 +8,7 @@ import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
 import client.view.customerAllOrdersView.CustomerAllOrdersController;
 import client.view.employeeAllOrders.EmployeeAllOrdersController;
+import client.view.productDetails.ProductDetailsController;
 import client.view.registryView.RegistryViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +34,7 @@ public class ViewHandler
 	private Scene singleOrderView;
 	private Scene registryScene;
   private Scene loginScene;
+  private Scene productDetailsScene;
 
 
     /**
@@ -57,8 +59,7 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-      openLoginView();
-      //openCustomerAllOrdersView();
+		openLoginView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
@@ -235,4 +236,16 @@ public class ViewHandler
     stage.setTitle("Login to Account");
     stage.setScene(loginScene);
   }
+	public void openProductDetailsView(int id){
+		FXMLLoader loader = new FXMLLoader();
+
+		Parent root = getRootByPath("/client/view/productDetails/ProductDetails.fxml", loader);
+
+		ProductDetailsController controller = loader.getController();
+		controller.init(this, vmf);
+		productDetailsScene = new Scene(root);
+
+		stage.setTitle("Product Details");
+		stage.setScene(productDetailsScene);
+	}
 }

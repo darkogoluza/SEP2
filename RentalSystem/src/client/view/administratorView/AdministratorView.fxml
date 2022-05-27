@@ -124,7 +124,8 @@
                            </VBox.margin>
                         </TextField>
                         <TextField fx:id="amountTextFiled" maxWidth="-Infinity" prefWidth="153.0" />
-                     </children>
+						 <Button fx:id="addFile" mnemonicParsing="false" onAction="#browseFiles" prefHeight="26.0" prefWidth="152.0" text="Add File ..." />
+					 </children>
                      <padding>
                         <Insets top="20.0" />
                      </padding>

@@ -1,8 +1,12 @@
 package server.networking;
 
+import javafx.scene.image.Image;
 import shared.networking.model.ManageProducts;
 import shared.networking.server.ServerProduct;
 import shared.objects.product.*;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -32,8 +36,8 @@ public class RMIServerProduct implements ServerProduct {
 	 * @throws RemoteException
 	 */
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) throws RemoteException{
-		productsManager.add(price, color, equipmentType, size, amount);
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) throws RemoteException{
+		productsManager.add(price, color, equipmentType, size, amount, file);
 	}
 
 	/**
@@ -107,5 +111,10 @@ public class RMIServerProduct implements ServerProduct {
 	@Override
 	public ProductList getProductsByCategory(EquipmentType category) throws RemoteException {
 		return productsManager.getProductsByCategory(category);
+	}
+
+	@Override
+	public byte[] getImage(int id) throws RemoteException {
+		return productsManager.getImage(id);
 	}
 }
