@@ -21,5 +21,26 @@ public class ProductDetailsController {
 		imageView.setImage(viewModel.getImage());
 	}
 
+	public void backButton() {
+		viewHandler.openCustomerAllEquipmentView();
+	}
+
+	public void onLogOff() {
+		viewModel.logOff();
+		viewHandler.openLoginView();
+	}
+
+	public void onGoToReservations() {
+		//@todo
+//		viewHandler.openCustomerAllOrdersView();
+	}
+
+	public void addToBasket() {
+		viewModel.addToBasket();
+	}
+
+	public void onGoToBasketButton() {
+		viewHandler.openCustomerBasket();
+	}
 
 }

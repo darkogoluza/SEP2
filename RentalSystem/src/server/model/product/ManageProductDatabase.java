@@ -164,9 +164,7 @@ public class ManageProductDatabase implements ManageProductsPersistence
 		statement.setString(3, product.getSize().toString());
 		statement.setString(4, product.getColor().toString());
 		statement.setDouble(5, product.getPrice());
-		System.out.println(path);
 		File file = new File(path);
-		System.out.println(file.getAbsolutePath());
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			statement.setBinaryStream(6, fis, file.length());

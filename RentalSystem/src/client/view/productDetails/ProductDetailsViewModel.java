@@ -26,12 +26,31 @@ public class ProductDetailsViewModel {
 	public ProductDetailsViewModel(ModelProxy modelProxy) {
 		this.modelProxy = modelProxy;
 		initializeItems();
+		modelProxy.getManageUser().login("David","david1");
 	}
 
 	public void setProduct() {
 		product = modelProxy.getManageProducts().getProduct(id);
 		loadItems();
 	}
+
+	public javafx.scene.image.Image getImage() {
+		try {
+			return createImage(image);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void logOff() {
+		modelProxy.getManageUser().logout();
+	}
+
+	public void addToBasket() {
+		modelProxy.getManageBasket().add(product);
+	}
+
 
 	private void initializeItems() {
 		size = new SimpleStringProperty();
@@ -52,16 +71,7 @@ public class ProductDetailsViewModel {
 		this.id = id;
 	}
 
-	public javafx.scene.image.Image getImage() {
-		try {
-			return createImage(image);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public static javafx.scene.image.Image createImage(java.awt.Image image) throws IOException {
+	private static javafx.scene.image.Image createImage(java.awt.Image image) throws IOException {
 		if (!(image instanceof RenderedImage)) {
 			BufferedImage bufferedImage = new BufferedImage(image.getWidth(null),
 					image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
