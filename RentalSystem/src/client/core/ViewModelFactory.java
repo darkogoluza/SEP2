@@ -6,8 +6,10 @@ import client.view.EmployeeOrderDetails.EmployeeOrderDetailsViewModel;
 import client.view.LoginView.LoginViewModel;
 import client.view.administratorView.AdministratorViewModel;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
+import client.view.customerAllOrdersView.CustomerAllOrdersViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.CustomerSingleOrderView.SingleOrderViewModel;
+import client.view.productDetails.ProductDetailsViewModel;
 import client.view.registryView.RegistryViewModel;
 
 public class ViewModelFactory {
@@ -20,10 +22,16 @@ public class ViewModelFactory {
 	private SingleOrderViewModel singleOrderViewModel;
 	private RegistryViewModel registryViewModel;
 	private LoginViewModel loginViewModel;
+	private CustomerAllOrdersViewModel customerAllOrdersViewModel;
+	private ProductDetailsViewModel productDetailsViewModel;
 
 	public ViewModelFactory(ModelProxy modelProxy)
 	{
 		this.modelProxy = modelProxy;
+	}
+
+	public ModelProxy getModelProxy() {
+		return modelProxy;
 	}
 
 	/**
@@ -64,7 +72,7 @@ public class ViewModelFactory {
 
 	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
 		if (employeeAllOrdersViewModel == null) {
-			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy.getManageReservations());
+			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
 		}
 
 		return employeeAllOrdersViewModel;
@@ -101,5 +109,22 @@ public class ViewModelFactory {
 			loginViewModel = new LoginViewModel(modelProxy);
 		}
 		return loginViewModel;
+	}
+
+  public CustomerAllOrdersViewModel getCustomerAllOrdersViewModel()
+  {
+		if(customerAllOrdersViewModel == null)
+		{
+			customerAllOrdersViewModel = new CustomerAllOrdersViewModel(modelProxy);
+		}
+		return customerAllOrdersViewModel;
+  }
+
+	public ProductDetailsViewModel getProductDetailsViewModel() {
+		if(productDetailsViewModel == null)
+		{
+			productDetailsViewModel = new ProductDetailsViewModel(modelProxy);
+		}
+		return productDetailsViewModel;
 	}
 }

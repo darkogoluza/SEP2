@@ -1,7 +1,6 @@
 package shared.objects.reservation;
 
 import shared.objects.product.ProductList;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -29,7 +28,6 @@ public class Reservation implements Serializable
         status = ReservationStatus.rented;
         createdAt = new Timestamp(System.currentTimeMillis());
         expiresAt = new Timestamp(System.currentTimeMillis() + 86400000);
-
     }
 
     /**
@@ -151,6 +149,19 @@ public class Reservation implements Serializable
      */
     public void setExpiresAt(Timestamp expiresAt) {
         this.expiresAt = expiresAt;
+    }
+
+    /**
+     * Checks if the Reservation expires in given amount of hours.
+     * @param hours Hours to check if the Reservation will expire in that given time.
+     * @return Returns true if the Reservation expires in given amount of hours and false if not.
+     */
+    public boolean expiresIn(int hours) {
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        long diffInMilliseconds = expiresAt.getTime() - currentTimestamp.getTime();
+        double diffInHours = diffInMilliseconds / 3600000;
+
+        return diffInHours <= hours;
     }
 }
 

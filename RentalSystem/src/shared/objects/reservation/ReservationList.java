@@ -56,6 +56,22 @@ public class ReservationList implements Serializable
 	}
 
 	/**
+	 * Get all Reservations filtered by matching username.
+	 * @param username
+	 * @return
+	 */
+	public ReservationList getByUsername(String username)
+	{
+		ReservationList userReservations = new ReservationList();
+		for (int i = 0; i < reservations.size(); i++)
+		{
+			if(reservations.get(i).getUserName().equals(username))
+				userReservations.add(reservations.get(i));
+		}
+		return userReservations;
+	}
+
+	/**
 	 * Get reservation with its index from list
 	 * @param index of reservation in list
 	 * @return Reservation object
@@ -149,4 +165,49 @@ public class ReservationList implements Serializable
 
 		return values.toString();
 	}
+
+	/**
+	 * Filters the ReservationList by username.
+	 * @param username Username used for filtering Reservations.
+	 * @return Only returns the Reservations that have the given username.
+	 */
+    public ReservationList filterByCustomerUsername(String username) {
+		ReservationList filterReservationList = new ReservationList();
+
+		for (Reservation reservation : reservations) {
+			if (reservation.getUserName().equals(username)) {
+				filterReservationList.add(reservation);
+			}
+		}
+
+		return filterReservationList;
+    }
+
+	/**
+	 * Filters the ReservationList by status.
+	 * @param filterStatus Status used for filtering Reservations.
+	 * @return Only returns the Reservations that have the given Status, if status does not exist it returns all the elements, example status is "All".
+	 */
+	public ReservationList filterByStatus(String filterStatus) {
+		ArrayList<String> temp = new ArrayList<>();
+		temp.add("rented");
+		temp.add("returned");
+		temp.add("notReturned");
+
+		ReservationList filterReservationList = new ReservationList();
+
+		for (Reservation reservation : reservations) {
+			if(temp.contains(filterStatus)) {
+				if (reservation.getStatus().equals(ReservationStatus.valueOf(filterStatus))) {
+					filterReservationList.add(reservation);
+				}
+			} else {
+				filterReservationList.add(reservation);
+			}
+		}
+
+		return filterReservationList;
+	}
+
+
 }

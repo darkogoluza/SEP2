@@ -1,20 +1,20 @@
 package client.core;
 
-import client.model.user.ManageUser;
 import client.view.CustomerBasketView.CustomerBasketViewController;
 import client.view.CustomerSingleOrderView.SingleOrderViewController;
 import client.view.EmployeeOrderDetails.EmployeeOrderDetailsController;
 import client.view.LoginView.LoginViewController;
 import client.view.administratorView.AdministratorViewController;
 import client.view.customerAllEquipment.CustomerAllEquipmentViewController;
+import client.view.customerAllOrdersView.CustomerAllOrdersController;
 import client.view.employeeAllOrders.EmployeeAllOrdersController;
+import client.view.productDetails.ProductDetailsController;
 import client.view.registryView.RegistryViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import shared.objects.user.User;
-import shared.objects.user.UserRole;
+import shared.networking.model.ManageUser;
 
 import java.io.IOException;
 
@@ -28,11 +28,13 @@ public class ViewHandler
     private Scene administratorScene;
     private Scene customerAllEquipmentScene;
     private Scene customerBasket;
+    private Scene customerAllOrdersScene;
 	private Scene employeeAllOrdersScene;
 	private Scene employeeOrderDetailsScene;
 	private Scene singleOrderView;
 	private Scene registryScene;
   private Scene loginScene;
+  private Scene productDetailsScene;
 
 
     /**
@@ -49,7 +51,7 @@ public class ViewHandler
 	 * Open selected view
 	 * This is what is opened when we launch an application
 	 */
-    public void start(ManageUser manageUser){
+    public void start(){
 		//customer
 //		manageUser.login("xoxo", "123456");
 //		//admin
@@ -57,14 +59,14 @@ public class ViewHandler
 //		//employee
 //		manageUser.login("employee", "123456");
 //		System.out.println(manageUser.getLoggedUser());
-//		openLoginView();
+		openLoginView();
 
 //		if (manageUser.getLoggedUser() == null)
 //			openRegistryView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
 //        	openCustomerAllEquipmentView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-			openEmployeeView();
+//			openEmployeeView();
 //		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
 //        	openAdministratorView();
 
@@ -111,13 +113,11 @@ public class ViewHandler
 	 */
     public void openCustomerAllEquipmentView(){
         FXMLLoader loader = new FXMLLoader();
-        if(customerAllEquipmentScene == null){
 
-            Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
-            CustomerAllEquipmentViewController controller = loader.getController();
-            controller.init(this,vmf);
-            customerAllEquipmentScene = new Scene(root);
-        }
+		Parent root = getRootByPath("/client/view/customerAllEquipment/CustomerAllEquipmentView.fxml", loader);
+		CustomerAllEquipmentViewController controller = loader.getController();
+		controller.init(this,vmf);
+		customerAllEquipmentScene = new Scene(root);
 
         stage.setTitle("All equipment");
         stage.setScene(customerAllEquipmentScene);
@@ -141,6 +141,19 @@ public class ViewHandler
         stage.setTitle("Customer Basket");
         stage.setScene(customerBasket);
     }
+  public void openCustomerAllOrdersView(){
+    FXMLLoader loader = new FXMLLoader();
+    if(customerAllOrdersScene == null){
+
+      Parent root = getRootByPath("/client/view/customerAllOrdersView/CustomerAllOrders.fxml", loader);
+      CustomerAllOrdersController controller = loader.getController();
+      controller.init(this,vmf);
+      customerAllOrdersScene = new Scene(root);
+    }
+
+    stage.setTitle("Customer All Orders");
+    stage.setScene(customerAllOrdersScene);
+  }
 
 	/**
 	 * open window with all reservations
@@ -166,29 +179,26 @@ public class ViewHandler
 	public void openEmployeeOrderDetailsView(int id){
 		FXMLLoader loader = new FXMLLoader();
 
-		if (employeeOrderDetailsScene == null) {
-			Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
+		Parent root = getRootByPath("/client/view/EmployeeOrderDetails/EmployeeOrderDetails.fxml", loader);
 
-			EmployeeOrderDetailsController controller = loader.getController();
-			controller.init(this, vmf, id);
-			employeeOrderDetailsScene = new Scene(root);
-		}
+		EmployeeOrderDetailsController controller = loader.getController();
+		controller.init(this, vmf, id);
+		employeeOrderDetailsScene = new Scene(root);
 
-		stage.setTitle("Details about ");
+		stage.setTitle("Reservation <" + id + ">");
 		stage.setScene(employeeOrderDetailsScene);
 	}
 
-  public void openSingleOrderView(){
+  public void openSingleOrderView(int id){
     FXMLLoader loader = new FXMLLoader();
 
-    if (singleOrderView == null) {
-      Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
+    Parent root = getRootByPath("/client/view/CustomerSingleOrderView/SingleOrderView.fxml", loader);
 
-      SingleOrderViewController controller = loader.getController();
-      //TODO change the ID later
-      controller.init(this, vmf, 0);
-      singleOrderView = new Scene(root);
-    }
+    SingleOrderViewController controller = loader.getController();
+    //TODO change the ID later
+    controller.init(this, vmf, id);
+    singleOrderView = new Scene(root);
+
 
     stage.setTitle("Single Order");
     stage.setScene(singleOrderView);
@@ -226,4 +236,16 @@ public class ViewHandler
     stage.setTitle("Login to Account");
     stage.setScene(loginScene);
   }
+	public void openProductDetailsView(int id){
+		FXMLLoader loader = new FXMLLoader();
+
+		Parent root = getRootByPath("/client/view/productDetails/ProductDetails.fxml", loader);
+
+		ProductDetailsController controller = loader.getController();
+		controller.init(this, vmf, id);
+		productDetailsScene = new Scene(root);
+
+		stage.setTitle("Product Details");
+		stage.setScene(productDetailsScene);
+	}
 }

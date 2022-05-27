@@ -93,6 +93,7 @@ public class EmployeeOrderDetailsController {
 		statusChoice.setItems(statusList);
 		statusChoice.setValue(ReservationStatus.valueOf(viewModel.getStatusProperty().getValue()));
 
+		viewModel.setId(id);
 		viewModel.showAllProducts();
 		viewModel.updateViewModelReservationInfo();
 	}
@@ -105,5 +106,11 @@ public class EmployeeOrderDetailsController {
 	@FXML
 	void onChangeStatus(ActionEvent event) {
 		viewModel.changeStatus(statusChoice.getValue());
+	}
+
+	public void onLogOff(ActionEvent event)
+	{
+		viewModel.logOff();
+		viewHandler.openLoginView();
 	}
 }

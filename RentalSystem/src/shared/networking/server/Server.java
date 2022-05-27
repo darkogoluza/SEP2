@@ -1,4 +1,4 @@
-package shared.networking;
+package shared.networking.server;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

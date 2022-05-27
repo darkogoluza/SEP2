@@ -51,6 +51,10 @@ public class LabelFormat implements Size {
         return label;
     }
 
+    /**
+     * Returns size without metric unit at the end.
+     * @return
+     */
     @Override
     public String getSizeWithoutUnit() {
         return label;

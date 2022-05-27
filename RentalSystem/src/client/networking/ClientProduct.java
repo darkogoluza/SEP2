@@ -1,17 +1,19 @@
 package client.networking;
 
-import shared.networking.Server;
-import shared.networking.ServerProduct;
+import javafx.scene.image.Image;
+import shared.networking.server.Server;
+import shared.networking.server.ServerProduct;
 import shared.objects.product.*;
 import shared.util.Utils;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class ClientProduct implements Remote, Serializable
@@ -37,10 +39,10 @@ public class ClientProduct implements Remote, Serializable
 
 	}
 
-	public void add(double price, Color color, EquipmentType equipmentType, Size size) {
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
 		try
 		{
-			server.add(price, color, equipmentType, size);
+			server.add(price, color, equipmentType, size, amount, file);
 		}
 		catch (RemoteException e)
 		{
@@ -83,10 +85,10 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
-	public void changeProduct(int index, double newPrice, Color newColor, Size newSize) {
+	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
 		try
 		{
-			server.changeProduct(index, newPrice, newColor, newSize);
+			server.changeProduct(index, newPrice, newColor, newSize, amount);
 		}
 		catch (RemoteException e)
 		{
@@ -113,6 +115,34 @@ public class ClientProduct implements Remote, Serializable
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+
+    public ProductList getProductByCategory(EquipmentType category) {
+		try {
+			return server.getProductsByCategory(category);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public int getRentedAmount(int id) {
+		try {
+			return server.getRentedAmount(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+
+	public byte[] getImage(int id) {
+		try {
+			return server.getImage(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }

@@ -1,4 +1,4 @@
-package shared.networking;
+package shared.networking.server;
 
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
@@ -14,4 +14,5 @@ public interface ServerReservation extends Remote {
     Reservation get(int id) throws RemoteException;
     void remove(int index) throws RemoteException;
     void changeReservation(int index, ReservationStatus newStatus) throws RemoteException;
+  ReservationList getByUsername(String username) throws  RemoteException;
 }

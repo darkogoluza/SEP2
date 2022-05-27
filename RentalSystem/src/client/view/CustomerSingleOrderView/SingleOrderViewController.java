@@ -22,9 +22,6 @@ public class SingleOrderViewController {
   private SingleOrderViewModel viewModel;
 
   @FXML
-  private Button back;
-
-  @FXML
   private Label finalTotalPrice;
 
   @FXML
@@ -65,6 +62,9 @@ public class SingleOrderViewController {
   @FXML
   private Label returnTime;
 
+  @FXML
+  private Label totalItemsInBasket;
+
   public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id) {
     this.viewHandler = viewHandler;
     viewModel = vmf.getSingleOrderViewModel(id);
@@ -84,14 +84,27 @@ public class SingleOrderViewController {
     size.setCellValueFactory(new PropertyValueFactory<>("size"));
     totalprice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
     tableView.setItems(viewModel.getProductsInBaskets());
+    totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
 
     viewModel.showAllProducts();
     viewModel.updateViewModelReservationInfo();
   }
 
   @FXML
-  void BackButton(ActionEvent event) {
-    viewHandler.openEmployeeView();
+  void backButton(ActionEvent event) {
+    viewHandler.openCustomerAllEquipmentView();
   }
-
+  public void onLogOff(ActionEvent event)
+  {
+    viewModel.logOff();
+    viewHandler.openLoginView();
+  }
+  public void onGoToReservations(ActionEvent event)
+  {
+    viewHandler.openCustomerAllOrdersView();
+  }
+  public void onGoToBasketButton(ActionEvent event)
+  {
+    viewHandler.openCustomerBasket();
+  }
 }

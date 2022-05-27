@@ -2,9 +2,10 @@ package client.view.LoginView;
 
 import client.core.ViewHandler;
 import client.core.ViewModelFactory;
-import client.view.EmployeeOrderDetails.EmployeeOrderDetailsViewModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BackgroundFill;
@@ -37,6 +38,7 @@ public class LoginViewController
     userName.textProperty().bindBidirectional(viewModel.getUserNameProperty());
     password.textProperty().bindBidirectional(viewModel.getPasswordProperty());
 
+    viewModel.clearFields();
   }
 
   @FXML
@@ -52,6 +54,8 @@ public class LoginViewController
 				viewHandler.openCustomerAllEquipmentView();
 			else if(role == UserRole.employee)
 				viewHandler.openEmployeeView();
+
+            viewModel.clearFields();
 		}
 		else {
 			AlertHandler.getInstance().wrongCredentials();
@@ -62,7 +66,7 @@ public class LoginViewController
     @FXML
     void createAccount() {
       viewHandler.openRegistryView();
+      viewModel.clearFields();
     }
-
 }
 

@@ -1,14 +1,14 @@
 package client.model;
 
-import client.model.basket.ManageBasket;
 import client.model.basket.ManageBasketManager;
-import client.model.product.ManageProducts;
 import client.model.product.ManageProductsManager;
 import client.model.reservation.ManageReservationManager;
-import client.model.reservation.ManageReservations;
-import client.model.user.ManageUser;
 import client.model.user.ManageUserManager;
 import client.networking.ClientProxy;
+import shared.networking.model.ManageBasket;
+import shared.networking.model.ManageProducts;
+import shared.networking.model.ManageReservations;
+import shared.networking.model.ManageUser;
 
 public class ModelProxyManager implements ModelProxy {
     private ManageProducts manageProducts;

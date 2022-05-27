@@ -13,132 +13,173 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="513.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
+<AnchorPane prefHeight="417.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
    <children>
-      <FlowPane prefHeight="400.0" prefWidth="611.0">
+      <HBox prefHeight="421.0" prefWidth="607.0">
          <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="135.0" prefWidth="271.0" spacing="22.0">
+            <VBox alignment="TOP_CENTER" prefHeight="503.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
                <children>
-                  <Label fx:id="typeLabelAdministrator" text="type">
+                  <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/jasna_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="77.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="Create account" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/profile-2user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="100.0" />
                      </VBox.margin>
-                  </Label>
-                  <Label fx:id="colorLabelAdministrator" text="color">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="sizeLabelAdministrator" text="size">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" text="price" textAlignment="CENTER">
+                  </Button>
+                  <Button fx:id="logOff" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="Log Off">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../../../image/icons8-logout-24.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="150.0" />
                      </VBox.margin>
-                  </Label>
+                  </Button>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets right="10.0" top="20.0" />
-               </padding>
-               <FlowPane.margin>
-                  <Insets />
-               </FlowPane.margin>
             </VBox>
-            <VBox prefHeight="154.0" prefWidth="334.0" spacing="10.0">
+            <FlowPane prefHeight="503.0" prefWidth="503.0">
                <children>
-                  <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <ChoiceBox fx:id="colorChoiceBox" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <VBox alignment="TOP_RIGHT" prefHeight="220.0" prefWidth="209.0" spacing="22.0">
                      <children>
-                        <TextField fx:id="sizeTextField" prefHeight="26.0" prefWidth="153.0" />
-                        <Label fx:id="sizeLabel">
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
+                        <Label fx:id="typeLabelAdministrator" text="type">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="colorLabelAdministrator" text="color">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="sizeLabelAdministrator" text="size">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="priceLabel" alignment="CENTER" contentDisplay="CENTER" text="price" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="priceLabel1" alignment="CENTER" contentDisplay="CENTER" text="amount" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="priceLabel11" alignment="CENTER" contentDisplay="CENTER" layoutX="168.0" layoutY="186.0" text="image" textAlignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </Label>
                      </children>
-                  </HBox>
-                  <TextField fx:id="priceTextField" maxWidth="-Infinity" prefWidth="153.0">
-                     <VBox.margin>
-                        <Insets right="6.0" />
-                     </VBox.margin></TextField>
-               </children>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-            </VBox>
-            <HBox fx:id="normalButtons" alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#addButton" text="Add">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#removeButton" text="Remove">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#editButton" text="Edit" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets top="30.0" />
-               </padding>
-            </HBox>
-            <HBox fx:id="editButtons" alignment="CENTER" prefHeight="33.0" prefWidth="601.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#changeProduct" text="Change">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#candleEdit" text="Cancel">
-                     <HBox.margin>
+                     <opaqueInsets>
                         <Insets />
-                     </HBox.margin>
-                  </Button>
+                     </opaqueInsets>
+                     <padding>
+                        <Insets right="10.0" top="20.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                  </VBox>
+                  <VBox prefHeight="237.0" prefWidth="191.0" spacing="11.0">
+                     <children>
+                        <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ChoiceBox>
+                        <ChoiceBox fx:id="colorChoiceBox" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ChoiceBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="sizeTextField" prefHeight="26.0" prefWidth="153.0" />
+                              <Label fx:id="sizeLabel">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="priceTextField" maxWidth="-Infinity" prefWidth="153.0">
+                           <VBox.margin>
+                              <Insets right="6.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="amountTextFiled" maxWidth="-Infinity" prefWidth="153.0" />
+						 <Button fx:id="addFile" mnemonicParsing="false" onAction="#browseFiles" prefHeight="26.0" prefWidth="152.0" text="Add File ..." />
+					 </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+                  <HBox fx:id="normalButtons" alignment="CENTER" prefHeight="45.0" prefWidth="505.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addButton" text="Add">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#removeButton" text="Remove">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#editButton" text="Edit" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="editButtons" alignment="CENTER" prefHeight="45.0" prefWidth="498.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#changeProduct" text="Change">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#candleEdit" text="Cancel">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <ListView fx:id="listView" prefHeight="142.0" prefWidth="507.0" />
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <ListView fx:id="listView" prefHeight="247.0" prefWidth="611.0" />
+            </FlowPane>
          </children>
-      </FlowPane>
-      <Button fx:id="logOff" contentDisplay="RIGHT" layoutX="522.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="87.0" text="Log Off" translateZ="13.0">
-         <graphic>
-            <ImageView>
-               <image>
-                  <Image url="@../../../image/icons8-logout-24.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Button>
+      </HBox>
    </children>
 </AnchorPane>

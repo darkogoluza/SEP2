@@ -5,15 +5,19 @@ import client.core.ViewModelFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import shared.objects.product.Product;
+import shared.objects.product.EquipmentType;
 
 public class CustomerAllEquipmentViewController
 {
     @FXML
-    private Label editableLabelUserName;
+    private Label username;
+	@FXML
+    private Button filterButton;
+	@FXML
+	private ChoiceBox<String> filterChoiceBox;
     @FXML
     private ListView listOfProducts;
     @FXML
@@ -26,10 +30,11 @@ public class CustomerAllEquipmentViewController
     {
         this.viewHandler = viewHandler;
         viewModel = vmf.getCustomerAllEquipmentView();
-        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
+        username.textProperty().bind(viewModel.getUsernameProperty());
         totalItemsInBasket.textProperty().bind(viewModel.getTotalItemsInBasketProperty());
         listOfProducts.itemsProperty().bind(viewModel.getListOfProductsProperty());
-        editableLabelUserName.textProperty().bind(viewModel.getEditableLabelUserNameProperty());
+		filterChoiceBox.setItems(viewModel.getCategoriesProperty());
+		filterChoiceBox.getSelectionModel().selectFirst();
 
         viewModel.loadAllProducts();
 
@@ -37,6 +42,7 @@ public class CustomerAllEquipmentViewController
 
     public void onLogOff(ActionEvent event)
     {
+		viewModel.logOff();
         viewHandler.openLoginView();
     }
 
@@ -52,6 +58,22 @@ public class CustomerAllEquipmentViewController
     {
         viewHandler.openCustomerBasket();
     }
+    public void backButton(ActionEvent event)
+    {
+        viewHandler.openCustomerAllEquipmentView();
+    }
+    public void onGoToReservations(ActionEvent event)
+    {
+        viewHandler.openCustomerAllOrdersView();
+    }
+
+	public void filter() {
+		viewModel.filterByCategory(filterChoiceBox.getSelectionModel().getSelectedIndex());
+	}
+
+	public void openProduct() {
+		viewHandler.openProductDetailsView(listOfProducts.getSelectionModel().getSelectedIndex());
+	}
 
 }
 

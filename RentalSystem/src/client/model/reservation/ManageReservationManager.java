@@ -1,6 +1,8 @@
 package client.model.reservation;
 
 import client.networking.ClientProxy;
+import shared.objects.errors.AlertHandler;
+import shared.networking.model.ManageReservations;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationList;
 import shared.objects.reservation.ReservationStatus;
@@ -18,10 +20,6 @@ public class ManageReservationManager implements ManageReservations
     {
         changeSupport = new PropertyChangeSupport(this);
         this.clientProxy = clientProxy;
-    }
-    public User getUser(String username)
-    {
-        return clientProxy.getClientUser().get(username);
     }
 
     @Override
@@ -50,6 +48,10 @@ public class ManageReservationManager implements ManageReservations
 	public Reservation getReservationById(int id)
     {
         return clientProxy.getClientReservation().get(id);
+    }
+    @Override public ReservationList getReservationByUsername(String username)
+    {
+        return clientProxy.getClientReservation().getByUsername(username);
     }
 
     @Override public ReservationList getAllReservations()

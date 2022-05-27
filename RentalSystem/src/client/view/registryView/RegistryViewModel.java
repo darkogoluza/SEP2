@@ -58,12 +58,23 @@ public class RegistryViewModel
 			else {
 				modelProxy.getManageUser().add(new User(userNameProperty.getValue(), passwordProperty.getValue(), phoneNumberProperty.getValue()));
 			}
+
+			modelProxy.getManageUser().login(userNameProperty.getValue(), passwordProperty.getValue());
+      System.out.println("KURWA\n");
 			return true;
 		}
     	else {
-			AlertHandler.getInstance().passwordsDontMatch();
+			AlertHandler.getInstance().passwordsDoNotMatch();
 			return false;
 		}
 
+
 	}
+
+    public void clearFields() {
+        userNameProperty.set("");
+        passwordProperty.set("");
+        confirmPasswordProperty.set("");
+        phoneNumberProperty.set("");
+    }
 }

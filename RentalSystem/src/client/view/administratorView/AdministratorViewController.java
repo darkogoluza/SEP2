@@ -7,9 +7,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.*;
+
+import java.io.File;
+import java.net.MalformedURLException;
 
 public class AdministratorViewController {
     ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(
@@ -42,6 +48,8 @@ public class AdministratorViewController {
     private ListView listView;
     @FXML
     private TextField priceTextField;
+    @FXML
+    private TextField amountTextFiled;
 
     @FXML
     private HBox normalButtons;
@@ -60,6 +68,7 @@ public class AdministratorViewController {
 
 		sizeTextField.textProperty().bindBidirectional(viewModel.getSizeStringProperty());
 		priceTextField.textProperty().bindBidirectional(viewModel.getPriceStringProperty());
+		amountTextFiled.textProperty().bindBidirectional(viewModel.getAmountStringProperty());
 
 		typeChoiceBox.setItems(equipmentTypeList);
         typeChoiceBox.valueProperty().bindBidirectional(viewModel.getType());
@@ -103,7 +112,9 @@ public class AdministratorViewController {
         viewModel.addProduct(Double.parseDouble(priceTextField.getText()),
                 Color.valueOf(colorChoiceBox.getValue().toString()),
                 EquipmentType.valueOf(typeChoiceBox.getValue().toString()),
-                getSize());
+                getSize(),
+                Integer.parseInt(amountTextFiled.getText())
+        );
 
         viewModel.clearFields();
     }
@@ -119,7 +130,8 @@ public class AdministratorViewController {
         viewModel.changeProduct(currentEditingProductIndex,
                 Double.parseDouble(priceTextField.getText()),
                 Color.valueOf(colorChoiceBox.getValue().toString()),
-                getSize()
+                getSize(),
+                Integer.parseInt(amountTextFiled.getText())
         );
         viewModel.clearFields();
     }
@@ -129,7 +141,8 @@ public class AdministratorViewController {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
             return;
 
-		viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
+		if (AlertHandler.getInstance().onRemoveProduct())
+			viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
     }
 
     public void editButton(ActionEvent event)
@@ -173,10 +186,16 @@ public class AdministratorViewController {
             return false;
         }
 
+        try {
+            Integer.parseInt(amountTextFiled.getText());
+        } catch (NumberFormatException  | NullPointerException e) {
+            return false;
+        }
+
         if(!isLabelFormat()) {
             try {
                 Double.parseDouble(sizeTextField.getText());
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | NullPointerException e) {
                 return false;
             }
         } else if(typeChoiceBox.getValue().toString().equals(EquipmentType.helmet.toString())) {
@@ -208,6 +227,28 @@ public class AdministratorViewController {
 
 	@FXML
 	public void onLogOff() {
+		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
+
+	public void browseFiles() {
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Open File");
+
+		fc.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("Image Files",
+						"*.png", "*.jpg", "*.jpeg"
+				));
+
+		File file = fc.showOpenDialog(new Stage());
+
+		viewModel.addFile(file);
+
+	}
+
+
+	public void onCreateAccount()
+    {
+        viewHandler.openRegistryView();
+    }
 }
