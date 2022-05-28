@@ -143,7 +143,7 @@
                         <TextField fx:id="amountTextFiled" maxWidth="-Infinity" prefWidth="153.0" />
                         <HBox maxWidth="-Infinity" prefHeight="26.0" prefWidth="194.0">
                            <children>
-      						 <Button fx:id="addFileButton" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#browseFiles" prefHeight="26.0" prefWidth="152.0" text="Add Image ..." />
+      						 <Button fx:id="addFileButton" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#browseFiles" prefHeight="26.0" prefWidth="152.0" style="-fx-background-color: #ced4da;" text="Add Image ..." />
                               <Pane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="26.0">
                                  <children>
                                     <ImageView fx:id="imageView" fitHeight="26.0" fitWidth="39.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: grey;">
