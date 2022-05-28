@@ -1,9 +1,12 @@
 package server.model.product;
 
+import javafx.scene.image.Image;
 import shared.networking.model.ManageProducts;
 import shared.objects.product.*;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
 import java.sql.SQLException;
 
 /**
@@ -36,11 +39,11 @@ public class ManageProductsManager implements ManageProducts
 	 * @param size
 	 */
 	@Override
-	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
+	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
 		try {
 			Product product = list.add(price, color, equipmentType, size, amount);
 			changeSupport.firePropertyChange("productModified", null, list.convertToStringArrayList());
-			manageProductDatabase.save(product);
+			manageProductDatabase.save(product, file);
 			update();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,7 +69,7 @@ public class ManageProductsManager implements ManageProducts
 	}
 
 	/**
-	 * Get product from list @todo change this for database when implemented
+	 * Get product from list
 	 * @param index of product
 	 * @return Product
 	 */
@@ -108,16 +111,6 @@ public class ManageProductsManager implements ManageProducts
 	}
 
 	@Override
-	public void showAllProducts() {
-
-	}
-
-	/**
-	 * Returns list of Products filtered by EquipmentType
-	 * @param category
-	 * @return
-	 */
-	@Override
 	public ProductList getProductsByCategory(EquipmentType category) {
 		return list.getAllByCategory(category);
 	}
@@ -141,6 +134,17 @@ public class ManageProductsManager implements ManageProducts
 	/**
 	 * Updates internal list of products by loading data from database.
 	 */
+	@Override
+	public byte[] getImage(int id) {
+		try {
+			return manageProductDatabase.getImage(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	private void update() {
 		try {
 			list = manageProductDatabase.load();

@@ -71,5 +71,9 @@ public class CustomerAllEquipmentViewController
 		viewModel.filterByCategory(filterChoiceBox.getSelectionModel().getSelectedIndex());
 	}
 
+	public void openProduct() {
+		viewHandler.openProductDetailsView(listOfProducts.getSelectionModel().getSelectedIndex());
+	}
+
 }
 

@@ -12,7 +12,6 @@ import shared.networking.model.ManageReservations;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
-
 import java.beans.PropertyChangeEvent;
 import java.text.SimpleDateFormat;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class EmployeeOrderDetailsViewModel
   {
     this.id = id;
 	this.modelProxy = modelProxy;
-  this.modelBasket= modelProxy.getManageBasket();
+	this.modelBasket = modelProxy.getManageBasket();
 
     productsInList = FXCollections.observableArrayList();
     this.modelReservations = modelProxy.getManageReservations();

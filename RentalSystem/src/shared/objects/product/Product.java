@@ -1,5 +1,8 @@
 package shared.objects.product;
 
+import javafx.scene.image.Image;
+
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
@@ -32,7 +35,7 @@ public class Product implements Serializable
         this.amount = amount;
     }
 
-    /**
+	/**
      * Getter for price.
      * @return Returns price.
      */
@@ -137,7 +140,7 @@ public class Product implements Serializable
                 product.amount == amount;
     };
 
-    /**
+	/**
      * Copy method.
      * @return Returns exact copy of Product.
      */

@@ -9,6 +9,7 @@ import client.view.customerAllEquipment.CustomerAllEquipmentViewModel;
 import client.view.customerAllOrdersView.CustomerAllOrdersViewModel;
 import client.view.employeeAllOrders.EmployeeAllOrdersViewModel;
 import client.view.CustomerSingleOrderView.SingleOrderViewModel;
+import client.view.productDetails.ProductDetailsViewModel;
 import client.view.registryView.RegistryViewModel;
 
 public class ViewModelFactory {
@@ -22,6 +23,7 @@ public class ViewModelFactory {
 	private RegistryViewModel registryViewModel;
 	private LoginViewModel loginViewModel;
 	private CustomerAllOrdersViewModel customerAllOrdersViewModel;
+	private ProductDetailsViewModel productDetailsViewModel;
 
 	public ViewModelFactory(ModelProxy modelProxy)
 	{
@@ -117,4 +119,12 @@ public class ViewModelFactory {
 		}
 		return customerAllOrdersViewModel;
   }
+
+	public ProductDetailsViewModel getProductDetailsViewModel() {
+		if(productDetailsViewModel == null)
+		{
+			productDetailsViewModel = new ProductDetailsViewModel(modelProxy);
+		}
+		return productDetailsViewModel;
+	}
 }
