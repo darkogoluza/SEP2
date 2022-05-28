@@ -17,14 +17,17 @@
    <children>
       <HBox layoutY="-4.0" prefHeight="408.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="408.0" prefWidth="100.0" style="-fx-background-color: #268CEB;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/jasna_logo.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </ImageView>
-                  <Button fx:id="back" contentDisplay="TOP" mnemonicParsing="false" onAction="#BackButton" prefHeight="40.0" prefWidth="41.0" style="-fx-background-color: transparent;" text="Home">
+                  <Button fx:id="back" contentDisplay="TOP" mnemonicParsing="false" onAction="#BackButton" prefHeight="62.0" prefWidth="58.0" style="-fx-background-color: transparent;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="33.0" fitWidth="34.0">
                            <image>
@@ -33,10 +36,13 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets bottom="200.0" top="40.0" />
+                        <Insets bottom="190.0" top="40.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Log off" textAlignment="RIGHT" textFill="#268ceb">
                      <graphic>
                         <ImageView>
                            <image>
@@ -44,65 +50,101 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets bottom="10.0" />
+                     </opaqueInsets>
                   </Button>
                </children>
             </VBox>
-            <VBox prefHeight="305.0" prefWidth="511.0">
+            <VBox prefHeight="305.0" prefWidth="511.0" style="-fx-background-color: white;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="13.0" prefWidth="506.0">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@../../../image/profile.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="username" prefHeight="18.0" prefWidth="74.0" text="Miro Pele" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="26.0" prefWidth="67.0" text="Order ID:" textAlignment="RIGHT">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
+                        <Label prefHeight="17.0" prefWidth="61.0" text="User:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <Label fx:id="orderID" prefHeight="18.0" prefWidth="33.0" text="001" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Phone number:" />
+                        <Label fx:id="username" prefHeight="18.0" prefWidth="79.0" text="Miro Pele">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
+                        <Label prefHeight="17.0" prefWidth="95.0" text="Phone number:">
+                           <HBox.margin>
+                              <Insets left="28.0" />
+                           </HBox.margin></Label>
                         <Label fx:id="phoneNumber" text="223454678" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="74.0" text="Order date:" />
-                        <Label fx:id="orderdate" prefHeight="18.0" prefWidth="102.0" text="22.05.2001" />
-                        <Label prefHeight="18.0" prefWidth="74.0" text="Return date:" />
-                        <Label fx:id="returndate" prefHeight="18.0" prefWidth="140.0" text="22.05.2021" />
-                        <Label prefHeight="18.0" prefWidth="41.0" text="Status:" />
-                        <Label fx:id="status" text="Rented" />
+                        <Label prefHeight="26.0" prefWidth="74.0" text="Order ID:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="orderID" prefHeight="18.0" prefWidth="105.0" text="001">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label prefHeight="18.0" prefWidth="95.0" text="Status:" />
+                        <Label fx:id="status" prefHeight="17.0" prefWidth="63.0" text="Rented" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="74.0" text="Order time:" />
+                        <Label prefHeight="18.0" prefWidth="74.0" text="Order date:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Label>
+                        <Label fx:id="orderdate" prefHeight="18.0" prefWidth="105.0" text="22.05.2001" />
+                        <Label prefHeight="18.0" prefWidth="95.0" text="Order time:" />
                         <Label fx:id="ordertime" prefHeight="18.0" prefWidth="86.0" text="11:59" />
-                        <Label text="Return time:" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="74.0" text="Return date:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="returndate" prefHeight="18.0" prefWidth="105.0" text="22.05.2021" />
+                        <Label prefHeight="17.0" prefWidth="95.0" text="Return time:" />
                         <Label fx:id="returnTime" prefHeight="18.0" prefWidth="74.0" text="12:00" />
                      </children>
                   </HBox>
-                  <TableView fx:id="tableView" prefHeight="145.0" prefWidth="600.0">
+                  <TableView fx:id="tableView" prefHeight="275.0" prefWidth="486.0" style="-fx-border-color: white;" stylesheets="@../../../shared/assets/style.css">
                      <columns>
-                        <TableColumn fx:id="name" prefWidth="159.33330023288727" text="Name:" />
-                        <TableColumn fx:id="size" prefWidth="96.66667175292969" text="Size:" />
-                        <TableColumn fx:id="priceperunit" prefWidth="109.33331298828125" text="Price per unit:" />
-                        <TableColumn fx:id="totalprice" prefWidth="150.66668701171875" text="Total price:" />
-                        <TableColumn fx:id="quantity" prefWidth="94.0" text="Quantity:" />
+                        <TableColumn fx:id="name" prefWidth="154.6666135787964" text="Name:" />
+                        <TableColumn fx:id="size" prefWidth="51.99993896484375" text="Size:" />
+                        <TableColumn fx:id="priceperunit" prefWidth="88.66670227050781" text="Price per unit:" />
+                        <TableColumn fx:id="totalprice" prefWidth="92.0" text="Total price:" />
+                        <TableColumn fx:id="quantity" prefWidth="94.00003051757812" text="Quantity:" />
                      </columns>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
                   </TableView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white;">
                      <children>
                         <Label prefHeight="34.0" prefWidth="74.0" text="Total Price:" />
                         <Label fx:id="finalTotalPrice" text="65$" />
@@ -110,8 +152,14 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ChoiceBox fx:id="statusChoice" prefWidth="150.0" />
-                        <Button fx:id="changeStatus" mnemonicParsing="false" onAction="#onChangeStatus" text="Change" />
+                        <ChoiceBox fx:id="statusChoice" prefWidth="150.0" style="-fx-background-color: #ced4da;">
+                           <HBox.margin>
+                              <Insets bottom="5.0" right="6.0" />
+                           </HBox.margin></ChoiceBox>
+                        <Button fx:id="changeStatus" mnemonicParsing="false" onAction="#onChangeStatus" style="-fx-background-color: #ced4da;" text="Change">
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>
