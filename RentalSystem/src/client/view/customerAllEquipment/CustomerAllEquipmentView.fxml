@@ -16,7 +16,7 @@
    <children>
       <HBox prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="419.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="424.0" prefWidth="113.0" style="-fx-background-color: #268CEB #268CEB;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,10 +28,10 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;" text="Home">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="31.0">
                            <image>
@@ -42,19 +42,22 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Label fx:id="totalItemsInBasket" prefHeight="17.0" prefWidth="19.0" text="0">
+                  <Label fx:id="totalItemsInBasket" text="10" textFill="WHITE">
                      <padding>
                         <Insets left="15.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets right="9.0" top="10.0" />
+                        <Insets bottom="5.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="61.0" prefWidth="115.0" style="-fx-background-color: transparent;" text="Basket">
+                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="61.0" prefWidth="115.0" style="-fx-background-color: transparent;" text="Basket" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="33.0" fitWidth="33.0">
                            <image>
@@ -65,8 +68,11 @@
                      <VBox.margin>
                         <Insets top="-15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToReservations" style="-fx-background-color: transparent;" text="Reservations">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToReservations" style="-fx-background-color: transparent;" text="Reservations" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,8 +83,11 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: white; -fx-border-radius: 5;" text="Log off" textAlignment="RIGHT" textFill="#268ceb">
                      <graphic>
                         <ImageView>
                            <image>
@@ -87,31 +96,27 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets top="70.0" />
+                        <Insets bottom="10.0" top="60.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>
-            <VBox prefHeight="438.0" prefWidth="525.0">
+            <VBox prefHeight="438.0" prefWidth="525.0" style="-fx-background-color: white;">
                <children>
-                  <HBox prefHeight="38.0" prefWidth="514.0">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="507.0" text="Reserve the best equipment for your ski adventure with us!">
-                           <font>
-                              <Font size="17.0" />
-                           </font></Label>
-                     </children>
-                  </HBox>
-				   <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="569.0">
+				   <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="507.0">
 					   <children>
-						   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="297.0" text="Reserve the best equipment for your ski adventure with us!" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin></Label>
+						   <ChoiceBox fx:id="filterChoiceBox" minWidth="100.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #ced4da;">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></ChoiceBox>
-						   <Button fx:id="filterButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filter" prefHeight="26.0" prefWidth="70.0" text="Filter">
+						   <Button fx:id="filterButton" minWidth="57.0" mnemonicParsing="false" onAction="#filter" prefHeight="25.0" prefWidth="57.0" style="-fx-background-color: #ced4da;" text="Filter">
 							   <HBox.margin>
 								   <Insets left="20.0" />
 							   </HBox.margin>
@@ -124,26 +129,32 @@
 						   <Insets right="16.0" />
 					   </padding>
 				   </HBox>
-                  <ListView fx:id="listOfProducts" prefHeight="383.0" prefWidth="515.0" />
+                  <ListView fx:id="listOfProducts" prefHeight="349.0" prefWidth="507.0" />
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#openProduct" style="-fx-background-color: transparent;" text="View details">
+                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #ced4da;" text="View details">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/focus.png" />
+                                    <Image url="@../../../image/black/focus.png" />
                                  </image>
                               </ImageView>
                            </graphic>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
                         </Button>
-                        <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="49.0" prefWidth="153.0" style="-fx-border-color: none; -fx-background-color: transparent;" text="Add to basket" textAlignment="CENTER">
+                        <Button fx:id="addToBasketButton" mnemonicParsing="false" onAction="#onAddToBasket" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #ced4da;" text="Add to basket" textAlignment="CENTER">
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0">
                                  <image>
-                                    <Image url="@../../../image/Shopicons_Regular_Cart4.png" />
+                                    <Image url="@../../../image/black/Shopicons_Regular_Cart4.png" />
                                  </image>
                               </ImageView>
                            </graphic>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>

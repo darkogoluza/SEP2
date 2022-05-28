@@ -3,6 +3,7 @@ package client.view.productDetails;
 import client.model.ModelProxy;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 
 import javax.imageio.ImageIO;
@@ -61,7 +62,12 @@ public class ProductDetailsViewModel {
 	}
 
 	public void addToBasket() {
-		modelProxy.getManageBasket().add(product);
+		if (modelProxy.getManageBasket().checkIfProductIsInStock(id)) {
+			modelProxy.getManageBasket().add(product);
+		}
+		else {
+			AlertHandler.getInstance().onProductOutOfStock(modelProxy.getManageProducts().getProduct(id));
+		}
 	}
 
 

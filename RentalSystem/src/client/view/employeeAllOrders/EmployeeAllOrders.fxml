@@ -17,14 +17,14 @@
    <children>
       <HBox prefHeight="407.0" prefWidth="664.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="407.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="407.0" prefWidth="113.0" style="-fx-background-color: #268ceb;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/jasna_logo.png" />
                      </image>
                   </ImageView>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onAllOrders" style="-fx-background-color: transparent;" text="Home">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onAllOrders" style="-fx-background-color: transparent;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,8 +35,11 @@
                      <VBox.margin>
                         <Insets bottom="200.0" top="40.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="83.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                  <Button fx:id="logOffButton" alignment="CENTER" contentDisplay="RIGHT" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Log off" textAlignment="RIGHT" textFill="#268ceb">
                      <graphic>
                         <ImageView>
                            <image>
@@ -44,12 +47,15 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>
-            <VBox minWidth="-Infinity" prefHeight="407.0" prefWidth="569.0">
+            <VBox minWidth="-Infinity" prefHeight="407.0" prefWidth="569.0" style="-fx-background-color: white;">
                <children>
-                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="50.0" prefWidth="548.0">
+                  <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="50.0" prefWidth="548.0" style="-fx-background-color: white;">
                      <children>
                         <HBox prefHeight="32.0" prefWidth="418.0">
                            <children>
@@ -86,29 +92,35 @@
                               </Button>
                            </children>
                         </HBox>
-                        <ChoiceBox fx:id="filterByStatus" minWidth="100.0" onAction="#onFilterChoiceChanged" prefHeight="26.0" prefWidth="74.0" />
+                        <ChoiceBox fx:id="filterByStatus" minWidth="100.0" onAction="#onFilterChoiceChanged" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #ced4da;" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <ListView fx:id="reservationsList" prefHeight="309.0" prefWidth="592.0" />
+                  <ListView fx:id="reservationsList" prefHeight="309.0" prefWidth="592.0" style="-fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 10;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin></ListView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="553.0" spacing="10.0">
                      <children>
-                        <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" style="-fx-background-color: transparent;" text="Open">
+                        <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" prefHeight="23.0" prefWidth="71.0" style="-fx-background-color: #ced4da; -fx-background-radius: 5;" text="Open">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/focus.png" />
+                                    <Image url="@../../../image/black/focus.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="removeReservationButton" mnemonicParsing="false" onAction="#onRemoveReservation" style="-fx-background-color: transparent;" text="Remove">
+                        <Button fx:id="removeReservationButton" mnemonicParsing="false" onAction="#onRemoveReservation" prefHeight="0.0" prefWidth="91.0" style="-fx-background-color: #ced4da; -fx-background-radius: 5;" text="Remove">
                            <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/Shopicons_Regular_Minus.png" />
+                                    <Image url="@../../../image/black/Shopicons_Regular_Minus.png" />
                                  </image>
                               </ImageView>
                            </graphic>
