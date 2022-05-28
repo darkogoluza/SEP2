@@ -12,19 +12,20 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="417.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.view.administratorView.AdministratorViewController">
    <children>
       <HBox prefHeight="421.0" prefWidth="607.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="503.0" prefWidth="100.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="424.0" prefWidth="113.0" style="-fx-background-color: #268CEB #268CEB;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/jasna_logo.png" />
                      </image>
                   </ImageView>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="77.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="Create account" textAlignment="CENTER">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="77.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="Create account" textAlignment="CENTER" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,8 +36,11 @@
                      <VBox.margin>
                         <Insets top="100.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="logOff" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="Log Off">
+                  <Button fx:id="logOff" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="87.0" style="-fx-background-color: white; -fx-border-radius: 5;" text="Log Off" textFill="#268ceb">
                      <graphic>
                         <ImageView>
                            <image>
@@ -48,12 +52,18 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="150.0" />
+                        <Insets bottom="10.0" top="150.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
-            <FlowPane prefHeight="503.0" prefWidth="503.0">
+            <FlowPane prefHeight="503.0" prefWidth="503.0" style="-fx-background-color: white;">
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="184.0" prefWidth="209.0" spacing="22.0">
                      <children>
@@ -98,12 +108,12 @@
                   </VBox>
                   <VBox prefHeight="190.0" prefWidth="191.0" spacing="10.0">
                      <children>
-                        <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0">
+                        <ChoiceBox fx:id="typeChoiceBox" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #ced4da;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </ChoiceBox>
-                        <ChoiceBox fx:id="colorChoiceBox" prefWidth="150.0">
+                        <ChoiceBox fx:id="colorChoiceBox" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #ced4da;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -131,17 +141,17 @@
                   </VBox>
                   <HBox fx:id="normalButtons" alignment="CENTER" prefHeight="45.0" prefWidth="505.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addButton" text="Add">
+                        <Button mnemonicParsing="false" onAction="#addButton" style="-fx-background-color: #ced4da;" text="Add">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#removeButton" text="Remove">
+                        <Button mnemonicParsing="false" onAction="#removeButton" style="-fx-background-color: #ced4da;" text="Remove">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#editButton" text="Edit" />
+                        <Button mnemonicParsing="false" onAction="#editButton" style="-fx-background-color: #ced4da;" text="Edit" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -152,12 +162,12 @@
                   </HBox>
                   <HBox fx:id="editButtons" alignment="CENTER" prefHeight="45.0" prefWidth="498.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#changeProduct" text="Change">
+                        <Button mnemonicParsing="false" onAction="#changeProduct" style="-fx-background-color: #ced4da;" text="Change">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#candleEdit" text="Cancel">
+                        <Button mnemonicParsing="false" onAction="#candleEdit" style="-fx-background-color: #ced4da;" text="Cancel">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -170,7 +180,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <ListView fx:id="listView" prefHeight="142.0" prefWidth="507.0" />
+                  <ListView fx:id="listView" prefHeight="142.0" prefWidth="507.0" style="-fx-background-color: F0F7FE;" />
                </children>
             </FlowPane>
          </children>
