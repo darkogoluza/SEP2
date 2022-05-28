@@ -155,7 +155,7 @@ public class ManageBasketManager implements ManageBasket
 
 	/**
 	 * Get amount of product left in stock
-	 * @param id of product
+	 * @param product of product
 	 * @return amount of product left in stock
 	 */
 	@Override

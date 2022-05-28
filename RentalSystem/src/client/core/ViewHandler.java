@@ -53,8 +53,7 @@ public class ViewHandler
 	 */
     public void start(){
 
-//		openLoginView();
-		openProductDetailsView(5);
+		openLoginView();
 
         stage.show();
     }

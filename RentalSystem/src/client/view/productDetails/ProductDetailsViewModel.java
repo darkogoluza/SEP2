@@ -39,7 +39,8 @@ public class ProductDetailsViewModel {
 
 	private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
 		amountInBasket.setValue(String.valueOf(propertyChangeEvent.getNewValue()));
-		amountInStock.setValue(String.valueOf(modelProxy.getManageBasket().getAmountOfProductLeftInStock(product)));
+		String inStock = (modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) == 0) ? "out of stock" : modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) + " left in stock";
+		amountInStock.setValue(inStock);
 	}
 
 	public void setProduct() {
@@ -84,7 +85,8 @@ public class ProductDetailsViewModel {
 		size.setValue(product.getSize().toString());
 		price.setValue(String.valueOf(product.getPrice()));
 		name.setValue(String.valueOf(product.getType()));
-		amountInStock.setValue(String.valueOf(product.getAmount()));
+		String inStock = (modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) == 0) ? "out of stock" : modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) + " left in stock";
+		amountInStock.setValue(inStock);
 		amountInBasket.setValue(String.valueOf(modelProxy.getManageBasket().size()));
 
 		byte[] imgBytes = modelProxy.getManageProducts().getImage(id);

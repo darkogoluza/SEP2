@@ -77,7 +77,6 @@ public class ManageBasketManager implements ManageBasket {
 
     @Override
     public ArrayList<String> getAllProductsAsString() {
-        Map<Product, Integer> map = getAllProductsByQuantity();
         ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
         ArrayList<String> temp = new ArrayList<>();
 		int inStock;
@@ -118,7 +117,8 @@ public class ManageBasketManager implements ManageBasket {
 			}
 		}
 
-		return inStock;
+		// if inStock is -1 return 0
+		return inStock < 0 ? 0 : inStock;
 	}
 
     @Override
