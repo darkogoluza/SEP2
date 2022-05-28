@@ -37,12 +37,18 @@ public class CustomerAllOrdersViewModel
     loadAllProducts();
 
     modelProxy.getManageUser().addPropertyChangeListener("login",
-            (event) ->  loadAllProducts()
+            (event) ->{
+              userNameProperty.set(
+                  modelProxy.getManageUser().getLoggedUser().getUsername());
+              loadAllProducts();
+            }
+
     );
   }
 
   private void modifiedReservation(PropertyChangeEvent propertyChangeEvent)
   {
+
     loadAllProducts();
   }
 
