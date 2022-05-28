@@ -53,7 +53,7 @@ public class AdministratorViewController {
     @FXML
     private TextField amountTextFiled;
 	@FXML
-	private Button addFileButton;
+	private ImageView imageView;
 
     @FXML
     private HBox normalButtons;
@@ -250,10 +250,9 @@ public class AdministratorViewController {
 
 		try {
 			Image img = new Image(new FileInputStream(file.getPath()));
-			ImageView imgView = new ImageView(img);
-			imgView.setFitHeight(20);
-			imgView.setFitWidth(20);
-			addFileButton.setGraphic(imgView);
+			imageView.setFitHeight(26);
+			imageView.setFitWidth(30);
+			imageView.setImage(img);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
