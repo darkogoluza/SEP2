@@ -60,5 +60,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="JavaFX" level="application" />
+    <orderEntry type="library" name="javaFx" level="application" />
   </component>
 </module>
