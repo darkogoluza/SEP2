@@ -21,7 +21,7 @@ public class ProductDetailsViewModel {
 	private SimpleStringProperty size;
 	private SimpleStringProperty price;
 	private SimpleStringProperty username;
-	private SimpleStringProperty color;
+//	private SimpleStringProperty color;
 	private SimpleStringProperty name;
 	private SimpleStringProperty amountInStock;
 	private SimpleStringProperty amountInBasket;
@@ -41,6 +41,7 @@ public class ProductDetailsViewModel {
 
 	private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
 		amountInBasket.setValue(String.valueOf(propertyChangeEvent.getNewValue()));
+		amountInStock.setValue(String.valueOf(modelProxy.getManageBasket().getAmountOfProductLeftInStock(product)));
 	}
 
 	public void setProduct() {
@@ -76,7 +77,7 @@ public class ProductDetailsViewModel {
 		type = new SimpleStringProperty();
 		price = new SimpleStringProperty();
 		name = new SimpleStringProperty();
-		color = new SimpleStringProperty();
+//		color = new SimpleStringProperty();
 		username = new SimpleStringProperty();
 		amountInStock = new SimpleStringProperty();
 		amountInBasket = new SimpleStringProperty();
@@ -86,10 +87,9 @@ public class ProductDetailsViewModel {
 		username.setValue(modelProxy.getManageUser().getLoggedUser().getUsername());
 		size.setValue(product.getSize().toString());
 		type.setValue(product.getType().toString());
-		price.setValue(String.valueOf(product.getPrice()));
-		name.setValue(String.valueOf(product.getType()));
-		color.setValue(String.valueOf(product.getColor()));
-		amountInStock.setValue(String.valueOf(product.getAmount()));
+		price.setValue(String.format("%.02f€", product.getPrice()));
+		name.setValue(product.getColor() + " " + product.getType());
+		amountInStock.setValue(String.valueOf(modelProxy.getManageBasket().getAmountOfProductLeftInStock(product)));
 		amountInBasket.setValue(String.valueOf(modelProxy.getManageBasket().size()));
 
 		byte[] imgBytes = modelProxy.getManageProducts().getImage(id);
@@ -126,9 +126,9 @@ public class ProductDetailsViewModel {
 	public SimpleStringProperty priceProperty() {
 		return price;
 	}
-	public SimpleStringProperty colorProperty() {
-		return color;
-	}
+//	public SimpleStringProperty colorProperty() {
+//		return color;
+//	}
 	public SimpleStringProperty usernameProperty() {
 		return username;
 	}

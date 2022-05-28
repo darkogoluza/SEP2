@@ -7,7 +7,6 @@ public class ProductsInBasket
    private Product product;
    private int quantity;
 
-
     public ProductsInBasket(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;

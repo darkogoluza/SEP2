@@ -52,23 +52,9 @@ public class ViewHandler
 	 * This is what is opened when we launch an application
 	 */
     public void start(){
-		//customer
-//		manageUser.login("xoxo", "123456");
-//		//admin
-//		manageUser.login("admin", "123456");
-//		//employee
-//		manageUser.login("employee", "123456");
-//		System.out.println(manageUser.getLoggedUser());
-		openLoginView();
 
-//		if (manageUser.getLoggedUser() == null)
-//			openRegistryView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.customer))
-//        	openCustomerAllEquipmentView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.employee))
-//			openEmployeeView();
-//		else if (manageUser.getLoggedUser().getRole().equals(UserRole.admin))
-//        	openAdministratorView();
+//		openLoginView();
+		openProductDetailsView(5);
 
         stage.show();
     }

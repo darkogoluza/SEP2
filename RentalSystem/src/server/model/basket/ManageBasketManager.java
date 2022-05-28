@@ -151,6 +151,23 @@ public class ManageBasketManager implements ManageBasket
 		return null;
 	}
 
+	/**
+	 * Get amount of product left in stock
+	 * @param id of product
+	 * @return amount of product left in stock
+	 */
+	@Override
+	public int getAmountOfProductLeftInStock(Product product) {
+//		Product product = basket.getProducts().get(id);
+//
+//		int rented = clientProxy.getClientProduct().getRentedAmount(product.getId());
+//		int inStock = product.getAmount() - rented;
+//
+//		System.out.println(rented + " " + inStock);
+
+		return 0;
+	}
+
 	@Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.addPropertyChangeListener(listener);

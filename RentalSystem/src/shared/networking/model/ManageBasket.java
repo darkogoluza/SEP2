@@ -18,4 +18,5 @@ public interface ManageBasket extends PropertyChangeSubject {
     boolean isEmpty();
 	boolean checkIfProductIsInStock(int id);
 	ArrayList<String> getAllProductsAsString();
+	int getAmountOfProductLeftInStock(Product product);
 }

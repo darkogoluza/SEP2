@@ -79,17 +79,12 @@ public class ManageBasketManager implements ManageBasket {
         Map<Product, Integer> map = getAllProductsByQuantity();
         ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
         ArrayList<String> temp = new ArrayList<>();
+		int inStock;
 
         for (int i = 0; i < allProducts.size(); i++) {
-            Product product = allProducts.getByIndex(i);
-            int rented = clientProxy.getClientProduct().getRentedAmount(product.getId());
-            int inStock = product.getAmount() - rented;
+			Product product = allProducts.get(i);
 
-            for(Map.Entry<Product, Integer> entry : map.entrySet()) {
-                if(entry.getKey().equals(product)) {
-                    inStock -= entry.getValue();
-                }
-            }
+			inStock = getAmountOfProductLeftInStock(product);
 
             String value = String.format("[%s %s] %.02f€    %s",
                     product.getColor(),
@@ -97,11 +92,33 @@ public class ManageBasketManager implements ManageBasket {
                     product.getPrice(),
                     inStock <= 0 ? "out of stock" : inStock + " left in stock"
                     );
+
             temp.add(value);
         }
 
         return temp;
     }
+
+	/**
+	 * Get amount of product left in stock
+	 * @param product
+	 * @return amount of product left in stock
+	 */
+	public int getAmountOfProductLeftInStock(Product product) {
+
+		Map<Product, Integer> map = getAllProductsByQuantity();
+
+		int rented = clientProxy.getClientProduct().getRentedAmount(product.getId());
+		int inStock = product.getAmount() - rented;
+
+		for (Map.Entry<Product, Integer> entry : map.entrySet()) {
+			if (entry.getKey().equals(product)) {
+				inStock -= entry.getValue();
+			}
+		}
+
+		return inStock;
+	}
 
     @Override
     public boolean checkIfProductIsInStock(int id) {

@@ -108,7 +108,7 @@
                <children>
 				   <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="507.0">
 					   <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="297.0" text="Reserve the best equipment for your ski adventure with us!" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="286.0" text="Reserve the best equipment for your ski adventure with us!" wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin></Label>
@@ -132,7 +132,7 @@
                   <ListView fx:id="listOfProducts" prefHeight="349.0" prefWidth="507.0" />
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #ced4da;" text="View details">
+                        <Button mnemonicParsing="false" onAction="#openProduct" prefHeight="50.0" prefWidth="145.0" style="-fx-background-color: #ced4da;" text="View details">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
