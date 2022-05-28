@@ -3,6 +3,8 @@ package server.networking;
 import shared.networking.model.ManageBasket;
 import shared.networking.server.ServerBasket;
 import shared.objects.product.Product;
+import shared.objects.user.User;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Time;
@@ -86,9 +88,9 @@ public class RMIServerBasket implements ServerBasket
    * @param createAt
    * @param returnAt
    */
-  @Override public void order(Timestamp createAt, Timestamp returnAt)
+  @Override public void order(Timestamp createAt, Timestamp returnAt, User user)
   {
-    model.order(createAt, returnAt);
+    model.order(createAt, returnAt, user);
   }
 
   /**

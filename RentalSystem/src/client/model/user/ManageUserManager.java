@@ -11,6 +11,7 @@ public class ManageUserManager implements ManageUser
 {
 	private ClientProxy clientProxy;
 	private PropertyChangeSupport changeSupport;
+	private User user;
 
 	public ManageUserManager(ClientProxy clientProxy) {
 		changeSupport = new PropertyChangeSupport(this);
@@ -28,23 +29,24 @@ public class ManageUserManager implements ManageUser
 		return clientProxy.getClientUser().get(username);
 	}
 
-	@Override public boolean login(String username, String password)
+	@Override public User login(String username, String password)
 	{
-		boolean bool = clientProxy.getClientUser().login(username, password);
-		if(bool) {
+		user = clientProxy.getClientUser().login(username, password);
+		if(user!=null) {
 			changeSupport.firePropertyChange("login", null, username);
+			return user;
 		}
-		return bool;
+		return null;
 	}
 
 	@Override
 	public User getLoggedUser() {
-		return clientProxy.getClientUser().getLoggedUser();
+		return user;
 	}
 
 	@Override
 	public void logout() {
-		clientProxy.getClientUser().logout();
+		user = null;
 	}
 
 	@Override

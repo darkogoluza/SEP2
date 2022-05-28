@@ -36,7 +36,7 @@ public class ClientUser implements Remote, Serializable {
 		}
 	}
 
-	public boolean login(String username, String password) {
+	public User login(String username, String password) {
 		try
 		{
 			return server.login(username, password);
@@ -46,7 +46,7 @@ public class ClientUser implements Remote, Serializable {
 			e.printStackTrace();
 		}
 
-		return false;
+		return null;
 	}
 
 	public User get(String username) {

@@ -5,6 +5,7 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import shared.networking.model.ManageUser;
+import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
 public class LoginViewModel
@@ -21,7 +22,7 @@ public class LoginViewModel
     passwordProperty=new SimpleStringProperty();
   }
 
-  public boolean checkIdentification(String userName, String password) {
+  public User checkIdentification(String userName, String password) {
     return modelUser.login(userName, password);
   }
 

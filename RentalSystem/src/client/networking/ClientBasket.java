@@ -4,6 +4,7 @@ package client.networking;
 import shared.networking.server.Server;
 import shared.networking.server.ServerBasket;
 import shared.objects.product.Product;
+import shared.objects.user.User;
 import shared.util.Utils;
 
 import java.io.Serializable;
@@ -104,11 +105,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
-  public void order(Timestamp createAt, Timestamp returnAt)
+  public void order(Timestamp createAt, Timestamp returnAt, User user)
   {
     try
     {
-      server.order(createAt, returnAt);
+      server.order(createAt, returnAt, user);
     }
     catch (RemoteException e)
     {

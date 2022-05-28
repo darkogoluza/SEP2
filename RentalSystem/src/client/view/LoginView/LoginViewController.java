@@ -6,12 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BackgroundFill;
 import shared.objects.errors.AlertHandler;
-import shared.objects.product.EquipmentType;
-import shared.objects.reservation.ReservationStatus;
+import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
 public class LoginViewController
@@ -43,9 +39,9 @@ public class LoginViewController
 
   @FXML
 	void logInToAccount() {
-		boolean isLogged = viewModel.checkIdentification(userName.getText(),password.getText());
+		User user = viewModel.checkIdentification(userName.getText(),password.getText());
 
-		if (isLogged) {
+		if (user != null) {
 			UserRole role = viewModel.getRoleOfUser();
 
 			if (role == UserRole.admin)

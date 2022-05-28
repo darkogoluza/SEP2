@@ -64,7 +64,7 @@ public class ManageUserManager implements ManageUser {
 	 * @return Returns false if logging in failed, meaning username or password were not matching.
 	 */
 	@Override
-	public boolean login(String username, String password) {
+	public User login(String username, String password) {
 		User userTmp = null;
 		try {
 			userTmp = db.load(username);
@@ -77,10 +77,10 @@ public class ManageUserManager implements ManageUser {
 		if (userTmp != null && userTmp.getPassword().equals(password)) {
 			user = userTmp;
 			changeSupport.firePropertyChange("login", null, username);
-			return true;
+			return user;
 		}
 
-		return false;
+		return null;
 	}
 
 	/**
