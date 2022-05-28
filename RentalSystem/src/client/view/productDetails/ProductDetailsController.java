@@ -62,7 +62,6 @@ public class ProductDetailsController {
 	private void bindItems() {
 		userName.textProperty().bindBidirectional(viewModel.usernameProperty());
 		size.textProperty().bindBidirectional(viewModel.sizeProperty());
-		color.textProperty().bindBidirectional(viewModel.colorProperty());
 		name.textProperty().bindBidirectional(viewModel.nameProperty());
 		price.textProperty().bindBidirectional(viewModel.priceProperty());
 		amountInStock.textProperty().bindBidirectional(viewModel.amountInStockProperty());

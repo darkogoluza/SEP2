@@ -14,22 +14,19 @@
    <children>
       <HBox prefHeight="403.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="435.0" prefWidth="85.0" style="-fx-background-color: #7FB5FF;">
+            <VBox alignment="TOP_CENTER" prefHeight="424.0" prefWidth="113.0" style="-fx-background-color: #268ceb;">
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/jasna_logo.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="userName" alignment="CENTER" prefHeight="26.0" prefWidth="135.0" text="Miro Pele">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
+                  <Label fx:id="userName" alignment="CENTER" prefHeight="17.0" prefWidth="73.0" style="-fx-background-color: #C4DDFF; -fx-background-radius: 30;" text="Miro Pele">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;" text="Home">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backButton" style="-fx-background-color: transparent;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="31.0">
                            <image>
@@ -40,19 +37,22 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Label fx:id="totalItemsInBasket" prefHeight="17.0" prefWidth="19.0" text="0">
+                  <Label fx:id="totalItemsInBasket" prefHeight="17.0" prefWidth="19.0" text="0" textFill="WHITE">
                      <padding>
                         <Insets left="15.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets right="9.0" top="10.0" />
+                        <Insets bottom="5.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="63.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Basket">
+                  <Button fx:id="gotToBasketButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToBasketButton" prefHeight="63.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Basket" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="33.0" fitWidth="33.0">
                            <image>
@@ -63,8 +63,11 @@
                      <VBox.margin>
                         <Insets top="-15.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToReservations" style="-fx-background-color: transparent;" text="Reservations">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#onGoToReservations" style="-fx-background-color: transparent;" text="Reservations" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -75,8 +78,11 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="Log off" textAlignment="RIGHT">
+                  <Button fx:id="logOffButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onLogOff" prefHeight="32.0" prefWidth="95.0" style="-fx-background-color: white;" text="Log off" textAlignment="RIGHT" textFill="#268ceb">
                      <graphic>
                         <ImageView>
                            <image>
@@ -85,20 +91,35 @@
                         </ImageView>
                      </graphic>
                      <VBox.margin>
-                        <Insets top="60.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>
-            <VBox prefHeight="403.0" prefWidth="502.0">
+            <VBox prefHeight="403.0" prefWidth="502.0" style="-fx-background-color: white;">
                <children>
-                  <HBox prefHeight="325.0" prefWidth="507.0">
+                  <VBox alignment="CENTER" prefHeight="67.0" prefWidth="495.0">
+                     <children>
+                        <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="280.0" style="-fx-background-color: #268ceb; -fx-background-radius: 5;" text="skii" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="26.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <HBox prefHeight="220.0" prefWidth="495.0" style="-fx-background-color: white;">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="314.0" prefWidth="233.0">
                            <children>
                               <ImageView fx:id="imageView" fitHeight="225.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/Shopicons_Regular_Search.png" />
+                                    <Image url="@../../../image/blue/Shopicons_Regular_Search.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
@@ -106,25 +127,16 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="329.0" prefWidth="164.0">
+                        <VBox alignment="CENTER" prefHeight="329.0" prefWidth="164.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="497.0" spacing="10.0">
-                                 <children>
-                                    <Label fx:id="sizeLabel" text="Name:">
-                                       <font>
-                                          <Font name="Segoe UI" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="name" text="skii">
-                                       <font>
-                                          <Font name="Segoe UI" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="164.0" spacing="10.0">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="164.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="164.0" spacing="10.0">
                                  <children>
-                                    <Label text="Size:">
+                                    <Label prefHeight="18.0" prefWidth="60.0" text="Size:">
                                        <font>
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
@@ -135,24 +147,13 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="164.0" spacing="10.0">
                                  <children>
-                                    <Label text="Color:">
-                                       <font>
-                                          <Font name="Segoe UI" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="color" text="red">
-                                       <font>
-                                          <Font name="Segoe UI" size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Price: ">
+                                    <Label prefHeight="18.0" prefWidth="60.0" text="Price: ">
                                        <font>
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
@@ -163,10 +164,13 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="164.0" spacing="10.0">
                                  <children>
-                                    <Label text="In stock:">
+                                    <Label prefHeight="18.0" prefWidth="60.0" text="In stock:">
                                        <font>
                                           <Font name="Segoe UI" size="14.0" />
                                        </font>
@@ -177,10 +181,13 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                            <HBox.margin>
-                              <Insets left="30.0" top="10.0" />
+                              <Insets left="30.0" />
                            </HBox.margin>
                            <opaqueInsets>
                               <Insets />
@@ -188,11 +195,33 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="96.0" prefWidth="502.0" text="All photos are original and show actual products in the rental shop." />
+                  <VBox prefHeight="200.0" prefWidth="495.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="155.0" prefWidth="495.0" style="-fx-background-color: white;">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#addToBasket" prefHeight="33.0" prefWidth="106.0" style="-fx-background-color: #ced4da;" text="Add to basket">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="81.0" prefWidth="495.0" style="-fx-background-color: white;" text="All photos are original and show actual products in the rental shop.">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="451.0" layoutY="334.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
    </children>
 </AnchorPane>
