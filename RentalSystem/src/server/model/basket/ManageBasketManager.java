@@ -6,6 +6,8 @@ import shared.networking.model.ManageBasket;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
 import shared.objects.reservation.Reservation;
+import shared.objects.user.User;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.SQLException;
@@ -104,7 +106,7 @@ public class ManageBasketManager implements ManageBasket
      * @param returnAt
      */
     @Override
-    public void order(Timestamp createAt, Timestamp returnAt) {
+    public void order(Timestamp createAt, Timestamp returnAt, User user) {
         int reservationId = 0;
         try {
             reservationId = reservationDatabase.getUniqueId();
@@ -112,7 +114,7 @@ public class ManageBasketManager implements ManageBasket
             e.printStackTrace();
         }
 		basket.setCustomerUsername(ManageUserManager.user.getUsername());
-        Reservation reservation = new Reservation(reservationId, basket.getCustomerUsername(), basket.getProducts());
+        Reservation reservation = new Reservation(reservationId, user.getUsername(), basket.getProducts());
         reservation.setCreateAt(createAt);
         reservation.setExpiresAt(returnAt);
         try {

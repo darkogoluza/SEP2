@@ -56,7 +56,7 @@ public class RMIServerUser implements ServerUser {
 	 * @return Returns whether the login was successful.
 	 */
 	@Override
-	public boolean login(String username, String password) {
+	public User login(String username, String password) {
 		return model.login(username, password);
 	}
 

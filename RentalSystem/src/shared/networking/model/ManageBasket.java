@@ -1,6 +1,7 @@
 package shared.networking.model;
 
 import shared.objects.product.Product;
+import shared.objects.user.User;
 import shared.util.PropertyChangeSubject;
 
 import java.sql.Timestamp;
@@ -14,7 +15,7 @@ public interface ManageBasket extends PropertyChangeSubject {
     String getTotalPrice();
     int size();
     Map<Product, Integer> getAllProductsByQuantity();
-    void order(Timestamp createAt, Timestamp returnAt);
+    void order(Timestamp createAt, Timestamp returnAt, User user);
     boolean isEmpty();
 	boolean checkIfProductIsInStock(int id);
 	ArrayList<String> getAllProductsAsString();

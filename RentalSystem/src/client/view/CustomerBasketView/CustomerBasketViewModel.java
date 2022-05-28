@@ -89,7 +89,7 @@ public class CustomerBasketViewModel
 
         Timestamp createAt = Timestamp.valueOf(createDateProperty.getValue().atTime(LocalTime.now()));
         Timestamp returnAt = Timestamp.valueOf(returnDateProperty.getValue().atTime(LocalTime.of(17,0,0)));
-        modelBasket.order(createAt, returnAt);
+        modelBasket.order(createAt, returnAt, modelProxy.getManageUser().getLoggedUser());
         AlertHandler.getInstance().orderCreated();
         modelBasket.clear();
     }
