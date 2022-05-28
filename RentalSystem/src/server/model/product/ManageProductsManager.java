@@ -136,7 +136,13 @@ public class ManageProductsManager implements ManageProducts
 	 */
 	@Override
 	public byte[] getImage(int id) {
-		return manageProductDatabase.getImage(id);
+		try {
+			return manageProductDatabase.getImage(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	private void update() {

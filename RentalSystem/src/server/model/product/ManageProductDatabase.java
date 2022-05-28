@@ -171,21 +171,26 @@ public class ManageProductDatabase implements ManageProductsPersistence
     @Override
     public int getRentedAmount(int id) throws SQLException {
         Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement("""
+        try {
+            PreparedStatement statement = connection.prepareStatement("""
                 SELECT amount_rented
                 FROM Product
                 WHERE id = ?;""");
-        statement.setInt(1, id);
+            statement.setInt(1, id);
 
-        ResultSet resultSet = statement.executeQuery();
-        if(resultSet.next()){
-            return resultSet.getInt("amount_rented");
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                return resultSet.getInt("amount_rented");
+            }
+
+            return 0;
         }
-
-        return 0;
+        finally {
+            connection.close();
+        }
     }
 
-    public byte[] getImage(int id) {
+    public byte[] getImage(int id) throws SQLException {
 		byte[] byteImg = null;
 
 		Connection connection = null;
@@ -207,7 +212,9 @@ public class ManageProductDatabase implements ManageProductsPersistence
 		} catch (Exception e) {
 			AlertHandler.getInstance().wrongFile();
 			return null;
-		}
+		} finally {
+		    connection.close();
+        }
 	}
 
 	private void executeStatement(PreparedStatement statement, Product product, String path) throws SQLException {
