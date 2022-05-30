@@ -222,4 +222,15 @@ public class AlertHandler {
 
 		alert.showAndWait();
     }
+
+	/**
+	 * When order cannot be created
+	 */
+	public void orderNotCreated() {
+		Alert alert = new Alert(Alert.AlertType.WARNING);
+		alert.setTitle("Warning");
+		alert.setHeaderText("Something went wrong order was not created, maybe the item you are trying to order has been order by someone else and now is out of order.");
+
+		alert.showAndWait();
+	}
 }

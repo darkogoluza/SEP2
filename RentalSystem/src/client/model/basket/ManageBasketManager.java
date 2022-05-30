@@ -3,6 +3,7 @@ package client.model.basket;
 import client.networking.ClientProxy;
 import server.model.reservation.ManageReservationDatabase;
 import shared.networking.model.ManageBasket;
+import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;
 import shared.objects.product.ProductList;
 import shared.objects.user.User;
@@ -63,7 +64,13 @@ public class ManageBasketManager implements ManageBasket {
 
     @Override
     public void order(Timestamp createAt, Timestamp returnAt, User user) {
+        if(!checkIfOrderIsValid()){
+            AlertHandler.getInstance().orderNotCreated();
+            return;
+        }
+
         clientProxy.getClientBasket().order(createAt, returnAt, user);
+        AlertHandler.getInstance().orderCreated();
     }
 
     @Override
@@ -141,7 +148,7 @@ public class ManageBasketManager implements ManageBasket {
 		}
 
 		// if inStock is -1 return 0
-		return inStock < 0 ? 0 : inStock;
+		return Math.max(inStock, 0);
 	}
 
     @Override
@@ -161,6 +168,24 @@ public class ManageBasketManager implements ManageBasket {
                     }
                 }
             }
+        }
+
+        return true;
+    }
+
+    public boolean checkIfOrderIsValid() {
+        Map<Product, Integer> map = getAllProductsByQuantity();
+        ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
+
+        for (int i = 0; i < allProducts.size(); i++) {
+            Product product = allProducts.getByIndex(i);
+                for (Map.Entry<Product, Integer> entry : map.entrySet()) {
+                    if (entry.getKey().equals(product)) {
+                        int inStock = product.getAmount() - clientProxy.getClientProduct().getRentedAmount(product.getId());
+                        if(inStock <= 0)
+                            return false;
+                    }
+                }
         }
 
         return true;

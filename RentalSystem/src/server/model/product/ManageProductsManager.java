@@ -70,13 +70,13 @@ public class ManageProductsManager implements ManageProducts
 
 	/**
 	 * Get product from list
-	 * @param index of product
+	 * @param id of product
 	 * @return Product
 	 */
 	@Override
-	public Product getProduct(int index) {
+	public Product getProduct(int id) {
 		update();
-		return list.getByIndex(index);
+		return list.get(id);
 	}
 
 	@Override

@@ -51,14 +51,14 @@ public class RMIServerProduct implements ServerProduct {
 	}
 
 	/**
-	 * Returns a single Product from database by index.
-	 * @param index
+	 * Returns a single Product from database by id.
+	 * @param id
 	 * @return Object containing all information about Product.
 	 * @throws RemoteException
 	 */
 	@Override
-	public Product getProduct(int index) throws RemoteException{
-		return productsManager.getProduct(index);
+	public Product getProduct(int id) throws RemoteException{
+		return productsManager.getProduct(id);
 	}
 
 	/**
