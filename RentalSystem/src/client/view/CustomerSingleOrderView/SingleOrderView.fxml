@@ -22,7 +22,7 @@
                      <children>
                         <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/jasna_logo.png" />
+                              <Image url="@../../../shared/assets/image/jasna_logo.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="74.0" style="-fx-background-color: #C4DDFF; -fx-background-radius: 30;" text="Miro">
@@ -36,7 +36,7 @@
                            <graphic>
                               <ImageView fitHeight="31.0" fitWidth="32.0">
                                  <image>
-                                    <Image url="@../../../image/home.png" />
+                                    <Image url="@../../../shared/assets/image/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -62,7 +62,7 @@
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="33.0">
                                  <image>
-                                    <Image url="@../../../image/Shopicons_Regular_Cart3.png" />
+                                    <Image url="@../../../shared/assets/image/Shopicons_Regular_Cart3.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -77,7 +77,7 @@
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/appointment.png" />
+                                    <Image url="@../../../shared/assets/image/appointment.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -92,7 +92,7 @@
                            <graphic>
                               <ImageView>
                                  <image>
-                                    <Image url="@../../../image/icons8-logout-24.png" />
+                                    <Image url="@../../../shared/assets/image/icons8-logout-24.png" />
                                  </image>
                               </ImageView>
                            </graphic>

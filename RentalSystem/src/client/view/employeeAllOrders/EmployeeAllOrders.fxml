@@ -21,14 +21,14 @@
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/jasna_logo.png" />
+                        <Image url="@../../../shared/assets/image/jasna_logo.png" />
                      </image>
                   </ImageView>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onAllOrders" style="-fx-background-color: transparent;" text="Home" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/home.png" />
+                              <Image url="@../../../shared/assets/image/home.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -43,7 +43,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../image/icons8-logout-24.png" />
+                              <Image url="@../../../shared/assets/image/icons8-logout-24.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -85,7 +85,7 @@
                                  <graphic>
                                     <ImageView fitHeight="22.0" fitWidth="22.0">
                                        <image>
-                                          <Image url="@../../../image/Shopicons_Regular_Search.png" />
+                                          <Image url="@../../../shared/assets/image/Shopicons_Regular_Search.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -111,7 +111,7 @@
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/black/focus.png" />
+                                    <Image url="@../../../shared/assets/image/black/focus.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -120,7 +120,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/black/Shopicons_Regular_Minus.png" />
+                                    <Image url="@../../../shared/assets/image/black/Shopicons_Regular_Minus.png" />
                                  </image>
                               </ImageView>
                            </graphic>

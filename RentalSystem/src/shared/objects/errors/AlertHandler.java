@@ -183,7 +183,7 @@ public class AlertHandler {
     public void onOrderExpireSoon(int id, int hoursBeforeExpiration) {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
-		alert.setHeaderText(String.format("Order with id(%d) will expire in %dh pleas make sure to return the equipment in time", id, hoursBeforeExpiration));
+		alert.setHeaderText(String.format("Order with id(%d) will expire in %dh please make sure to return the equipment in time", id, hoursBeforeExpiration));
 
 		alert.showAndWait();
     }
@@ -200,10 +200,25 @@ public class AlertHandler {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Showed when admin did not uploaded any image
+	 */
     public void wrongFile() {
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Warning");
 		alert.setHeaderText("You did not select any file!");
+
+		alert.showAndWait();
+    }
+
+	/**
+	 * When empty credentials
+	 * @param field which field is empty
+	 */
+    public void emptyCredentials(String field) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Warning");
+		alert.setHeaderText( field + " field cannot be empty!");
 
 		alert.showAndWait();
     }

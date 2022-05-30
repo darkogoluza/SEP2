@@ -43,12 +43,24 @@ public class RegistryViewModel
     public boolean createAccount()
     {
 
+		if	(userNameProperty.getValue() == "") {
+			AlertHandler.getInstance().emptyCredentials("Username");
+			return false;
+		}
+		else if (passwordProperty.getValue() == "") {
+			AlertHandler.getInstance().emptyCredentials("Password");
+			return false;
+		}
+		else if (phoneNumberProperty.getValue() == "") {
+			AlertHandler.getInstance().emptyCredentials("Phone");
+			return false;
+		}
+
 		if (modelProxy.getManageUser().get(userNameProperty.getValue()) != null) {
 			AlertHandler.getInstance().userExists();
 			return false;
 		}
 
-		// TODO validation here or in db?
 		if (passwordProperty.getValue().equals(confirmPasswordProperty.getValue())) {
 			boolean isAdmin = modelProxy.getManageUser().getLoggedUser() != null && modelProxy.getManageUser().getLoggedUser().getRole().equals(UserRole.admin);
 
@@ -60,7 +72,6 @@ public class RegistryViewModel
 			}
 
 			modelProxy.getManageUser().login(userNameProperty.getValue(), passwordProperty.getValue());
-      System.out.println("KURWA\n");
 			return true;
 		}
     	else {

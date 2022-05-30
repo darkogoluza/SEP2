@@ -1,7 +1,6 @@
 package client.view.productDetails;
 
 import client.model.ModelProxy;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import shared.objects.errors.AlertHandler;
 import shared.objects.product.Product;

@@ -24,14 +24,14 @@
                <children>
                   <ImageView fitHeight="71.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/jasna_logo.png" />
+                        <Image url="@../../../shared/assets/image/jasna_logo.png" />
                      </image>
                   </ImageView>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="77.0" prefWidth="228.0" style="-fx-background-color: transparent;" text="Create account" textAlignment="CENTER" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/profile-2user.png" />
+                              <Image url="@../../../shared/assets/image/profile-2user.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -46,7 +46,7 @@
                      <graphic>
                         <ImageView>
                            <image>
-                              <Image url="@../../../image/icons8-logout-24.png" />
+                              <Image url="@../../../shared/assets/image/icons8-logout-24.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -148,7 +148,7 @@
                                  <children>
                                     <ImageView fx:id="imageView" fitHeight="26.0" fitWidth="39.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: grey;">
                                        <image>
-                                          <Image url="@../../../image/question_mark.png" />
+                                          <Image url="@../../../shared/assets/image/question_mark.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
