@@ -60,13 +60,18 @@ public class CustomerAllEquipmentViewModel
 
     public void addProductToBasket(int index)
     {
-        Product product = modelProducts.getProduct(index);
+        Product product = modelProducts.getAllProducts().getByIndex(index);
         if(!modelBasket.checkIfProductIsInStock(product.getId())) {
             AlertHandler.getInstance().onProductOutOfStock(product);
             return;
         }
         modelBasket.add(product);
     }
+
+	public int getIdOfProductWithIndex(int index) {
+		Product product = modelProducts.getAllProducts().getByIndex(index);
+		return product.getId();
+	}
 
     public void loadAllProducts() {
         listOfProducts.set(FXCollections.observableArrayList(modelBasket.getAllProductsAsString()));

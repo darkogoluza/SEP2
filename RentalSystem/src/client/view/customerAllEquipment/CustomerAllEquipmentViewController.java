@@ -71,7 +71,7 @@ public class CustomerAllEquipmentViewController
 	}
 
 	public void openProduct() {
-		viewHandler.openProductDetailsView(listOfProducts.getSelectionModel().getSelectedIndex());
+		viewHandler.openProductDetailsView(viewModel.getIdOfProductWithIndex(listOfProducts.getSelectionModel().getSelectedIndex()));
 	}
 
 }

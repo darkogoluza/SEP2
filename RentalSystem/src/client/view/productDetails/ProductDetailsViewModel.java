@@ -82,7 +82,7 @@ public class ProductDetailsViewModel {
 	private void loadItems() {
 		username.setValue(modelProxy.getManageUser().getLoggedUser().getUsername());
 		size.setValue(product.getSize().toString());
-		price.setValue(String.valueOf(product.getPrice()));
+		price.setValue(String.format("%.02f€", product.getPrice()));
 		name.setValue(String.valueOf(product.getType()));
 		String inStock = (modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) == 0) ? "out of stock" : modelProxy.getManageBasket().getAmountOfProductLeftInStock(product) + " left in stock";
 		amountInStock.setValue(inStock);
