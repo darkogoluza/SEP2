@@ -101,7 +101,6 @@ public class ManageBasketManager implements ManageBasket {
 
 	@Override
 	public ArrayList<String> getAllProductsAsString(ProductList allProducts) {
-		System.out.println(allProducts);
 		ArrayList<String> temp = new ArrayList<>();
 		int inStock;
 
