@@ -245,8 +245,10 @@ public class AdministratorViewController {
 				));
 
 		File file = fc.showOpenDialog(new Stage());
-
 		viewModel.addFile(file);
+
+        if(file == null)
+            return;
 
 		try {
 			Image img = new Image(new FileInputStream(file.getPath()));
