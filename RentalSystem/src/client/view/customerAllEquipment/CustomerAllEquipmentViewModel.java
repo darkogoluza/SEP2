@@ -98,7 +98,7 @@ public class CustomerAllEquipmentViewModel
 		}
 		else {
 			EquipmentType category = EquipmentType.valueOf( categoriesProperty.get(index) );
-			listOfProducts.set(FXCollections.observableArrayList(modelProducts.getProductsByCategory(category).convertToStringArrayList()));
+			listOfProducts.set(FXCollections.observableArrayList(modelBasket.getAllProductsAsString(modelProducts.getProductsByCategory(category))));
 		}
 	}
 
@@ -106,8 +106,7 @@ public class CustomerAllEquipmentViewModel
 		ObservableList<String> types = FXCollections.observableArrayList();
 		types.add("show all");
 
-		for (EquipmentType type :
-				EquipmentType.values()) {
+		for (EquipmentType type : EquipmentType.values()) {
 			types.add(type.toString());
 		}
 

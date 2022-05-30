@@ -5,6 +5,7 @@ import server.model.user.ManageUserManager;
 import shared.networking.model.ManageBasket;
 import shared.objects.basket.Basket;
 import shared.objects.product.Product;
+import shared.objects.product.ProductList;
 import shared.objects.reservation.Reservation;
 import shared.objects.user.User;
 
@@ -150,6 +151,11 @@ public class ManageBasketManager implements ManageBasket
      */
 	@Override
 	public ArrayList<String> getAllProductsAsString() {
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getAllProductsAsString(ProductList productList) {
 		return null;
 	}
 

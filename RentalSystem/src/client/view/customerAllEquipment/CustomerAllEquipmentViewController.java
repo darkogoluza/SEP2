@@ -37,7 +37,6 @@ public class CustomerAllEquipmentViewController
 		filterChoiceBox.getSelectionModel().selectFirst();
 
         viewModel.loadAllProducts();
-
     }
 
     public void onLogOff(ActionEvent event)

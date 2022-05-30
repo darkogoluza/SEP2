@@ -1,6 +1,7 @@
 package shared.networking.model;
 
 import shared.objects.product.Product;
+import shared.objects.product.ProductList;
 import shared.objects.user.User;
 import shared.util.PropertyChangeSubject;
 
@@ -19,5 +20,6 @@ public interface ManageBasket extends PropertyChangeSubject {
     boolean isEmpty();
 	boolean checkIfProductIsInStock(int id);
 	ArrayList<String> getAllProductsAsString();
+	ArrayList<String> getAllProductsAsString(ProductList productList);
 	int getAmountOfProductLeftInStock(Product product);
 }

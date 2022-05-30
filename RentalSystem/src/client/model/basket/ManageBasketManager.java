@@ -82,7 +82,7 @@ public class ManageBasketManager implements ManageBasket {
 		int inStock;
 
         for (int i = 0; i < allProducts.size(); i++) {
-			Product product = allProducts.get(i);
+			Product product = allProducts.getByIndex(i);
 
 			inStock = getAmountOfProductLeftInStock(product);
 
@@ -98,6 +98,30 @@ public class ManageBasketManager implements ManageBasket {
 
         return temp;
     }
+
+	@Override
+	public ArrayList<String> getAllProductsAsString(ProductList allProducts) {
+		System.out.println(allProducts);
+		ArrayList<String> temp = new ArrayList<>();
+		int inStock;
+
+		for (int i = 0; i < allProducts.size(); i++) {
+			Product product = allProducts.getByIndex(i);
+
+			inStock = getAmountOfProductLeftInStock(product);
+
+			String value = String.format("[%s %s] %.02f€    %s",
+					product.getColor(),
+					product.getType().toString(),
+					product.getPrice(),
+					inStock <= 0 ? "out of stock" : inStock + " left in stock"
+			);
+
+			temp.add(value);
+		}
+
+		return temp;
+	}
 
 	/**
 	 * Get amount of product left in stock
