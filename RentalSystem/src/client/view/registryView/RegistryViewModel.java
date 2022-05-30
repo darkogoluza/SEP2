@@ -88,4 +88,8 @@ public class RegistryViewModel
         confirmPasswordProperty.set("");
         phoneNumberProperty.set("");
     }
+
+	public boolean employeeLogged() {
+		return modelProxy.getManageUser().getLoggedUser().getRole().equals(UserRole.employee);
+	}
 }

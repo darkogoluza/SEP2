@@ -35,8 +35,11 @@ public class RegistryViewController {
     public void createAccountButton(ActionEvent event)
 	{
         if (viewModel.createAccount()) {
-            viewHandler.openCustomerAllEquipmentView();
             viewModel.clearFields();
+			if (viewModel.employeeLogged())
+				viewHandler.openEmployeeView();
+			else
+            	viewHandler.openCustomerAllEquipmentView();
         }
     }
 
