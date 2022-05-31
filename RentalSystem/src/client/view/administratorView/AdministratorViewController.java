@@ -161,7 +161,7 @@ public class AdministratorViewController {
 
     }
 
-    public void candleEdit() {
+    public void cancelEdit() {
         typeChoiceBox.setDisable(false);
         viewModel.clearFields();
         isEdit(false);
