@@ -10,6 +10,9 @@ import shared.objects.reservation.Reservation;
 
 import java.beans.PropertyChangeEvent;
 
+/**
+ * CustomerAllOrdersViewModel for CustomerAllOrdersController
+ */
 public class CustomerAllOrdersViewModel
 {
   private StringProperty totalItemsInBasketProperty;
@@ -21,6 +24,10 @@ public class CustomerAllOrdersViewModel
   private ManageBasket modelBasket;
   private String filterStatus;
 
+  /**
+   * constructor for CustomerAllOrdersViewModel with modelProxy accessing model
+   * @param modelProxy
+   */
   public CustomerAllOrdersViewModel(ModelProxy modelProxy)
   {
     searchInput = new SimpleStringProperty();
@@ -46,6 +53,10 @@ public class CustomerAllOrdersViewModel
     );
   }
 
+  /**
+   *
+   * @param propertyChangeEvent
+   */
   private void modifiedReservation(PropertyChangeEvent propertyChangeEvent)
   {
 

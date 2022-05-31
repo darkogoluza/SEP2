@@ -9,6 +9,7 @@ import shared.objects.product.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
+import java.rmi.RemoteException;
 
 public class ManageProductsManager implements ManageProducts {
 	private PropertyChangeSupport changeSupport;
@@ -25,6 +26,8 @@ public class ManageProductsManager implements ManageProducts {
 	 * @param color
 	 * @param equipmentType
 	 * @param size
+	 * @param amount
+	 * @param file
 	 */
 	@Override
 	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
@@ -53,6 +56,10 @@ public class ManageProductsManager implements ManageProducts {
 		return clientProxy.getClientProduct().getProduct(id);
 	}
 
+	/**
+	 * Get list of products
+	 * @return All Products
+	 */
 	@Override
 	public ProductList getAllProducts() {
 		return clientProxy.getClientProduct().getAllProducts();
@@ -64,6 +71,7 @@ public class ManageProductsManager implements ManageProducts {
 	 * @param newPrice
 	 * @param newColor
 	 * @param newSize
+	 * @param amount
 	 */
 	@Override
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
@@ -71,16 +79,34 @@ public class ManageProductsManager implements ManageProducts {
 		changeSupport.firePropertyChange("productModified", null, clientProxy.getClientProduct().convertToStringArrayList());
 	}
 
+	/**
+	 * Finds a Product in database by following id and returns a number of how many Products have been rented.
+	 * @param id
+	 * @return Number of rented Products to customers.
+	 * @throws RemoteException
+	 */
 	@Override
 	public int getRentedAmount(int id) {
 		return 0;
 	}
 
+	/**
+	 * Returns a list of Products filtered by given category.
+	 * @param category
+	 * @return List containing all products.
+	 * @throws RemoteException
+	 */
 	@Override
 	public ProductList getProductsByCategory(EquipmentType category) {
 		return clientProxy.getClientProduct().getProductByCategory(category);
 	}
 
+	/**
+	 * Returns a image from database
+	 * @param id
+	 * @return
+	 * @throws RemoteException
+	 */
 	@Override
 	public byte[] getImage(int id) {
 		return clientProxy.getClientProduct().getImage(id);

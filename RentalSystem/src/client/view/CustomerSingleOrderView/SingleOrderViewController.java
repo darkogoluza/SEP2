@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import shared.objects.reservation.ReservationStatus;
 
+/**
+ Controller for single order view
+ */
 public class SingleOrderViewController {
   ObservableList<ReservationStatus> statusList = FXCollections.observableArrayList(
       ReservationStatus.returned,

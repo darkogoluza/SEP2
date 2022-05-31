@@ -70,6 +70,10 @@ public class ViewModelFactory {
 		return customerBasketViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for all reservations
+	 * @return EmployeeAllOrdersViewModel object
+	 */
 	public EmployeeAllOrdersViewModel getEmployeeViewModel() {
 		if (employeeAllOrdersViewModel == null) {
 			employeeAllOrdersViewModel = new EmployeeAllOrdersViewModel(modelProxy);
@@ -78,6 +82,10 @@ public class ViewModelFactory {
 		return employeeAllOrdersViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for single order view
+	 * @return SingleOrderViewModel object
+	 */
 	public SingleOrderViewModel getSingleOrderViewModel(int id) {
 		if (singleOrderViewModel == null) {
 			singleOrderViewModel = new SingleOrderViewModel(modelProxy, id);
@@ -86,6 +94,10 @@ public class ViewModelFactory {
 		return singleOrderViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for single reservation view
+	 * @return EmployeeOrderDetailsViewModel object
+	 */
 	public EmployeeOrderDetailsViewModel getEmployeeOrderDetailsViewModel(int id)
 	{
 		if(employeeOrderDetailsViewModel == null) {
@@ -95,6 +107,10 @@ public class ViewModelFactory {
 		return employeeOrderDetailsViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for user registration view
+	 * @return RegistryViewModel object
+	 */
 	public RegistryViewModel getRegistryViewModel() {
 		if(registryViewModel == null)
 		{
@@ -103,6 +119,10 @@ public class ViewModelFactory {
 		return registryViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for user login view
+	 * @return LoginViewModel object
+	 */
 	public LoginViewModel getLoginViewModel() {
 		if(registryViewModel == null)
 		{
@@ -111,6 +131,10 @@ public class ViewModelFactory {
 		return loginViewModel;
 	}
 
+	/**
+	 * Lazy initiation of view model for all customer's reservations
+	 * @return CustomerAllOrdersViewModel object
+	 */
   public CustomerAllOrdersViewModel getCustomerAllOrdersViewModel()
   {
 		if(customerAllOrdersViewModel == null)
@@ -120,6 +144,10 @@ public class ViewModelFactory {
 		return customerAllOrdersViewModel;
   }
 
+	/**
+	 * Lazy initiation of view model for product details view
+	 * @return ProductDetailsViewModel object
+	 */
 	public ProductDetailsViewModel getProductDetailsViewModel() {
 		if(productDetailsViewModel == null)
 		{

@@ -15,7 +15,9 @@ import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-
+/**
+ * AdministratorViewModel for AdministratorViewController
+ */
 public class AdministratorViewModel {
 
 	private ListProperty<String> listViewAdministrator;
@@ -28,6 +30,9 @@ public class AdministratorViewModel {
 	private ManageProducts model;
 	private ModelProxy modelProxy;
 
+	/**
+	 * constructor with Listener for product modification
+	 */
 	public AdministratorViewModel(ModelProxy modelProxy) {
 		listViewAdministrator = new SimpleListProperty<>();
 		size = new SimpleStringProperty();
@@ -41,15 +46,30 @@ public class AdministratorViewModel {
 		model.addPropertyChangeListener("productModified", this::productModified);
 	}
 
+	/**
+	 * Method refresh product specifications on event
+	 * @param event
+	 */
 	private void productModified(PropertyChangeEvent event) {
 		listViewAdministrator.set(FXCollections.observableArrayList((ArrayList<String>) event.getNewValue()));
 	}
 
+	/**
+	 * get all products, convert them to String and put into ArrayList
+	 */
 	public void loadData() {
 		listViewAdministrator.set(
 				FXCollections.observableArrayList(model.getAllProducts().convertToStringArrayList()));
 	}
 
+	/**
+	 * adding new product to database
+	 * @param price
+	 * @param color
+	 * @param equipmentType
+	 * @param size
+	 * @param amount
+	 */
 	public void addProduct(double price, Color color, EquipmentType equipmentType, Size size, int amount) {
 
 		if (image == null) {
@@ -59,20 +79,44 @@ public class AdministratorViewModel {
 		}
 	}
 
+	/**|
+	 * remove product from database
+	 * @param index
+	 */
 	public void removeProduct(int index) {
 		model.remove(index);
 	}
 
+	/**
+	 * clear all fields
+	 */
 	public void clearFields() {
 		size.set("");
 		price.set("");
 		amount.set("");
 	}
 
+	/**
+	 * method set new product specifications
+	 * @param index
+	 * @param price
+	 * @param color
+	 * @param size
+	 * @param amount
+	 */
 	public void changeProduct(int index, double price, Color color, Size size, int amount) {
 		model.changeProduct(index, price, color, size, amount);
 	}
 
+	/**
+	 *
+	 * @param index
+	 */
+
+	/**
+	 * Method get product by index and set information about product
+	 * @param index
+	 */
 	public void setFieldsTo(int index) {
 		Product product = model.getProduct(index);
 		size.set(product.getSize().getSizeWithoutUnit());
@@ -82,34 +126,64 @@ public class AdministratorViewModel {
 		amount.set(product.getAmount() + "");
 	}
 
+	/**
+	 * return list with all administrators
+	 */
 	public ListProperty<String> getListViewAdministrator() {
 		return listViewAdministrator;
 	}
 
+	/**
+	 * Getter for price
+	 * @return
+	 */
 	public StringProperty getPriceStringProperty() {
 		return price;
 	}
 
+	/**
+	 * Getter for size
+	 * @return
+	 */
 	public StringProperty getSizeStringProperty() {
 		return size;
 	}
 
+	/**
+	 * Getter for type
+	 * @return
+	 */
 	public StringProperty getType() {
 		return type;
 	}
 
+	/**
+	 * Getter for color
+	 * @return
+	 */
 	public StringProperty getColor() {
 		return color;
 	}
 
+	/**
+	 * log out user from app
+	 */
 	public void logOff() {
 		modelProxy.getManageUser().logout();
 	}
 
+	/**
+	 * Getter for product amount
+	 * @return amount
+	 */
 	public StringProperty getAmountStringProperty() {
 		return amount;
 	}
 
+	/**
+	 * add image as file
+	 * @param file
+	 */
 	public void addFile(File file) {
 		if (file != null) {
 			String imagePath = file.getPath();

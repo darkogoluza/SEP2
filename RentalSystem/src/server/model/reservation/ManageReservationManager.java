@@ -73,8 +73,8 @@ public class ManageReservationManager implements ManageReservations
     }
 
     /**
-     * Returns a single Reservation by index.
-     * @param index
+     * Returns a single Reservation by username.
+     * @param username
      * @return
      */
     @Override public ReservationList getReservationByUsername(String username)
@@ -83,6 +83,11 @@ public class ManageReservationManager implements ManageReservations
         return list.getByUsername(username);
     }
 
+    /**
+     * Returns a single Reservation by index.
+     * @param index
+     * @return
+     */
     @Override public Reservation getReservationByIndex(int index)
     {
 		update();
