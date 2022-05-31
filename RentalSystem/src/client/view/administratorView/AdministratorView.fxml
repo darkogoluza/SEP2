@@ -197,7 +197,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#candleEdit" style="-fx-background-color: #ced4da;" text="Cancel">
+                        <Button mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-color: #ced4da;" text="Cancel">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

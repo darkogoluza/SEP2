@@ -161,7 +161,7 @@ public class AdministratorViewController {
 
     }
 
-    public void candleEdit() {
+    public void cancelEdit() {
         typeChoiceBox.setDisable(false);
         viewModel.clearFields();
         isEdit(false);
@@ -245,8 +245,10 @@ public class AdministratorViewController {
 				));
 
 		File file = fc.showOpenDialog(new Stage());
-
 		viewModel.addFile(file);
+
+        if(file == null)
+            return;
 
 		try {
 			Image img = new Image(new FileInputStream(file.getPath()));

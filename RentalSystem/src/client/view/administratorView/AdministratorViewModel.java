@@ -54,7 +54,7 @@ public class AdministratorViewModel {
 
 		if (image == null) {
 			AlertHandler.getInstance().wrongFile();
-		} {
+		} else {
 			model.add(price, color, equipmentType, size, amount, image);
 		}
 	}
