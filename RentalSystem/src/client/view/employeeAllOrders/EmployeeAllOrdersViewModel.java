@@ -1,7 +1,6 @@
 package client.view.employeeAllOrders;
 
 import client.model.ModelProxy;
-import javafx.beans.property.*;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
@@ -28,14 +27,14 @@ public class EmployeeAllOrdersViewModel
 		this.modelReservations.addPropertyChangeListener("reservationModified", this::modifiedReservation);
 		this.modelProxy = modelProxy;
 
-		loadAllProducts();
+		loadAllReservations();
 	}
 
 	private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
-		loadAllProducts();
+		loadAllReservations();
 	}
 
-	public void loadAllProducts() {
+	public void loadAllReservations() {
 		listOfOrders.set(
 				FXCollections.observableArrayList(modelReservations.getAllReservations().filterByStatus(filterStatus).convertToStringArrayList()));
 	}
@@ -66,6 +65,6 @@ public class EmployeeAllOrdersViewModel
 
 	public void changedFilterStatus(String newFilterStatus) {
 		filterStatus = newFilterStatus;
-		loadAllProducts();
+		loadAllReservations();
 	}
 }

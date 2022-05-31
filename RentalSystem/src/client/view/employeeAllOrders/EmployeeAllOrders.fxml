@@ -107,7 +107,7 @@
                      </VBox.margin></ListView>
                   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="553.0" spacing="10.0">
                      <children>
-                        <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" prefHeight="23.0" prefWidth="71.0" style="-fx-background-color: #ced4da; -fx-background-radius: 5;" text="Open">
+                        <Button fx:id="openReservationButton" mnemonicParsing="false" onAction="#onOpenReservation" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #ced4da; -fx-background-radius: 5;" text="Open">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

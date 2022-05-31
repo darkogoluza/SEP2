@@ -74,5 +74,8 @@ public class CustomerAllEquipmentViewController
 		viewHandler.openProductDetailsView(viewModel.getIdOfProductWithIndex(listOfProducts.getSelectionModel().getSelectedIndex()));
 	}
 
+	public void onFilterChoiceChanged(ActionEvent event) {
+		filter();
+	}
 }
 

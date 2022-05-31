@@ -15,7 +15,14 @@ class ProductsInBasketTest {
 
     @BeforeEach
     void setUp() {
-        productsInBasket = new ProductsInBasket(new Product(0, 15, Color.black, EquipmentType.helmet, new LabelFormat("X"),10), 5);
+        productsInBasket = new ProductsInBasket(
+			new Product(0,
+						15,
+							Color.black,
+							EquipmentType.helmet,
+							new LabelFormat("X"),
+						10),
+						5);
     }
 
     @Test
