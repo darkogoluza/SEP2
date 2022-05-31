@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import shared.objects.product.EquipmentType;
 
+/**
+ * ViewController for CustomerAllEquipmentView
+ */
 public class CustomerAllEquipmentViewController
 {
     @FXML
@@ -26,6 +29,11 @@ public class CustomerAllEquipmentViewController
     private ViewHandler viewHandler;
     private CustomerAllEquipmentViewModel viewModel;
 
+  /**
+   * constructor
+   * @param viewHandler
+   * @param vmf
+   */
     public void init(ViewHandler viewHandler, ViewModelFactory vmf)
     {
         this.viewHandler = viewHandler;
@@ -40,13 +48,21 @@ public class CustomerAllEquipmentViewController
 
     }
 
-    public void onLogOff(ActionEvent event)
+  /**
+   * log out user on event and opens LoginView
+   * @param event
+   */
+  public void onLogOff(ActionEvent event)
     {
 		viewModel.logOff();
         viewHandler.openLoginView();
     }
 
-    public void onAddToBasket(ActionEvent event)
+  /**
+   * add selected item to basket
+   * @param event
+   */
+  public void onAddToBasket(ActionEvent event)
     {
         if(listOfProducts.getSelectionModel().getSelectedIndex() < 0)
             return;
@@ -54,23 +70,43 @@ public class CustomerAllEquipmentViewController
         viewModel.addProductToBasket(listOfProducts.getSelectionModel().getSelectedIndex());
     }
 
-    public void onGoToBasketButton(ActionEvent event)
+  /**
+   * Open CustomerBasket view after clicking onGoToBasketButton
+   * @param event
+   */
+  public void onGoToBasketButton(ActionEvent event)
     {
         viewHandler.openCustomerBasket();
     }
+
+  /**
+   * Open CustomerAllEquipmentView after clicking backButton
+   * @param event
+   */
     public void backButton(ActionEvent event)
     {
         viewHandler.openCustomerAllEquipmentView();
     }
+
+  /**
+   * Open CustomerAllOrdersView on event
+   * @param event
+   */
     public void onGoToReservations(ActionEvent event)
     {
         viewHandler.openCustomerAllOrdersView();
     }
 
+  /**
+   * method filter products by category
+   */
 	public void filter() {
 		viewModel.filterByCategory(filterChoiceBox.getSelectionModel().getSelectedIndex());
 	}
 
+  /**
+   * method open ProductDetailsView
+   */
 	public void openProduct() {
 		viewHandler.openProductDetailsView(listOfProducts.getSelectionModel().getSelectedIndex());
 	}

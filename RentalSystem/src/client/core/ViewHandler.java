@@ -141,6 +141,10 @@ public class ViewHandler
         stage.setTitle("Customer Basket");
         stage.setScene(customerBasket);
     }
+
+  /**
+   * open window with customer's all orders
+   */
   public void openCustomerAllOrdersView(){
     FXMLLoader loader = new FXMLLoader();
     if(customerAllOrdersScene == null){
@@ -189,6 +193,9 @@ public class ViewHandler
 		stage.setScene(employeeOrderDetailsScene);
 	}
 
+  /**
+   * open Returns ClientPoxy that contains all other clients.
+   */
   public void openSingleOrderView(int id){
     FXMLLoader loader = new FXMLLoader();
 
@@ -222,6 +229,9 @@ public class ViewHandler
         stage.setScene(registryScene);
     }
 
+  /**
+   * open login window
+   */
   public void openLoginView(){
     FXMLLoader loader = new FXMLLoader();
 
@@ -236,6 +246,10 @@ public class ViewHandler
     stage.setTitle("Login to Account");
     stage.setScene(loginScene);
   }
+
+  /**
+   * open product details window.
+   */
 	public void openProductDetailsView(int id){
 		FXMLLoader loader = new FXMLLoader();
 

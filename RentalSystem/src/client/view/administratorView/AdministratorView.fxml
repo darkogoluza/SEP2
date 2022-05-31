@@ -163,7 +163,7 @@
                               <Insets right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#candleEdit" text="Cancel">
+                        <Button mnemonicParsing="false" onAction="#cancelEdit" text="Cancel">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

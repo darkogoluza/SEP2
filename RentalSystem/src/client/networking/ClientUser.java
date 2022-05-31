@@ -12,9 +12,15 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * Class coumnicate with RMIServerUser and manly deals with users, such as logging, creating and logging off users.
+ */
 public class ClientUser implements Remote, Serializable {
     private ServerUser server;
 
+	/**
+	 * Client is using server to get access to all users
+	 */
     public ClientUser() {
         Registry registry = null;
         try {
@@ -27,6 +33,10 @@ public class ClientUser implements Remote, Serializable {
         }
     }
 
+	/**
+	 * Add account to database
+	 * @param user object containing all information about user
+	 */
     public void add(User user)
     {
 		try {
@@ -36,6 +46,12 @@ public class ClientUser implements Remote, Serializable {
 		}
 	}
 
+	/**
+	 * Login user with given credentials
+	 * @param username
+	 * @param password
+	 * @return Returns whether the login was successful.
+	 */
 	public boolean login(String username, String password) {
 		try
 		{
@@ -49,6 +65,11 @@ public class ClientUser implements Remote, Serializable {
 		return false;
 	}
 
+	/**
+	 * Get user from db with username
+	 * @param username of user we want to get info about
+	 * @return object containing all information about user
+	 */
 	public User get(String username) {
 		try {
 			return server.get(username);
@@ -58,6 +79,9 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	/**
+	 * @return Returns the user that is currently being logged in to the system.
+	 */
 	public User getLoggedUser() {
 		try {
 			return server.getLoggedUser();
@@ -67,6 +91,9 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	/**
+	 * Removes the user from model.
+	 */
 	public void logout() {
 		try {
 			server.logout();

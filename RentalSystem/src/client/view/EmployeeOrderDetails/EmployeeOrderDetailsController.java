@@ -11,6 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import shared.objects.reservation.ReservationStatus;
 
+/**
+ Controller for EmployeeOrderDetails
+ */
 public class EmployeeOrderDetailsController {
 	ObservableList<ReservationStatus> statusList = FXCollections.observableArrayList(
 			ReservationStatus.returned,

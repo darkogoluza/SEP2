@@ -52,6 +52,12 @@ public class RMIServerReservation implements ServerReservation {
     public Reservation getByIndex(int index) {
         return model.getReservationByIndex(index);
     }
+
+    /**
+     * Returns a single Reservation from database by username.
+     * @param username
+     * @return Object containing all information about Reservation.
+     */
     @Override public ReservationList getByUsername(String username)
     {
         return model.getReservationByUsername(username);

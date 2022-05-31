@@ -14,6 +14,9 @@ import shared.objects.product.EquipmentType;
 import shared.objects.reservation.ReservationStatus;
 import shared.objects.user.UserRole;
 
+/**
+ Controller for Login view
+ */
 public class LoginViewController
 {
   private ViewHandler viewHandler;
@@ -31,6 +34,11 @@ public class LoginViewController
   @FXML
   private Button createAccount;
 
+  /**
+   * constructor contains username and password from view model
+   * @param viewHandler
+   * @param vmf
+   */
   public void init(ViewHandler viewHandler, ViewModelFactory vmf)
   {
     this.viewHandler = viewHandler;
@@ -42,6 +50,9 @@ public class LoginViewController
   }
 
   @FXML
+  /**
+   * log user into account if conditions are met
+   */
 	void logInToAccount() {
 		boolean isLogged = viewModel.checkIdentification(userName.getText(),password.getText());
 
@@ -63,6 +74,9 @@ public class LoginViewController
 
 	}
 
+  /**
+   * open registry view
+   */
     @FXML
     void createAccount() {
       viewHandler.openRegistryView();

@@ -15,6 +15,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+/**
+ * ProductDetailsViewModel for ProductDetailsController
+ */
 public class ProductDetailsViewModel {
 	private SimpleStringProperty type;
 	private SimpleStringProperty size;
@@ -31,6 +34,10 @@ public class ProductDetailsViewModel {
 	private int id;
 	private Product product;
 
+	/**
+	 * constructor communicate with modelProxy and its getting fields values for single product view
+	 * @param modelProxy
+	 */
 	public ProductDetailsViewModel(ModelProxy modelProxy) {
 		this.modelProxy = modelProxy;
 		initializeItems();
@@ -38,15 +45,26 @@ public class ProductDetailsViewModel {
 		modelProxy.getManageBasket().addPropertyChangeListener("modifiedBasket", this::modifiedBasket);
 	}
 
+	/**
+	 * after event is fired automatically change amount in basket
+	 * @param propertyChangeEvent
+	 */
 	private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
 		amountInBasket.setValue(String.valueOf(propertyChangeEvent.getNewValue()));
 	}
 
+	/**
+	 * get product with given id
+	 */
 	public void setProduct() {
 		product = modelProxy.getManageProducts().getProduct(id);
 		loadItems();
 	}
 
+	/**
+	 * Getter for image
+	 * @return
+	 */
 	public javafx.scene.image.Image getImage() {
 		try {
 			return createImage(image);
@@ -56,15 +74,23 @@ public class ProductDetailsViewModel {
 		}
 	}
 
+	/**
+	 * log out user
+	 */
 	public void logOff() {
 		modelProxy.getManageUser().logout();
 	}
 
+	/**
+	 * adds product to basket
+	 */
 	public void addToBasket() {
 		modelProxy.getManageBasket().add(product);
 	}
 
-
+	/**
+	 * initialization of all product fields
+	 */
 	private void initializeItems() {
 		size = new SimpleStringProperty();
 		type = new SimpleStringProperty();
@@ -76,6 +102,9 @@ public class ProductDetailsViewModel {
 		amountInBasket = new SimpleStringProperty();
 	}
 
+	/**
+	 * load all product's fields
+	 */
 	private void loadItems() {
 		username.setValue(modelProxy.getManageUser().getLoggedUser().getUsername());
 		size.setValue(product.getSize().toString());
@@ -90,10 +119,20 @@ public class ProductDetailsViewModel {
 		image = new ImageIcon(imgBytes).getImage();
 	}
 
+	/**
+	 * Setter for id
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * creates image
+	 * @param image
+	 * @return
+	 * @throws IOException
+	 */
 	private static javafx.scene.image.Image createImage(java.awt.Image image) throws IOException {
 		if (!(image instanceof RenderedImage)) {
 			BufferedImage bufferedImage = new BufferedImage(image.getWidth(null),

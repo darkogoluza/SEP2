@@ -16,6 +16,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.Timestamp;
 import java.util.Map;
 
+/**
+ * Class coumnicates with RMIServerBasket and deals with saving and loading of Products.
+ */
 public class ClientBasket implements Remote, Serializable
 {
   private ServerBasket server;
@@ -34,6 +37,12 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+  /**
+   * add product to basket
+   * @param product
+   * @throws RemoteException
+   */
   public void add(Product product)
   {
     try
@@ -45,6 +54,13 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+  /**
+   * Remove product from basket
+   * @param product
+   * @return Product
+   * @throws RemoteException
+   */
   public Product remove(Product product)
   {
     try
@@ -57,6 +73,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return product;
   }
+
+  /**
+   * Remove all products from basket
+   * @throws RemoteException
+   */
   public void clear()
   {
     try
@@ -68,6 +89,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+  /**
+   * Sums up all the Product prices in Basket.
+   * @return
+   */
   public String getTotalPrice()
   {
     try
@@ -80,6 +106,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
+
+  /**
+   * Returns total count of products in Basket.
+   * @return
+   */
   public int Size()
   {
     try
@@ -92,6 +123,12 @@ public class ClientBasket implements Remote, Serializable
     }
     return -1;
   }
+
+  /**
+   * Returns a Map that contains Product as a key and quantity as Value.
+   * Value for each key just tells how many of that Product the Basket contains.
+   * @return
+   */
   public Map<Product, Integer> getAllProductsByQuantity()
   {
     try
@@ -104,6 +141,12 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
+
+  /**
+   * Creates new Order with createAt and returnAt Timestamps passed from view.
+   * @param createAt
+   * @param returnAt
+   */
   public void order(Timestamp createAt, Timestamp returnAt)
   {
     try
@@ -115,6 +158,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+  /**
+   * Checks if the Basket is empty.
+   * @return
+   */
   public boolean isEmpty()
   {
     try

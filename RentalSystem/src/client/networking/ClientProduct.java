@@ -16,6 +16,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
+/**
+ * Class coumnicates with RMIServerProduct and deals with saving and loading of Products.
+ */
 public class ClientProduct implements Remote, Serializable
 {
 
@@ -39,6 +42,15 @@ public class ClientProduct implements Remote, Serializable
 
 	}
 
+	/**
+	 * Add a single Product to database.
+	 * @param price
+	 * @param color
+	 * @param equipmentType
+	 * @param size
+	 * @param amount
+	 * @throws RemoteException
+	 */
 	public void add(double price, Color color, EquipmentType equipmentType, Size size, int amount, String file) {
 		try
 		{
@@ -50,6 +62,11 @@ public class ClientProduct implements Remote, Serializable
 		}
 	}
 
+	/**
+	 * Remove a single Product from database by index.
+	 * @param index
+	 * @throws RemoteException
+	 */
 	public void remove(int index) {
 		try
 		{
@@ -61,6 +78,12 @@ public class ClientProduct implements Remote, Serializable
 		}
 	}
 
+	/**
+	 * Returns a single Product from database by index.
+	 * @param index
+	 * @return Object containing all information about Product.
+	 * @throws RemoteException
+	 */
 	public Product getProduct(int index) {
 		try
 		{
@@ -73,6 +96,11 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
+	/**
+	 * Returns all products from database.
+	 * @return List containing all the products.
+	 * @throws RemoteException
+	 */
 	public ProductList getAllProducts() {
 		try
 		{
@@ -85,6 +113,15 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
+	/**
+	 * Finds Product in database by index and changes all the information on it.
+	 * @param index
+	 * @param newPrice
+	 * @param newColor
+	 * @param newSize
+	 * @param amount
+	 * @throws RemoteException
+	 */
 	public void changeProduct(int index, double newPrice, Color newColor, Size newSize, int amount) {
 		try
 		{
@@ -95,6 +132,7 @@ public class ClientProduct implements Remote, Serializable
 			e.printStackTrace();
 		}
 	}
+
 
 	public void add(Product product)
 	{
@@ -108,6 +146,11 @@ public class ClientProduct implements Remote, Serializable
 		}
 	}
 
+	/**
+	 * Returns a list of Products converted to String
+	 * @return
+	 * @throws RemoteException
+	 */
     public ArrayList<String> convertToStringArrayList() {
 		try {
 			return server.getAllProducts().convertToStringArrayList();
@@ -118,6 +161,12 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
+	/**
+	 * Returns a list of Products filtered by given category.
+	 * @param category
+	 * @return List containing all products.
+	 * @throws RemoteException
+	 */
     public ProductList getProductByCategory(EquipmentType category) {
 		try {
 			return server.getProductsByCategory(category);
@@ -127,6 +176,12 @@ public class ClientProduct implements Remote, Serializable
 		return null;
 	}
 
+	/**
+	 * Finds a Product in database and returns a number of how many Products have been rented.
+	 * @param id
+	 * @return Number of rented Products to customers.
+	 * @throws RemoteException
+	 */
 	public int getRentedAmount(int id) {
 		try {
 			return server.getRentedAmount(id);
@@ -137,6 +192,12 @@ public class ClientProduct implements Remote, Serializable
 		return 0;
 	}
 
+	/**
+	 * Returns a image with given id.
+	 * @param id
+	 * @return List containing all products.
+	 * @throws RemoteException
+	 */
 	public byte[] getImage(int id) {
 		try {
 			return server.getImage(id);

@@ -11,6 +11,9 @@ import shared.objects.errors.AlertHandler;
 import shared.objects.reservation.Reservation;
 import shared.objects.reservation.ReservationStatus;
 
+/**
+ Controller for CustomerAllOrdersView
+ */
 public class CustomerAllOrdersController
 {
   ObservableList<String> statuses = FXCollections.observableArrayList(
@@ -39,7 +42,11 @@ public class CustomerAllOrdersController
   private ViewHandler viewHandler;
   private client.view.customerAllOrdersView.CustomerAllOrdersViewModel viewModel;
 
-
+  /**
+   * After view is open initialize given fields from viewModel
+   * @param viewHandler
+   * @param vmf
+   */
   public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
     this.viewHandler = viewHandler;
     viewModel = vmf.getCustomerAllOrdersViewModel();
@@ -50,6 +57,11 @@ public class CustomerAllOrdersController
     searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
   }
   @FXML
+
+  /**
+   * On event serach for reservation by given id
+   * @param event
+   */
   public void onSearchButton(ActionEvent event) {
     int id = -1;
     try {
@@ -68,13 +80,26 @@ public class CustomerAllOrdersController
     }
 
   }
+
+  /**
+   * Open CustomerAll EquipmentView
+   * @param event
+   */
   @FXML void backButton(ActionEvent event) {
     viewHandler.openCustomerAllEquipmentView();
   }
+
+  /**
+   * log out from system and opens Login view
+   */
   public void onLogOff() {
     viewModel.logOff();
     viewHandler.openLoginView();
   }
+
+  /**
+   * Open selected reservation
+   */
   public void onOpenReservation() {
     if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
       return;
@@ -83,11 +108,20 @@ public class CustomerAllOrdersController
 
     viewHandler.openSingleOrderView(id);
   }
+
+  /**
+   * On event openCustomerBasket
+   * @param event
+   */
   public void onGoToBasketButton(ActionEvent event)
   {
     viewHandler.openCustomerBasket();
   }
 
+  /**
+   * On event openCustomerAllOrdersView
+   * @param event
+   */
   public void onGoToReservations(ActionEvent event)
   {
     viewHandler.openCustomerAllOrdersView();

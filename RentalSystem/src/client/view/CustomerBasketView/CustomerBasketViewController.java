@@ -10,6 +10,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 
+/**
+ Controller for CustomerBasketView
+ */
 public class CustomerBasketViewController
 {
 

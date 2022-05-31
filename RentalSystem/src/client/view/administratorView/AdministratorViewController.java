@@ -17,6 +17,9 @@ import shared.objects.product.*;
 import java.io.File;
 import java.net.MalformedURLException;
 
+/**
+ Controller for administrator view
+ */
 public class AdministratorViewController {
     ObservableList<String> equipmentTypeList = FXCollections.observableArrayList(
             EquipmentType.helmet.toString(),
@@ -61,6 +64,12 @@ public class AdministratorViewController {
 
     private int currentEditingProductIndex = 0;
 
+    /**
+     * constructor open together with view,it is accessing size, price, amount, color, type and list of administrators
+     through methods in AdministratorviewModel
+     * @param viewHandler
+     * @param vmf
+     */
     public void init(ViewHandler viewHandler, ViewModelFactory vmf)
     {
         this.viewHandler = viewHandler;
@@ -102,6 +111,10 @@ public class AdministratorViewController {
 		viewModel.loadData();
     }
 
+    /**
+     * Method add product with all set variables into database after clicking addButton event
+     * @param event
+     */
     public void addButton(ActionEvent event)
     {
         if(!isInputOkay()){
@@ -119,6 +132,10 @@ public class AdministratorViewController {
         viewModel.clearFields();
     }
 
+    /**
+     * Method change product after its edited
+     * @return WARNING when wrong input is inserted
+     */
     public void changeProduct() {
         if(!isInputOkay()){
             AlertHandler.getInstance().administratorWrongInput();
@@ -136,6 +153,10 @@ public class AdministratorViewController {
         viewModel.clearFields();
     }
 
+    /**
+     * Method remove selected product after clicking removeButton
+     * @param event
+     */
     public void removeButton(ActionEvent event)
     {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
@@ -145,6 +166,10 @@ public class AdministratorViewController {
 			viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
     }
 
+    /**
+     * Method allows administrator to edit selected product specifications after clicking button
+     * @param event
+     */
     public void editButton(ActionEvent event)
     {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
@@ -157,17 +182,27 @@ public class AdministratorViewController {
 
     }
 
-    public void candleEdit() {
+    /**
+     * Method cancel edit fields when product is edited and changed or the change is canceled
+     */
+    public void cancelEdit() {
         typeChoiceBox.setDisable(false);
         viewModel.clearFields();
         isEdit(false);
     }
 
+    /**
+     * Checks if product is being edited
+     * @param b
+     */
     private void isEdit(boolean b) {
         normalButtons.setVisible(!b);
         editButtons.setVisible(b);
     }
 
+    /**
+     * Method converts size input from Label to uppercase and changing type to double
+     */
     private Size getSize() {
         Size size;
         if(isLabelFormat()) {
@@ -179,6 +214,9 @@ public class AdministratorViewController {
         return size;
     }
 
+    /**
+     * Method is checking if input was written correctly
+     */
     private boolean isInputOkay() {
         try{
             Double.parseDouble(priceTextField.getText());
@@ -219,18 +257,27 @@ public class AdministratorViewController {
         return true;
     }
 
+    /**
+     * Method checks if the given input is LabelFormat for product
+     */
     private boolean isLabelFormat() {
         return typeChoiceBox.getValue().toString().equals(EquipmentType.helmet.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.skiShoes.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.snowboardShoes.toString());
     }
 
+    /**
+     * log out user from application
+     */
 	@FXML
 	public void onLogOff() {
 		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 
+    /**
+     * Method allows administrator to add image to product
+     */
 	public void browseFiles() {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Open File");
@@ -246,7 +293,9 @@ public class AdministratorViewController {
 
 	}
 
-
+    /**
+     * open registry window
+     */
 	public void onCreateAccount()
     {
         viewHandler.openRegistryView();

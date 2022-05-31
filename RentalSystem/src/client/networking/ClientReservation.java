@@ -14,10 +14,16 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
+/**
+ * Class coumnicate with RMIServerReservation and manly deals with saving and loading of Reservations.
+ */
 public class ClientReservation implements Remote, Serializable
 {
     private ServerReservation server;
 
+    /**
+     * Connecting to server and getting access to reservations.
+     */
     public ClientReservation() {
         try {
 //            UnicastRemoteObject.exportObject(this,0);
@@ -32,6 +38,10 @@ public class ClientReservation implements Remote, Serializable
 
     }
 
+    /**
+     * Add the reservation to database.
+     * @param reservation Object containing all information about Reservation.
+     */
     public void add(Reservation reservation) {
         try
         {
@@ -43,6 +53,10 @@ public class ClientReservation implements Remote, Serializable
         }
     }
 
+    /**
+     * Returns all the reservations from the database.
+     * @return List containing all the reservations.
+     */
     public ReservationList getAll() {
         try
         {
@@ -55,6 +69,11 @@ public class ClientReservation implements Remote, Serializable
         return null;
     }
 
+    /**
+     * Returns a single Reservation from database by index.
+     * @param index
+     * @return Object containing all information about Reservation.
+     */
     public Reservation getByIndex(int index) {
         try
         {
@@ -67,6 +86,10 @@ public class ClientReservation implements Remote, Serializable
         return null;
     }
 
+    /**
+     * Returns all reservations converted to String
+     * @return arraylist with reservations.
+     */
     public ArrayList<String> convertToStringArrayList() {
         try
         {
@@ -79,6 +102,11 @@ public class ClientReservation implements Remote, Serializable
         return null;
     }
 
+    /**
+     * Returns a single Reservation by id
+     * @param id
+     * @return
+     */
     public Reservation get(int id) {
         try
         {
@@ -90,6 +118,12 @@ public class ClientReservation implements Remote, Serializable
         }
         return null;
     }
+
+    /**
+     * Returns all reservations by username
+     * @param username
+     * @return reservation list with all user's reservations
+     */
     public ReservationList getByUsername(String username)
     {
         try
@@ -103,6 +137,10 @@ public class ClientReservation implements Remote, Serializable
         return null;
     }
 
+    /**
+     * Removes a single Reservation from database by index.
+     * @param index
+     */
     public void remove(int index) {
         try
         {
@@ -114,6 +152,12 @@ public class ClientReservation implements Remote, Serializable
         }
     }
 
+    /**
+     * Finds Reservation in database by index and changes all the information on it.
+     * @param index
+     * @param newStatus Reservation containing new information.
+     * @throws RemoteException
+     */
     public void changeReservation(int index, ReservationStatus newStatus) {
         try {
             server.changeReservation(index, newStatus);

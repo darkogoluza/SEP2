@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import shared.objects.errors.AlertHandler;
 import shared.objects.reservation.Reservation;
 
+/**
+ Controller for employee all orders
+ */
 public class EmployeeAllOrdersController {
 	ObservableList<String> statuses = FXCollections.observableArrayList(
 			ReservationStatus.notReturned.toString(),

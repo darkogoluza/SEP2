@@ -6,7 +6,9 @@ import shared.objects.errors.AlertHandler;
 import shared.objects.user.User;
 import shared.objects.user.UserRole;
 
-
+/**
+ * RegistryViewModel class for RegistryViewController
+ */
 public class RegistryViewModel
 {
     private StringProperty userNameProperty;
@@ -15,6 +17,10 @@ public class RegistryViewModel
     private StringProperty phoneNumberProperty;
 	private ModelProxy modelProxy;
 
+  /**
+   * constructor with user fields as String
+   * @param modelProxy
+   */
     public RegistryViewModel(ModelProxy modelProxy) {
 		this.modelProxy = modelProxy;
 
@@ -24,22 +30,42 @@ public class RegistryViewModel
         phoneNumberProperty = new SimpleStringProperty();
     }
 
+  /**
+   * Getter for username
+   @return
+   */
     public Property<String> getUserName() {
         return userNameProperty;
     }
 
+  /**
+   * Getter for password
+   @return
+   */
     public Property<String> getPassword() {
         return passwordProperty;
     }
 
+  /**
+   * Getter for confirmed password
+   @return
+   */
     public Property<String> getConfirmedPassword() {
         return confirmPasswordProperty;
     }
 
+  /**
+   * Getter for phone number
+   @return
+   */
     public Property<String> getPhoneNumber() {
         return phoneNumberProperty;
     }
 
+  /**
+   * creates account for user,if all conditions are met
+   * @return
+   */
     public boolean createAccount()
     {
 
@@ -68,7 +94,9 @@ public class RegistryViewModel
 			return false;
 		}
 
-
+      /**
+       * Clear all fields
+       */
 	}
 
     public void clearFields() {

@@ -86,6 +86,9 @@ public class RMIServerProduct implements ServerProduct {
 		productsManager.changeProduct(index, newPrice, newColor, newSize, amount);
 	}
 
+	/**
+	 * add Product
+	 */
 	@Override public void add(Product product)throws RemoteException
 	{
 
@@ -113,6 +116,12 @@ public class RMIServerProduct implements ServerProduct {
 		return productsManager.getProductsByCategory(category);
 	}
 
+	/**
+	 * Returns a image with given id.
+	 * @param id
+	 * @return List containing all products.
+	 * @throws RemoteException
+	 */
 	@Override
 	public byte[] getImage(int id) throws RemoteException {
 		return productsManager.getImage(id);

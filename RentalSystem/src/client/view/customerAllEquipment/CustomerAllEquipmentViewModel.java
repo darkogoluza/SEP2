@@ -15,6 +15,9 @@ import shared.objects.product.Product;
 
 import java.beans.PropertyChangeEvent;
 
+/**
+ * CustomerAllEquipmentViewModel for CustomerAllEquipmentViewController
+ */
 public class CustomerAllEquipmentViewModel
 {
     private ListProperty<String> listOfProducts;
@@ -26,6 +29,10 @@ public class CustomerAllEquipmentViewModel
     private ManageProducts modelProducts;
 	private ModelProxy modelProxy;
 
+  /**
+   * Constructor
+   * @param modelProxy
+   */
 	public CustomerAllEquipmentViewModel(ModelProxy modelProxy)
     {
         usernameProperty = new SimpleStringProperty();
@@ -51,13 +58,20 @@ public class CustomerAllEquipmentViewModel
 
     }
 
+  /**
+   * After basket is modified, set new value for total items in basket
+   * @param event
+   */
 	private void modifiedBasket(PropertyChangeEvent event) {
         totalItemsInBasketProperty.set("Total Items in basket: " + event.getNewValue());
         totalItemsInBasketProperty.set("" + event.getNewValue());
         loadAllProducts();
     }
 
-
+  /**
+   * adds product to basket based on index
+   * @param index
+   */
     public void addProductToBasket(int index)
     {
         Product product = modelProducts.getProduct(index);
@@ -68,30 +82,58 @@ public class CustomerAllEquipmentViewModel
         modelBasket.add(product);
     }
 
+  /**
+   * load all products as String
+   */
     public void loadAllProducts() {
         listOfProducts.set(FXCollections.observableArrayList(modelBasket.getAllProductsAsString()));
     }
 
+  /**
+   * Getter for username
+   * @return
+   */
     public StringProperty getUsernameProperty()
     {
         return usernameProperty;
     }
+
+  /**
+   * Getter for total items in basket
+   * @return
+   */
     public StringProperty getTotalItemsInBasketProperty() {
         return totalItemsInBasketProperty;
     }
-    public ListProperty<String> getListOfProductsProperty() {
+
+  /**
+   * Getter for listofproducts
+   * @return
+   */
+  public ListProperty<String> getListOfProductsProperty() {
         return listOfProducts;
     }
 
+  /**
+   * Getter for categories
+   * @return
+   */
 	public ObservableList<String> getCategoriesProperty() {
 		return categoriesProperty;
 	}
 
+  /**
+   * method log out user
+   */
     public void logOff() {
 	    modelBasket.clear();
 		modelProxy.getManageUser().logout();
     }
 
+  /**
+   * filtering by categories based on index
+   * @param index
+   */
 	public void filterByCategory(int index) {
 		if (index == 0) {
 			loadAllProducts();
@@ -102,6 +144,10 @@ public class CustomerAllEquipmentViewModel
 		}
 	}
 
+  /**
+   * Returns all equipment types
+   * @return
+   */
 	private ObservableList<String> getEquipmentTypes() {
 		ObservableList<String> types = FXCollections.observableArrayList();
 		types.add("show all");

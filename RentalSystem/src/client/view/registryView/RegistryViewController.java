@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ Controller for Registry view
+ */
 public class RegistryViewController {
     @FXML
     private TextField userName;
@@ -20,6 +23,11 @@ public class RegistryViewController {
     private ViewHandler viewHandler;
     private RegistryViewModel viewModel;
 
+    /**
+     * constructor with user info, all variables are called from RegistryViewModel
+     * @param viewHandler
+     * @param vmf
+     */
     public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
         this.viewHandler = viewHandler;
         viewModel = vmf.getRegistryViewModel();
@@ -32,6 +40,10 @@ public class RegistryViewController {
         viewModel.clearFields();
     }
 
+    /**
+     * Creates account for user after event is fired
+     * @param event
+     */
     public void createAccountButton(ActionEvent event)
 	{
         if (viewModel.createAccount()) {
@@ -40,6 +52,9 @@ public class RegistryViewController {
         }
     }
 
+    /**
+     * Opens Login view
+     */
 	public void openLoginView() {
 		viewHandler.openLoginView();
 		viewModel.clearFields();
