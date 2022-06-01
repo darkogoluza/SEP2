@@ -18,17 +18,31 @@ public class ManageUserManager implements ManageUser
 		this.clientProxy = clientProxy;
     }
 
+	/**
+	 * Add new user to database
+	 * @param user
+	 */
     public void add(User user)
     {
 		clientProxy.getClientUser().add(user);
     }
 
-
+	/**
+	 * Get user with username
+	 * @param username
+	 * @return
+	 */
 	@Override
 	public User get(String username) {
 		return clientProxy.getClientUser().get(username);
 	}
 
+	/**
+	 * Login user with username and password
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@Override public User login(String username, String password)
 	{
 		user = clientProxy.getClientUser().login(username, password);
@@ -39,14 +53,21 @@ public class ManageUserManager implements ManageUser
 		return null;
 	}
 
+	/**
+	 * Get logged user
+	 * @return logged User Object
+	 */
 	@Override
 	public User getLoggedUser() {
 		return user;
 	}
 
+	/**
+	 * logout user
+	 */
 	@Override
 	public void logout() {
-		user = null;
+		clientProxy.getClientUser().logout();
 	}
 
 	@Override

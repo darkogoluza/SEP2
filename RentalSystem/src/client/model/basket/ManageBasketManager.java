@@ -20,11 +20,19 @@ public class ManageBasketManager implements ManageBasket {
     private PropertyChangeSupport changeSupport;
     private ManageReservationDatabase reservationDatabase;
 
+	/**
+	 * Client model for basket managing
+	 * @param clientProxy
+	 */
     public ManageBasketManager (ClientProxy clientProxy) {
         changeSupport = new PropertyChangeSupport(this);
         this.clientProxy = clientProxy;
     }
 
+	/**
+	 * Add product to basket and fire events
+	 * @param product
+	 */
     @Override
     public void add(Product product) {
         clientProxy.getClientBasket().add(product);
@@ -32,6 +40,10 @@ public class ManageBasketManager implements ManageBasket {
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
+	/**
+	 * Remove product to basket and fire events
+	 * @param product
+	 */
     @Override
     public Product remove(Product product) {
         Product product1 = clientProxy.getClientBasket().remove(product);
@@ -40,6 +52,9 @@ public class ManageBasketManager implements ManageBasket {
         return product1;
     }
 
+	/**
+	 * Clear basket and remove all products from basket
+	 */
     @Override
     public void clear() {
         clientProxy.getClientBasket().clear();
@@ -47,21 +62,39 @@ public class ManageBasketManager implements ManageBasket {
         changeSupport.firePropertyChange("finalPriceEvent", null, getTotalPrice());
     }
 
+	/**
+	 * Total price of basket
+	 * @return
+	 */
     @Override
     public String getTotalPrice() {
         return clientProxy.getClientBasket().getTotalPrice();
     }
 
+	/**
+	 * Get amount of products in basket
+	 * @return
+	 */
     @Override
     public int size() {
         return clientProxy.getClientBasket().Size();
     }
 
+	/**
+	 * Get all products with quantity as hashmap
+	 * @return
+	 */
     @Override
     public Map<Product, Integer> getAllProductsByQuantity() {
         return clientProxy.getClientBasket().getAllProductsByQuantity();
     }
 
+	/**
+	 * Create order with user object, start time and return time
+	 * @param createAt
+	 * @param returnAt
+	 * @param user
+	 */
     @Override
     public void order(Timestamp createAt, Timestamp returnAt, User user) {
         if(!checkIfOrderIsValid()){
@@ -73,15 +106,27 @@ public class ManageBasketManager implements ManageBasket {
         AlertHandler.getInstance().orderCreated();
     }
 
+	/**
+	 * Check if basket is empty
+	 * @return
+	 */
     @Override
     public boolean isEmpty() {
         return clientProxy.getClientBasket().isEmpty();
     }
 
+	/**
+	 * Get username of logged user
+	 * @return
+	 */
     public String getUserName() {
         return clientProxy.getClientUser().getLoggedUser().getUsername();
     }
 
+	/**
+	 * Get all products from basket as arraylist for all products
+	 * @return
+	 */
     @Override
     public ArrayList<String> getAllProductsAsString() {
         ProductList allProducts = clientProxy.getClientProduct().getAllProducts();
@@ -106,6 +151,10 @@ public class ManageBasketManager implements ManageBasket {
         return temp;
     }
 
+	/**
+	 * Get all products from basket as arraylist for given product list
+	 * @return
+	 */
 	@Override
 	public ArrayList<String> getAllProductsAsString(ProductList allProducts) {
 		ArrayList<String> temp = new ArrayList<>();
@@ -151,6 +200,11 @@ public class ManageBasketManager implements ManageBasket {
 		return Math.max(inStock, 0);
 	}
 
+	/**
+	 * Check if product is in stock
+	 * @param id of product
+	 * @return
+	 */
     @Override
     public boolean checkIfProductIsInStock(int id) {
         Map<Product, Integer> map = getAllProductsByQuantity();
@@ -173,6 +227,10 @@ public class ManageBasketManager implements ManageBasket {
         return true;
     }
 
+	/**
+	 * Check if all product are in stock
+	 * @return
+	 */
     public boolean checkIfOrderIsValid() {
         Map<Product, Integer> map = getAllProductsByQuantity();
         ProductList allProducts = clientProxy.getClientProduct().getAllProducts();

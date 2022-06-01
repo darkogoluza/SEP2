@@ -41,6 +41,11 @@ public class SingleOrderViewModel
   private ProductList products;
   private ObservableList<ProductsInBasket> productsInList;
 
+	/**
+	 * Constructor with initialization
+	 * @param modelProxy
+	 * @param id
+	 */
   public SingleOrderViewModel(ModelProxy modelProxy, int id)
   {
     this.modelProxy = modelProxy;
@@ -70,16 +75,27 @@ public class SingleOrderViewModel
     updateViewModelReservationInfo();
   }
 
+	/**
+	 * After event was fired when basket was modified
+	 * @param propertyChangeEvent
+	 */
   private void modifiedBasket(PropertyChangeEvent propertyChangeEvent) {
     showAllProducts();
   }
 
+	/**
+	 * After event was fired when reservation was modified
+	 * @param propertyChangeEvent
+	 */
   private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
     showAllProducts();
     updateViewModelReservationInfo();
   }
 
-  public void showAllProducts()
+	/**
+	 * Show all products for reservation
+	 */
+	public void showAllProducts()
   {
     productsInList.clear();
     Map<Product, Integer> map = modelReservations.getReservationById(id).getProducts().getAllProductsByQuantity();
@@ -89,7 +105,10 @@ public class SingleOrderViewModel
     }
   }
 
-  public void updateViewModelReservationInfo(){
+	/**
+	 * Update info about reservation
+	 */
+	public void updateViewModelReservationInfo(){
     Reservation reservation=modelReservations.getReservationById(id);
 
     userNameProperty.set(reservation.getUserName());
@@ -103,7 +122,11 @@ public class SingleOrderViewModel
     totalOverallPriceProperty.set(modelReservations.getTotalPrice(id) + "");
   }
 
-  public Property<String> getOrderIdProperty() {
+	/**
+	 * Get properties
+	 * @return
+	 */
+	public Property<String> getOrderIdProperty() {
     return orderIdProperty;
   }
   public Property<String> getStatusProperty() {
@@ -119,19 +142,34 @@ public class SingleOrderViewModel
   public StringProperty gettotalOverallPriceProperty() {
     return totalOverallPriceProperty;
   }
-  public int getReservationsNum(){
+	public StringProperty getTotalItemsInBasketProperty() {
+		return totalItemsInBasketProperty;
+	}
+
+	/**
+	 * Get number of reservations
+	 * @return
+	 */
+	public int getReservationsNum(){
     return modelReservations.getAllReservations().size();
   }
+
+	/**
+	 * Get all products in basket
+	 * @return
+	 */
   public ObservableList<ProductsInBasket> getProductsInBaskets()
   {
     return productsInList;
   }
-  public void logOff() {
+
+	/**
+	 * On log off user
+	 */
+	public void logOff() {
     modelBasket.clear();
     modelProxy.getManageUser().logout();
   }
 
-  public StringProperty getTotalItemsInBasketProperty() {
-    return totalItemsInBasketProperty;
-  }
+
 }

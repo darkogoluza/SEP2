@@ -15,6 +15,10 @@ public class LoginViewModel
   private StringProperty passwordProperty;
 
 
+	/**
+	 * COnstructor
+	 * @param modelProxy
+	 */
   public LoginViewModel(ModelProxy modelProxy)
   {
     this.modelUser = modelProxy.getManageUser();
@@ -22,21 +26,43 @@ public class LoginViewModel
     passwordProperty=new SimpleStringProperty();
   }
 
+	/**
+	 * Check if user was logged
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
   public User checkIdentification(String userName, String password) {
     return modelUser.login(userName, password);
   }
 
-  public Property<String> getUserNameProperty(){
+	/**
+	 * Get username string property
+	 * @return
+	 */
+	public Property<String> getUserNameProperty(){
     return userNameProperty;
   }
+
+	/**
+	 * Get password property
+	 * @return
+	 */
   public Property<String> getPasswordProperty(){
     return passwordProperty;
   }
 
-  public UserRole getRoleOfUser() {
+	/**
+	 * Get role of logged user
+	 * @return
+	 */
+	public UserRole getRoleOfUser() {
 	  return modelUser.getLoggedUser().getRole();
 	}
 
+	/**
+	 * Clear all fields
+	 */
   public void clearFields() {
     userNameProperty.set("");
     passwordProperty.set("");

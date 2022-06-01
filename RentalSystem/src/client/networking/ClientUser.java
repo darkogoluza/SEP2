@@ -27,6 +27,10 @@ public class ClientUser implements Remote, Serializable {
         }
     }
 
+	/**
+	 * Add new user to database
+	 * @param user
+	 */
     public void add(User user)
     {
 		try {
@@ -36,6 +40,12 @@ public class ClientUser implements Remote, Serializable {
 		}
 	}
 
+	/**
+	 * Login user with username and password
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public User login(String username, String password) {
 		try
 		{
@@ -49,6 +59,11 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	/**
+	 * Get user with username
+	 * @param username
+	 * @return
+	 */
 	public User get(String username) {
 		try {
 			return server.get(username);
@@ -58,6 +73,10 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	/**
+	 * Get logged user
+	 * @return logged User Object
+	 */
 	public User getLoggedUser() {
 		try {
 			return server.getLoggedUser();
@@ -67,6 +86,10 @@ public class ClientUser implements Remote, Serializable {
 		return null;
 	}
 
+	/**
+	 * logout user
+	 * Set user object to null
+	 */
 	public void logout() {
 		try {
 			server.logout();

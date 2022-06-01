@@ -28,6 +28,10 @@ public class CustomerBasketViewModel
     private ManageBasket modelBasket;
     private ModelProxy modelProxy;
 
+	/**
+	 * Constructor with initialization
+	 * @param modelProxy
+	 */
     public CustomerBasketViewModel(ModelProxy modelProxy)
     {
         productsInBaskets = FXCollections.observableArrayList();
@@ -51,6 +55,10 @@ public class CustomerBasketViewModel
 		);
     }
 
+	/**
+	 * When event was called, this method will be executed
+	 * @param event
+	 */
     private void modifiedBasket(PropertyChangeEvent event) {
         showAllProductsInBasket();
         totalItemsInBasketProperty.set("" + event.getNewValue());
@@ -58,10 +66,17 @@ public class CustomerBasketViewModel
         userNameProperty.set(modelProxy.getManageUser().getLoggedUser().getUsername());
     }
 
+	/**
+	 * Get products in basket
+	 * @return observable arraylist
+	 */
     public ObservableList<ProductsInBasket> getProductsInBaskets() {
         return productsInBaskets;
     }
 
+	/**
+	 * Display all products
+	 */
     public void showAllProductsInBasket()
     {
         productsInBaskets.clear();
@@ -72,14 +87,24 @@ public class CustomerBasketViewModel
         }
     }
 
+	/**
+	 * Clear the basket
+	 */
     public void clearBasket() {
         modelBasket.clear();
     }
 
+	/**
+	 * Remove item from basket
+	 * @param product
+	 */
     public void removeItemFormBasket(Product product) {
         modelBasket.remove(product);
     }
 
+	/**
+	 * Place an order
+	 */
     public void order()
     {
         if(modelBasket.isEmpty()){
@@ -93,28 +118,51 @@ public class CustomerBasketViewModel
         modelBasket.clear();
     }
 
+	/**
+	 * get total price string property
+	 * @return
+	 */
     public StringProperty getFinalTotalPriceProperty(){
         return finalTotalPriceProperty;
     }
 
+	/**
+	 * Get username property
+	 * @return
+	 */
     public StringProperty getUserNameProperty()
     {
         return userNameProperty;
     }
 
+	/**
+	 * Get create date property
+	 * @return
+	 */
     public Property<LocalDate> getCreateDateProperty() {
         return createDateProperty;
     }
 
+	/**
+	 * get return date property
+	 * @return
+	 */
     public Property<LocalDate> getReturnDateProperty() {
         return returnDateProperty;
     }
 
+	/**
+	 * Log off user
+	 */
     public void logOff() {
         modelBasket.clear();
         modelProxy.getManageUser().logout();
     }
 
+	/**
+	 * get all items in basket property
+	 * @return
+	 */
     public StringProperty getTotalItemsInBasketProperty() {
         return totalItemsInBasketProperty;
     }

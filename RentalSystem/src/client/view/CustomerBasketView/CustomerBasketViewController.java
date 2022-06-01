@@ -49,11 +49,19 @@ public class CustomerBasketViewController
   private ViewHandler viewHandler;
   private CustomerBasketViewModel viewModel;
 
+	/**
+	 * open view with all equipment
+	 * @param event
+	 */
   public void backButton(ActionEvent event)
   {
     viewHandler.openCustomerAllEquipmentView();
   }
 
+	/**
+	 * Remove product from basket
+	 * @param event
+	 */
   public void onRemoveButton(ActionEvent event)
   {
     if(tableView.getSelectionModel().getSelectedItem() == null)
@@ -64,16 +72,29 @@ public class CustomerBasketViewController
     viewModel.removeItemFormBasket(tableView.getSelectionModel().getSelectedItem().getProduct());
   }
 
+	/**
+	 * On clear button remove all products from basket
+	 * @param event
+	 */
   public void onClearButton(ActionEvent event)
   {
     viewModel.clearBasket();
   }
 
+	/**
+	 * On order button place an order
+	 * @param event
+	 */
   public void onOrderButton(ActionEvent event)
   {
       viewModel.order();
   }
 
+	/**
+	 * Initialization
+	 * @param viewHandler
+	 * @param vmf
+	 */
   public void init(ViewHandler viewHandler, ViewModelFactory vmf)
   {
     this.viewHandler = viewHandler;
@@ -97,11 +118,17 @@ public class CustomerBasketViewController
     setUpDatePickers();
   }
 
-  public void showAllProductsInBasket() {
+	/**
+	 * Show all products
+	 */
+	public void showAllProductsInBasket() {
       viewModel.showAllProductsInBasket();
   }
 
-  private void setUpDatePickers() {
+	/**
+	 * Setup date pickers
+	 */
+	private void setUpDatePickers() {
     createDate.setDayCellFactory(picker -> new DateCell() {
       public void updateItem(LocalDate date, boolean empty) {
         super.updateItem(date, empty);
@@ -132,16 +159,30 @@ public class CustomerBasketViewController
       returnDate.setValue(createDate.getValue().plusDays(1));
     });
   }
-  public void onLogOff(ActionEvent event)
+
+	/**
+	 * on log off logout user
+	 * @param event
+	 */
+	public void onLogOff(ActionEvent event)
   {
     viewModel.logOff();
     viewHandler.openLoginView();
   }
-  public void onGoToBasketButton(ActionEvent event)
+
+	/**
+	 * On go to basket view
+	 * @param event
+	 */
+	public void onGoToBasketButton(ActionEvent event)
   {
     viewHandler.openCustomerBasket();
   }
 
+	/**
+	 * On go to reservations view
+	 * @param event
+	 */
   public void onGoToReservations(ActionEvent event)
   {
     viewHandler.openCustomerAllOrdersView();

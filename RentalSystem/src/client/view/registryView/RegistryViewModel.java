@@ -105,11 +105,11 @@ public class RegistryViewModel
 			return false;
 		}
 
-      /**
-       * Clear all fields
-       */
 	}
 
+  /**
+   * Clear all fields
+   */
     public void clearFields() {
         userNameProperty.set("");
         passwordProperty.set("");
@@ -117,6 +117,10 @@ public class RegistryViewModel
         phoneNumberProperty.set("");
     }
 
+	/**
+	 * Check if employee is logged in
+	 * @return
+	 */
 	public boolean employeeLogged() {
 		return modelProxy.getManageUser().getLoggedUser().getRole().equals(UserRole.employee);
 	}

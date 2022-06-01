@@ -21,7 +21,10 @@ public class ClientBasket implements Remote, Serializable
 {
   private ServerBasket server;
 
-  public ClientBasket(){
+	/**
+	 * Client for basket which communicates with basket server
+	 */
+	public ClientBasket(){
     try
     {
 //      UnicastRemoteObject.exportObject(this,0);
@@ -35,6 +38,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+	/**
+	 * Add product to basket and fire events
+	 * @param product
+	 */
   public void add(Product product)
   {
     try
@@ -46,6 +54,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+	/**
+	 * Remove product to basket and fire events
+	 * @param product
+	 */
   public Product remove(Product product)
   {
     try
@@ -58,6 +71,10 @@ public class ClientBasket implements Remote, Serializable
     }
     return product;
   }
+
+	/**
+	 * Clear basket and remove all products from basket
+	 */
   public void clear()
   {
     try
@@ -69,6 +86,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+	/**
+	 * Total price of basket
+	 * @return
+	 */
   public String getTotalPrice()
   {
     try
@@ -81,6 +103,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
+
+	/**
+	 * Get amount of products in basket
+	 * @return
+	 */
   public int Size()
   {
     try
@@ -93,6 +120,11 @@ public class ClientBasket implements Remote, Serializable
     }
     return -1;
   }
+
+	/**
+	 * Get all products with quantity as hashmap
+	 * @return
+	 */
   public Map<Product, Integer> getAllProductsByQuantity()
   {
     try
@@ -105,6 +137,13 @@ public class ClientBasket implements Remote, Serializable
     }
     return null;
   }
+
+	/**
+	 * Create order with user object, start time and return time
+	 * @param createAt
+	 * @param returnAt
+	 * @param user
+	 */
   public void order(Timestamp createAt, Timestamp returnAt, User user)
   {
     try
@@ -116,6 +155,11 @@ public class ClientBasket implements Remote, Serializable
       e.printStackTrace();
     }
   }
+
+	/**
+	 * Check if basket is empty
+	 * @return
+	 */
   public boolean isEmpty()
   {
     try

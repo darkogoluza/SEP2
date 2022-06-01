@@ -65,6 +65,11 @@ public class AdministratorViewController {
 
     private int currentEditingProductIndex = 0;
 
+	/**
+	 * Initialization
+	 * @param viewHandler
+	 * @param vmf
+	 */
     public void init(ViewHandler viewHandler, ViewModelFactory vmf)
     {
         this.viewHandler = viewHandler;
@@ -93,7 +98,7 @@ public class AdministratorViewController {
             }else if (EquipmentType.snowboardShoes.equals(EquipmentType.valueOf((String) niu))) {
                 sizeLabel.setText("Label Values 35 to 45");
             }
-    });
+    	});
 
 		colorChoiceBox.setItems(colorTypeList);
 		colorChoiceBox.valueProperty().bindBidirectional(viewModel.getColor());
@@ -106,6 +111,10 @@ public class AdministratorViewController {
 		viewModel.loadData();
     }
 
+	/**
+	 * Add product to basket
+	 * @param event
+	 */
     public void addButton(ActionEvent event)
     {
         if(!isInputOkay()){
@@ -123,6 +132,9 @@ public class AdministratorViewController {
         viewModel.clearFields();
     }
 
+	/**
+	 * On change button
+	 */
     public void changeProduct() {
         if(!isInputOkay()){
             AlertHandler.getInstance().administratorWrongInput();
@@ -140,6 +152,10 @@ public class AdministratorViewController {
         viewModel.clearFields();
     }
 
+	/**
+	 * on remove button
+	 * @param event
+	 */
     public void removeButton(ActionEvent event)
     {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
@@ -149,6 +165,10 @@ public class AdministratorViewController {
 			viewModel.removeProduct(listView.getSelectionModel().getSelectedIndex());
     }
 
+	/**
+	 * Confirm editing
+	 * @param event
+	 */
     public void editButton(ActionEvent event)
     {
         if(listView.getSelectionModel().getSelectedIndex() < 0)
@@ -161,17 +181,28 @@ public class AdministratorViewController {
 
     }
 
+	/**
+	 * Cancel editing
+	 */
     public void cancelEdit() {
         typeChoiceBox.setDisable(false);
         viewModel.clearFields();
         isEdit(false);
     }
 
+	/**
+	 * Show edit buttons
+	 * @param b
+	 */
     private void isEdit(boolean b) {
         normalButtons.setVisible(!b);
         editButtons.setVisible(b);
     }
 
+	/**
+	 * Get size
+	 * @return
+	 */
     private Size getSize() {
         Size size;
         if(isLabelFormat()) {
@@ -183,6 +214,10 @@ public class AdministratorViewController {
         return size;
     }
 
+	/**
+	 * Validate inputs
+	 * @return
+	 */
     private boolean isInputOkay() {
         try{
             Double.parseDouble(priceTextField.getText());
@@ -223,18 +258,28 @@ public class AdministratorViewController {
         return true;
     }
 
+	/**
+	 * Check if format is label format
+	 * @return
+	 */
     private boolean isLabelFormat() {
         return typeChoiceBox.getValue().toString().equals(EquipmentType.helmet.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.skiShoes.toString()) ||
                 typeChoiceBox.getValue().toString().equals(EquipmentType.snowboardShoes.toString());
     }
 
+	/**
+	 * On log off button
+	 */
 	@FXML
 	public void onLogOff() {
 		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 
+	/**
+	 * On browse files
+	 */
 	public void browseFiles() {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Open File");
@@ -262,6 +307,9 @@ public class AdministratorViewController {
 	}
 
 
+	/**
+	 * On create account button
+	 */
 	public void onCreateAccount()
     {
         viewHandler.openRegistryView();

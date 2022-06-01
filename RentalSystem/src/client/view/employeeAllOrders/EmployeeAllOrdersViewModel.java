@@ -19,6 +19,11 @@ public class EmployeeAllOrdersViewModel
 	private ModelProxy modelProxy;
 
 	private String filterStatus;
+
+	/**
+	 * Initialization constructor
+	 * @param modelProxy
+	 */
 	public EmployeeAllOrdersViewModel(ModelProxy modelProxy)
 	{
 		searchInput = new SimpleStringProperty();
@@ -30,39 +35,76 @@ public class EmployeeAllOrdersViewModel
 		loadAllReservations();
 	}
 
+	/**
+	 * On modified reservation event fired
+	 * @param propertyChangeEvent
+	 */
 	private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
 		loadAllReservations();
 	}
 
+	/**
+	 * Load all reservations
+	 */
 	public void loadAllReservations() {
 		listOfOrders.set(
 				FXCollections.observableArrayList(modelReservations.getAllReservations().filterByStatus(filterStatus).convertToStringArrayList()));
 	}
 
+	/**
+	 * Get list of reservations
+	 * @return
+	 */
 	public ListProperty<String> getListOfReservationsProperty() {
 		return listOfOrders;
 	}
 
+	/**
+	 * Get search input property
+	 * @return
+	 */
 	public Property<String> getSearchProperty() {
 		return searchInput;
 	}
 
+	/**
+	 * open reservation with index
+	 * @param index
+	 * @return
+	 */
 	public int openReservationByIndex(int index) {
 		Reservation r = modelReservations.getReservationByIndex(index);
 		return r.getId();
 	}
 
+	/**
+	 * Open reservation with id
+	 * @param id
+	 * @return
+	 */
 	public Reservation openReservationById(int id) {
 		return modelReservations.getReservationById(id);
 	}
+
+	/**
+	 * Remove reservation with index
+	 * @param index
+	 */
 	public void removeReservation(int index){
 		modelReservations.remove(index);
 	}
 
+	/**
+	 * Log off user
+	 */
     public void logOff() {
 		modelProxy.getManageUser().logout();
     }
 
+	/**
+	 * Change what reservations should be displayed depending on status
+	 * @param newFilterStatus
+	 */
 	public void changedFilterStatus(String newFilterStatus) {
 		filterStatus = newFilterStatus;
 		loadAllReservations();

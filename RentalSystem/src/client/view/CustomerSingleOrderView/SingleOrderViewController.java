@@ -68,6 +68,12 @@ public class SingleOrderViewController {
   @FXML
   private Label totalItemsInBasket;
 
+	/**
+	 * Initialization
+	 * @param viewHandler
+	 * @param vmf
+	 * @param id
+	 */
   public void init(ViewHandler viewHandler, ViewModelFactory vmf, int id) {
     this.viewHandler = viewHandler;
     viewModel = vmf.getSingleOrderViewModel(id);
@@ -93,20 +99,39 @@ public class SingleOrderViewController {
     viewModel.updateViewModelReservationInfo();
   }
 
+	/**
+	 * On back button
+	 * @param event
+	 */
   @FXML
   void backButton(ActionEvent event) {
     viewHandler.openCustomerAllEquipmentView();
   }
+
+	/**
+	 * On log off
+	 * @param event
+	 */
   public void onLogOff(ActionEvent event)
   {
     viewModel.logOff();
     viewHandler.openLoginView();
   }
+
+	/**
+	 * On go to reservation
+	 * @param event
+	 */
   public void onGoToReservations(ActionEvent event)
   {
     viewHandler.openCustomerAllOrdersView();
   }
-  public void onGoToBasketButton(ActionEvent event)
+
+	/**
+	 * On go to basket
+	 * @param event
+	 */
+	public void onGoToBasketButton(ActionEvent event)
   {
     viewHandler.openCustomerBasket();
   }

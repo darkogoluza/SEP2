@@ -34,6 +34,11 @@ public class EmployeeAllOrdersController {
 	private ViewHandler viewHandler;
 	private client.view.employeeAllOrders.EmployeeAllOrdersViewModel viewModel;
 
+	/**
+	 * Initialization
+	 * @param viewHandler
+	 * @param vmf
+	 */
 	public void init(ViewHandler viewHandler, ViewModelFactory vmf) {
 		this.viewHandler = viewHandler;
 		viewModel = vmf.getEmployeeViewModel();
@@ -45,6 +50,10 @@ public class EmployeeAllOrdersController {
 		searchInput.textProperty().bindBidirectional(viewModel.getSearchProperty());
 	}
 
+	/**
+	 * On search button, get id and open reservation with that id
+	 * @param event
+	 */
 	public void onSearchButton(ActionEvent event) {
 		int id = -1;
 		try {
@@ -64,11 +73,17 @@ public class EmployeeAllOrdersController {
 
 	}
 
+	/**
+	 * Logout user
+	 */
 	public void onLogOff() {
 		viewModel.logOff();
 		viewHandler.openLoginView();
 	}
 
+	/**
+	 * open selected reservation
+	 */
 	public void onOpenReservation() {
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
@@ -78,6 +93,10 @@ public class EmployeeAllOrdersController {
 		viewHandler.openEmployeeOrderDetailsView(id);
 	}
 
+	/**
+	 * remove reservation
+	 * @param event
+	 */
 	public void onRemoveReservation(ActionEvent event){
 		if(reservationsList.getSelectionModel().getSelectedIndex() < 0)
 			return;
@@ -88,9 +107,18 @@ public class EmployeeAllOrdersController {
 		}
 	}
 
+	/**
+	 * When category is changed in choice box
+	 * @param event
+	 */
 	public void onFilterChoiceChanged(ActionEvent event) {
 		viewModel.changedFilterStatus(filterByStatus.getValue());
 	}
+
+	/**
+	 * on all orders button
+	 * @param event
+	 */
 	public void onAllOrders(ActionEvent event)
 	{
 		viewHandler.openEmployeeView();

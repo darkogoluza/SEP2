@@ -21,6 +21,10 @@ public class ModelProxyManager implements ModelProxy {
         this.clientProxy = clientProxy;
     }
 
+	/**
+	 * Return client model for product managing
+	 * @return ManageProducts
+	 */
     @Override
     public ManageProducts getManageProducts() {
         if(manageProducts == null){
@@ -30,6 +34,10 @@ public class ModelProxyManager implements ModelProxy {
         return manageProducts;
     }
 
+	/**
+	 * Return client model for reservations managing
+	 * @return ManageReservations
+	 */
     @Override
     public ManageReservations getManageReservations() {
         if(manageReservations == null){
@@ -39,6 +47,10 @@ public class ModelProxyManager implements ModelProxy {
         return manageReservations ;
     }
 
+	/**
+	 * Return client model for basket managing
+	 * @return ManageBasket
+	 */
     @Override
     public ManageBasket getManageBasket() {
         if(manageBasket == null) {
@@ -48,6 +60,10 @@ public class ModelProxyManager implements ModelProxy {
         return manageBasket;
     }
 
+	/**
+	 * Return client model for user managing
+	 * @return ManageUser
+	 */
     @Override
     public ManageUser getManageUser() {
         if(manageUser == null) {

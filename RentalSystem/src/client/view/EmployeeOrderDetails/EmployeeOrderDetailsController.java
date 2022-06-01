@@ -101,16 +101,28 @@ public class EmployeeOrderDetailsController {
 		viewModel.updateViewModelReservationInfo();
 	}
 
+	/**
+	 * On back button open employee all reservation view
+	 * @param event
+	 */
 	@FXML
 	void BackButton(ActionEvent event) {
 		viewHandler.openEmployeeView();
 	}
 
+	/**
+	 * On change status button change status of reservation
+	 * @param event
+	 */
 	@FXML
 	void onChangeStatus(ActionEvent event) {
 		viewModel.changeStatus(statusChoice.getValue());
 	}
 
+	/**
+	 * Log off user
+	 * @param event
+	 */
 	public void onLogOff(ActionEvent event)
 	{
 		viewModel.logOff();

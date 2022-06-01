@@ -40,6 +40,11 @@ public class EmployeeOrderDetailsViewModel
   private ObservableList<ProductsInBasket> productsInList;
 
 
+	/**
+	 * Initialization constructor
+	 * @param modelProxy
+	 * @param id
+	 */
   public EmployeeOrderDetailsViewModel(ModelProxy modelProxy, int id)
   {
     this.id = id;
@@ -70,12 +75,19 @@ public class EmployeeOrderDetailsViewModel
     updateViewModelReservationInfo();
   }
 
+	/**
+	 * On modified reservation event fired
+	 * @param propertyChangeEvent
+	 */
   private void modifiedReservation(PropertyChangeEvent propertyChangeEvent) {
    showAllProducts();
    updateViewModelReservationInfo();
   }
 
-  public void showAllProducts()
+	/**
+	 * Show all products
+	 */
+	public void showAllProducts()
   {
     productsInList.clear();
     Map<Product, Integer> map = modelReservations.getReservationById(id).getProducts().getAllProductsByQuantity();
@@ -85,11 +97,18 @@ public class EmployeeOrderDetailsViewModel
     }
   }
 
+	/**
+	 * Change status of reservation
+	 * @param status
+	 */
   public void changeStatus(ReservationStatus status) {
     modelReservations.changeReservation(id,status);
   }
 
-  public void updateViewModelReservationInfo(){
+	/**
+	 * Update info about reservation
+	 */
+	public void updateViewModelReservationInfo(){
     Reservation reservation = modelReservations.getReservationById(id);
 
     userNameProperty.set(reservation.getUserName());
@@ -104,6 +123,10 @@ public class EmployeeOrderDetailsViewModel
 
   }
 
+
+  /*
+  Get properties
+   */
 
   public Property<String> getOrderIdProperty() {
     return orderIdProperty;
@@ -135,9 +158,17 @@ public class EmployeeOrderDetailsViewModel
       return  phoneNumberProperty;
   }
 
+	/**
+	 * Set id if reservation
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	/**
+	 * Logout user
+	 */
   public void logOff() {
     modelBasket.clear();
     modelProxy.getManageUser().logout();

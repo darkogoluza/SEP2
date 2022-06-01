@@ -6,6 +6,10 @@ public class ClientProxyManager implements ClientProxy {
     private ClientUser clientCustomer;
     private ClientBasket clientBasket;
 
+	/**
+	 * Get client for product
+	 * @return
+	 */
     @Override
     public ClientProduct getClientProduct() {
         if(clientProduct == null) {
@@ -15,6 +19,10 @@ public class ClientProxyManager implements ClientProxy {
         return clientProduct;
     }
 
+	/**
+	 * Get client for reservation
+	 * @return
+	 */
     @Override
     public ClientReservation getClientReservation() {
         if(clientReservation == null) {
@@ -24,6 +32,10 @@ public class ClientProxyManager implements ClientProxy {
         return clientReservation;
     }
 
+	/**
+	 * Get client for basket
+	 * @return
+	 */
     @Override public ClientBasket getClientBasket()
     {
         if(clientBasket == null) {
@@ -33,6 +45,10 @@ public class ClientProxyManager implements ClientProxy {
         return clientBasket;
     }
 
+	/**
+	 * Get client for user
+	 * @return
+	 */
     @Override
     public ClientUser getClientUser() {
         if( clientCustomer == null) {
