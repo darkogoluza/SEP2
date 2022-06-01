@@ -25,6 +25,9 @@ class ProductsInBasketTest {
 						5);
     }
 
+	/**
+	 * Methods
+	 */
     @Test
     void getName() {
         assertEquals(Color.black.toString() + " " + EquipmentType.helmet.toString(), productsInBasket.getName());

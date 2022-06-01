@@ -1,6 +1,7 @@
 package shared.objects.reservation;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import shared.objects.product.*;
 
@@ -16,13 +17,6 @@ class ReservationListTest {
 	@BeforeEach
 	void setUp() {
 		list = new ReservationList();
-	}
-
-	@Test
-	void add() {
-		list.add(new Reservation(0, "name", new ProductList()));
-		list.add(new Reservation(1, "name", new ProductList()));
-		assertEquals(2, list.size());
 	}
 
 	@Test
@@ -175,4 +169,93 @@ class ReservationListTest {
 
 		assertEquals(4, list.filterByStatus("All").size());
 	}
+
+	// zero
+	@Test
+	void isEmptyWhenCreated() {
+		assertEquals(0, list.size());
+	}
+
+	// one
+	@Test
+	void addOne() {
+		list.add(new Reservation(1, "name", new ProductList()));
+		assertEquals(1, list.size());
+	}
+
+	@Test
+	void removeOne() {
+		list.add(new Reservation(1, "name", new ProductList()));
+		list.removeByIndex(0);
+		assertEquals(0, list.size());
+	}
+
+	@Test
+	void changeOne() {
+		list.add("name", new ProductList());
+		list.add("name", new ProductList());
+		list.change(0, ReservationStatus.returned);
+		assertEquals(ReservationStatus.returned, list.getByIndex(0).getStatus());
+	}
+
+	@Test
+	void getOne() {
+		Reservation r = new Reservation(1, "name", new ProductList());
+		list.add(r);
+		assertEquals(r, list.get(1));
+
+	}
+
+	//many
+	@Test
+	void addMore() {
+		list.add(new Reservation(1, "name", new ProductList()));
+		list.add(new Reservation(2, "name", new ProductList()));
+		list.add(new Reservation(3, "name", new ProductList()));
+		assertEquals(3, list.size());
+	}
+
+	@Test
+	void removeMore() {
+		list.add(new Reservation(1, "name", new ProductList()));
+		list.add(new Reservation(2, "name", new ProductList()));
+		list.add(new Reservation(3, "name", new ProductList()));
+		list.removeByIndex(2);
+		list.removeByIndex(1);
+		list.removeByIndex(0);
+		assertEquals(0, list.size());
+	}
+
+	@Test
+	void getMore() {
+		Reservation r = new Reservation(1, "name", new ProductList());
+		Reservation r2 = new Reservation(2, "name", new ProductList());
+		Reservation r3 = new Reservation(3, "name", new ProductList());
+
+		list.add(r);
+		list.add(r2);
+		list.add(r3);
+
+		assertEquals(r, list.get(1));
+		assertEquals(r2, list.get(2));
+
+	}
+
+	@Test
+	void changeMore() {
+		Reservation r = new Reservation(1, "name", new ProductList());
+		Reservation r2 = new Reservation(2, "name", new ProductList());
+		Reservation r3 = new Reservation(3, "name", new ProductList());
+
+		list.add(r);
+		list.add(r2);
+		list.add(r3);
+
+		list.change(0, ReservationStatus.returned);
+		list.change(1, ReservationStatus.notReturned);
+		assertEquals(ReservationStatus.returned, list.getByIndex(0).getStatus());
+		assertEquals(ReservationStatus.notReturned, list.getByIndex(1).getStatus());
+	}
+
+
 }
