@@ -2,7 +2,6 @@ package client.core;
 
 import client.model.ModelProxy;
 import client.model.ModelProxyManager;
-import client.networking.ClientProxy;
 
 /**
  * ModelFactory
